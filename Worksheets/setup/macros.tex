@@ -21,6 +21,10 @@
 %\newcommand{\where}[1]{ \left.\rule{0cm}{.5cm}\right\vert\rule{0cm}{.4cm}_{\substack{\rule{0cm}{.15cm}\\ \si{#1} }} }
 %\newcommand{\whereTwo}[2]{ \left.\rule{0cm}{.67cm}\right\vert\rule{0cm}{.5cm}_{\substack{\si{#1} \rule{0cm}{.19cm}\\\vspace{-.1cm}\\ \si{#2}}} }
 
+\newenvironment{where}{\indent Where:\\}{}
+\newcommand{\va}[3]{\hspace{16mm} \begin{tabular}{p{40pt} p{360pt} l} {#1} & {#2} & \ifthenelse{\isempty{#3}}{}{[{#3}]} \\
+	\end{tabular}\\}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 TIKZ SETTINGS                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -88,6 +92,3 @@
 
 
 
-\newenvironment{where}{\indent Where:\\}{}
-\newcommand{\va}[3]{\hspace{16mm} \begin{tabular}{p{40pt} p{360pt} l} {#1} & {#2} & \ifthenelse{\isempty{#3}}{}{[{#3}]} \\
-\end{tabular}\\}
