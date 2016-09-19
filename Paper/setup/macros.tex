@@ -2,14 +2,15 @@
 %             UNITS, EQUATIONS AND TEXT             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Units:
-\newcommand{\unit}[1]{&& \left[\si{#1}\right]} %\newcommand{\unit}[1]{[\si{#1}]}             <<| Use these if you want equations to be
+\newcommand{\unit}[1]{&& \left[\si{#1}\right]} %\newcommand{\unit}[1]{[\si{#1}]}             <<| Use these if you want uations to be
 \newcommand{\unitWh}[1]{[\si{#1}]}             %\newcommand{\eq}[2]{&&\si{#1} &= \si{#2}&&}  <<| centered.. .. will appear scrambled
 \newcommand{\numUnit}[1]{\ \si{#1}&}           %                                               | from one equation to the next though..
 %Equation:                                     %                                               | and does not work with long equations.. :/
 \newcommand{\eq}[2]{\si{#1} &= \si{#2}}
 \newcommand{\arw}{&& &\Updownarrow&&}
 \newcommand{\eqOne}[2]{\si{#1} &= \si{#2} &\nonumber\\}
-\newcommand{\eqTwo}[1]{&\ \ \ \ \si{#1}&}
+\newcommand{\eqTwo}[1]{&\ \ \ \ \si{#1}& \nonumber\\}
+\newcommand{\eqThree}[1]{&\ \ \ \ \si{#1}&}
 %Text:
 \newcommand{\tx}[1]{\text{#1}}
 %Vectors
@@ -21,7 +22,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 TIKZ SETTINGS                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows.meta}
 \tikzset{
   block/.style    = {draw, thick, rectangle,
                      minimum height = 2.1em,
