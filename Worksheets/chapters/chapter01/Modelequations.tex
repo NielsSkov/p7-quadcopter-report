@@ -1,0 +1,16 @@
+\section{Model equations}
+$\phi$ roll (around x-axis)\\ \\
+$\theta$ pitch (around y-axis)\\ \\
+$\psi$ yaw (around z-axis)\\
+
+\begin{equation}
+J_x\ddot{\phi}=(F_4-F_2)L\\
+J_y \ddot{\theta}=(F_1-F_3)L\\
+J_2\ddot{\psi}=\tau_1-\tau_2+\tau_3-\tau_4
+\end{equation}
+
+\begin{equation}
+(-F_1-F_2-F_3-F_4)+F_g\cdot \cos(\phi)\cos(\theta)=m\ddot(Z)_B\\
+F_g(\cos(\phi)\sin(\theta)\cos(psi)+\sin(phi)\sin(\psi))=m\ddot(x)_B\\
+F_g(\cos(\phi)\sin(\theta)\sin(psi)-\sin(phi)\cos(\psi))=m\ddot(y)_B\\
+\end{equation}
