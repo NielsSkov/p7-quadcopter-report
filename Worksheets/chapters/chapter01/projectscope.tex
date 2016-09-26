@@ -1,0 +1,9 @@
+\section{Project scope}
+
+In this section the scope of the project will be described with the purpose of giving the reader an overview. \newpar
+
+This project's main purpose is to make the stabilisation of a quadcopter, that will allow it to hower steadily. It must also be able to move in all three dimensions when given a location input from a grounded user interface. \\
+The project will use Vicon, a motion tracking system, that will allow the quadcopter to recive precise data of its position and orientation. 
+As the main focus in this project is the stabilization of an airborn object, the quadcopter will first be using the Vicon data for both orientation and position. When this is fully functioning, the orientation data must instead come from on board sensors. This is done, as hardware work must not be of too high priority compared to controlling the quadcopter. \newpar
+
+The microcontoller that will handle the on-board control is an AtMega2560. Its IOS is FreeRTOS and it is programmed in C. 
