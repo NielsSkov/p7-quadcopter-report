@@ -41,19 +41,52 @@ Where \si{\ddot{\phi}}, \si{\ddot{\theta}}, and \si{\ddot{\psi}} are the angular
 
 As it can be seen in the \eqref{eq:AngleEq}, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed in the y and x axes of the quadcopter, respectively. The yaw angle changes only due to the torques created by the drag force in the propeller.
 
+\subsubsection{Linear accelerations - Body frame}
 The linear acceleration components along the body coordinate frame directions evolve according to the equations below. They come from applying Newton's second law. As the gravity needs to be transformed from the inertial frame to the body frame, it has been multiplied by the rotation matrix (\eqref{rotMatrix}) that depends on the angles roll, pitch and yaw.
 %
 \begin{flalign}
 \eq{F_g(\cos(\phi) \sin(\theta) \cos(\psi) + \sin(\phi) \sin (\psi))}{m\cdot\ddot{x}_B} &\\
 \eq{F_g(\cos(\phi) \sin(\theta) \sin(\psi) - \sin(\phi) \cos(\psi))}{m\cdot\ddot{y}_B}&\\
 \eq{-F_1-F_2-F_3-F_4+F_g\cdot \cos(\phi)\cos(\theta)}{m\cdot\ddot{z}_B} 
-\label{eq:AccelerationEq}
+\label{eq:AccelerationEqBody}
 \end{flalign}
 
 Where \si{F_g} represents the gravitational force and \si{\ddot{x}_B}, \si{\ddot{y}_B}, and \si{\ddot{z}_B} represent the accelerations along the body axes of the quadcopter.
 
-The trasformation of the gravity force is explained by three consecutive rotations (roll, pitch and yaw) combined in one rotation matrix \si{R_{\phi, \theta, \psi}}.
+The transformation of the gravity force is explained by three consecutive rotations (roll, pitch and yaw) combined in one rotation matrix \si{R_{\phi, \theta, \psi}}.
 
+\subsubsection{Linear accelerations - Inertial frame}
+
+\begin{flalign}
+	\eq{m\cdot\ddot{x}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)} &\\
+	\eq{m\cdot\ddot{y}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta)} &\\
+	\eq{m\cdot\ddot{z}_I}{F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)}
+	\label{eq:AccelerationEqInertial}
+\end{flalign}
+
+\subsubsection{Linearization of Equations}
+\begin{flalign}
+	\eqOne{m\cdot\Delta\ddot{x}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\theta})-}
+	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta} &\\
+	\eqOne{m\cdot\Delta\ddot{y}_I}{(k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})-}
+	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\theta+}\nonumber\\
+	\eqThree{+k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi} &\\
+	\eqOne{m\cdot\Delta\ddot{z}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})-}
+	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\theta-}\nonumber\\
+	\eqThree{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\phi}
+	\label{eq:LinearEquations}
+\end{flalign}
+
+
+\begin{flalign}
+	\eq{m\cdot\Delta\ddot{x}_I}{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta} &\\
+	\eq{m\cdot\Delta\ddot{y}_I}{k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi} &\\
+	\eq{m\cdot\Delta\ddot{z}_I}{(-2\textbf{ }k_{th}\cdot({\overline{\omega}_1}^2\cdot\Delta\omega_1+{\overline{\omega}_2}^2\cdot\Delta\omega_2+{\overline{\omega}_3}^2\cdot\Delta\omega_3+{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})}
+	\label{eq:FinalLinearEquations}
+\end{flalign}
+
+
+\subsubsection{Rotation Matrices}
 \begin{minipage}{0.3\linewidth}
 \begin{flalign}
 	\si{R_\phi} &=
