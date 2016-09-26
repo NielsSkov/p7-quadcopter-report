@@ -1,8 +1,0 @@
-\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\defcounter {refsection}{0}\relax 
-\select@language {danish}
-\select@language {english}
-\contentsline {part}{I\hspace {1em}Part 1}{1}{part.1}
-\contentsline {part}{II\hspace {1em}Part 2}{3}{part.2}
-\contentsline {part}{III\hspace {1em}Test \& Conclusion}{5}{part.3}
-\vspace \bigskipamount 
