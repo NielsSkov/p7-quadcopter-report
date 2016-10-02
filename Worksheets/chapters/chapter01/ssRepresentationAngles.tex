@@ -1,0 +1,112 @@
+\section{State Space Representation for the Angular Model Equations}
+\begin{minipage}{0.32\linewidth}
+	\begin{flalign}
+		\vec{x(t)} = 
+		\begin{bmatrix}
+			\phi \\
+			\theta \\ 
+			\psi \\
+			\dot{\phi} \\
+			\dot{\theta} \\
+			\dot{\psi} \\
+		\end{bmatrix}	\nonumber
+		\label{xVector}
+	\end{flalign}  
+\end{minipage}\hfill
+%\hspace{0.03\linewidth}
+\begin{minipage}{0.32\linewidth}
+	\begin{flalign}
+		\vec{y(t)} = 
+		\begin{bmatrix}
+			\phi \\
+			\theta \\ 
+			\psi \\
+		\end{bmatrix}	\nonumber
+		\label{yVector}
+	\end{flalign}
+\end{minipage}\hfill
+%\hspace{0.03\linewidth}
+\begin{minipage}{0.32\linewidth}
+	\begin{flalign}
+		\vec{u(t)}= 
+		\begin{bmatrix}
+			\omega_1 \\
+			\omega_2 \\
+			\omega_3 \\
+			\omega_4 \\
+		\end{bmatrix}
+		\label{uVector}
+	\end{flalign}
+\end{minipage}\hfill
+
+The relationship between them is  given in the form of first-order differential equations:
+\begin{flalign}
+	\eq{\vec{\dot{x}}(t)}{f(\vec{x}(t),\vec{u}(t))}
+	\label{xDotDiffEq} 
+\end{flalign}
+\begin{flalign}
+	\eq{\vec{y}(t)}{g(\vec{x}(t),\vec{u}(t))} 
+	\label{yDiffEq} 
+\end{flalign}
+%
+The system can be described in the form of linear state space equations, \eqref{xDotLinear} and \eqref{yLinear}.
+%
+\begin{flalign}
+	\eq{\vec{\dot{x}}(t)}{\vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)}
+	\label{xDotLinear} 
+\end{flalign}
+\begin{flalign}
+	\eq{\vec{y}(t)}{\vec{C} \cdot \vec{x}(t) + \vec{D} \cdot \vec{u}(t)}
+	\label{yLinear} 
+\end{flalign}
+%
+\hspace{6mm} Where:\\
+\begin{tabular}{ p{1cm} l l l}
+	& \si{\vec{A}=\frac{\partial}{\partial \vec{x}} \ f(\vec{x_o},\vec{u_o})}			& is the \si{6x6}  state matrix     \\                       
+	& \si{\vec{B}=\frac{\partial}{\partial \vec{u}} \ f(\vec{x_o},\vec{u_o})}			& is the \si{6x4}  input matrix       \\ 
+	& \si{\vec{C}=\frac{\partial}{\partial \vec{x}} \ g(\vec{x_o},\vec{u_o})}			& is the \si{3x6}  output matrix      \\ 
+	& \si{\vec{D}=\frac{\partial}{\partial \vec{u}} \ g(\vec{x_o},\vec{u_o})}			& is the \si{3x4}  feedforward matrix \\ 
+\end{tabular} 
+\\
+
+The state space description can be seen also in the form of a block diagram like the one from \figref{SSBlocks}.
+%
+\begin{figure}[H]
+	\input{figures/SSBlockDiagram.tikz}
+	\centering
+	\caption{Block diagram of the state space representation of the system.}
+	\label{SSBlocks}
+\end{figure}\vspace{-18pt}
+%
+This matrices can be obtained from the linearized equations of the system from \eqref{eqAngleLin}, given the final system description as \eqref{xDotSS} and \eqref{ySS}.
+
+\begin{flalign}   \label{xDotSS}
+	\dot{x}(t) &=
+	\begin{bmatrix}
+		\ 0 & 0 & 0 & 1 & 0 & 0     \ \ \ \\ 
+		\ 0 & 0 & 0 & 0 & 1 & 0     \ \ \ \\ 
+		\ 0 & 0 & 0 & 0 & 0 & 1     \ \ \ \\
+		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
+		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
+		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ 		
+	\end{bmatrix}
+	x(t) +
+	\begin{bmatrix}
+		\ 0 & 0 & 0 & 0      \ \ \ \\ 
+		\ 0 & 0 & 0 & 0      \ \ \ \\ 
+		\ 0 & 0 & 0 & 0      \ \ \ \\
+		\ 0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_2}{J_x}} & 0 & \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_4}{J_x}}      \ \ \ \\ 
+		\ \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_1}{J_y}} & 0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_3}{J_y}} & 0      \ \ \ \\ 
+		\ \frac{2 \cdot k_d \cdot {\overline{\omega}_1}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_2}}{J_z} & \frac{2 \cdot k_d \cdot {\overline{\omega}_3}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_4}}{J_z}      \ \ \ 		
+	\end{bmatrix}
+	u(t)
+\end{flalign}
+\begin{flalign} \label{ySS}
+	\si{y(t)} &=	 
+	\begin{bmatrix}
+		\ 1 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
+		\ 0 & 1 & 0 & 0 & 0 & 0     \ \ \ \\ 
+		\ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 		
+	\end{bmatrix}
+	x(t)
+\end{flalign}

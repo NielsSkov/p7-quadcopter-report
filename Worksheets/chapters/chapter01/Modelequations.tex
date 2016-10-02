@@ -184,10 +184,10 @@ In this case the gravity force has effect only in the \si{z_B} direction and the
 \section{Linearization of the Equations}
 Since the goal is to design a linear controller it is necessary to linearize the equations that contains around the equilibrium point. This is done using the first order Taylor approximation in each equation.
 \begin{flalign}
-	\eq{J_x\cdot\Delta\ddot{\phi}}{k_{th} \cdot L \cdot({\overline{\omega}^2_4}\cdot \Delta \omega_2-{\overline{\omega}^2_2}\cdot \Delta \omega_4)}&\\
-	\eq{J_x\cdot\Delta\ddot{\theta}}{k_{th} \cdot L \cdot({\overline{\omega}^2_1}\cdot \Delta \omega_1-{\overline{\omega}^2_3}\cdot \Delta \omega_3)}&\\
-	\eq{J_x\cdot\Delta\ddot{\psi}}{k_d \cdot ({\overline{\omega}^2_1}\cdot \Delta \omega_1+{\overline{\omega}^2_2}\cdot \Delta \omega_2+{\overline{\omega}^2_3}\cdot \Delta \omega_3+{\overline{\omega}^2_4}\cdot \Delta \omega_4)}&
-\end{flalign}
+	\eq{J_x\cdot\Delta\ddot{\phi}}{2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_4}\cdot \Delta \omega_2-{\overline{\omega}_2}\cdot \Delta \omega_4)}&\\
+	\eq{J_y\cdot\Delta\ddot{\theta}}{2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_3}\cdot \Delta \omega_3)}&\\
+	\eq{J_z\cdot\Delta\ddot{\psi}}{2 \cdot k_d \cdot ({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_2}\cdot \Delta \omega_2+{\overline{\omega}_3}\cdot \Delta \omega_3-{\overline{\omega}_4}\cdot \Delta \omega_4)}&
+\end{flalign} \label{eqAngleLin}
 %
 \hspace{6mm} Where:\\
 \begin{tabular}{ p{1cm} l l l}
@@ -213,7 +213,7 @@ Since the goal is to design a linear controller it is necessary to linearize the
 \begin{flalign}
 	\eq{m\cdot\Delta\ddot{x}_I}{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta} &\\
 	\eq{m\cdot\Delta\ddot{y}_I}{k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi} &\\
-	\eq{m\cdot\Delta\ddot{z}_I}{(-2\textbf{ }k_{th}\cdot({\overline{\omega}_1}^2\cdot\Delta\omega_1+{\overline{\omega}_2}^2\cdot\Delta\omega_2+{\overline{\omega}_3}^2\cdot\Delta\omega_3+{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})}
+	\eq{m\cdot\Delta\ddot{z}_I}{-2\textbf{ }k_{th}\cdot({\overline{\omega}_1}^2\cdot\Delta\omega_1+{\overline{\omega}_2}^2\cdot\Delta\omega_2+{\overline{\omega}_3}^2\cdot\Delta\omega_3+{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})}
 	\label{eq:FinalLinearEquations}
 \end{flalign}
 %
