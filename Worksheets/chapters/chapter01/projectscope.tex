@@ -9,10 +9,16 @@ As the main focus in this project is the stabilization of an airborn object, the
 The microcontoller that will handle the on-board control is an AtMega2560. Its IOS is FreeRTOS and it is programmed in C. 
 
 
-In this section the scope of the project will be described. The purpose is to give the reader an overview of the project. \newpar
+In this section the scope of the project is described. The purpose is to give the reader an overview of the project. \newpar
 
-The project's main purpose is to stabilize a quadcopter. This means that the quadcopter is able to hower and manoeuvre steadily without making visible oscillation like movements while flying, i.e. shaking. The quadcopter should therefore be able to move in all three dimensions when given a specific position from a ground station. \\
-In this project a motion tracking system called Vicon is utilized. Vicon is able to gather the quadcopter position and orientation, thereby making it possible to utilize the Vicon data when controlling the quadcopter. 
-As the main focus in this project is the stabilization of a quadcopter, the Vicon data will be utilized first for both orientation and position of the quadcopter. When this is fully functioning, the orientation data could instead come from on board sensors. This will not be prioritised as hardware is not set as a high priority in the project compared to controlling and stabilization of the quadcopter. \newpar
+The project's main purpose is to stabilize a quadcopter. This means that the quadcopter is able to hover and manoeuvre steadily without making visible oscillation like movements while flying, i.e. shaking. The quadcopter should therefore be able to move in all three dimensions. This could either be done by remote control or autonomously.\\
+
+As the main focus in this project is the stabilization of a quadcopter, a motion tracking system called Vicon is used. Vicon is able to gather the quadcopter position and orientation, thereby making it possible to control the quadcopter. When this is fully functioning, the orientation data could instead come from on board sensors. This will not be prioritised as hardware is not set as a high priority in the project compared to controlling and stabilizing the quadcopter. \newpar
 
 The microcontroller which handles the on-board control is an AtMega2560. The internal operating system utilized is FreeRTOS and C is used as the programming language.
+
+The hardware used for the communication with the computer are Xbee modules. The transport protocol to be designed is based on UDP with an acknowledge system in order to increase reliability. 
+
+
+
+
