@@ -1,4 +1,4 @@
-\chapter{Thrust and Motor Speed Relation}\label{app:potentiometerLin} 
+\chapter{Thrust Force Constant}\label{app:ThrustTest} 
 \textbf{Name: Group 733}\\
 \textbf{Date: 30/09 - 2016}
 
@@ -31,6 +31,8 @@ Finding the relation between the speed of the motor and the thrust force generat
 		\hline%------------------------------------------------------------------------------------------------------------
 		Propeller                                   &  N/A               & Turnigy 1045R     \\
 		\hline%------------------------------------------------------------------------------------------------------------
+		Scale                                  &  86759              & KERN FCB 12K1     \\
+		\hline%------------------------------------------------------------------------------------------------------------
 		
 	\end{tabular}
 \end{table}
@@ -38,7 +40,7 @@ Finding the relation between the speed of the motor and the thrust force generat
 \subsubsection{Procedure}
 \begin{enumerate}
 	\item Construct the setup as seen in \figref{ThrustTest}, the power supply is connected to the motor driver and the Arduino Mega is powered from the computer. One PWM pin and GND pin from the board must be connected to the driver signal cables yellow and brown respectively. 
-	\item Start the program with a fixed duty cycle.
+	\item Run the program. It should generate a fixed duty PWM signal in the PWM pin.
 	\item Wait for the speed to stabilize and read the scale value. The thrust force is calculated by multiplying the added mass in kilograms with the gravitational acceleration (\si{9,81\textbf{ }m/s^2})
 	\item Measure the rotational speed with the tachometer.
 \end{enumerate}
@@ -85,13 +87,13 @@ Finding the relation between the speed of the motor and the thrust force generat
 	\end{tabular}
 \end{table}
 \subsubsection{Results}
-The obtained results are shown in \figref{ThrustResults}. They have been approximated by a parabolic curve by finding a linear relation between the velocity squared and the thrust force.
+The obtained results are shown in \figref{ThrustGraph}. They have been approximated by a parabolic curve by finding a linear relation between the velocity squared and the thrust force.
 
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[scale=0.05]{figures/ThrustTestSetup}
-%	\caption{Data from the thrust test approximated by a parabolic curve.}
-%	\label{ThrustResults}
-%\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{figures/ThrustGraph.eps}
+	\caption{Data from the thrust test approximated by a parabolic curve.}
+	\label{ThrustGraph}
+\end{figure}
 
-The resulting constant that provides the relation between the thrust force in the propeller and the velocity squared is \si{1,458\cdot10^{-7} N\cdot s/rad}.
+The resulting constant that provides the relation between the thrust force in the propeller and the velocity squared is \si{5,316868\cdot10^{-5} N\cdot s^2/rad^2}.
