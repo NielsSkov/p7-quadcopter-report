@@ -1,14 +1,18 @@
 \section{Prototype Description}
-
-The prototype is divided into 3 subsystems, which are the quadcopter, the ground station, and the vicon system, as seen in \figref{prototypediagram}. 
+In the following section an overall description of the prototype is given. This is done to help the reader understand the utilized setup in the project.
+The prototype is divided into 3 separate subsystems. The quadcopter, the ground station and the vicon system. These subsystems can be seen in \figref{prototypediagram}. 
 
 \begin{figure}[H] 
 	\includegraphics[scale=.5]{figures/prototypediagram}
 	\centering
 	\captionsetup{justification=centering}
-	\captionof{figure}{Schematic diagram of the system, including the quadcopter, the ground station and the vicon system.}
+	\captionof{figure}{Schematic diagram of the prototype, which includes the quadcopter, the ground station and the vicon system.}
 	\label{prototypediagram}
 \end{figure}
+
+\todo{explain somewhere what vicon is and that it can be found in aalborg university, maybe we should have a little section?.}
+
+For this project the Vicon system is utilized to capture the position and orientation of the quadcopter. This is to avoid time consuming sensor set up on the quadcopter, as the Vicon system is already configured. The Vicon system is describe in further detail in section ??. The Vicon system transmits 
 
 The quadcopter's most complex component is the microcontroller. It handles the control calculations, the PWM calculations according to the required control action and battery level, and the communication protocol necessary to exchange data with the ground station.
 
@@ -22,19 +26,9 @@ The ground station gathers the information coming from the Vicon system and send
 
 Finally, Vicon system uses the position of the markers placed in the quadcopter to provide its position and orientation. The orientation data is given in multiple forms but only Euler angles data is considered.
 
-\textbf{Battery}
 
-Voltage: 11.1 Volts
-
-Discharge current: 20 Amperes
-
-Weight: 141 grams
-
-Capacity: 1500 mAh
-
-\textbf{Propeller}
+\textbf{Battery should be moved somewhere else}
+The battery, which is available for the prototype, is a Zippy Flightmax battery. Its weights 141 gram, has an capacity of 1500 mAh, a voltage of 11.1 volts and a discharge current of 20 amperes. 
 
 
-
-\textbf{Platform}
 
