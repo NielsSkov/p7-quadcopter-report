@@ -199,19 +199,19 @@ Since the goal is to design a linear controller it is necessary to linearize the
 \end{tabular}
 
 
-\begin{note}
-\begin{flalign}
-	\eqOne{m\cdot\Delta\ddot{x}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\theta})-}
-	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta} &\\
-	\eqOne{m\cdot\Delta\ddot{y}_I}{(k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})-}
-	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\theta+}\nonumber\\
-	\eqThree{+k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi} &\\
-	\eqOne{m\cdot\Delta\ddot{z}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})-}
-	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\theta-}\nonumber\\
-	\eqThree{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\phi}
-	\label{eq:LinearEquations}
-\end{flalign}
-\end{note}
+%\begin{note}
+%\begin{flalign}
+%	\eqOne{m\cdot\Delta\ddot{x}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\theta})-}
+%	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta} &\\
+%	\eqOne{m\cdot\Delta\ddot{y}_I}{(k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})-}
+%	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\theta+}\nonumber\\
+%	\eqThree{+k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi} &\\
+%	\eqOne{m\cdot\Delta\ddot{z}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})-}
+%	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\theta-}\nonumber\\
+%	\eqThree{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\phi}
+%	\label{eq:LinearEquations}
+%\end{flalign}
+%\end{note}
 %
 \begin{flalign}
 	\eq{m\cdot\Delta\ddot{x}_I}{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta} &\\
