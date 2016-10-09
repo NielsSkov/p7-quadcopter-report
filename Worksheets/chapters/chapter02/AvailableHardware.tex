@@ -1,17 +1,35 @@
 \section{Available Hardware}
 
+\subsection{Motor Controller}
+
+
+
 \subsection{Motor and Propeller}
 
 \subsection{Platform}
 
 \subsection{Battery}
 
-The battery, which is available for the prototype, is a Zippy Flightmax battery. It weights 141 gram, has a capacity of 1500 mAh, a voltage of 11.1 volts and a discharge current of 20 amperes. 
+The battery available for the prototype, is a Zippy Flightmax battery. Its weights 141 gram, has an capacity of 1500 mAh, a voltage of 11.1 volts and a discharge current of 20 amperes. 
 
-\subsection{Vicon}
 
-The Vicon system is a powerful tool that provides real-time position and orientation data captured with infrared cameras.This information can be used to track objects inside the room the system is built in. An example is found in Aalborg University as seen in \figref{ViconRoom}. 
-For using it, markers are attached to the object that is to be tracked. The Vicon system streams the position of the markers and the position and orientation of the object at 100 Hz for a computer to read them.
+\subsection{Vicon System}
 
-In \figref{ViconTracker} the user interface with the Vicon system is shown. It is called Vicon Tracker and it allows the creation of objects from the markers present in the room. It allows also to change the center of gravity of the created objects and to rotate the reference frames to a desired position.
-NOT FINISHED
+The Vicon system is a powerful tool that provides real-time position and orientation data captured with NROFCAMERAS infrared cameras.This information can be used to track objects inside the room the system is built in. An example is found in Aalborg University as seen in \figref{ViconRoom}. 
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=0.5]{figures/ViconRoom}
+%	\caption{Aalborg University's Vicon room.}
+%	\label{ViconRoom}
+%\end{figure}
+
+For using this system, markers are attached to the object that is to be tracked. The Vicon system streams the position of the markers and the position and orientation of the object at 100 Hz for a computer to read them. The data can be received by using a SDK plugin for MATLAB. In this way, data can be operated in the MATLAB enviroment, making easier to obtain derived variables like velocities or accelerations.
+
+The user interface of the Vicon system is shown in \figref{ViconTracker}. It is called Vicon Tracker and it allows the creation of objects by grouping markers present in the room. It also allows to change the center of gravity of the created objects and rotate the inertial and body reference frames to any desired orientation.
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=0.5]{figures/ViconTraker}
+%	\caption{User interface of the Vicon System, the Vicon Tracker. An object has been created and its center of gravity is being modified.}
+%	\label{ViconTracker}
+%\end{figure}
