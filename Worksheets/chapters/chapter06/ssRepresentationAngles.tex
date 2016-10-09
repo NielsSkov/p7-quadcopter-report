@@ -36,7 +36,7 @@
 			\omega_4 \\
 		\end{bmatrix}
 		\label{uVector}
-	\end{flalign}
+	\end{flalign} \nonumber
 \end{minipage}\hfill
 
 The relationship between them is  given in the form of first-order differential equations:
@@ -49,7 +49,7 @@ The relationship between them is  given in the form of first-order differential 
 	\label{yDiffEq} 
 \end{flalign}
 %
-The system can be described in the form of linear state space equations, \eqref{xDotLinear} and \eqref{yLinear}.
+If the system can be described with linear equations, the previous representation can be written in matrix form, giving \eqref{xDotLinear} and \eqref{yLinear}.
 %
 \begin{flalign}
 	\eq{\vec{\dot{x}}(t)}{\vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)}
@@ -69,7 +69,7 @@ The system can be described in the form of linear state space equations, \eqref{
 \end{tabular} 
 \\
 
-The state space description can be seen also in the form of a block diagram like the one from \figref{SSBlocks}.
+This state space description can be seen also in the form of a block diagram like the one in \figref{SSBlocks}.
 %
 \begin{figure}[H]
 	\input{figures/SSBlockDiagram.tikz}
@@ -78,7 +78,7 @@ The state space description can be seen also in the form of a block diagram like
 	\label{SSBlocks}
 \end{figure}\vspace{-18pt}
 %
-This matrices can be obtained from the linearized equations of the system from \eqref{eqAngleLin}, given the final system description as \eqref{xDotSS} and \eqref{ySS}.
+The specific matrices for the description of the angular behavior can be obtained from the linearized equations of the system (\eqref{eqAngleLin}), given the final system description as \eqref{xDotSS} and \eqref{ySS}.
 
 \begin{flalign}   \label{xDotSS}
 	\dot{x}(t) &=
@@ -111,5 +111,6 @@ This matrices can be obtained from the linearized equations of the system from \
 	x(t)
 \end{flalign}
 
+The dynamics of the system can be analysed looking at the matrices, since
 
 
