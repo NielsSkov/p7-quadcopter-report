@@ -2,28 +2,27 @@
 
 \subsection{Motor Controller}
 
-
-
 \subsection{Motor and Propeller}
-The quadrotor is equipped with four brushless outrunner motors named Turing Multistar. Bushless outrunners have in general more torque than inrunners, and can turn lager propellers, resulting in greater lift. The motors are controller by motorcontrollers, described in another section. The propeller comes with the motor. It is XX long and has a SHAPE (find proper name). 
-The relationship between PWM signal to the motor controllers and the velocity of the propeller can be seen in Figure ZZ. 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.5]{figures/propeller.png}
-	\caption{Two of the four propellers 										mounted on the quadrotor.[http://www.hobbyking.com/hobbyking/store/__58215__MT2213_935KV_MultiStar_Motor_and_Propeller_Combo_10x4_5_CW_CCW_EU_Warehouse_.html2 
-]}
-	\label{fig:Propeller}
-\end{figure}
-It has been observed during tests, that the motor runs faster as its temperature increases. This is not expected due to the increased resistance, that occurs when the coils within the motor are heated. Therefore the relationship between PWM signal and velocity is not representative for all cases. It is however deemed reasonable to neglect this variance and presume a relationship as it is derived in the measurement report, see Appendix YY. 
-\newpar 
+The quadrotor is equipped with four brushless outrunner motors named Turing Multistar. Bushless outrunners have in general more torque than inrunners, and can turn lager propellers, resulting in greater lift. The motors are controller by motorcontrollers, described in another section.
+The motor can be seen in \autoref{fig:Motor}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{figures/motor.png}
-	\caption{One of the four motors mounted on the quadrotor.[http://www.hobbyking.com/hobbyking/store/__58215__MT2213_935KV_MultiStar_Motor_and_Propeller_Combo_10x4_5_CW_CCW_EU_Warehouse_.html2 
-]}
+	\caption{One of the four motors mounted on the quadrotor.}
 	\label{fig:Motor}
+\end{figure} The propellers come with the motors. It is XX long and has a SHAPE (find proper name), see \autoref{fig:Propeller}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{figures/propeller.png}
+	\caption{Two of the four propellers mounted on the quadrotor's motors.}
+	\label{fig:Propeller}
 \end{figure}
+
+The relationship between PWM signal to the motor controllers and the velocity of the propeller can be seen in Figure ZZ. \fixme{pull diagram from measurement report}
+
+
+It has been observed during tests, that the motor runs faster as it's temperature increases. This is not expected due to the increased resistance, that occurs when the coils within the motor are heated. Therefore the relationship between PWM signal and velocity is not representative for all cases. It is however deemed reasonable to neglect this variance and presume a relationship as it is derived in the measurement report, see Appendix YY. 
 
 
 Moreover it shall be noted, that the battery level drops over time, with a significance, that can not be neglected, as it has great impact on the output of the motor and therefore on the lift of the propeller. It is possible to measure the battery level while operating the quadrotor. By taking into account the battery level in the test of the PWM signal to velocity, it is possible to obtain a quadcopter having constant lift force, if this is requested. 
