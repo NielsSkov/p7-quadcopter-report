@@ -59,98 +59,105 @@
 
 \begin{document}
 
-%%
-%% paper title
-%% Titles are generally capitalized except for words such as a, an, and, as,
-%% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
-%% not capitalized unless they are the first or last word of the title.
-%% Linebreaks \\ can be used within to get better formatting as desired.
-%% Do not put math or special symbols in the title.
-%\title{Stabilization of a Quadcopter}
 %
-%
-%% author names and affiliations
-%% use a multiple column layout for up to three different
-%% affiliations
-%\author{\IEEEauthorblockN{Michael Shell}
-%\IEEEauthorblockA{School of Electrical and\\Computer Engineering\\
-%Georgia Institute of Technology\\
-%Atlanta, Georgia 30332--0250\\
-%Email: http://www.michaelshell.org/contact.html}
-%\and
-%\IEEEauthorblockN{Homer Simpson}
-%\IEEEauthorblockA{Twentieth Century Fox\\
-%Springfield, USA\\
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Stabilization of a Quadcopter}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Alejandro YYYYYYY}
+\IEEEauthorblockA{Department of electronic systems\\Control and Automation\\
+Aalborg University\\
+Email: XXXXXXXXX}
+\and
+\IEEEauthorblockN{Amalie YYYYYYY}
+\IEEEauthorblockA{Department of electronic systems\\Control and Automation\\
+Aalborg University\\
+Email: XXXXXXX}
+\and
+\IEEEauthorblockN{Andrea YYYYYYY}
+\IEEEauthorblockA{Department of electronic systems\\Control and Automation\\
+Aalborg University\\
+Email: XXXXXXX}
+\and 
+\hspace{4cm}\IEEEauthorblockN{Niels YYYYYYY}
+\IEEEauthorblockA{\hspace{4cm}Department of electronic systems\\ \hspace{4cm}Control and Automation\\
+\hspace{4cm}Aalborg University\\
+\hspace{4cm}Email: XXXXXXX}
+\and
+\IEEEauthorblockN{Noelia YYYYYYY}
+\IEEEauthorblockA{Department of electronic systems\\Control and Automation\\
+Aalborg University\\
+Email: XXXXXXX}}
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page, use this alternative format:
+% 
+%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+%Homer Simpson\IEEEauthorrefmark{2},
+%James Kirk\IEEEauthorrefmark{3}, 
+%Montgomery Scott\IEEEauthorrefmark{3} and
+%Eldon Tyrell\IEEEauthorrefmark{4}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+%Georgia Institute of Technology,
+%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
 %Email: homer@thesimpsons.com}
-%\and
-%\IEEEauthorblockN{James Kirk\\ and Montgomery Scott}
-%\IEEEauthorblockA{Starfleet Academy\\
-%San Francisco, California 96678--2391\\
-%Telephone: (800) 555--1212\\
-%Fax: (888) 555--1212}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+Abstract goes here.
+\end{abstract}
+
+% no keywords
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
 %
-%% conference papers do not typically use \thanks and this command
-%% is locked out in conference mode. If really needed, such as for
-%% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
-%% after \documentclass
-%
-%% for over three affiliations, or if they all won't fit within the width
-%% of the page, use this alternative format:
-%% 
-%%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
-%%Homer Simpson\IEEEauthorrefmark{2},
-%%James Kirk\IEEEauthorrefmark{3}, 
-%%Montgomery Scott\IEEEauthorrefmark{3} and
-%%Eldon Tyrell\IEEEauthorrefmark{4}}
-%%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
-%%Georgia Institute of Technology,
-%%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
-%%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
-%%Email: homer@thesimpsons.com}
-%%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
-%%Telephone: (800) 555--1212, Fax: (888) 555--1212}
-%%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
-%
-%% make the title area
-%\maketitle
-%
-%% As a general rule, do not put math, special symbols or citations
-%% in the abstract
-%\begin{abstract}
-%The abstract goes here.
-%\end{abstract}
-%
-%% no keywords
-%
-%
-%% For peer review papers, you can put extra information on the cover
-%% page as needed:
-%% \ifCLASSOPTIONpeerreview
-%% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-%% \fi
-%%
-%% For peerreview papers, this IEEEtran command inserts a page break and
-%% creates the second title. It will be ignored for other modes.
-%\IEEEpeerreviewmaketitle
-%
-%
-%\section{Introduction}
-%% no \IEEEPARstart
-%This demo file is intended to serve as a ``starter file''
-%for IEEE conference papers produced under \LaTeX\ using
-%IEEEtran.cls version 1.8b and later.
-%% You must have at least 2 lines in the paragraph with the drop letter
-%% (should never be an issue)
-%I wish you the best of success.
-%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+\section{Introduction}
+% no \IEEEPARstart
+\begin{itemize}
+\item Present topic - uses of drones in reality context, chosen because it is a control challenge, rather than evaluational\\
+\item Previous Approaches - examples of what others have done to obtain similar goals of stabilization like we pursue. What have others done differently than we plan to do to obtain the same end result. \\ 
+\item Describe our approach shortly
+\item Structure of the paper. What comes in what order, and what the reader can expect to be presented with
+\end{itemize}
+
 %\begin{figure}[H]
 %	\centering
 %	\includegraphics[scale=0.3]{harrypotter}
-%	\caption{Location of the center of mass, where \si{\theta_1=0,043\ rad\ and\ \theta_2=0,078\ rad}.}
+%	\caption{Test of figure.}
 %	\label{centerOfMassDiagram}
 %\end{figure}
-%
-%
+
+
 %\begin{table}[H]
 %	\centering
 %	\begin{tabular}{|p{4.8cm}|p{2cm}|}
@@ -169,68 +176,73 @@
 %	\caption{Important parameters of the motor control board.}
 %	\label{MotorControlBoardTable}
 %\end{table}
-%
-%%\begin{flalign}
-%%\eq{J_F \vec{\ddot{\theta}_F}} { -B_F \vec{\dot{\theta}_F} + \vec{l_F} \times (m_F\cdot \vec{g}) + \vec{l_w} \times \vec{F} - \vec{\tau_m} + B_w \vec{\dot{\theta}_w}} \unit{N\cdot m}
-%%\label{frameModelEq}
-%%\end{flalign}
-%
-%%\begin{flalign}
-%%\eqOne{\tau_{m}[n]}{\num{-8,314} \cdot e_{\theta}[n]+ \num{7,422} \cdot e_{\theta}[n-1] + \num{8,3023} \cdot e_{\theta}[n-2] }
-%%\eqTwo{ - \num{7,434} \cdot e_{\theta}[n-3] + \num{1,382} \cdot \tau_{m}[n-1] - \num{0,3415} \cdot \tau_{m}[n-2] }
-%%\eqThree{- \num{0,001638} \cdot \tau_{m}[n-3]} \unit{N \cdot m} 
-%%\label{eq:discControllerDiffEq}
-%%\end{flalign}
-%
-%
-%\subsection{Subsection Heading Here}
-%Subsection text here.
-%
-%
-%\subsubsection{Subsubsection Heading Here}
-%Subsubsection text here.
-%
-%\section{Model}
-%
-%\section{Discussion}
-%The conclusion goes here.
-%
-%
-%\section*{Acknowledgments}
-%
-%
-%The authors would like to thank...
-%
-%% trigger a \newpage just before the given reference
-%% number - used to balance the columns on the last page
-%% adjust value as needed - may need to be readjusted if
-%% the document is modified later
-%%\IEEEtriggeratref{8}
-%% The "triggered" command can be changed if desired:
-%%\IEEEtriggercmd{\enlargethispage{-5in}}
-%
-%% references section
-%
-%% can use a bibliography generated by BibTeX as a .bbl file
-%% BibTeX documentation can be easily obtained at:
-%% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
-%% The IEEEtran BibTeX style support page is at:
-%% http://www.michaelshell.org/tex/ieeetran/bibtex/
-%\bibliographystyle{IEEEtran}
-%% argument is your BibTeX string definitions and bibliography database(s)
-%%\bibliography{IEEEabrv,../bib/paper}
-%%
-%% <OR> manually copy in the resultant .bbl file
-%% set second argument of \begin to the number of references
-%% (used to reserve space for the reference number labels box)
-%
-%\begin{thebibliography}{}
-%\bibitem{IEEEhowto:kopka}
-%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-%
-%\end{thebibliography}
 
+%\begin{flalign}
+%\eq{J_F \vec{\ddot{\theta}_F}} { -B_F \vec{\dot{\theta}_F} + \vec{l_F} \times (m_F\cdot \vec{g}) + \vec{l_w} \times \vec{F} - \vec{\tau_m} + B_w \vec{\dot{\theta}_w}} \unit{N\cdot m}
+%\label{frameModelEq}
+%\end{flalign}
+
+%\begin{flalign}
+%\eqOne{\tau_{m}[n]}{\num{-8,314} \cdot e_{\theta}[n]+ \num{7,422} \cdot e_{\theta}[n-1] + \num{8,3023} \cdot e_{\theta}[n-2] }
+%\eqTwo{ - \num{7,434} \cdot e_{\theta}[n-3] + \num{1,382} \cdot \tau_{m}[n-1] - \num{0,3415} \cdot \tau_{m}[n-2] }
+%\eqThree{- \num{0,001638} \cdot \tau_{m}[n-3]} \unit{N \cdot m} 
+%\label{eq:discControllerDiffEq}
+%\end{flalign}
+
+
+\subsection{HEADLINE: Stabalization of quadrotor using wireless sensor input}
+Make some fancy up (before we send to Anders)
+
+\section{Method}
+\begin{itemize}
+\item Model - Drawing, equations, linear equations
+\item Controller - Diagram of controller 
+	\item Angle controller - include observer, linear controller
+\item Network effect on the system - Specify after consulting with Henrik S
+\end{itemize}
+\section{Results}
+Simulation vs. reality \\
+Design a setup that allows a nice measurement of reality - yet to be done\\
+Comment on the results, without discussion the reasons or what to improve
+
+\section{Discussion}
+Discussion of results, describe possible solutions to 'bumps' if any
+
+\section{Conclusion}
+Summary - what do we want the reader to remember? 
+\section*{Acknowledgement}
+Henrik XXXXX, assosiated professor at Aalborg University \\
+Christoffer Sloth, assosiated professor at Aalborg University
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+
+	%\begin{thebibliography}{}	
+	%%\bibitem{IEEEhowto:kopka}
+	%%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+	%%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+	%
+	%\end{thebibliography}
 
 % that's all folks
 \end{document}
