@@ -1,0 +1,32 @@
+\section{Reduced Order Observer Design with Reference Signals}
+
+\begin{flalign}
+	\eq{\vec{\vec{\dot{x}}(t)}}{\vec{A} \cdot \vec{x(t)} + \vec{B_1} (\vec{F}\vec{\hat{x}} + \vec{N}\vec{r})}
+	%\label{xDotLinear} 
+\end{flalign}
+
+
+\begin{flalign}
+	\eq{\vec{\dot{x}_1}(t)}{\vec{A_11} \cdot \vec{x_1}(t) + \vec{A_{12}} \cdot \vec{x_2}(t) + \vec{B_1}(F_1x_1 + F_2\hat{x}_2 + Nr)}
+	%\label{xDotLinear} 
+\end{flalign}
+
+\begin{flalign}
+	\eq{\vec{\dot{x}_2}(t)}{\vec{A_{21}} \cdot \vec{x_1}(t) + \vec{A_{22}} \cdot \vec{x_2}(t) + \vec{B_1}(F_1x_1 + F_2\hat{x}_2 + Nr)}
+	%\label{xDotLinear} 
+\end{flalign}
+
+	\begin{flalign}
+		\vec{y(t)} = \big(I \quad 0 \quad 0\big)
+		\begin{pmatrix}
+			\phi \\
+			\theta \\ 
+		\end{pmatrix}	\nonumber
+		\label{yVector}
+	\end{flalign}
+
+\begin{flalign}
+	\eq{\vec{\hat{\dot{x}}_2}(t)}{\vec{A_{21}} \cdot \vec{x_1}(t) + \vec{A_{22}} \cdot \vec{x_2}(t) + \vec{B_1}(F_1x_1 + F_2\hat{x_2} + Nr)}
+	%\label{xDotLinear} 
+\end{flalign}
+
