@@ -1,4 +1,4 @@
-\input{setup/preamble.tex}% package inclusion and set up of the document
+	\input{setup/preamble.tex}% package inclusion and set up of the document
 
 \input{setup/macros.tex}% my new macros
 
@@ -44,7 +44,7 @@
 	\pagestyle{fancy}
 	
 	%%% Part 1 %%%
-	\part{Part 1}
+	\part{Pre-Analysis}
 	
 	%---------- Chapter 1 ---------------------------------------- 
 	\input{chapters/chapter01/chapter1.tex}
@@ -59,18 +59,24 @@
 
 	%---------- Chapter 4 ---------------------------------------- 
 	\input{chapters/chapter04/chapter4.tex}
-	\input{chapters/chapter04/modelEquations.tex}
+	\input{chapters/chapter04/attitudeEquations.tex}
+	\input{chapters/chapter04/xyzEquations.tex}
+	\input{chapters/chapter04/combinedModel.tex}
+	\input{chapters/chapter04/linearization.tex}
 	
 	%---------- Chapter 5 ----------------------------------------
+
+
+	%%% Part 2 %%%
+	\part{Design}	
 		
 	%---------- Chapter 6 ---------------------------------------- 	
 	\input{chapters/chapter06/chapter6.tex}	
-	\input{chapters/chapter06/ssRepresentationAngles.tex}
-	\input{chapters/chapter06/ssObserverDesign.tex}
+	\input{chapters/chapter06/attitudeController.tex}
+	\input{chapters/chapter06/ssStateFeedbackDesign.tex} 			  %----- Subsection
+	\input{chapters/chapter06/ssObserverDesign.tex} 				  %----- Subsection
+	\input{chapters/chapter06/ssReference.tex}						  %----- Subsection
 	
-	%%% Part 2 %%%
-	\part{Part 2}
-
 	
 %	
 	%%% Part 3 %%%
