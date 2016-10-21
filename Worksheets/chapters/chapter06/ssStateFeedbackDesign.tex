@@ -1,5 +1,94 @@
-\subsection{State Feedback Design}
+\subsection{State Feedback with Integral Control Design}
+The aim of the controller is to be able to track a reference, within a reasonable range, in the three angles that define the attitude of the quadcopter.
+
+Given a state space representation as the one in \autoref{xDotLinear} and \autoref{yLinear}, it is possible to design a controller so that the final dynamics of the system can be chosen.
+
+In this approach a state feedback makes it  possible for the system to return to equilibrium position while a integral control is used to include a reference and track it, adding both control actions to get the one finally applied to the motors. The diagram in \figref{ssControllerDiagram} shows how these controllers are related.
+
+
+% Diagram of the controllers
+
+
+The feedback law is given by \autoref{eq:ssControllerAction}.
+%
+\begin{align}
+	\vec{u}(t) &=\vec{F} \cdot \vec{x}(t) + \cdot\vec{F}_{Int} \cdot \vec{x}_{Int}(t)
+\end{align} \label{eq:ssControllerAction}
+%
+In this equation \si{\vec{x}_{Int}(t)} is given by 
+\begin{flalign}
+    \vec{x}_{Int}(t) &= \int_{0}^{t} \vec{y}(\tau)-\vec{r}(\tau) d\tau	
+\end{flalign} \label{eq:ssControllerAction1}
+%
+This is also equivalent to say that:
+\begin{flalign}
+    \vec{\dot{x}}_{Int}(t) &= \vec{y}(t)-\vec{r}(t)
+\end{flalign} \label{eq:ssControllerAction2}
+%
+This equation can be introduced in the existing state space model, taking \si{\vec{x}_{Int}(t)} as new states, giving the result shown in \autoref{SSExtended}.
+%
+\begin{flalign}
+    \dot{\vec{x}}_e &= \vec{A}_e \cdot \vec{x}_e + \vec{B}_e \cdot u + 
+    \begin{bmatrix}
+       \ 0     \ \ \ \\ 
+       \ \vec{-I}     \ \ \  		
+   \end{bmatrix}
+   \vec{r}  \\
+    \vec{y} &= \vec{C}_e \cdot \vec{x}_e 
+\end{flalign} \label{eq:SSExtended}
+
+being
+\begin{flalign}
+    \dot{\vec{x}}_e= 
+    \begin{bmatrix}
+        \ \dot{\vec{x}}      \ \ \ \\ 
+        \ \dot{\vec{x}}_{Int}      \ \ \  		
+    \end{bmatrix}
+    \vec{A}_e=
+    \begin{bmatrix}
+        \ \vec{A}  & 0    \ \ \ \\ 
+        \ \vec{C}  & 0    \ \ \  		
+    \end{bmatrix}
+    \vec{A}_e=
+    \begin{bmatrix}
+        \ \vec{B}      \ \ \ \\ 
+        \ 0      \ \ \  		
+    \end{bmatrix}
+    \vec{u} +
+    \begin{bmatrix}
+        \ 0     \ \ \ \\ 
+        \ \vec{-I}     \ \ \  		
+    \end{bmatrix}
+    \vec{r}  \\                
+    \vec{y}&=
+    \begin{bmatrix}
+        \ \vec{C}  & 0    \ \ \ \\ 		
+    \end{bmatrix}
+    \begin{bmatrix}
+        \ \vec{x}     \ \ \ \\ 
+        \ \vec{x}_{Int}      \ \ \  		
+    \end{bmatrix}             
+\end{flalign}
+
+The resulting feedback law can be design as a conventional state feedback design, where the goal is to choose an appropriate $F_e$ matrix such that the eigenvalues of the $A_e+B_eF_e$
+%
+
+
+
+
+
+
 Explain what is it\\
 Diagram with colors + Block diagram\\
 Equations\\
 Simulation??\\
+
+
+
+
+
+
+
+
+
+
