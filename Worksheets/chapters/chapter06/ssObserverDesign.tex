@@ -4,7 +4,13 @@ In general an observer is utilized in a control system if either one of two spec
 
 In the attitude control an reduced order observer is used. As written in ?? the attitude model has six states, the three angles of the quadcopter (roll, pitch and yaw) and the three corresponding angular velocities. By using the Vicon system, see ??, the three angles of the quadcopter is measured. Thus making it possible to only estimate the angular velocities with a reduced order observer. 
 
-
+\begin{figure}[H]
+\includegraphics[scale=.27]{figures/drone_diagram}
+\centering
+\captionsetup{justification=centering}
+\captionof{figure}{Diagram of the quadcopter which includes inertial and body reference systems, as well as the references for the angles (roll, pitch and yaw) and the thrust forces produced by the propeller. }
+\label{diagramQuad}
+\end{figure}
 
 Explain what is it\\
 	What is an observer?\\
