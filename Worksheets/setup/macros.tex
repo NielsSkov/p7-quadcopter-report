@@ -117,7 +117,12 @@
 \usepackage{xifthen}
 
 \newenvironment{where}{\indent Where:\\}{}
-\newcommand{\va}[3]{\hspace{-18mm} \begin{tabular}{p{40pt} p{330pt} l} {$#1$} & {#2} & \ifthenelse{\isempty{#3}}{}{[{#3}]} \\
-\end{tabular}\\}
+\newcommand{\va}[3]
+{
+  \hspace{-18mm}
+  \begin{tabular}{p{40pt} p{330pt} l}
+    { $#1$ } & { #2 } & \ifthenelse{\isempty{ #3 }}  {}  {[{\si{#3}}]} \\
+  \end{tabular}\\
+}
 
 
