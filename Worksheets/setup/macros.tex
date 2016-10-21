@@ -107,9 +107,21 @@
 \newcommand{\EqrefSeven}[7]{\emph{Equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})}, \emph{(\ref{#4})}, \emph{(\ref{#5})}, \emph{(\ref{#6})} and \emph{(\ref{#7})}}
 \newcommand{\eqrefSeven}[7]{\emph{equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})}, \emph{(\ref{#4})}, \emph{(\ref{#5})}, \emph{(\ref{#6})} and \emph{(\ref{#7})}}
 
+%\newenvironment{where}{\indent Where:\\}{}
+%\newcommand{\va}[3]{\hspace{16mm} \begin{tabular}{p{40pt} p{360pt} l} {#1} & {#2} & \ifthenelse{\isempty{#3}}{}{[{#3}]} \\
+%\end{tabular}\\}
+%\newenvironment{forklaring}{Hvor:\\}{\\}
+%\newcommand{\punkt}[3]{\begin{tabular}{p{10pt} p{40pt} p{230pt} l} 
+%&{#1} & {#2} & {$\left[\text{#3}\right]$}
+%\end{tabular} 
+%
+\newcommand{\newpar}{\par \vspace{0.4cm}}
+
+
+\usepackage{xifthen}
+
 \newenvironment{where}{\indent Where:\\}{}
 \newcommand{\va}[3]{\hspace{16mm} \begin{tabular}{p{40pt} p{360pt} l} {#1} & {#2} & \ifthenelse{\isempty{#3}}{}{[{#3}]} \\
 \end{tabular}\\}
-
 
 
