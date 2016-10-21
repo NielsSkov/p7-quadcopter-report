@@ -1,50 +1,37 @@
 \subsection{Reduced Order Observer Design}
-Explain what is it\\
-Diagram with colors + Block diagram\\
-Equations\\
-Simulation??\\
 
+In general an observer is utilized in a control system if either one of two specific cases occurs. If certain states in the system is not measured, an observer can be utilized to estimate the unmeasured states by utilizing the system output and input, thus utilizing the states which is measured. However, it is also possible to use an observer if the measured data gathered from the sensors is affected by noise. The observer can thereby use both the noisy measured states and the estimated states creating a filtered version of the noisy states. This case will however not be utilized in the prototype.
 
-\begin{flalign}  \label{observability}
-	\vec{{\mathcal O}} = 
-	\begin{bmatrix}
-		\vec{C} \\
-		\vec{C}\vec{A} \\
-		\vec{C}\vec{A}^2 \\
-		\vec{C}\vec{A}^3 \\
-		\vec{C}\vec{A}^4 \\
-		\vec{C}\vec{A}^5 \\		
-	\end{bmatrix}
-	\si{=}
-	\begin{bmatrix}
-		\ \ 1 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 1 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 1 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 1 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 1 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 1 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ \\
-		\ \ 0 & 0 & 0 & 0 & 0 & 0 \ \ 														
-	\end{bmatrix}
-\end{flalign}
+In the attitude control an reduced order observer is used. As written in ?? the attitude model has six states, the three angles of the quadcopter (roll, pitch and yaw) and the three corresponding angular velocities. By using the Vicon system, see ??, the three angles of the quadcopter is measured. Thus making it possible to estimate the angular velocities with a reduced order observer. 
+
+\begin{figure}[H]
+\includegraphics[scale=.1]{figures/Observerdiagram1}
+\centering
+\captionsetup{justification=centering}
+\captionof{figure}{An overall block diagram of the angular controller highlighting the observer and its corresponding inputs and output.}
+\label{fig:Observerdiagram1}
+\end{figure}
+
+In \autoref{fig:Observerdiagram1} a diagram illustrating the setup of the angular controller is shown. The colored lines highlights the observer and its corresponding inputs and output. In \autoref{fig:observerDiagram} the observer in \autoref{fig:Observerdiagram1} is opened up to illustrate how the observer is designed.
 
 \begin{figure}[H]
 	\includegraphics[scale=.35]{figures/observerDiagram}
 	\centering
 	\captionsetup{justification=centering}
 	\captionof{figure}{Diagram . }
-	\label{observerDiagram}
+	\label{fig:observerDiagram}
 \end{figure}
+
+From \autoref{fig:observerDiagram} the following \autoref{eq:eqobserverderived} is derived. 
+
+\begin{flalign}
+	\hat{\dot{x}}_2 + L\dot{y} &= (A_{22} + LA_{12})\hat{x}_2 + (A_{21} + LA_{11})y + (B_2 + LB_1)u
+	\label{eq:eqobserverderived}
+\end{flalign}
+
+Equations\\
+Simulation??\\
+
 
 
 \begin{minipage}{0.15\linewidth}
@@ -87,13 +74,13 @@ Simulation??\\
 		\ 0 & 0 & 0 & 0 \ \ \\ 
 		\ 0 & 0 & 0 & 0 \ \ \\ 
 		\ 0 & 0 & 0 & 0 \ \ \\
-	\end{bmatrix} 
+	\end{bmatrix} \nonumber
 	\label{A22}
 	\end{flalign}
 \end{minipage}\hfill
 
 
-\begin{minipage}{0.5\linewidth}
+\begin{minipage}{0.4\linewidth}
 	\begin{flalign}
 	B_1 = 
 	\begin{bmatrix}
@@ -104,14 +91,14 @@ Simulation??\\
 	\label{B1}
 	\end{flalign}
 \end{minipage}\hfill
-\begin{minipage}{0.5\linewidth}
+\begin{minipage}{0.6\linewidth}
 	\begin{flalign}
 	B_2 = 
 	\begin{bmatrix}
 		0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_2}{J_x}} & 0 & \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_4}{J_x}} \ \ \ \\ 
 		\ \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_1}{J_y}} & 0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_3}{J_y}} & 0 \ \ \ \\ 
 		\frac{2 \cdot k_d \cdot {\overline{\omega}_1}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_2}}{J_z} & \frac{2 \cdot k_d \cdot {\overline{\omega}_3}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_4}}{J_z} \ \ \
-	\end{bmatrix}
+	\end{bmatrix} \nonumber
 	\label{B2}
 	\end{flalign}
 \end{minipage}\hfill
