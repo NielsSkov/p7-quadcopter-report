@@ -1,6 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             UNITS, EQUATIONS AND TEXT             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%Macro for 'where'enviroment has been improved by Andrea :-)
+
 %Units:
 \newcommand{\unit}[1]{&& \left[\si{#1}\right]} %\newcommand{\unit}[1]{[\si{#1}]}             <<| Use these if you want equations to be
 \newcommand{\unitWh}[1]{[\si{#1}]}             %\newcommand{\eq}[2]{&&\si{#1} &= \si{#2}&&}  <<| centered.. .. will appear scrambled
@@ -107,9 +110,14 @@
 \newcommand{\EqrefSeven}[7]{\emph{Equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})}, \emph{(\ref{#4})}, \emph{(\ref{#5})}, \emph{(\ref{#6})} and \emph{(\ref{#7})}}
 \newcommand{\eqrefSeven}[7]{\emph{equation (\ref{#1})}, \emph{(\ref{#2})}, \emph{(\ref{#3})}, \emph{(\ref{#4})}, \emph{(\ref{#5})}, \emph{(\ref{#6})} and \emph{(\ref{#7})}}
 
-\newenvironment{where}{\indent Where:\\}{}
-\newcommand{\va}[3]{\hspace{16mm} \begin{tabular}{p{40pt} p{360pt} l} {#1} & {#2} & \ifthenelse{\isempty{#3}}{}{[{#3}]} \\
-\end{tabular}\\}
 
+\newcommand{\newpar}{\par \vspace{0.4cm}}
+
+
+\usepackage{xifthen}
+
+\newenvironment{where}{\indent Where:\\}{}
+\newcommand{\va}[3]{\hspace{-18mm} \begin{tabular}{p{40pt} p{330pt} l} {$#1$} & {#2} & \ifthenelse{\isempty{#3}}{}{[{#3}]} \\
+\end{tabular}\\}
 
 

@@ -1,12 +1,49 @@
 \section{Attitude Controller}
-Explanation of why we choose this approach for the angles\\
-SS representation (equations are already written)\\
-Diagram that includes the state feedback, observer and reference with explanation\\
+The angular response of the quadcopter constitutes a coupled behavior as the three Euler angles (\si{\phi}, \si{\theta} and  \si{\psi}) are affected by the four motor velocities. This makes it harder to utilize independent controllers for each angle. A state space approach is instead considered.   
 
-
+In state space, the system behavior is represented by means of the linearized model equations. These show how the output and the states of the system evolve as a function of the current states values and the input applied to the system. \autoref{xDotDiffEq} and \autoref{yDiffEq} show the idea of state space representation.
+%
+\begin{flalign}
+	\vec{\dot{x}}(t)&=f(\vec{x}(t),\vec{u}(t))
+	\label{xDotDiffEq} 
+\end{flalign}
+\begin{flalign}
+	\vec{y}(t)&=g(\vec{x}(t),\vec{u}(t)) 
+	\label{yDiffEq} 
+\end{flalign}
+%
+The description of the system can also be expressed in matrix form, giving \autoref{xDotLinear} and \autoref{yLinear}.
+%
+\begin{flalign}
+	\vec{\dot{x}}(t)&=\vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)
+	\label{xDotLinear} 
+\end{flalign}
+\begin{flalign}
+	\vec{y}(t)&=\vec{C} \cdot \vec{x}(t) + \vec{D} \cdot \vec{u}(t)
+	\label{yLinear} 
+\end{flalign}
+%
+\hspace{6mm} Where:\\
+\begin{tabular}{ p{1cm} l l l}
+	& \si{\vec{A}=\frac{\partial}{\partial \vec{x}} \ f(\vec{x_o},\vec{u_o})}			& is the \si{6x6}  state matrix     \\                       
+	& \si{\vec{B}=\frac{\partial}{\partial \vec{u}} \ f(\vec{x_o},\vec{u_o})}			& is the \si{6x4}  input matrix       \\ 
+	& \si{\vec{C}=\frac{\partial}{\partial \vec{x}} \ g(\vec{x_o},\vec{u_o})}			& is the \si{3x6}  output matrix      \\ 
+	& \si{\vec{D}=\frac{\partial}{\partial \vec{u}} \ g(\vec{x_o},\vec{u_o})}			& is the \si{3x4}  feedforward matrix \\ 
+\end{tabular} 
+\\
+This state space description can be seen also in the form of a block diagram like the one shown in \autoref{SSBlocks}.
+%
+\begin{figure}[H]
+	\input{figures/SSBlockDiagram.tikz}
+	\centering
+	\caption{Block diagram of the state space representation of the system.}
+	\label{SSBlocks}
+\end{figure}\vspace{-18pt}
+%
+As the orientation of the quadcopter is to be controlled and the differential equations that describe the behavior include the angular accelerations, the state vector is chosen to be formed by the angles and the angular velocities. The input vector contains the four motor velocities and the output is constructed by the angles \si{\phi}, \si{\theta}, \si{\psi}. These vectors can be seen in \autoref{uVector}.\\
 \begin{minipage}{0.32\linewidth}
 	\begin{flalign}
-		\vec{x(t)} = 
+		\vec{x}(t) = 
 		\begin{bmatrix}
 			\phi \\
 			\theta \\ 
@@ -21,7 +58,7 @@ Diagram that includes the state feedback, observer and reference with explanatio
 %\hspace{0.03\linewidth}
 \begin{minipage}{0.32\linewidth}
 	\begin{flalign}
-		\vec{y(t)} = 
+		\vec{y}(t) = 
 		\begin{bmatrix}
 			\phi \\
 			\theta \\ 
@@ -33,7 +70,7 @@ Diagram that includes the state feedback, observer and reference with explanatio
 %\hspace{0.03\linewidth}
 \begin{minipage}{0.32\linewidth}
 	\begin{flalign}
-		\vec{u(t)}= 
+		\vec{u}(t)= 
 		\begin{bmatrix}
 			\omega_1 \\
 			\omega_2 \\
@@ -43,50 +80,11 @@ Diagram that includes the state feedback, observer and reference with explanatio
 		\label{uVector}
 	\end{flalign}
 \end{minipage}\hfill
-
-The relationship between them is  given in the form of first-order differential equations:
-\begin{flalign}
-	\eq{\vec{\dot{x}}(t)}{f(\vec{x}(t),\vec{u}(t))}
-	\label{xDotDiffEq} 
-\end{flalign}
-\begin{flalign}
-	\eq{\vec{y}(t)}{g(\vec{x}(t),\vec{u}(t))} 
-	\label{yDiffEq} 
-\end{flalign}
-%
-If the system can be described with linear equations, the previous representation can be written in matrix form, giving \eqref{xDotLinear} and \eqref{yLinear}.
-%
-\begin{flalign}
-	\eq{\vec{\dot{x}}(t)}{\vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)}
-	\label{xDotLinear} 
-\end{flalign}
-\begin{flalign}
-	\eq{\vec{y}(t)}{\vec{C} \cdot \vec{x}(t) + \vec{D} \cdot \vec{u}(t)}
-	\label{yLinear} 
-\end{flalign}
-%
-\hspace{6mm} Where:\\
-\begin{tabular}{ p{1cm} l l l}
-	& \si{\vec{A}=\frac{\partial}{\partial \vec{x}} \ f(\vec{x_o},\vec{u_o})}			& is the \si{6x6}  state matrix     \\                       
-	& \si{\vec{B}=\frac{\partial}{\partial \vec{u}} \ f(\vec{x_o},\vec{u_o})}			& is the \si{6x4}  input matrix       \\ 
-	& \si{\vec{C}=\frac{\partial}{\partial \vec{x}} \ g(\vec{x_o},\vec{u_o})}			& is the \si{3x6}  output matrix      \\ 
-	& \si{\vec{D}=\frac{\partial}{\partial \vec{u}} \ g(\vec{x_o},\vec{u_o})}			& is the \si{3x4}  feedforward matrix \\ 
-\end{tabular} 
 \\
-
-This state space description can be seen also in the form of a block diagram like the one in \figref{SSBlocks}.
-%
-\begin{figure}[H]
-	\input{figures/SSBlockDiagram.tikz}
-	\centering
-	\caption{Block diagram of the state space representation of the system.}
-	\label{SSBlocks}
-\end{figure}\vspace{-18pt}
-%
-The specific matrices for the description of the angular behavior can be obtained from the linearized equations of the system (\eqref{eqAngleLin}), given the final system description as \eqref{xDotSS} and \eqref{ySS}.
+The specific matrices for the description of the angular behavior are obtained from the linearized equations of the system (\autoref{eqAngleLin}) and they are showed embedded in the state space representation in \autoref{xDotSS} and \autoref{ySS}.
 
 \begin{flalign}   \label{xDotSS}
-	\dot{x}(t) &=
+	\vec{\dot{x}}(t) &=
 	\begin{bmatrix}
 		\ 0 & 0 & 0 & 1 & 0 & 0     \ \ \ \\ 
 		\ 0 & 0 & 0 & 0 & 1 & 0     \ \ \ \\ 
@@ -95,7 +93,7 @@ The specific matrices for the description of the angular behavior can be obtaine
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ 		
 	\end{bmatrix}
-	x(t) +
+	\vec{x}(t) +
 	\begin{bmatrix}
 		\ 0 & 0 & 0 & 0      \ \ \ \\ 
 		\ 0 & 0 & 0 & 0      \ \ \ \\ 
@@ -104,18 +102,57 @@ The specific matrices for the description of the angular behavior can be obtaine
 		\ \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_1}{J_y}} & 0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_3}{J_y}} & 0      \ \ \ \\ 
 		\ \frac{2 \cdot k_d \cdot {\overline{\omega}_1}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_2}}{J_z} & \frac{2 \cdot k_d \cdot {\overline{\omega}_3}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_4}}{J_z}      \ \ \ 		
 	\end{bmatrix}
-	u(t)
+	\vec{u}(t)
 \end{flalign}
 \begin{flalign} \label{ySS}
-	\si{y(t)} &=	 
+	\vec{y}(t) &=	 
 	\begin{bmatrix}
 		\ 1 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 1 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 		
 	\end{bmatrix}
-	x(t)
+	\vec{x}(t)
 \end{flalign}
 
-The dynamics of the system can be analyzed looking at the matrices, since
+
+The dynamics of the system can be analyzed by looking at the system matrix A. The eigenvalues of this matrix represent the location of the open loop poles of the system. In this case, the system shows 6 poles located in zero, which means that the system is marginally stable. In order to place those poles at a better location state feedback is used together with an integral action to be able to set a desired reference for the angles that is different from zero. 
+
+As the output is formed by the the three angles, these are the only measured states in the system. For doing the state feedback, the angular velocities are also needed. The way of obtaining it i chosen to be a reduce order observer even though when using the vicon system, the angular velocities could be estimated with a numerical differentiation procedure. The observer is more convenient in case of using on board sensors and by using it, that possibility is kept open.
+
+The block diagram showing the system overview of the attitude controller is showed in \autoref{attitudecontrollerdiagram}, in which the state feedback, the integral control and the observer can be seen.
+
+Before designing the controller and the observer, it is advisable to check the controllability and observability of the system. For doing so, the matrices shown in \autoref{controlabilityandobserbability} are used.\\
+\begin{minipage}{0.45\linewidth}
+\begin{flalign}\label{controlabilityandobservability} 
+\vec{{\mathcal C}} = 
+\begin{bmatrix}
+\vec{B}&\vec{A}\vec{B}&\vec{A^2}\vec{B}&\vec{A^3}\vec{B}&\vec{A^4}\vec{B}&\vec{A^5}\vec{B} \\	
+\end{bmatrix}\nonumber
+\end{flalign}
+\end{minipage}\hfill
+%\hspace{0.03\linewidth}
+\begin{minipage}{0.45\linewidth}
+\begin{flalign}
+\vec{{\mathcal O}} = 
+\begin{bmatrix}
+\vec{C} \\
+\vec{C}\vec{A} \\
+\vec{C}\vec{A}^2 \\
+\vec{C}\vec{A}^3 \\
+\vec{C}\vec{A}^4 \\
+\vec{C}\vec{A}^5 \\		
+\end{bmatrix}														
+\end{flalign}
+\end{minipage}\hfill
+
+The rank of these matrices is 6, that is, the number of states. This makes the system both controllable and observable. The precise value of the matrices can be seen in appendix MATRIX APPENDIX.
+
+The block diagram showing the system overview of the attitude controller is showed in \autoref{attitudecontrollerdiagram}, in which the state feedback, the integral control and the observer can be seen.
+\begin{figure}[H]
+	\includegraphics[scale=.5]{figures/AttitudeControlDiagram}
+	\centering
+	\caption{Control structure for the system, including the state feedback, the integral control and the reduced order observer.}
+	\label{attitudecontrollerdiagram}
+\end{figure}
 
 
