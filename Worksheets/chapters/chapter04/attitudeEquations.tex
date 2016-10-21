@@ -34,8 +34,7 @@ Free body diagrams are illustrated in \autoref{fig:diagramQuad} and \autoref{fig
 	\end{minipage}
 \end{minipage}
 
-
-From the diagrams above, the equations of angular motion along the three body axes can be derived.
+From the diagrams above, the equations of angular motion along the three body axis can be derived using first order principles of physics. It shall be noted, that the fact that Newton's laws, that only apply in relation to an initial reference, are applied even though the earth is accelerating and rotating, as it is the assumption, that it is of little influence for the system of the quadcopter. 
 %
 \begin{align}
 	J_x\cdot\ddot{\phi}&=(F_4-F_2)\cdot L &\\
@@ -64,12 +63,13 @@ The thrust forces and drag torques from the propeller can be approximated by ter
 J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L &\\
 J_y \cdot\ddot{\theta}&=k_{th} \cdot(\omega^2_1-\omega^2_3) \cdot L &\\
 J_z\cdot\ddot{\psi}&=k_d \cdot(\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)
-	\label{eq:AngleEqVelocities}
+\label{eq:AngleEqVelocities}
 \end{align}
-%
-\hspace{6mm} Where:\\
-\begin{tabular}{ p{1cm} l l l}	
-	& \si{k_{th}}  			& is the thrust constant      					&\unitWh{N \cdot s^2 \cdot m^{-2}} \\
-	& \si{k_d}          	& is the drag constant        					&\unitWh{N \cdot m \cdot s^2 \cdot m^{-2}} \\
-	& \si{\omega_n}         & is the angular velocity of the nth motor      &\unitWh{rad \cdot s^{-1}}	
-\end{tabular}
+
+\begin{where}
+\va{k_{th}}{is the thrust constant}{N$\cdot$s$^2 \cdot$m$^{-2}$}
+\va{k_d}{is the drag constant}{N$\cdot$m$\cdot$s$^2 \cdot$m$^{-2}$}
+\va{\omega_n}{is the angular velocity of the nth motor}{rad$\cdot$s$^{-1}$}
+\end{where}
+
+Now that the attitude model is known, the translational model must be derived. This is done in the following section. 
