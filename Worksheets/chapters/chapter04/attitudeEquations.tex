@@ -1,18 +1,50 @@
 \section{Attitude Model}
-Description\\
-Two pictures\\
-Equations derived from the pictures\\
-Theory and so on\\
+The model of the quadcopter is split into two sub models as presented previously. One of the sub models is the attitude model, that describes the angles of pitch, roll and yaw. The attitude model is now derived.
+
+
+Free body diagrams are illustrated in \autoref{fig:diagramQuad} and \autoref{fig:diagramTorque}. 
+
+%\begin{figure}[H]
+%\centering
+%\includegraphics[scale=.27]{figures/drone_diagram}
+%
+%
+%\caption{Free body diagram that holds both the inertial and body reference systems, as well as the references for the angles roll, pitch and yaw.}
+%\label{fig:diagramQuad}
+%\end{figure}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[scale=.27]{figures/drone_diagram}
+			\centering
+			
+			\captionof{figure}{Free body diagram that holds both the inertial and body reference systems, as well as the references for the angles roll, pitch and yaw.}
+			\label{fig:diagramQuad}
+		\end{figure}
+	\end{minipage}
+	\hspace{0.03\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H] \vspace{16mm}
+			\includegraphics[scale=.18]{figures/torques_diagram}
+			\centering
+			\captionof{figure}{Free body diagram with the references for the torques produced by the drag force at the propeller.}
+			\label{fig:diagramTorque}
+		\end{figure}
+	\end{minipage}
+\end{minipage}
+
 
 From the diagrams above, the equations of angular motion along the three body axes can be derived.
 %
-\begin{flalign}
-	\eq{ J_x\cdot\ddot{\phi} }{(F_4-F_2)\cdot L} &\\
-	\eq{J_y \cdot\ddot{\theta}}{(F_1-F_3)\cdot L} &\\
-	\eq{J_z\cdot\ddot{\psi}}{\tau_1-\tau_2+\tau_3-\tau_4}
+\begin{align}
+	J_x\cdot\ddot{\phi}&=(F_4-F_2)\cdot L &\\
+	J_y \cdot\ddot{\theta}&=(F_1-F_3)\cdot L &\\
+	J_z\cdot\ddot{\psi}&=\tau_1-\tau_2+\tau_3-\tau_4
 	\label{eq:AngleEq}
-\end{flalign}
+\end{align}
 %
+
 \hspace{6mm} Where:\\
 \begin{tabular}{ p{1cm} l l l}
 	& \si{\ddot{\phi}} 	 	& is roll angular acceleration   	&\unitWh{rad \cdot s^{-2}} \\
