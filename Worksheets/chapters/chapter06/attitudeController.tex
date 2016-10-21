@@ -146,11 +146,12 @@ Before designing the controller and the observer, it is advisable to check the c
 
 The rank of these matrices is 6, that is, the number of states. This makes the system both controllable and observable. The precise value of the matrices can be seen in appendix MATRIX APPENDIX.
 
-
-
-
-
-
-
+The block diagram showing the system overview of the attitude controller is showed in \autoref{attitudecontrollerdiagram}, in which the state feedback, the integral control and the observer can be seen.
+\begin{figure}[H]
+	\includegraphics[scale=.5]{figures/AttitudeControlDiagram}
+	\centering
+	\caption{Control structure for the system, including the state feedback, the integral control and the reduced order observer.}
+	\label{attitudecontrollerdiagram}
+\end{figure}
 
 
