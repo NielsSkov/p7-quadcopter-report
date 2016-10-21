@@ -12,7 +12,29 @@ In the attitude control an reduced order observer is used. As written in ?? the 
 \label{fig:Observerdiagram1}
 \end{figure}
 
-In \autoref{fig:Observerdiagram1} a diagram illustrating the setup of the angular controller is shown. The colored lines highlights the observer and its corresponding inputs and output. In \autoref{fig:observerDiagram} the observer in \autoref{fig:Observerdiagram1} is opened up to illustrate how the observer is designed.
+In \autoref{fig:Observerdiagram1} a diagram illustrating the setup of the angular controller is shown. The colored lines highlights the observer and its corresponding inputs and output.
+
+If a system is observable an observer gain, $L_{obs}$, which makes \autoref{eq:observerStable} stable can be found.
+
+\begin{flalign}
+	A_{22} + L_{obs}A_{A12}
+		\label{eq:observerStable}
+\end{flalign}
+
+The required observer gain, $L_{obs}$ ensures that the observer, see \autoref{eq:eqobservertheorem}, gives a estimated state, $\hat{x}_2$, which converges to $x_2$.
+
+\begin{flalign}
+	\hat{\dot{x}}_2 &= A_{21}y + A_{22}\hat{x}_2 + B_2u + L_{obs}(A_{12}\hat{x}_2 - A_{21}x_2)
+		\label{eq:eqobservertheorem}
+\end{flalign}
+
+The rate in which the estimated state, $\hat{x}_2$, converges to the actual state, $x_2$, is given by \autoref{eq:observerStable} eigenvalues.
+
+
+
+
+
+
 
 \begin{figure}[H]
 	\includegraphics[scale=.35]{figures/observerDiagram}
@@ -22,96 +44,99 @@ In \autoref{fig:Observerdiagram1} a diagram illustrating the setup of the angula
 	\label{fig:observerDiagram}
 \end{figure}
 
-From \autoref{fig:observerDiagram} the following \autoref{eq:eqobserverderived} is derived. 
+ In \autoref{fig:observerDiagram} the observer in \autoref{fig:Observerdiagram1} is opened up to illustrate how the observer is designed. BLABLABLABALA. From \autoref{fig:observerDiagram} the following \autoref{eq:eqobserverderived} is derived. 
 
 \begin{flalign}
 	\hat{\dot{x}}_2 + L\dot{y} &= (A_{22} + LA_{12})\hat{x}_2 + (A_{21} + LA_{11})y + (B_2 + LB_1)u
 	\label{eq:eqobserverderived}
 \end{flalign}
 
-Equations\\
-Simulation??\\
 
 
 
-\begin{minipage}{0.15\linewidth}
-	\begin{flalign}
-	A_{11} = 
-	\begin{bmatrix}
-		\ 0 & 0 & 0 \ \ \\ 
-		\ 0 & 0 & 0 \ \ \\ 
-		\ 0 & 0 & 0 \ \ \\
-	\end{bmatrix}	\nonumber
-	\label{A11}
-	\end{flalign}  
-\end{minipage}\hfill
-\begin{minipage}{0.15\linewidth}
-	\begin{flalign}
-	A_{12} = 
-	\begin{bmatrix}
-		\ 1 & 0 & 0 \ \ \\ 
-		\ 0 & 1 & 0 \ \ \\ 
-		\ 0 & 0 & 1 \ \ \\
-	\end{bmatrix}	\nonumber
-	\label{A12}
-	\end{flalign}
-\end{minipage}\hfill
-\begin{minipage}{0.15\linewidth}
-	\begin{flalign}
-	A_{21} = 
-	\begin{bmatrix}
-		\ 0 & 0 & 0 \ \ \\ 
-		\ 0 & 0 & 0 \ \ \\ 
-		\ 0 & 0 & 0 \ \ \\
-	\end{bmatrix}	\nonumber
-	\label{A21}
-	\end{flalign}
-\end{minipage}\hfill
-\begin{minipage}{0.15\linewidth}
-	\begin{flalign}
-	A_{22} = 
-	\begin{bmatrix}
-		\ 0 & 0 & 0 & 0 \ \ \\ 
-		\ 0 & 0 & 0 & 0 \ \ \\ 
-		\ 0 & 0 & 0 & 0 \ \ \\
-	\end{bmatrix} \nonumber
-	\label{A22}
-	\end{flalign}
-\end{minipage}\hfill
 
 
-\begin{minipage}{0.4\linewidth}
-	\begin{flalign}
-	B_1 = 
-	\begin{bmatrix}
-		\ 0 & 0 & 0 & 0 \ \ \\ 
-		\ 0 & 0 & 0 & 0 \ \ \\ 
-		\ 0 & 0 & 0 & 0 \ \ \\
-	\end{bmatrix}	\nonumber
-	\label{B1}
-	\end{flalign}
-\end{minipage}\hfill
-\begin{minipage}{0.6\linewidth}
-	\begin{flalign}
-	B_2 = 
-	\begin{bmatrix}
-		0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_2}{J_x}} & 0 & \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_4}{J_x}} \ \ \ \\ 
-		\ \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_1}{J_y}} & 0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_3}{J_y}} & 0 \ \ \ \\ 
-		\frac{2 \cdot k_d \cdot {\overline{\omega}_1}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_2}}{J_z} & \frac{2 \cdot k_d \cdot {\overline{\omega}_3}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_4}}{J_z} \ \ \
-	\end{bmatrix} \nonumber
-	\label{B2}
-	\end{flalign}
-\end{minipage}\hfill
 
 
-\begin{flalign}
-	L = 
-	\begin{bmatrix}
-	\ -50 & 0 & 0  \ \ \ \\ 
-	\ 0 & -60 & 0  \ \ \ \\ 
-	\ 0 & 0 & -70  \ \ \  
-	\end{bmatrix}
-	\label{Lobs}
-\end{flalign}
+
+%\begin{minipage}{0.15\linewidth}
+%	\begin{flalign}
+%	A_{11} = 
+%	\begin{bmatrix}
+%		\ 0 & 0 & 0 \ \ \\ 
+%		\ 0 & 0 & 0 \ \ \\ 
+%		\ 0 & 0 & 0 \ \ \\
+%	\end{bmatrix}	\nonumber
+%	\label{A11}
+%	\end{flalign}  
+%\end{minipage}\hfill
+%\begin{minipage}{0.15\linewidth}
+%	\begin{flalign}
+%	A_{12} = 
+%	\begin{bmatrix}
+%		\ 1 & 0 & 0 \ \ \\ 
+%		\ 0 & 1 & 0 \ \ \\ 
+%		\ 0 & 0 & 1 \ \ \\
+%	\end{bmatrix}	\nonumber
+%	\label{A12}
+%	\end{flalign}
+%\end{minipage}\hfill
+%\begin{minipage}{0.15\linewidth}
+%	\begin{flalign}
+%	A_{21} = 
+%	\begin{bmatrix}
+%		\ 0 & 0 & 0 \ \ \\ 
+%		\ 0 & 0 & 0 \ \ \\ 
+%		\ 0 & 0 & 0 \ \ \\
+%	\end{bmatrix}	\nonumber
+%	\label{A21}
+%	\end{flalign}
+%\end{minipage}\hfill
+%\begin{minipage}{0.15\linewidth}
+%	\begin{flalign}
+%	A_{22} = 
+%	\begin{bmatrix}
+%		\ 0 & 0 & 0 & 0 \ \ \\ 
+%		\ 0 & 0 & 0 & 0 \ \ \\ 
+%		\ 0 & 0 & 0 & 0 \ \ \\
+%	\end{bmatrix} \nonumber
+%	\label{A22}
+%	\end{flalign}
+%\end{minipage}\hfill
+%
+%
+%\begin{minipage}{0.4\linewidth}
+%	\begin{flalign}
+%	B_1 = 
+%	\begin{bmatrix}
+%		\ 0 & 0 & 0 & 0 \ \ \\ 
+%		\ 0 & 0 & 0 & 0 \ \ \\ 
+%		\ 0 & 0 & 0 & 0 \ \ \\
+%	\end{bmatrix}	\nonumber
+%	\label{B1}
+%	\end{flalign}
+%\end{minipage}\hfill
+%\begin{minipage}{0.6\linewidth}
+%	\begin{flalign}
+%	B_2 = 
+%	\begin{bmatrix}
+%		0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_2}{J_x}} & 0 & \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_4}{J_x}} \ \ \ \\ 
+%		\ \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_1}{J_y}} & 0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_3}{J_y}} & 0 \ \ \ \\ 
+%		\frac{2 \cdot k_d \cdot {\overline{\omega}_1}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_2}}{J_z} & \frac{2 \cdot k_d \cdot {\overline{\omega}_3}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_4}}{J_z} \ \ \
+%	\end{bmatrix} \nonumber
+%	\label{B2}
+%	\end{flalign}
+%\end{minipage}\hfill
+%
+%
+%\begin{flalign}
+%	L_{obs} = 
+%	\begin{bmatrix}
+%	\ -50 & 0 & 0  \ \ \ \\ 
+%	\ 0 & -60 & 0  \ \ \ \\ 
+%	\ 0 & 0 & -70  \ \ \  
+%	\end{bmatrix}
+%	\label{Lobs}
+%\end{flalign}
 
 
