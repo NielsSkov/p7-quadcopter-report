@@ -119,7 +119,7 @@ The dynamics of the system can be analyzed by looking at the system matrix A. Th
 
 As the output is formed by the the three angles, these are the only measured states in the system. For doing the state feedback, the angular velocities are also needed. The way of obtaining it i chosen to be a reduce order observer even though when using the vicon system, the angular velocities could be estimated with a numerical differentiation procedure. The observer is more convenient in case of using on board sensors and by using it, that possibility is kept open.
 
-The block diagram showing the system overview of the attitude controller is showed in \autoref{attitudecontrollerdiagram}, in which the state feedback, the integral control and the observer can be seen.
+This way of approaching the control of the system is simplified by the possibility of designing the state feedback and integral controller and the observer independently. This holds due to the separation principle SOURCE SEPARATION PRINCIPLE.
 
 Before designing the controller and the observer, it is advisable to check the controllability and observability of the system. For doing so, the matrices shown in \autoref{controlabilityandobserbability} are used.\\
 \begin{minipage}{0.45\linewidth}
