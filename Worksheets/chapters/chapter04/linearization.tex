@@ -1,9 +1,8 @@
 \section{Linearization}
-Theory\\
-Equations\\
 Compare to non linear (simulation)\\
 
-Since the goal is to design a linear controller it is necessary to linearize the equations around the equilibrium point. The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This happens when roll and pitch are kept to zero. This is done for each equation using the first order Taylor approximation.
+Since the goal is to design a linear controller it is necessary to linearize the equations around the equilibrium point. The attitude equations in the body frame, \fxnote{ref needed}, must be linearized since they contain squared velocities. The translational equations in the inertial frame, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must also be linearized since these contain trigonometric functions and squared velocities. The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This happens when roll and pitch are kept to zero. The forces along the x- and y-axes in some cases also depend on yaw, however, as the forces were transformed from the body frame to the inertial frame, as described in \fxnote{ref needed}, in the order roll, pitch and then yaw, the yaw will not affect the translational forces, and so, it is not as such part of the equilibrium point. The equilibrium point for the four angular velocities of the motors is again that which lets the quadcopter hover, that is, the four equal angular velocities which keeps a constant z-coordinate in the inertial frame.
+The linearization is done for each equation using the first order Taylor approximation.
 \begin{flalign}
   f(x) &\approx f(x_0) + \frac{1}{1!}\ f'(x_0) (x-x_0)
 \end{flalign}
@@ -19,7 +18,7 @@ Applying the approximation to the model equations in the equilibrium point the f
   \va{ \Delta\ddot{\phi}     } {is the change in roll angular acceleration from equilibrium}         { rad \cdot s^{-2} }
   \va{ \Delta\ddot{\theta}   } {is the change in pitch angular acceleration from equilibrium}        { rad \cdot s^{-2} }
   \va{ \Delta\ddot{\psi}     } {is the change in yaw angular acceleration from equilibrium}          { rad \cdot s^{-2} }
-  \va{ \overline{\omega}^2_n } {is the angular velocity of the nth motor in equilibrium}             { rad \cdot s^{-1} }
+  \va{ \overline{\omega}_n } {is the angular velocity of the nth motor in equilibrium}             { rad \cdot s^{-1} }
   \va{ \Delta \omega_n       } {is the change in angular velocity from equilibrium of the nth motor} { rad \cdot s^{-1} }
 \end{where}
 

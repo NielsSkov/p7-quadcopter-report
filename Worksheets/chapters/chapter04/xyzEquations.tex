@@ -85,10 +85,10 @@ It is also possible to explain the linear acceleration in the inertial reference
 In this case the gravity force has effect only in the \si{z_B} direction and the four forces from the motors need to be transformed into the inertial system. This is done using the inverse of the rotation matrix (\eqref{invRotMatrix}).
 %
 \begin{flalign}
-	\eq{m\cdot\ddot{x}_I}{-(F1+F2+F3+F4)\cdot\sin(\theta)} &\\
-	\eq{m\cdot\ddot{y}_I}{-(F1+F2+F3+F4)\cdot(-\sin(\phi))\cdot\cos(\theta)} &\\
+	\eq{m\cdot\ddot{x}_I}{-(F1+F2+F3+F4)\cdot\sin(\theta)} & \label{eq:AccelerationEqInertial1}\\
+	\eq{m\cdot\ddot{y}_I}{-(F1+F2+F3+F4)\cdot(-\sin(\phi))\cdot\cos(\theta)} & \label{eq:AccelerationEqInertial2}\\
 	\eq{m\cdot\ddot{z}_I}{F_g-(F1+F2+F3+F4)\cdot\cos(\phi)\cdot\cos(\theta)}
-	\label{eq:AccelerationEqInertial}
+	\label{eq:AccelerationEqInertial3}
 \end{flalign}
 %
 \hspace{6mm} Where:\\
