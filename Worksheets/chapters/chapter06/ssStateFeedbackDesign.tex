@@ -28,13 +28,14 @@ In this approach a state feedback is used to allow the system to return to equil
 
 The feedback law is given by \autoref{eq:ssControllerAction}.
 %
-\begin{align} 
+\begin{flalign} 
 	\vec{u}(t) &=\vec{F} \cdot \vec{x}(t) + \cdot\vec{F}_{Int} \cdot \vec{x}_{Int}(t)
-\end{align} \label{eq:ssControllerAction}
+     \label{eq:ssControllerAction}
+\end{flalign}
 %
 \begin{where}
 	\va{\vec{F}}{is the 4x6 state feedback matrix}{}
-	\va{\vec{F}_{Int}}{is 3x6the asdffsfaf matrix }{}
+	\va{\vec{F}_{Int}}{is the 3x6 asdffsfaf matrix }{}
 \end{where}
 %
 In this equation, \si{\vec{x}_{Int}(t)} is given by \autoref{eq:ssControllerAction1}, that is equivalent to \autoref{eq:ssControllerAction2}.
@@ -48,7 +49,7 @@ This last equation can be introduced in the existing state space model, taking \
 \begin{flalign} 
     \dot{\vec{x}}_e(t) &= \vec{A}_e \cdot \vec{x}_e(t) + \vec{B}_e \cdot \vec{u}(t) + 
     \begin{bmatrix}
-       \ 0     \ \ \ \\ 
+       \ \vec{0}     \ \ \ \\ 
        \ \vec{-I}     \ \ \  		
    \end{bmatrix}
    \vec{r}(t) 
@@ -71,8 +72,8 @@ being\\
 	\begin{flalign}
 	    \vec{A}_e=
 	    \begin{bmatrix}
-	        \ \vec{A}  & 0    \ \ \ \\ 
-	        \ \vec{C}  & 0    \ \ \  		
+	        \ \vec{A}  & \vec{0}    \ \ \ \\ 
+	        \ \vec{C}  & \vec{0}    \ \ \  		
 	    \end{bmatrix} \nonumber
 	\end{flalign}
 \end{minipage}   \hfill 
@@ -81,7 +82,7 @@ being\\
 		\vec{B}_e=
 		\begin{bmatrix}
 			\ \vec{B}    \ \ \ \\ 
-			\ 0     \ \ \  		
+			\ \vec{0}     \ \ \  		
 		\end{bmatrix} \nonumber
 	\end{flalign}
 \end{minipage}\hfill
@@ -89,14 +90,14 @@ being\\
 	\begin{flalign}
 		\vec{C}_e=
 		\begin{bmatrix}
-			\ \vec{C}  & 0  \ \ \  		
+			\ \vec{C}  & \vec{0}  \ \ \  		
 		\end{bmatrix} \nonumber
 	\end{flalign}
 \end{minipage}
 
 The resulting feedback law can be design as a conventional state feedback, where the goal is to choose an appropriate $F_e=[F \ F_{Int}]$ matrix such that the eigenvalues of $A_e+B_eF_e$ are the new poles that the system needed to have in order to achieve the desired dynamics.
 
-Once $F_e$ is obtained, it can be slitted into $F$ and $F_{Int}$ by taking the first 6 columns for the state feedback and the last 3 for the integral control. In this way, the controller can be implemented as shown in \autoref{fig:DetailedControllerColorDiagram}
+Once $F_e$ is obtained, it can be splitted into $F$ and $F_{Int}$ by taking the first 6 columns for the state feedback and the last 3 for the integral control. In this way, the controller can be implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.
 
 
 

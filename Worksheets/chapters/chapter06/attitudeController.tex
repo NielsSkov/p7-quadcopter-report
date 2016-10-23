@@ -23,14 +23,13 @@ The description of the system can also be expressed in matrix form, giving \auto
 	\label{yLinear} 
 \end{flalign}
 %
-\hspace{6mm} Where:\\
-\begin{tabular}{ p{1cm} l l l}
-	& \si{\vec{A}=\frac{\partial}{\partial \vec{x}} \ f(\vec{x_o},\vec{u_o})}			& is the \si{6x6}  state matrix     \\                       
-	& \si{\vec{B}=\frac{\partial}{\partial \vec{u}} \ f(\vec{x_o},\vec{u_o})}			& is the \si{6x4}  input matrix       \\ 
-	& \si{\vec{C}=\frac{\partial}{\partial \vec{x}} \ g(\vec{x_o},\vec{u_o})}			& is the \si{3x6}  output matrix      \\ 
-	& \si{\vec{D}=\frac{\partial}{\partial \vec{u}} \ g(\vec{x_o},\vec{u_o})}			& is the \si{3x4}  feedforward matrix \\ 
-\end{tabular} 
-\\
+\begin{where}
+    \va{\vec{A}}{$=\frac{\partial}{\partial \vec{x} } \ f(\vec{x_o},\vec{u_o})$ \ \ is the $6 \times 6$ state feedback matrix}{}
+    \va{\vec{B}}{$=\frac{\partial}{\partial \vec{u}} \ f(\vec{x_o},\vec{u_o})$ \ \ is the $6 \times 4$  input matrix}{}
+    \va{\vec{C}}{$=\frac{\partial}{\partial \vec{x}} \ g(\vec{x_o},\vec{u_o})$ \ \ is the $3 \times 6$  output matrix}{}
+    \va{\vec{D}}{$=\frac{\partial}{\partial \vec{u}} \ g(\vec{x_o},\vec{u_o})$ \ \ is the $3 \times 4$  feedforward matrix}{}
+\end{where}
+
 This state space description can be seen also in the form of a block diagram like the one shown in \autoref{SSBlocks}.
 %
 \begin{figure}[H]
