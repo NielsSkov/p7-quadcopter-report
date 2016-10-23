@@ -1,57 +1,56 @@
 \section{Linearization}
-Theory\\
-Equations\\
 Compare to non linear (simulation)\\
 
-
-
-Since the goal is to design a linear controller it is necessary to linearize the equations that contains around the equilibrium point. This is done using the first order Taylor approximation in each equation.
+Since the goal is to design a linear controller it is necessary to linearize the equations around the equilibrium point. The attitude equations in the body frame, \fxnote{ref needed}, must be linearized since they contain squared velocities. The translational equations in the inertial frame, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must also be linearized since these contain trigonometric functions and squared velocities. The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This happens when roll and pitch are kept to zero. The forces along the x- and y-axes in some cases also depend on yaw, however, as the forces were transformed from the body frame to the inertial frame, as described in \fxnote{ref needed}, in the order roll, pitch and then yaw, the yaw will not affect the translational forces, and so, it is not as such part of the equilibrium point. The equilibrium point for the four angular velocities of the motors is again that which lets the quadcopter hover, that is, the four equal angular velocities which keeps a constant z-coordinate in the inertial frame.
+The linearization is done for each equation using the first order Taylor approximation.
 \begin{flalign}
-	\eq{J_x\cdot\Delta\ddot{\phi}}{2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_4}\cdot \Delta \omega_2-{\overline{\omega}_2}\cdot \Delta \omega_4)}&\\
-	\eq{J_y\cdot\Delta\ddot{\theta}}{2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_3}\cdot \Delta \omega_3)}&\\
-	\eq{J_z\cdot\Delta\ddot{\psi}}{2 \cdot k_d \cdot ({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_2}\cdot \Delta \omega_2+{\overline{\omega}_3}\cdot \Delta \omega_3-{\overline{\omega}_4}\cdot \Delta \omega_4)}&
+  f(x) &\approx f(x_0) + \frac{1}{1!}\ f'(x_0) (x-x_0)
+\end{flalign}
+
+Applying the approximation to the model equations in the equilibrium point the following is obtained.
+\begin{flalign}
+  J_x\cdot\Delta\ddot{\phi}   &= 2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_4}\cdot \Delta \omega_2-{\overline{\omega}_2}\cdot \Delta \omega_4) \\
+  J_y\cdot\Delta\ddot{\theta} &= 2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_3}\cdot \Delta \omega_3) \\
+  J_z\cdot\Delta\ddot{\psi}   &= 2 \cdot k_d \cdot ({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_2}\cdot \Delta \omega_2+{\overline{\omega}_3}\cdot \Delta \omega_3-{\overline{\omega}_4}\cdot \Delta \omega_4)
 \end{flalign} \label{eqAngleLin}
 %
-\hspace{6mm} Where:\\
-\begin{tabular}{ p{1cm} l l l}
-	& \si{\Delta\ddot{\phi}} 	 	& is the change in roll angular acceleration from equilibrium  	&\unitWh{rad \cdot s^{-2}} \\
-	& \si{\Delta\ddot{\theta}} 		& is the change in pitch angular acceleration from equilibrium   &\unitWh{rad \cdot s^{-2}} \\
-	& \si{\Delta\ddot{\psi}}	    & is the change in yaw angular acceleration from equilibrium     &\unitWh{rad \cdot s^{-2}} \\
-	& \si{\overline{\omega}^2_n}  	& is the angular velocity of the nth motor in equilibrium       &\unitWh{rad \cdot s^{-1}} \\
-	& \si{\Delta \omega_n}          & is the change in angular velocity from equilibrium of the nth motor        &\unitWh{rad \cdot s^{-1}} \\
-\end{tabular}
-
+\begin{where}
+  \va{ \Delta\ddot{\phi}     } {is the change in roll angular acceleration from equilibrium}         { rad \cdot s^{-2} }
+  \va{ \Delta\ddot{\theta}   } {is the change in pitch angular acceleration from equilibrium}        { rad \cdot s^{-2} }
+  \va{ \Delta\ddot{\psi}     } {is the change in yaw angular acceleration from equilibrium}          { rad \cdot s^{-2} }
+  \va{ \overline{\omega}_n } {is the angular velocity of the nth motor in equilibrium}             { rad \cdot s^{-1} }
+  \va{ \Delta \omega_n       } {is the change in angular velocity from equilibrium of the nth motor} { rad \cdot s^{-1} }
+\end{where}
 
 %\begin{note}
 %\begin{flalign}
-%	\eqOne{m\cdot\Delta\ddot{x}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\theta})-}
-%	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta} &\\
-%	\eqOne{m\cdot\Delta\ddot{y}_I}{(k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})-}
-%	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\theta+}\nonumber\\
-%	\eqThree{+k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi} &\\
-%	\eqOne{m\cdot\Delta\ddot{z}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})-}
-%	\eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\theta-}\nonumber\\
-%	\eqThree{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\phi}
-%	\label{eq:LinearEquations}
+%       \eqOne{m\cdot\Delta\ddot{x}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\theta})-}
+%       \eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta} &\\
+%       \eqOne{m\cdot\Delta\ddot{y}_I}{(k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})-}
+%       \eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\theta+}\nonumber\\
+%       \eqThree{+k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi} &\\
+%       \eqOne{m\cdot\Delta\ddot{z}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})-}
+%       \eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\theta-}\nonumber\\
+%       \eqThree{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\phi}
+%       \label{eq:LinearEquations}
 %\end{flalign}
 %\end{note}
-%
+
+
 \begin{flalign}
-	\eq{m\cdot\Delta\ddot{x}_I}{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta} &\\
-	\eq{m\cdot\Delta\ddot{y}_I}{k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi} &\\
-	\eq{m\cdot\Delta\ddot{z}_I}{-2\textbf{ }k_{th}\cdot({\overline{\omega}_1}^2\cdot\Delta\omega_1+{\overline{\omega}_2}^2\cdot\Delta\omega_2+{\overline{\omega}_3}^2\cdot\Delta\omega_3+{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})}
-	\label{eq:FinalLinearEquations}
-\end{flalign}
+  m\cdot\Delta\ddot{x}_I &= -k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta &\\
+  m\cdot\Delta\ddot{y}_I &=  k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi &\\
+  m\cdot\Delta\ddot{z}_I &= -2\textbf{ }k_{th}\cdot({\overline{\omega}_1}^2\cdot\Delta\omega_1+{\overline{\omega}_2}^2\cdot\Delta\omega_2+{\overline{\omega}_3}^2\cdot\Delta\omega_3+{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})
+\end{flalign} \label{eq:FinalLinearEquations}
 %
-\hspace{6mm} Where:\\
-\begin{tabular}{ p{1cm} l l l}
-	& \si{\Delta\ddot{x_I}} 	 	& is the change in linear acceleration from equilibrium in \si{x_I} direction 	&\unitWh{m \cdot s^{-2}} \\
-	& \si{\Delta\ddot{y_I}} 		& is the change in linear acceleration from equilibrium in \si{y_I} direction   &\unitWh{m \cdot s^{-2}} \\
-	& \si{\Delta\ddot{z_I}}	    	& is the change in linear acceleration from equilibrium in \si{z_I} direction     &\unitWh{m \cdot s^{-2}} \\
-	& \si{\Delta \phi}	 			& is the change in roll position from equilibrium  	&\unitWh{rad} \\
-	& \si{\Delta \theta} 			& is the change in pitch position from equilibrium   &\unitWh{rad} \\
-	& \si{\Delta \psi}    			& is the change in yaw position from equilibrium     &\unitWh{rad} \\
-	& \si{\overline{\phi}}	 			& is the roll position in equilibrium  	&\unitWh{rad} \\
-	& \si{\overline{\theta}} 			& is the pitch position in equilibrium   &\unitWh{rad} \\
-	& \si{\overline{\psi}}    			& is the yaw position in equilibrium     &\unitWh{rad} \\
-\end{tabular}
+\begin{where}
+  \va{ \Delta\ddot{x_I}  }{ is the change in linear acceleration from equilibrium in $x_I$ direction }{ m \cdot s^{-2} } \\
+  \va{ \Delta\ddot{y_I}  }{ is the change in linear acceleration from equilibrium in $y_I$ direction }{ m \cdot s^{-2} } \\
+  \va{ \Delta\ddot{z_I}  }{ is the change in linear acceleration from equilibrium in $z_I$ direction }{ m \cdot s^{-2} } \\
+  \va{ \Delta \phi       }{ is the change in roll position from equilibrium                          }{ rad            } \\
+  \va{ \Delta \theta     }{ is the change in pitch position from equilibrium                         }{ rad            } \\
+  \va{ \Delta \psi       }{ is the change in yaw position from equilibrium                           }{ rad            } \\
+  \va{ \overline{\phi}   }{ is the roll position in equilibrium                                      }{ rad            } \\
+  \va{ \overline{\theta} }{ is the pitch position in equilibrium                                     }{ rad            } \\
+  \va{ \overline{\psi}   }{ is the yaw position in equilibrium                                       }{ rad            }
+\end{where}
