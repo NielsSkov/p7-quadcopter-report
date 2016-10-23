@@ -1,5 +1,5 @@
 \section{Attitude Model}
-The model of the quadcopter is split into two sub models as presented previously. One of the sub models is the attitude model, that describes the angles of pitch, roll and yaw. The attitude model is now derived.
+The model of the quadcopter is split into two sub models as presented previously. \textbf{One of the sub models is the attitude model, that describes the angles of pitch, roll and yaw. The attitude model is now derived.}
 
 
 Free body diagrams are illustrated in \autoref{fig:diagramQuad} and \autoref{fig:diagramTorque}. 
@@ -34,7 +34,7 @@ Free body diagrams are illustrated in \autoref{fig:diagramQuad} and \autoref{fig
 	\end{minipage}
 \end{minipage}
 
-From the diagrams above, the equations of angular motion along the three body axis can be derived using first order principles of physics. It shall be noted, that the fact that Newton's laws, that only apply in relation to an initial reference, are applied even though the earth is accelerating and rotating, as it is the assumption, that it is of little influence for the system of the quadcopter. 
+From the diagrams above, the equations of angular motion along the three body axis can be derived using \textbf{first order principles of physics}. It shall be noted, that the fact that\textbf{ Newton's laws, that only apply in relation to an inertial reference, are applied even though the earth is accelerating and rotating, as it is the assumption, that it is of little influence for the system of the quadcopter. }
 %
 \begin{align}
 	J_x\cdot\ddot{\phi}&=(F_4-F_2)\cdot L &\\
@@ -43,21 +43,21 @@ From the diagrams above, the equations of angular motion along the three body ax
 	\label{eq:AngleEq}
 \end{align}
 
-\begin{where}
-\va{\ddot{\phi}}{is roll angular acceleration}{rad $\cdot$ s$^{-2}$}
-\va{\ddot{\theta}}{is  pitch angular acceleration}{rad$\cdot$ s$^{-2}$}
-\va{\ddot{\psi}}{is yaw angular acceleration}{rad$\cdot$ s$^{-2}$}
-\va{J_x}{is the body moment of inertia around $x_B$ direction}{kg $\cdot$ m$^2$}
-\va{J_y}{is the body moment of inertia around $y_B$ direction}{kg $\cdot$ m$^2$}
-\va{J_z}{is the body moment of inertia around $z_B$ direction}{kg $\cdot$ m$^2$}
-\va{L}{is the length of the arm of the quadcopter}{m}
-\va{F_n}{is the thrust force produced in each propeller}{N}
-\va{\tau_n}{is the torque due to the drag force in each propeller}{Nm}
-\end{where}
+%\begin{where}
+%\va{\ddot{\phi}}{is roll angular acceleration}{rad $\cdot$ s$^{-2}$}
+%\va{\ddot{\theta}}{is  pitch angular acceleration}{rad$\cdot$ s$^{-2}$}
+%\va{\ddot{\psi}}{is yaw angular acceleration}{rad$\cdot$ s$^{-2}$}
+%\va{J_x}{is the body moment of inertia around $x_B$ direction}{kg $\cdot$ m$^2$}
+%\va{J_y}{is the body moment of inertia around $y_B$ direction}{kg $\cdot$ m$^2$}
+%\va{J_z}{is the body moment of inertia around $z_B$ direction}{kg $\cdot$ m$^2$}
+%\va{L}{is the length of the arm of the quadcopter}{m}
+%\va{F_n}{is the thrust force produced in each propeller}{N}
+%\va{\tau_n}{is the torque due to the drag force in each propeller}{Nm}
+%\end{where}
 
-As it can be seen in the \autoref{eq:AngleEq}, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed in the y- and x- axes of the quadcopter, respectively. The yaw angle changes only due to the torques created by the drag force in the propeller.
+As it can be seen in the \autoref{eq:AngleEq}, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed along the y and x axes of the quadcopter, respectively. The yaw angle changes only due to the torques created by the drag force in the propeller.
 
-The thrust forces and drag torques from the propeller can be approximated by terms depending on the velocity of the motor, which are found as described in Appendix \ref{}. The equations above can be rewritten to include these terms.
+The thrust forces and drag torques from the propeller can be approximated by terms depending on the velocity squared of the motor, which are found as described in Appendix \ref{}. The equations above can be rewritten to include these terms.
 %
 \begin{align}
 J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L &\\
@@ -66,10 +66,10 @@ J_z\cdot\ddot{\psi}&=k_d \cdot(\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)
 \label{eq:AngleEqVelocities}
 \end{align}
 
-\begin{where}
-\va{k_{th}}{is the thrust constant}{N$\cdot$s$^2 \cdot$m$^{-2}$}
-\va{k_d}{is the drag constant}{N$\cdot$m$\cdot$s$^2 \cdot$m$^{-2}$}
-\va{\omega_n}{is the angular velocity of the nth motor}{rad$\cdot$s$^{-1}$}
-\end{where}
+%\begin{where}
+%\va{k_{th}}{is the thrust constant}{N$\cdot$s$^2 \cdot$m$^{-2}$}
+%\va{k_d}{is the drag constant}{N$\cdot$m$\cdot$s$^2 \cdot$m$^{-2}$}
+%\va{\omega_n}{is the angular velocity of the nth motor}{rad$\cdot$s$^{-1}$}
+%\end{where}
 
 Now that the attitude model is known, the translational model must be derived. This is done in the following section. 
