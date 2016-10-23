@@ -75,13 +75,12 @@ The matrix in \autoref{Matrix:Lobs} is the decided observer gains utilized in th
 
 With the final design, \autoref{eq:eqobserverderived} shows how to estimate $\hat{x}_2$.
 %
-\autoref{fig:observerDiagram}  the implementation of a reduced order observer. 
 \begin{flalign}
     \vec{\hat{\dot{x}}_2} + \vec{L\dot{y}} &= \vec{(A_{22}} + \vec{LA_{12})\hat{x}_2} + \vec{(A_{21}} + \vec{LA_{11})y} + (\vec{B_2} + \vec{LB_1})\vec{u}
     \label{eq:eqobserverderived}
 \end{flalign}
 %
-This estimation can also be seen in the form of a block diagram.
+This estimation can also be seen in the form of a block diagram, \autoref{fig:observerDiagram}.
 \begin{figure}[H]
 	\includegraphics[scale=.35]{figures/observerDiagram}
 	\centering
