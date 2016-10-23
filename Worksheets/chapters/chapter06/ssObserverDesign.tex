@@ -17,14 +17,14 @@ In \autoref{fig:Observerdiagram1} a diagram illustrating the setup of the angula
 As described in ?? the system is observable. Thus making it possible to find an observer gain, $L_{obs}$, which makes \autoref{eq:observerStable} stable.
 
 \begin{flalign}
-	A_{22} + L_{obs}A_{A12}
+	\vec{A_{22}} + \vec{L_{obs}}\vec{A_{A12}}
 		\label{eq:observerStable}
 \end{flalign}
 
 The required observer gain, $L_{obs}$ ensures that the observer, see \autoref{eq:eqobservertheorem} (source:slides4??), gives a estimated state, $\hat{x}_2$, which converges to $x_2$.
 
 \begin{flalign}
-	\hat{\dot{x}}_2 &= A_{21}y + A_{22}\hat{x}_2 + B_2u + L_{obs}(A_{12}\hat{x}_2 - A_{21}x_2)
+	\vec{\hat{\dot{x}}_2} &= \vec{A_{21}}\vec{y} + \vec{A_{22}}\vec{\hat{x}_2} + \vec{B_2u} + \vec{L_{obs}}\vec{(A_{12}\hat{x}_2} - \vec{A_{21}x_2})
 		\label{eq:eqobservertheorem}
 \end{flalign}
 
@@ -35,7 +35,7 @@ When deciding on the observer gain, $L_{obs}$, it is necessary evaluate the reli
 The following matrix seen in \autoref{Matrix:Lobs} is the decided observer gains utilized in the reduced order observer.
 
 \begin{flalign}
-	L_{obs} = 
+	\vec{L_{obs}} = 
 	\begin{bmatrix}
 	\ -50 & 0 & 0  \ \ \ \\ 
 	\ 0 & -60 & 0  \ \ \ \\ 
@@ -59,7 +59,7 @@ From \autoref{fig:observerDiagram} the following \autoref{eq:eqobserverderived} 
 Something more should be written, but at this time I do not know what 
 
 \begin{flalign}
-	\hat{\dot{x}}_2 + L\dot{y} &= (A_{22} + LA_{12})\hat{x}_2 + (A_{21} + LA_{11})y + (B_2 + LB_1)u
+	\vec{\hat{\dot{x}}_2} + \vec{L\dot{y}} &= \vec{(A_{22}} + \vec{LA_{12})\hat{x}_2} + \vec{(A_{21}} + \vec{LA_{11})y} + (\vec{B_2} + \vec{LB_1})\vec{u}
 	\label{eq:eqobserverderived}
 \end{flalign}
 
