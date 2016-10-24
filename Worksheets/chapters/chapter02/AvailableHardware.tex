@@ -1,6 +1,10 @@
 \section{Available Hardware}
+The quadcopter has been provided by Aalborg university and professor Henrik Shjøiler\fixme{add danish letters}. This chapter has the purpose of describing the hardware. 
+The hardware is tested and the results of these test will be presented. 
 
+Firs the motor controller is outlined in the following section. 
 \subsection{Motor Controller}
+NIELS NIELS NIELS!!!! HAVE FUN :D Hugs
 
 \subsection{Motor and Propeller}
 The quadrotor is equipped with four brushless outrunner motors named Turing Multistar. Bushless outrunners have in general more torque than inrunners, and can turn lager propellers, resulting in greater lift. The motors are controller by motorcontrollers, described in another section.
@@ -21,21 +25,15 @@ The motor can be seen in \autoref{fig:Motor}.
 
 The relationship between PWM signal to the motor controllers and the velocity of the propeller can be seen in Figure ZZ. \fixme{pull diagram from measurement report}
 
+%It has been observed during tests, that the motor runs faster as it's temperature increases. This is not expected due to the increased resistance, that occurs when the coils within the motor are heated. Therefore the relationship between PWM signal and velocity is not representative for all cases. It is however deemed reasonable to neglect this variance and presume a relationship as it is derived in the measurement report, see Appendix YY. 
 
-It has been observed during tests, that the motor runs faster as it's temperature increases. This is not expected due to the increased resistance, that occurs when the coils within the motor are heated. Therefore the relationship between PWM signal and velocity is not representative for all cases. It is however deemed reasonable to neglect this variance and presume a relationship as it is derived in the measurement report, see Appendix YY. 
-
-
-Moreover it shall be noted, that the battery level drops over time, with a significance, that can not be neglected, as it has great impact on the output of the motor and therefore on the lift of the propeller. It is possible to measure the battery level while operating the quadrotor. By taking into account the battery level in the test of the PWM signal to velocity, it is possible to obtain a quadcopter having constant lift force, if this is requested. 
-
-\subsection{Platform}
-
+ 
 \subsection{Battery}
+The battery available for the prototype, is a Zippy Flightmax battery. Its weights 141 gram, has an capacity of 1500 mAh, a voltage of 11.1 volts and a discharge current of 20 amperes. '
 
-The battery available for the prototype, is a Zippy Flightmax battery. Its weights 141 gram, has an capacity of 1500 mAh, a voltage of 11.1 volts and a discharge current of 20 amperes. 
-
+It shall be noted, that the battery level drops over time, with a significance, that can not be neglected, as it has great impact on the output of the motor and therefore on the lift of the propeller. It is possible to measure the battery level while operating the quadrotor. By taking into account the battery level in the test of the PWM signal to velocity, it is possible to obtain a quadcopter having constant lift force, if this is requested.
 
 \subsection{Vicon System}
-
 The Vicon system is a powerful tool that provides real-time position and orientation data captured with NROFCAMERAS infrared cameras.This information can be used to track objects inside the room the system is built in.
 %An example is found in Aalborg University as seen in \figref{ViconRoom}. 
 
