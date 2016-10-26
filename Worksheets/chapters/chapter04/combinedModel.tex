@@ -50,23 +50,33 @@ Complete linear model
 Parameters
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|l|l|p{3cm}|}
+	\begin{tabular}{|l|l|l|p{3cm}|}
 		\hline %-----------------------------------------------------------------------------------
-		\textbf{Parameter} &\textbf{Value} &\textbf{Units}\\
+		\textbf{Parameter} &\textbf{Symbol}&\textbf{Value} &\textbf{Units}\\
 		\hline %-----------------------------------------------------------------------------------
-		\si{m_w}         & \si{0,222}       &kg\\
+		Mass of quadcopter& $m$         & 1.00       &kg\\
 		\hline
 		%-----------------------------------------------------------------------------------
-		\si{l_w}         & \si{0,093}       &m\\
-		\hline %-----------------------------------------------------------------------------------
-		\si{J_w}         & \si{0,601 \cdot 10^{-3}}	&\si{kg \cdot m^2}\\
+		Length of the Quadcopter Arm & $L$        & 0.225       &m\\
+		\hline 
+		%-----------------------------------------------------------------------------------
+		Moment of inertia around x axis & $J_x$         &  - 	& $kg \cdot m^2$\\
+		\hline
+		%-----------------------------------------------------------------------------------
+		Moment of inertia around y axis & $J_y$         & - 	& $kg \cdot m^2$\\
+		\hline 
+		%-----------------------------------------------------------------------------------
+		Moment of inertia around z axis & $J_z$         & -	    &$kg \cdot m^2$\\
 		\hline  
 		%-----------------------------------------------------------------------------------
-		\si{B_w}         & \si{17,03 \cdot 10^{-6}}       &N \si{\cdot m \cdot s \cdot rad^{-1}}\\
+		Thrust force constant  & $k{th}$        & \si{17,03 \cdot 10^{-6}}       &N \si{\cdot m \cdot s \cdot rad^{-1}}\\
+		\hline
+		%-----------------------------------------------------------------------------------
+		Drag torque constant  & $k{d}$        & \si{17,03 \cdot 10^{-6}}       &N \si{\cdot m \cdot s \cdot rad^{-1}}\\
 		\hline
 	\end{tabular}
-	\caption{Parameters for the model.}
-	\label{ParametersWheel}
+	\caption{Parameters for simulating the linear and non-linear model.}
+	\label{ParametersModel}
 \end{table}\vspace{-18pt}
 
 Simulation\\

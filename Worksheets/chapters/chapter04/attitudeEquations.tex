@@ -13,27 +13,29 @@ The basis for deriving the model are the free body diagrams illustrated in \auto
 %\end{figure}
 
 \begin{minipage}{\linewidth}
-	\begin{minipage}{0.45\linewidth}
+	\begin{minipage}{0.6\linewidth}
 		\begin{figure}[H]
-			\includegraphics[scale=.27]{figures/drone_diagram}
+			\includegraphics[scale=.4]{figures/droneDiagram}
 			\centering
 			
 			\captionof{figure}{Free body diagram that holds both the inertial and body reference systems, as well as the references for the angles roll, pitch and yaw.}
-			\label{fig:diagramQuad}
+			\label{fig:droneDiagram}
 		\end{figure}
 	\end{minipage}
 	\hspace{0.03\linewidth}
-	\begin{minipage}{0.45\linewidth}
-		\begin{figure}[H] \vspace{16mm}
-			\includegraphics[scale=.18]{figures/torques_diagram}
+	\begin{minipage}{0.35\linewidth}
+		\begin{figure}[H] \vspace{20mm}
+			\includegraphics[scale=.4]{figures/torquesDiagram}
 			\centering
+            \vspace{10mm}
 			\captionof{figure}{Free body diagram with the references for the torques produced by the drag force at the propeller.}
-			\label{fig:diagramTorque}
+			\label{fig:torquesDiagram}
 		\end{figure}
 	\end{minipage}
 \end{minipage}
 
-From the diagrams above, the equations of angular motion along the three body axis can be derived by first principles modelling, that does not take fitted parameters into account, but only using laws of physics. In this case, Newton's second law for rotational motion is used, as seen in \autoref{eq:newtonangular}.
+From the diagrams above, the equations of angular motion along the three body axis can be derived by first principles modeling, only using laws of physics. In this case, Newton's second law for rotational motion is used, as seen in \autoref{eq:newtonangular}.
+%
 \begin{align}
 	J\cdot\alpha=\sum\tau_i
 	\label{eq:newtonangular}
@@ -45,13 +47,13 @@ From the diagrams above, the equations of angular motion along the three body ax
 \end{where}
 %It shall be noted, that the fact that Newton's laws, that only apply in relation to an inertial reference, are applied even though the earth is accelerating and rotating, as it is the assumption, that it is of little influence for the system of the quadcopter. 
 
-From applying Newton's second law, \autoref{eq:AngleEq} is obtained. As it can be seen, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed along the y and x axes of the quadcopter, respectively. The yaw angle changes only due to the torques created by the drag force in the propeller.
-
+From applying Newton's second law, \autoref{eq:AngleEq1}, \ref{eq:AngleEq2} and \ref{eq:AngleEq3} are obtained. As it can be seen, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed along the y and x axes of the quadcopter, respectively. The yaw angle changes only due to the torques created by the drag forces in the propellers.
+%
 \begin{align}
-	J_x\cdot\ddot{\phi}&=(F_4-F_2)\cdot L &\\
-	J_y\cdot\ddot{\theta}&=(F_1-F_3)\cdot L &\\
+	J_x\cdot\ddot{\phi}&=(F_4-F_2)\cdot L  \label{eq:AngleEq1} \\
+	J_y\cdot\ddot{\theta}&=(F_1-F_3)\cdot L  \label{eq:AngleEq2}\\
 	J_z\cdot\ddot{\psi}&=\tau_1-\tau_2+\tau_3-\tau_4
-	\label{eq:AngleEq}
+	\label{eq:AngleEq3}
 \end{align}
 \begin{where}
 \va{J_x}{is the inertia around the x axis}{kg\cdot m^2}
@@ -76,11 +78,11 @@ From applying Newton's second law, \autoref{eq:AngleEq} is obtained. As it can b
 %\va{F_n}{is the thrust force produced in each propeller}{N}
 %\va{\tau_n}{is the torque due to the drag force in each propeller}{Nm}
 %\end{where}
-The thrust forces and drag torques from the propeller can be approximated by terms depending on the velocity squared of the motor, which are found as described in Appendix \ref{}. The equations above can be rewritten to include these terms.
+The thrust forces and drag torques from the propeller can be assumed to be proportional to the velocity squared of the motor, related by constants obtained as described in Appendix \ref{}. The equations above can be rewritten to include these terms.
 %
 \begin{align}
-J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L &\\
-J_y \cdot\ddot{\theta}&=k_{th} \cdot(\omega^2_1-\omega^2_3) \cdot L &\\
+J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L \\
+J_y \cdot\ddot{\theta}&=k_{th} \cdot(\omega^2_1-\omega^2_3) \cdot L \\
 J_z\cdot\ddot{\psi}&=k_d \cdot(\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)
 \label{eq:AngleEqVelocities}
 \end{align}
