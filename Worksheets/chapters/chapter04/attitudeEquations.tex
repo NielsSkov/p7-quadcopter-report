@@ -1,5 +1,5 @@
 \section{Attitude Model}
-The model of the quadcopter is split into two sub models as presented previously. \textbf{One of the sub models is the attitude model, that describes the angles of pitch, roll and yaw. The attitude model is now derived.}
+The model of the quadcopter is split into two sub models as presented previously. One of the sub models is the attitude model, that describes the angles of pitch, roll and yaw. The attitude model is now derived.
 
 
 Free body diagrams are illustrated in \autoref{fig:diagramQuad} and \autoref{fig:diagramTorque}. 
@@ -34,7 +34,8 @@ Free body diagrams are illustrated in \autoref{fig:diagramQuad} and \autoref{fig
 	\end{minipage}
 \end{minipage}
 
-From the diagrams above, the equations of angular motion along the three body axis can be derived using \textbf{first order principles of physics}. It shall be noted, that the fact that\textbf{ Newton's laws, that only apply in relation to an inertial reference, are applied even though the earth is accelerating and rotating, as it is the assumption, that it is of little influence for the system of the quadcopter. }
+From the diagrams above, the equations of angular motion along the three body axis can be derived by first principles modelling, that does not take fitted parameters into account, but only using laws of physics.
+%It shall be noted, that the fact that Newton's laws, that only apply in relation to an inertial reference, are applied even though the earth is accelerating and rotating, as it is the assumption, that it is of little influence for the system of the quadcopter. 
 %
 \begin{align}
 	J_x\cdot\ddot{\phi}&=(F_4-F_2)\cdot L &\\
@@ -42,6 +43,18 @@ From the diagrams above, the equations of angular motion along the three body ax
 	J_z\cdot\ddot{\psi}&=\tau_1-\tau_2+\tau_3-\tau_4
 	\label{eq:AngleEq}
 \end{align}
+\begin{where}
+\va{J_x}{is the inertia around the x-axes}{}
+\va{J_y}{is the inertia around the y-axes}{}
+\va{J_z}{is the inertia around the z-axes}{}
+\va{\ddot{\phi}}{is the roll angular acceleration}{rad\cdot m\cdot s^{-2}}
+\va{\ddot{\theta}}{is the pitch angular acceleration}{rad\cdot m\cdot s^{-2}}
+\va{\ddot{\psi}}{is the yaw angular acceleration}{rad\cdot m\cdot s^{-2}}
+\va{F_{1,2,3,4}}{is the forces of the motors 1,2,3,4}{}
+\va{L}{is the lenght from center of mass to motor}{m}
+\va{\tau_{1,2,3,4}}{is the drag torque from each propeller 1,2,3,4}{}
+
+\end{where}
 
 %\begin{where}
 %\va{\ddot{\phi}}{is roll angular acceleration}{rad $\cdot$ s$^{-2}$}
