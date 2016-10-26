@@ -1,21 +1,26 @@
 \chapter{Model}
-To make the quadcopter have a steady flight mode it is convenient to derive a model of the system, that describes its physical behaviour. From this, a control system must be designed such that the desired flying characteristics are obtained. 
-This chapter presents the model. 
+To make the quadcopter have a steady flight it is convenient to derive a model of the system, so the physical behavior of the quadcopter is described. From this, a control system must be designed such that the desired flying characteristics are obtained.
 
-First, a model overview is presented. Then, the model derivation and lastly, the model is linearized as this is necessary to be able to design a linear control system. The model and the linearized model are compared in simulations. This ensures that the linear model is an acceptable approximation.
+First, an overview is presented. Then, the model is derived and lastly, it is linearized as this is necessary to be able to design a linear control system. Finally, the model and the linearized model are compared in simulations. This ensures that the linear approximation yields acceptable results.
 
-\section{Model overview}
-The model can be split into two sub models. One being an angular model describing how the angles change according to the action of the propellers and how they influence each other. The other sub model is a translational velocity model, that describes the angles, the positions and the velocities in the directions of the x-, y- and z-axes. 
-These models will later be combined. 
+\section{Model Overview}
+The model is split into two sub models, one being an angular model and the other being a translational velocity model. These are later combined to fully simulate the response of the system.
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.1]{figures/modeloverview.PNG}
-\caption{Overview of how the model is split.}
-\label{sss}
+    \centering
+    \includegraphics[scale=0.3]{figures/modelOverview}
+    \caption{Overview of how the two models are related.}
+    \label{fig:modelOverview}
 \end{figure}
-When modeling the quadcopter, two coordinate systems are used. A body frame, that is fixed to the flying object and an inertial frame, that is fixed as the Vicon room. 
-
-It is necessary to use both, as it is desired to know where the quadcopter is within the inertial frame to determine its position. To obtain the orientation of the quadcopter, the body frame's orientation compared to the inertial frame yields the angles of roll, pitch and yaw. 
+Another consideration to be made before modeling the quadcopter is the usage of two coordinate frames. A body frame, that is fixed to the flying object and an inertial frame, that is fixed to the Vicon room. 
+%
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{figures/framesDiagram}
+    \caption{}
+    \label{fig:framesDiagram}
+\end{figure}
+%
+Using these two frames is necessary, as it is desired to know where the quadcopter is within the inertial frame to determine its position. To obtain the orientation of the quadcopter, the body frame's orientation compared to the inertial frame yields the angles of roll, pitch and yaw. 
 %Angle and Linear
 %Explain the two frames and include drawing showing them
 %Flow of the chapter
@@ -43,4 +48,4 @@ It is necessary to use both, as it is desired to know where the quadcopter is wi
 %		\end{figure}
 %	\end{minipage}
 %\end{minipage}
-In the following section the attitude model is derived. 
+%In the following section the attitude model is derived. 
