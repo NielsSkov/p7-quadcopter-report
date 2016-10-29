@@ -1,118 +1,41 @@
-\section{Translational Model}
-In this section, the translational behavior of the quadcopter is modeled.
-From the figure in the previous section, \fxnote{insert figure reference}, it is possible to derive equations for the translational accelerations in the body frame using Newton's second law.
+\section{Translational Model} \label{sec:TranslationalModel}
+The aim of this section is to model the translational behavior of the quadcopter.
 
-Theory and so on\\
-
-\subsection{Linear Accelerations - Body Frame}
-The linear acceleration components along the body coordinate frame directions evolve according to the equations below. They come from applying Newton's second law. As the gravity needs to be transformed from the inertial frame to the body frame, it has been multiplied by the rotation matrix (\eqref{rotMatrix}) that depends on the roll, pitch and yaw angles.
+From \autoref{fig:diagramQuad} in the previous section, it is possible to derive equations for the translational accelerations in the inertial frame using Newton's Second Law.
 %
 \begin{flalign}
-	\eq{m\cdot\ddot{x}_B}{F_g(-\cos(\phi) \sin(\theta) \cos(\psi) + \sin(\phi) \sin (\psi))} &\\
-	\eq{m\cdot\ddot{y}_B}{F_g(\cos(\phi) \sin(\theta) \sin(\psi) + \sin(\phi) \cos(\psi))}&\\
-	\eq{m\cdot\ddot{z}_B}{-(F_1+F_2+F_3+F_4)+F_g\cdot \cos(\phi)\cos(\theta)}
-\label{eq:AccelerationEqBody}
+    m \cdot a = \sum F_i
 \end{flalign}
 %
-\hspace{6mm} Where:\\
-\begin{tabular}{ p{1cm} l l l}
-	& \si{\ddot{x_B}} 	 	& is the linear acceleration in \si{x_B} direction 	&\unitWh{m \cdot s^{-2}} \\
-	& \si{\ddot{y_B}} 		& is the linear acceleration in \si{y_B} direction   &\unitWh{m \cdot s^{-2}} \\
-	& \si{\ddot{z_B}}	    & is the linear acceleration in \si{x_B} direction     &\unitWh{m \cdot s^{-2}} \\
-	& \si{\phi}	 			& is the roll position 	&\unitWh{rad} \\
-	& \si{\theta} 			& is the pitch position    &\unitWh{rad} \\
-	& \si{\psi}    			& is the yaw position      &\unitWh{rad} \\
-	& \si{F_g}    			& is the magnitude of the gravity force      &\unitWh{N} \\
-\end{tabular}
+All the forces that are applied to the quadcopter create an acceleration on it. The forces are the gravity and the thrust that the propellers generate. 
 
+A seen in \autoref{fig:framesDiagram} in \autoref{sec:ModelOverview} the gravity force has effect only in the \si{z_I} direction and the four forces from the motors need to be transformed into the inertial system. This is done through the rotation matrix showed in \autoref{eq:RotMatrix}.
 
-As happened with the equations of the angular movement, the forces and torques can be written as a function of the motors' speeds.
-\begin{flalign}
-	\eq{m\cdot\ddot{x}_B}{F_g(-\cos(\phi) \sin(\theta) \cos(\psi) + \sin(\phi) \sin (\psi))} &\\
-	\eq{m\cdot\ddot{y}_B}{F_g(\cos(\phi) \sin(\theta) \sin(\psi) + \sin(\phi) \cos(\psi))}&\\
-	\eq{m\cdot\ddot{z}_B}{-k_{th}\cdot(\omega^2_1+\omega^2_2+\omega^2_3+\omega^2_4)+F_g\cdot \cos(\phi)\cos(\theta)}
-	\label{eq:AccelerationEqBodyVelocities}
-\end{flalign}
-
-The transformation of the gravity force is explained by three consecutive rotations (roll, pitch and yaw) combined in one rotation matrix \si{R_{\phi, \theta, \psi}}.
-
-\begin{minipage}{0.3\linewidth}
-	\begin{flalign}
-		\si{R_\phi} &=
-		\begin{bmatrix}
-			\ \si{1}                & \si{0}                & \si{0} \ \ \ \\ 
-			\ \si{0}  				& \si{c(\phi)} 		& \si{-s(\phi)}                 \ \ \ \\ 
-			\ \si{0}                & \si{s(\phi)}       & \si{c(\phi)}                  \ \ \  
-		\end{bmatrix}  \nonumber 
-	\end{flalign}
-\end{minipage}\hfill
-%
-\begin{minipage}{0.3\linewidth}
-	\begin{flalign}
-		\si{R_\theta} &=
-		\begin{bmatrix}
-			\ \si{c(\theta)}      & \si{0}       & \si{s(\theta)} \ \ \ \\ 
-			\ \si{0}  				& \si{1} 	   & \si{0}                 \ \ \ \\ 
-			\ \si{-s(\theta)}     & \si{0}       & \si{c(\theta)}                  \ \ \  
-		\end{bmatrix}   \nonumber 
-	\end{flalign}
-\end{minipage}\hfill
-%
-\begin{minipage}{0.3\linewidth}
-	\begin{flalign}
-		\si{R_\phi} &=
-		\begin{bmatrix}
-			\ \si{c(\psi)}                & \si{-s(\psi)}                & \si{0} \ \ \ \\ 
-			\ \si{s(\psi)}  				& \si{c(\psi)} 		& \si{0}                 \ \ \ \\ 
-			\ \si{0}                & \si{0}       & \si{1}                  \ \ \  
-		\end{bmatrix} \nonumber 
-	\end{flalign}
-\end{minipage}\hfill
-
-\begin{flalign}
-	\si{R_{\phi, \theta, \psi}} &=
-	\begin{bmatrix}
-		\ \si{c(\theta) \cdot c(\psi)}                & \si{-c(\theta) \cdot s(\psi)}  & \si{s(\theta)} \ \ \ \\ 
-		\ \si{s(\phi) \cdot s(\theta) \cdot s(\psi) + c(\phi) \cdot s(\psi)}  	  & \si{-s(\phi) \cdot s(\theta) \cdot s(\psi) + c(\phi) \cdot c(\psi)} 		& \si{-s(\phi) \cdot c(\theta)}                 \ \ \ \\ 
-		\ \si{-c(\phi) \cdot s(\theta) \cdot c(\psi) + s(\phi) \cdot s(\psi)}  	  & \si{c(\phi) \cdot s(\theta) \cdot s(\psi) + s(\phi) \cdot c(\psi)} 		& \si{c(\phi) \cdot c(\theta)}                 \ \ \ 
-	\end{bmatrix} 	\label{rotMatrix}
-\end{flalign}
-
-
-\subsection{Linear Accelerations - Inertial Frame}
-It is also possible to explain the linear acceleration in the inertial reference frame. This approach is useful if the aim of the controller is to give references of acceleration, velocity or position in this frame.
-
-In this case the gravity force has effect only in the \si{z_I} direction and the four forces from the motors need to be transformed into the inertial system. This is done using the inverse of the previously calculated rotation matrix (\eqref{invRotMatrix}).
+Taking into account this transformation, the movement can be described using \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}.
 %
 \begin{flalign}
-	\eq{m\cdot\ddot{x}_I}{-(F1+F2+F3+F4)\cdot\sin(\theta)} & \label{eq:AccelerationEqInertial1}\\
-	\eq{m\cdot\ddot{y}_I}{-(F1+F2+F3+F4)\cdot(-\sin(\phi))\cdot\cos(\theta)} & \label{eq:AccelerationEqInertial2}\\
-	\eq{m\cdot\ddot{z}_I}{F_g-(F1+F2+F3+F4)\cdot\cos(\phi)\cdot\cos(\theta)}
-	\label{eq:AccelerationEqInertial3}
+    m\cdot\ddot{x}_I &= -(F1+F2+F3+F4)\cdot\sin(\theta)  \label{eq:AccelerationEqInertial1}\\
+    m\cdot\ddot{y}_I &= -(F1+F2+F3+F4)\cdot(-\sin(\phi))\cdot\cos(\theta)  \label{eq:AccelerationEqInertial2}\\
+    m\cdot\ddot{z}_I &= F_g-(F1+F2+F3+F4)\cdot\cos(\phi)\cdot\cos(\theta)
+    \label{eq:AccelerationEqInertial3}
 \end{flalign}
 %
-\hspace{6mm} Where:\\
-\begin{tabular}{ p{1cm} l l l}
-	& \si{\ddot{x_I}} 	 	& is the linear acceleration in \si{x_I} direction 	&\unitWh{m \cdot s^{-2}} \\
-	& \si{\ddot{y_I}} 		& is the linear acceleration in \si{y_I} direction   &\unitWh{m \cdot s^{-2}} \\
-	& \si{\ddot{z_I}}	    & is the linear acceleration in \si{x_I} direction     &\unitWh{m \cdot s^{-2}} \\
-\end{tabular}
+\begin{where}
+    \va{m} {is the mass of the quadcopter}         {kg}
+    \va{\ddot{x}_I} {is the translational acceleration in the $x_I$ direction}        {m \cdot s^{-2} }
+    \va{\ddot{y}_I} {is the translational acceleration in the $y_I$ direction}        {m \cdot s^{-2} }
+    \va{\ddot{z}_I} {is the translational acceleration in the $z_I$ direction}        {m \cdot s^{-2} }
+    \va{\phi} {is the roll position}        {rad}
+    \va{\theta} {is the pitch position}        {rad}
+    \va{F_g} {is the gravity force acting on the quadcopter} {N}
+\end{where}
 
-
+This equations can also be rewritten taking into account that the forces are assumed to be proportional to the square of the speeds of the motors. This assumption results in \autoref{eq:AccelerationEqInertialVelocities1}, \ref{eq:AccelerationEqInertialVelocities2} and \ref{eq:AccelerationEqInertialVelocities3}.
+%
 \begin{flalign}
-	\eq{m\cdot\ddot{x}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)} &\\
-	\eq{m\cdot\ddot{y}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta)} &\\
-	\eq{m\cdot\ddot{z}_I}{F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)}
-	\label{eq:AccelerationEqInertialVelocities}
+    m\cdot\ddot{x}_I &= -k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)  \label{eq:AccelerationEqInertialVelocities1}\\
+    m\cdot\ddot{y}_I &= -k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta) \label{eq:AccelerationEqInertialVelocities2}\\
+    m\cdot\ddot{z}_I &= F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)
+    \label{eq:AccelerationEqInertialVelocities3}
 \end{flalign}
 %
-\small
-\begin{flalign}
-	\si{R^{-1}_{\phi, \theta, \psi}} &=
-	\begin{bmatrix}
-		\ \si{c(\theta) \cdot c(\psi)}                & \si{-c(\theta) \cdot s(\psi)}  & \si{-c(\phi) \cdot s(\theta) \cdot c(\psi) + s(\phi) \cdot s(\psi)}  \ \ \ \\ 
-		\ \si{s(\phi) \cdot s(\theta) \cdot s(\psi) + c(\phi) \cdot s(\psi)}  	  & \si{-s(\phi) \cdot s(\theta) \cdot s(\psi) + c(\phi) \cdot c(\psi)} 		& \si{c(\phi) \cdot s(\theta) \cdot s(\psi) + s(\phi) \cdot c(\psi)}                \ \ \ \\ 
-		\ \si{s(\theta)}      	  & \si{-s(\phi) \cdot c(\theta)}    		& \si{c(\phi) \cdot c(\theta)}                 \ \ \ 
-	\end{bmatrix} 	\label{invRotMatrix}
-\end{flalign}
-\normalsize
