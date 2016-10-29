@@ -1,18 +1,40 @@
 \section{Linearization}
-Compare to non linear (simulation)\\
-
-Since the goal is to design a linear controller, it is necessary to linearize the equations around an equilibrium point. The attitude equations in the body frame, \fxnote{ref needed}, must be linearized since they contain squared velocities. The translational equations in the inertial frame, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must also be linearized since these contain trigonometric functions and squared velocities. The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This happens when roll and pitch are kept to zero. The forces along the x and y axes in some cases also depend on yaw, however, as the forces were transformed from the body frame to the inertial frame, as described in \fxnote{ref needed}, in the order roll, pitch and then yaw, the yaw will not affect the translational forces, and so, it is not, as such, part of the equilibrium point. The equilibrium point for the four angular velocities of the motors is again that which allows the quadcopter to hover, that is, the four equal angular velocities which keeps a constant z-coordinate in the inertial frame.
-The linearization is done for each equation using the first order Taylor approximation.
+%Compare to non linear (simulation)\\
+%Since the goal is to design a linear controller, it is necessary to linearize the equations
+%around an equilibrium point. The attitude equations in the body frame,
+%1 , must be lin-
+%earized since they contain squared velocities. The translational equations in the inertial
+%frame, Equation 3.10, 3.11, and 3.12, must also be linearized since these contain trigono-
+%metric functions and squared velocities. The equilibrium point is chosen to be where the
+%quadcopter is hovering at a fixed position in the inertial frame. This happens when roll
+%and pitch are kept to zero. The forces along the x and y axes in some cases also depend
+%on yaw, however, as the forces were transformed from the body frame to the inertial
+%frame, as described in
+%2 , in the order roll, pitch and then yaw, the yaw will not affect
+%the translational forces, and so, it is not, as such, part of the equilibrium point. The
+%equilibrium point for the four angular velocities of the motors is again that which allows
+%the quadcopter to hover, that is, the four equal angular velocities which keeps a constant
+%z-coordinate in the inertial frame. The linearization is done for each equation using the
+%first order Taylor approximation.
+%This happens when roll and pitch are kept to zero. The forces along the x and y axes in some cases also depend on yaw, however, as the forces were transformed from the body frame to the inertial frame, as described in \fxnote{ref needed}, in the order roll, pitch and then yaw, the yaw will not affect the translational forces, and so, it is not, as such, part of the equilibrium point. The equilibrium point for the four angular velocities of the motors is again that which allows the quadcopter to hover, that is, the four equal angular velocities which keeps a constant z-coordinate in the inertial frame.
+The goal of designing a linear controller requires a linearization of the model equations around an equilibrium point. This is done for each equation using the first order Taylor approximation. See \autoref{taylor}.
 \begin{flalign}
-  f(x) &\approx f(x_0) + \frac{1}{1!}\ f'(x_0) (x-x_0)
+	f(x) &\approx f(x_0) + f'(x_0) (x-x_0)
+	\label{taylor}
 \end{flalign}
+The attitude equations, \autoref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}, and the translational equations, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must be linearized since these contain trigonometric functions and squared velocities. 
 
-Applying the approximation to the model equations in the equilibrium point the following is obtained.
+The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This choice makes all equilibrium variables equal to zero both angular and translational. The equilibrium motor velocities, though, are those that keep the acceleration in the z axis in the inertial frame equal to zero. To calculate them, \autoref{eq:equilibriumomegas} is used.
 \begin{flalign}
-  J_x\cdot\Delta\ddot{\phi}   &= 2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_4}\cdot \Delta \omega_2-{\overline{\omega}_2}\cdot \Delta \omega_4) \\
-  J_y\cdot\Delta\ddot{\theta} &= 2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_3}\cdot \Delta \omega_3) \\
-  J_z\cdot\Delta\ddot{\psi}   &= 2 \cdot k_d \cdot ({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_2}\cdot \Delta \omega_2+{\overline{\omega}_3}\cdot \Delta \omega_3-{\overline{\omega}_4}\cdot \Delta \omega_4)
-\end{flalign} \label{eqAngleLin}
+	\overline{\omega}_i=\sqrt{\frac{m\cdot g}{k_{th}\cdot 4}}
+	\label{eq:equilibriumomegas}
+\end{flalign}
+Applying the approximation to the attitude model equations around the equilibrium point, \autoref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3} are obtained.
+\begin{flalign}
+  J_x\cdot\Delta\ddot{\phi}   &= 2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_4}\cdot \Delta \omega_2-{\overline{\omega}_2}\cdot \Delta \omega_4)\label{eqAngleLin1} \\
+  J_y\cdot\Delta\ddot{\theta} &= 2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_3}\cdot \Delta \omega_3) \label{eqAngleLin2} \\
+  J_z\cdot\Delta\ddot{\psi}   &= 2 \cdot k_d \cdot ({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_2}\cdot \Delta \omega_2+{\overline{\omega}_3}\cdot \Delta \omega_3-{\overline{\omega}_4}\cdot \Delta \omega_4) \label{eqAngleLin3}
+\end{flalign} 
 %
 \begin{where}
   \va{ \Delta\ddot{\phi}     } {is the change in roll angular acceleration from equilibrium}         { rad \cdot s^{-2} }
@@ -21,7 +43,6 @@ Applying the approximation to the model equations in the equilibrium point the f
   \va{ \overline{\omega}_n } {is the angular velocity of the nth motor in equilibrium}             { rad \cdot s^{-1} }
   \va{ \Delta \omega_n       } {is the change in angular velocity from equilibrium of the nth motor} { rad \cdot s^{-1} }
 \end{where}
-
 %\begin{note}
 %\begin{flalign}
 %       \eqOne{m\cdot\Delta\ddot{x}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\theta})-}
@@ -36,12 +57,12 @@ Applying the approximation to the model equations in the equilibrium point the f
 %\end{flalign}
 %\end{note}
 
-
+In a similar way as with the attitude equations, the translational model can be linearized, leading to \autoref{eq:TransLinearEquations1}, \ref{eq:TransLinearEquations2} and \ref{eq:TransLinearEquations3}.
 \begin{flalign}
-  m\cdot\Delta\ddot{x}_I &= -k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta &\\
-  m\cdot\Delta\ddot{y}_I &=  k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi &\\
-  m\cdot\Delta\ddot{z}_I &= -2\textbf{ }k_{th}\cdot({\overline{\omega}_1}^2\cdot\Delta\omega_1+{\overline{\omega}_2}^2\cdot\Delta\omega_2+{\overline{\omega}_3}^2\cdot\Delta\omega_3+{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})
-\end{flalign} \label{eq:FinalLinearEquations}
+  m\cdot\Delta\ddot{x}_I &= -k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta \label{eq:TransLinearEquations1} \\
+  m\cdot\Delta\ddot{y}_I &=  k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi \label{eq:TransLinearEquations2}\\
+  m\cdot\Delta\ddot{z}_I &= -2\textbf{ }k_{th}\cdot({\overline{\omega}_1}^2\cdot\Delta\omega_1+{\overline{\omega}_2}^2\cdot\Delta\omega_2+{\overline{\omega}_3}^2\cdot\Delta\omega_3+{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\label{eq:TransLinearEquations3}
+\end{flalign} 
 %
 \begin{where}
   \va{ \Delta\ddot{x_I}  }{ is the change in linear acceleration from equilibrium in $x_I$ direction }{ m \cdot s^{-2} } \\
@@ -54,3 +75,5 @@ Applying the approximation to the model equations in the equilibrium point the f
   \va{ \overline{\theta} }{ is the pitch position in equilibrium                                     }{ rad            } \\
   \va{ \overline{\psi}   }{ is the yaw position in equilibrium                                       }{ rad            }
 \end{where}
+
+It is worth mentioning that the yaw angle does not affect the translational accelerations in he inertial frame. This occurs due to the way the rotation matrix has been defined. It assumes that rotations are performed by first turning in roll direction, then in pitch direction and finally in yaw direction. This order makes the yaw angle not relevant as the force decomposition in the inertial frame directions is independent of the yaw angle as long as this is assumed to be the last angle that changes.
