@@ -1,12 +1,16 @@
 \section{Linearization}
-Compare to non linear (simulation)\\
+Since the goal is to design a linear controller, it is necessary to linearize the equations around an equilibrium point.
 
-Since the goal is to design a linear controller, it is necessary to linearize the equations around an equilibrium point. The attitude equations in the body frame, \fxnote{ref needed}, must be linearized since they contain squared velocities. The translational equations in the inertial frame, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must also be linearized since these contain trigonometric functions and squared velocities. The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This happens when roll and pitch are kept to zero. The forces along the x and y axes in some cases also depend on yaw, however, as the forces were transformed from the body frame to the inertial frame, as described in \fxnote{ref needed}, in the order roll, pitch and then yaw, the yaw will not affect the translational forces, and so, it is not, as such, part of the equilibrium point. The equilibrium point for the four angular velocities of the motors is again that which allows the quadcopter to hover, that is, the four equal angular velocities which keeps a constant z-coordinate in the inertial frame.
+The attitude equations in the body frame, \fxnote{ref needed}, must be linearized since they contain squared velocities. The translational equations in the inertial frame, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must also be linearized since these contain trigonometric functions and squared velocities.
+
+The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This happens when roll and pitch are kept to zero. The forces along the x and y axes in some cases also depend on yaw, however, as the forces were transformed from the body frame to the inertial frame, as described in \fxnote{ref needed}, in the order roll, pitch and then yaw, the yaw will not affect the translational forces, and so, it is not, as such, part of the equilibrium point.
+
+The equilibrium point for the four angular velocities of the motors is again that which allows the quadcopter to hover, that is, the four equal angular velocities which keeps a constant z-coordinate in the inertial frame.
 The linearization is done for each equation using the first order Taylor approximation.
 \begin{flalign}
   f(x) &\approx f(x_0) + \frac{1}{1!}\ f'(x_0) (x-x_0)
 \end{flalign}
-
+%
 Applying the approximation to the model equations in the equilibrium point the following is obtained.
 \begin{flalign}
   J_x\cdot\Delta\ddot{\phi}   &= 2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_4}\cdot \Delta \omega_2-{\overline{\omega}_2}\cdot \Delta \omega_4) \\
