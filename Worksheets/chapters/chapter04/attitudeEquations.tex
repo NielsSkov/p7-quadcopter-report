@@ -1,24 +1,15 @@
-\section{Attitude Model}
+\section{Attitude Model} \label{sec:AttitudeModel}
 The attitude model of the quadcopter describes how the roll, pitch and yaw angles evolve according to the forces and torques exerted by the propellers. 
 
-The basis for deriving the model are the free body diagrams illustrated in \autoref{fig:diagramQuad} and \ref{fig:diagramTorque}. 
-
-%\begin{figure}[H]
-%\centering
-%\includegraphics[scale=.27]{figures/drone_diagram}
+The basis for deriving the model are the free body diagrams illustrated in \autoref{fig:droneDiagram} and \ref{fig:torquesDiagram}. 
 %
-%
-%\caption{Free body diagram that holds both the inertial and body reference systems, as well as the references for the angles roll, pitch and yaw.}
-%\label{fig:diagramQuad}
-%\end{figure}
-
 \begin{minipage}{\linewidth}
 	\begin{minipage}{0.6\linewidth}
 		\begin{figure}[H]
 			\includegraphics[scale=.4]{figures/droneDiagram}
 			\centering
 			
-			\captionof{figure}{Free body diagram that holds both the inertial and body reference systems, as well as the references for the angles roll, pitch and yaw.}
+			\captionof{figure}{Free body diagram that holds both the inertial and body reference systems, as well as the references for the angles, roll, pitch and yaw.}
 			\label{fig:droneDiagram}
 		\end{figure}
 	\end{minipage}
@@ -28,26 +19,26 @@ The basis for deriving the model are the free body diagrams illustrated in \auto
 			\includegraphics[scale=.4]{figures/torquesDiagram}
 			\centering
             \vspace{10mm}
-			\captionof{figure}{Free body diagram with the references for the torques produced by the drag force at the propeller.}
+			\captionof{figure}{Free body diagram with the references for the torques produced by the drag forces at the propellers.}
 			\label{fig:torquesDiagram}
 		\end{figure}
 	\end{minipage}
 \end{minipage}
-
-From the diagrams above, the equations of angular motion along the three body axis can be derived by first principles modeling, only using laws of physics. In this case, Newton's second law for rotational motion is used, as seen in \autoref{eq:newtonangular}.
+%
+From the diagrams above, the equations of angular motion along the three body axis can be derived by first principles modeling, that is, using only laws of physics. In this case, Newton's Second Law for rotational motion, as seen in \autoref{eq:newtonangular}.
 %
 \begin{align}
 	J\cdot\alpha=\sum\tau_i
 	\label{eq:newtonangular}
 \end{align}
-\begin{where}
-	\va{J}{is the moment of inertia}{kg\cdot m^2}
-	\va{\alpha}{is the angular acceleration}{rad\cdot m\cdot s^{-2}}
-	\va{\tau_i}{are the torques applied to the system}{Nm}
-\end{where}
+%\begin{where}
+%	\va{J}{is the moment of inertia}{kg\cdot m^2}
+%	\va{\alpha}{is the angular acceleration}{rad\cdot m\cdot s^{-2}}
+%	\va{\tau_i}{are the torques applied to the system}{Nm}
+%\end{where}
 %It shall be noted, that the fact that Newton's laws, that only apply in relation to an inertial reference, are applied even though the earth is accelerating and rotating, as it is the assumption, that it is of little influence for the system of the quadcopter. 
-
-From applying Newton's second law, \autoref{eq:AngleEq1}, \ref{eq:AngleEq2} and \ref{eq:AngleEq3} are obtained. As it can be seen, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed along the y and x axes of the quadcopter, respectively. The yaw angle changes only due to the torques created by the drag forces in the propellers.
+%
+From applying Newton's Second Law, \autoref{eq:AngleEq1}, \ref{eq:AngleEq2} and \ref{eq:AngleEq3} are obtained. As it can be seen, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed along the y and x axes of the quadcopter, respectively. The yaw angle changes due to the torques created by the drag forces in the propellers.
 %
 \begin{align}
 	J_x\cdot\ddot{\phi}&=(F_4-F_2)\cdot L  \label{eq:AngleEq1} \\
@@ -62,9 +53,9 @@ From applying Newton's second law, \autoref{eq:AngleEq1}, \ref{eq:AngleEq2} and 
 \va{\ddot{\phi}}{is the roll angular acceleration}{rad\cdot s^{-2}}
 \va{\ddot{\theta}}{is the pitch angular acceleration}{rad\cdot s^{-2}}
 \va{\ddot{\psi}}{is the yaw angular acceleration}{rad\cdot s^{-2}}
-\va{F_{1,2,3,4}}{is the forces of the motors 1,2,3,4}{N}
+\va{F_i}{is the thrust force from each propeller}{N}
 \va{L}{is the length from center of mass to motor}{m}
-\va{\tau_{1,2,3,4}}{is the drag torque from each propeller 1,2,3,4}{Nm}
+\va{\tau_i}{is the drag torque from each propeller}{Nm}
 \end{where}
 
 %\begin{where}
@@ -78,7 +69,7 @@ From applying Newton's second law, \autoref{eq:AngleEq1}, \ref{eq:AngleEq2} and 
 %\va{F_n}{is the thrust force produced in each propeller}{N}
 %\va{\tau_n}{is the torque due to the drag force in each propeller}{Nm}
 %\end{where}
-The thrust forces and drag torques from the propeller can be assumed to be proportional to the velocity squared of the motor, related by constants obtained as described in Appendix \ref{}. The equations above can be rewritten to include these terms.
+The thrust forces and drag torques from the propeller can be assumed to be proportional to the square of the velocity of the motor, related by constants obtained as described in \autoref{app:ThrustTest} and \ref{app:TorqueTest}. The equations above can be rewritten to include these terms.
 %
 \begin{align}
 J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L \label{eq:AngleEqVelocities1}\\

@@ -1,5 +1,5 @@
-\section{Combined Model}
-The model derived is presented as the equations that constitute it and in for of a block diagram. The simulation carried out are also depicted and compared.
+\section{Combined Model} \label{sec:CombinedModel}
+The model derived is presented as the equations that constitute it and a block diagram. The simulations carried out are also depicted and compared.
 \subsection{Attitude Model Equations}
 \begin{itemize}
 	\item Non-linear equations
@@ -16,6 +16,7 @@ The model derived is presented as the equations that constitute it and in for of
 		J_z\cdot\Delta\ddot{\psi}   &= 2 \cdot k_d \cdot ({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_2}\cdot \Delta \omega_2+{\overline{\omega}_3}\cdot \Delta \omega_3-{\overline{\omega}_4}\cdot \Delta \omega_4)
 	\end{flalign} \label{eqAngleLincombined}
 \end{itemize}
+
 \subsection{Translational Model Equations}
 \begin{itemize}
 	\item Non-linear equations
@@ -29,16 +30,16 @@ The model derived is presented as the equations that constitute it and in for of
 	\begin{flalign}
 		m\cdot\Delta\ddot{x}_I &= -k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta &\\
 		m\cdot\Delta\ddot{y}_I &=  k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi &\\
-		m\cdot\Delta\ddot{z}_I &= -2\textbf{ }k_{th}\cdot({\overline{\omega}_1}^2\cdot\Delta\omega_1+{\overline{\omega}_2}^2\cdot\Delta\omega_2+{\overline{\omega}_3}^2\cdot\Delta\omega_3+{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})
+		m\cdot\Delta\ddot{z}_I &= -2\textbf{ }k_{th}\cdot({\overline{\omega}_1}\cdot\Delta\omega_1+{\overline{\omega}_2}\cdot\Delta\omega_2+{\overline{\omega}_3}\cdot\Delta\omega_3+{\overline{\omega}_4}\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})
 	\end{flalign} \label{eq:FinalLinearEquationscombined}
 \end{itemize}
 
-\subsection{Linearized Block Diagram}
+\subsection{Linearized Block Diagrams}
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.45]{figures/LinearModelBlockDiagram.pdf}
-\caption{.}
-\label{sss}
+	\centering
+	\includegraphics[scale=0.45]{figures/LinearModelBlockDiagram.pdf}
+	\caption{.}
+	\label{fig:LinearModelBlockDiagram}
 \end{figure}
 
 \subsection{Simulation}
@@ -49,14 +50,14 @@ The simulation of the model is done in Simulink. The parameters used for the sim
 		\hline %-----------------------------------------------------------------------------------
 		\textbf{Parameter Name}&\textbf{Symbol} &\textbf{Value} &\textbf{Units}\\
 		\hline %-----------------------------------------------------------------------------------
-		Mass of the quadcopter  & $m$ & 1.00       &kg\\
+		Mass of the quadcopter  & $m$ & 0.996       &kg\\
 		\hline
 		%-----------------------------------------------------------------------------------
-		Moment of inertia around x axis       & $J_x$  & -       & $kg \cdot m^2$\\
+		Moment of inertia around x axis       & $J_x$  & 0.01073       & $kg \cdot m^2$\\
 		\hline %-----------------------------------------------------------------------------------
-		Moment of inertia around y axis       & $J_y$  & -       & $kg \cdot m^2$\\
+		Moment of inertia around y axis       & $J_y$  & 0.01073       & $kg \cdot m^2$\\
 		\hline %-----------------------------------------------------------------------------------
-		Moment of inertia around z axis       & $J_z$  & -       & $kg \cdot m^2$\\
+		Moment of inertia around z axis       & $J_z$  & 0.02135       & $kg \cdot m^2$\\
 		\hline %-----------------------------------------------------------------------------------
 		Length of quadcopter rm       & $L$  &   0.225       & $m$\\
 		\hline %-----------------------------------------------------------------------------------
@@ -69,4 +70,44 @@ The simulation of the model is done in Simulink. The parameters used for the sim
 	\label{ParametersQuadcopter}
 \end{table}\vspace{-18pt}
 
-GRAPHS
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{figures/rollCompModel}
+	\caption{.}
+	\label{fig:rollCompModel}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{figures/pitchCompModel}
+	\caption{.}
+	\label{fig:pitchCompModel}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.55]{figures/yawCompModel}
+	\caption{.}
+	\label{fig:yawCompModel}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.55]{figures/xCompModel}
+	\caption{.}
+	\label{fig:xCompModel}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.55]{figures/yCompModel}
+	\caption{.}
+	\label{fig:yCompModel}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.55]{figures/zCompModel}
+	\caption{.}
+	\label{fig:zCompModel}
+\end{figure}
