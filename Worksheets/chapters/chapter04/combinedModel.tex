@@ -21,10 +21,10 @@ The model derived is presented as the equations that constitute it and a block d
 \begin{itemize}
 	\item Non-linear equations
 	\begin{flalign}
-		\eq{m\cdot\ddot{x}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)} &\\
-		\eq{m\cdot\ddot{y}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta)} &\\
+		\eq{m\cdot\ddot{x}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)} \label{eq:AccelerationEqInertialVelocitiescombined1}\\
+		\eq{m\cdot\ddot{y}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta)} \label{eq:AccelerationEqInertialVelocitiescombined2}\\
 		\eq{m\cdot\ddot{z}_I}{F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)}
-		\label{eq:AccelerationEqInertialVelocitiescombined}
+		\label{eq:AccelerationEqInertialVelocitiescombined3}
 	\end{flalign}
 	\item Linearized equations 
 	\begin{flalign}
@@ -80,31 +80,33 @@ It can also be observed that the linear approximation of the equations yields an
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/rollCompModel}
-	\caption{.}
+	\caption{Behavior of the non linear and linear models in roll angle.}
 	\label{fig:rollCompModel}
 \end{figure}
 %
-The behavior around the y axis is very similar to that of the roll angle. It is shown in \autoref{fig:pitchModel}. In this case, the motor velocities that are modified are those from motors 1 and 3. 
+The behavior around the y axis is very similar to that of the roll angle. It is shown in \autoref{fig:pitchCompModel}. In this case, the motor velocities that are modified are those from motors 1 and 3. 
 %
 \autoref{eq:AngleEqVelocitiescombined2} states that a positive rotational speed difference creates a positive pitch acceleration. This is confirmed by the simulations in both models. Again, the linear approximation can be considered adequate.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/pitchCompModel}
-	\caption{.}
+	\caption{Behavior of the non linear and linear models in pitch angle.}
 	\label{fig:pitchCompModel}
 \end{figure}
 %
-
+The last response simulated is around the z axis and is displayed in \autoref{fig:YawCompModel}. In this case all motor velocities affect the yaw angle. In the simulation, velocities of motors 1 and 3 are increased while those of motors 2 and 4 are decreased and vice versa. This creates yaw accelerations according to \autoref{eq:AngleEqVelocitiescombined3}. The response of the model is also correct and the linear approximation can be said to be accurate. 
 %
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/yawCompModel}
-	\caption{.}
+	\caption{Behavior of the non linear and linear models in yaw angle.}
 	\label{fig:yawCompModel}
 \end{figure}
-\fxnote{Title should say z-axis}
 
 \subsubsection{Translational Model Simulations}
+The simulations carried out in the translational models are shown in  \autoref{fig:rollCompModel}, \ref{fig:pitchCompModel} and \ref{fig:yawCompModel}. The inputs for these model are roll and pitch angles and the addition of the four motor velocities. 
+
+\autoref{fig:xCompModel} shows how the inertial position in the x axis evolves with constant velocities of the motors and a change in the pitch angle. As expected a negative translational acceleration is generated and that affects the position. This response follows \autoref{eq:AccelerationEqInertialVelocitiescombined1}. The linear approximation is considered suitable when looking at the linear model response.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/xCompModel}
@@ -112,6 +114,7 @@ The behavior around the y axis is very similar to that of the roll angle. It is 
 	\label{fig:xCompModel}
 \end{figure}
 
+The response along the y inertial direction is depicted in \autoref{fig:yCompModel}. It is similar to that of the x direction but in this case a change in roll is needed to change the acceleration. In this case, a positive roll angle generates a positive acceleration, as opposed to the x axis case. All goes in accordance with \autoref{eq:AccelerationEqInertialVelocitiescombined2}. As previously, the linear approximation performs well in the simulation.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/yCompModel}
@@ -119,6 +122,7 @@ The behavior around the y axis is very similar to that of the roll angle. It is 
 	\label{fig:yCompModel}
 \end{figure}
 
+Finally, \autoref{fig:zCompModel} presents the behavior along the z axis. EXPLAIN THIS.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/zCompModel}
