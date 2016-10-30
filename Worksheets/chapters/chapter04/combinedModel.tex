@@ -1,5 +1,6 @@
 \section{Combined Model} \label{sec:CombinedModel}
-The model derived is presented as the equations that constitute it and a block diagram. The simulations carried out are also depicted and compared.
+In the following section an overview of the chapter is given. The found models, i.e. the attitude - and translational model of the system, is presented with the constituted non-linear equations following the same equations linearised. Hereafter, to give the reader a better overview, a block diagram illustrating the linearised equations is given. In the last part of the section the two models are simulated, this is to analyse the angular and translational behaviours around the three axis. The simulation will furthermore yield if the linear approximation of the equations gives a valid result compared to the non-linear equations.
+
 \subsection{Attitude Model Equations}
 \begin{itemize}
 	\item Non-linear equations
@@ -35,10 +36,12 @@ The model derived is presented as the equations that constitute it and a block d
 \end{itemize}
 
 \subsection{Linearized Block Diagrams}
+A block diagram of the linear approximated attitude and translational equations is illustrated in \autoref{fig:LinearModelBlockDiagram}.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.45]{figures/LinearModelBlockDiagram.pdf}
-	\caption{.}
+	\caption{A block diagram of the two models linear approximated equations. The input is the angular velocity of the four motors and the output is the three angles roll, pitch and yaw.}
 	\label{fig:LinearModelBlockDiagram}
 \end{figure}
 
@@ -129,3 +132,9 @@ Finally, \autoref{fig:zCompModel} presents the behavior along the z axis. EXPLAI
 	\caption{.}
 	\label{fig:zCompModel}
 \end{figure}
+
+
+
+
+
+
