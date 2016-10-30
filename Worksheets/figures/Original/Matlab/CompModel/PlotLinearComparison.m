@@ -112,7 +112,7 @@ hLineYaw(2).LineStyle = '--';
 hLineYaw(2).Color = 'r';
 hLineYaw(2).LineWidth = 1.2;
 
-title('Angular Behavior around x Axis')
+title('Angular Behavior around z Axis')
 xlabel('Time (s)')
 ylabel(hAx(1),'Angular Position [rad]') % left y-axis
 ylabel(hAx(2),'Motor Speed [rad/s]') % right y-axis
