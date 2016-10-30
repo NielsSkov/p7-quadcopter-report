@@ -4,10 +4,10 @@ The model derived is presented as the equations that constitute it and a block d
 \begin{itemize}
 	\item Non-linear equations
 	\begin{align}
-		J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L &\\
-		J_y \cdot\ddot{\theta}&=k_{th} \cdot(\omega^2_1-\omega^2_3) \cdot L &\\
+		J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L\label{eq:AngleEqVelocitiescombined1}\\
+		J_y \cdot\ddot{\theta}&=k_{th} \cdot(\omega^2_1-\omega^2_3) \cdot L\label{eq:AngleEqVelocitiescombined2}\\
 		J_z\cdot\ddot{\psi}&=k_d \cdot(\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)
-		\label{eq:AngleEqVelocitiescombined}
+		\label{eq:AngleEqVelocitiescombined3}
 	\end{align}
 	\item Linearized equations
 	\begin{flalign}
@@ -70,45 +70,58 @@ The simulation of the model is done in Simulink. The parameters used for the sim
 	\label{ParametersQuadcopter}
 \end{table}\vspace{-18pt}
 
+\subsubsection{Attitude Model Simulations}
+In \autoref{fig:rollCompModel}, \ref{fig:pitchCompModel} and \ref{fig:yawCompModel}, the angular behavior of the model around the is analyzed. The input to the system are the four motor velocities. They are defined so the response of the model is predictable and the its performance can be evaluated.
+
+The behavior around x axis is shown in \autoref{fig:rollCompModel}. Only the speeds of motors 2 and 4 are changed as they are supposed to be the ones that affect the roll angle. It can be seen that a positive difference in the rotation speed of these motors generates a positive acceleration in the roll direction, which is consistent with \autoref{eq:AngleEqVelocitiescombined1}.
+
+It can also be observed that the linear approximation of the equations yields an accurate result as the two responses show no perceptible difference. 
+%
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/rollCompModel}
 	\caption{.}
 	\label{fig:rollCompModel}
 \end{figure}
-
+%
+The behavior around the y axis is very similar to that of the roll angle. It is shown in \autoref{fig:pitchModel}. In this case, the motor velocities that are modified are those from motors 1 and 3. 
+%
+\autoref{eq:AngleEqVelocitiescombined2} states that a positive rotational speed difference creates a positive pitch acceleration. This is confirmed by the simulations in both models. Again, the linear approximation can be considered adequate.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/pitchCompModel}
 	\caption{.}
 	\label{fig:pitchCompModel}
 \end{figure}
+%
 
+%
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{figures/yawCompModel}
+	\includegraphics[scale=0.65]{figures/yawCompModel}
 	\caption{.}
 	\label{fig:yawCompModel}
 \end{figure}
 \fxnote{Title should say z-axis}
 
+\subsubsection{Translational Model Simulations}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{figures/xCompModel}
+	\includegraphics[scale=0.65]{figures/xCompModel}
 	\caption{.}
 	\label{fig:xCompModel}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{figures/yCompModel}
+	\includegraphics[scale=0.65]{figures/yCompModel}
 	\caption{.}
 	\label{fig:yCompModel}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{figures/zCompModel}
+	\includegraphics[scale=0.65]{figures/zCompModel}
 	\caption{.}
 	\label{fig:zCompModel}
 \end{figure}
