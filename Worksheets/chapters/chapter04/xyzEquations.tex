@@ -1,32 +1,22 @@
-\section{Translational Model}
+\section{Translational Model} \label{sec:TranslationalModel}
 The aim of this section is to model the translational behavior of the quadcopter.
+
 From \autoref{fig:diagramQuad} in the previous section, it is possible to derive equations for the translational accelerations in the inertial frame using Newton's Second Law.
 %
 \begin{flalign}
     m \cdot a = \sum F_i
 \end{flalign}
 %
-All the forces that are applied to the quadcopter create an acceleration on it. The forces are the gravity and the thrust that comes from the propeller. 
+All the forces that are applied to the quadcopter create an acceleration on it. The forces are the gravity and the thrust that the propellers generate. 
 
-In the quadcopter, the gravity force has effect only in the \si{z_I} direction and the four forces from the motors need to be transformed into the inertial system. This is done through the rotation matrix that describes this transformation, \autoref{eq:RotMatrix}, by three consecutive rotations assuming first in roll, then in pitch and finally in yaw.
-%
-\small
-\begin{flalign}
-    \si{R_{\phi, \theta, \psi}} &=
-    \begin{bmatrix}
-        \ \si{c(\theta) \cdot c(\psi)}                & \si{-c(\theta) \cdot s(\psi)}  & \si{-c(\phi) \cdot s(\theta) \cdot c(\psi) + s(\phi) \cdot s(\psi)}  \ \ \ \\ 
-        \ \si{s(\phi) \cdot s(\theta) \cdot s(\psi) + c(\phi) \cdot s(\psi)}  	  & \si{-s(\phi) \cdot s(\theta) \cdot s(\psi) + c(\phi) \cdot c(\psi)} 		& \si{c(\phi) \cdot s(\theta) \cdot s(\psi) + s(\phi) \cdot c(\psi)}                \ \ \ \\ 
-        \ \si{s(\theta)}      	  & \si{-s(\phi) \cdot c(\theta)}    		& \si{c(\phi) \cdot c(\theta)}                 \ \ \ 
-    \end{bmatrix} 	\label{eq:RotMatrix}
-\end{flalign}
-\normalsize
-%
+A seen in \autoref{fig:framesDiagram} in \autoref{sec:ModelOverview} the gravity force has effect only in the \si{z_I} direction and the four forces from the motors need to be transformed into the inertial system. This is done through the rotation matrix showed in \autoref{eq:RotMatrix}.
+
 Taking into account this transformation, the movement can be described using \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}.
 %
 \begin{flalign}
-    \eq{m\cdot\ddot{x}_I}{-(F1+F2+F3+F4)\cdot\sin(\theta)} & \label{eq:AccelerationEqInertial1}\\
-    \eq{m\cdot\ddot{y}_I}{-(F1+F2+F3+F4)\cdot(-\sin(\phi))\cdot\cos(\theta)} & \label{eq:AccelerationEqInertial2}\\
-    \eq{m\cdot\ddot{z}_I}{F_g-(F1+F2+F3+F4)\cdot\cos(\phi)\cdot\cos(\theta)}
+    m\cdot\ddot{x}_I &= -(F1+F2+F3+F4)\cdot\sin(\theta)  \label{eq:AccelerationEqInertial1}\\
+    m\cdot\ddot{y}_I &= -(F1+F2+F3+F4)\cdot(-\sin(\phi))\cdot\cos(\theta)  \label{eq:AccelerationEqInertial2}\\
+    m\cdot\ddot{z}_I &= F_g-(F1+F2+F3+F4)\cdot\cos(\phi)\cdot\cos(\theta)
     \label{eq:AccelerationEqInertial3}
 \end{flalign}
 %
@@ -43,9 +33,9 @@ Taking into account this transformation, the movement can be described using \au
 This equations can also be rewritten taking into account that the forces are assumed to be proportional to the square of the speeds of the motors. This assumption results in \autoref{eq:AccelerationEqInertialVelocities1}, \ref{eq:AccelerationEqInertialVelocities2} and \ref{eq:AccelerationEqInertialVelocities3}.
 %
 \begin{flalign}
-    \eq{m\cdot\ddot{x}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)} & \label{eq:AccelerationEqInertialVelocities1}\\
-    \eq{m\cdot\ddot{y}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta)} & \label{eq:AccelerationEqInertialVelocities2}\\
-    \eq{m\cdot\ddot{z}_I}{F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)}
+    m\cdot\ddot{x}_I &= -k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)  \label{eq:AccelerationEqInertialVelocities1}\\
+    m\cdot\ddot{y}_I &= -k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta) \label{eq:AccelerationEqInertialVelocities2}\\
+    m\cdot\ddot{z}_I &= F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)
     \label{eq:AccelerationEqInertialVelocities3}
 \end{flalign}
 %
