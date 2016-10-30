@@ -2,7 +2,7 @@
 The attitude model of the quadcopter describes how the roll, pitch and yaw angles evolve according to the forces and torques exerted by the propellers. 
 
 The basis for deriving the model are the free body diagrams illustrated in \autoref{fig:droneDiagram} and \ref{fig:torquesDiagram}. 
-%
+
 \begin{minipage}{\linewidth}
 	\begin{minipage}{0.6\linewidth}
 		\begin{figure}[H]
@@ -24,8 +24,8 @@ The basis for deriving the model are the free body diagrams illustrated in \auto
 		\end{figure}
 	\end{minipage}
 \end{minipage}
-%
-From the diagrams above, the equations of angular motion along the three body axis can be derived by first principles modeling, that is, using only laws of physics. In this case, Newton's Second Law for rotational motion, as seen in \autoref{eq:newtonangular}.
+
+From the diagrams above, the equations of angular motion along the three body axes can be derived by first principles modeling, that is, using only laws of physics. In this case, Newton's Second Law for rotational motion, as seen in \autoref{eq:newtonangular}.
 %
 \begin{align}
 	J\cdot\alpha=\sum\tau_i
@@ -38,7 +38,7 @@ From the diagrams above, the equations of angular motion along the three body ax
 %\end{where}
 %It shall be noted, that the fact that Newton's laws, that only apply in relation to an inertial reference, are applied even though the earth is accelerating and rotating, as it is the assumption, that it is of little influence for the system of the quadcopter. 
 %
-From applying Newton's Second Law, \autoref{eq:AngleEq1}, \ref{eq:AngleEq2} and \ref{eq:AngleEq3} are obtained. As it can be seen, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed along the y and x axes of the quadcopter, respectively. The yaw angle changes due to the torques created by the drag forces in the propellers.
+From applying Newton's Second Law, \autoref{eq:AngleEq1}, \ref{eq:AngleEq2} and \ref{eq:AngleEq3} are obtained. As it can be seen, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed along the y- and x-axis of the quadcopter, respectively. The yaw angle changes due to the torques created by the drag forces in the propellers.
 %
 \begin{align}
 	J_x\cdot\ddot{\phi}&=(F_4-F_2)\cdot L  \label{eq:AngleEq1} \\
