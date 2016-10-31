@@ -1,5 +1,5 @@
 \section{Combined Model} \label{sec:CombinedModel}
-In the following section an overview of the chapter is given. The found models, i.e. the attitude - and translational model of the system, is presented with the constituted non-linear equations following the same equations linearised. Hereafter, to give the reader a better overview, a block diagram illustrating the linearised equations is given. In the last part of the section the two models are simulated, this is to analyse the angular and translational behaviours around the three axis. The simulation will furthermore yield if the linear approximation of the equations gives a valid result compared to the non-linear equations.
+In the following section an overview of the chapter is given. The found models, i.e. the attitude and translational model of the system, is presented with the constituted non-linear equations following the same equations linearized. Hereafter, to give the reader a better overview, two block diagrams illustrating the linearized equations are displayed. In the last part of the section the two models are simulated, this aims to analyze the angular and translational behavior. The simulation is also used to see if the linear approximation of the equations gives a valid result compared to the non-linear equations.
 
 \subsection{Attitude Model Equations}
 \begin{itemize}
@@ -36,13 +36,18 @@ In the following section an overview of the chapter is given. The found models, 
 \end{itemize}
 
 \subsection{Linearized Block Diagrams}
-A block diagram of the linear approximated attitude and translational equations is illustrated in \autoref{fig:LinearModelBlockDiagram}.
-
+The block diagrams of the linear approximated attitude and translational equations are illustrated in \autoref{fig:LinearModelBlockDiagram} and \ref{fig:TranslationalLinearModelBlockDiagram}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.45]{figures/LinearModelBlockDiag.pdf}
-	\caption{A block diagram of the two models linear approximated equations. The input is the angular velocity of the four motors and the output is the three angles roll, pitch and yaw.}
+	\caption{A block diagram of the attitude model linear approximated equations. The input is the angular velocities of the four motors and the output is the three angles roll, pitch and yaw.}
 	\label{fig:LinearModelBlockDiagram}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.45]{figures/TranslationalLinearModelBlockDiagram.pdf}
+	\caption{A block diagram of the translational model linear approximated equations. The input is the angular velocities of the four motors and the output is the three positions in x, y and z.}
+	\label{fig:TranslationalLinearModelBlockDiagram}
 \end{figure}
 
 \subsection{Simulation}
@@ -53,7 +58,7 @@ The simulation of the model is done in Simulink. The parameters used for the sim
 		\hline %-----------------------------------------------------------------------------------
 		\textbf{Parameter Name}&\textbf{Symbol} &\textbf{Value} &\textbf{Units}\\
 		\hline %-----------------------------------------------------------------------------------
-		Mass of the quadcopter  & $m$ & 0.996       &kg\\
+		Mass of the quadcopter  & $m$ & 0.996       &$kg$\\
 		\hline
 		%-----------------------------------------------------------------------------------
 		Moment of inertia around x axis       & $J_x$  & 0.01073       & $kg \cdot m^2$\\
@@ -64,9 +69,9 @@ The simulation of the model is done in Simulink. The parameters used for the sim
 		\hline %-----------------------------------------------------------------------------------
 		Length of quadcopter arm       & $L$  &   0.225       & $m$\\
 		\hline %-----------------------------------------------------------------------------------
-		Thrust force constant       & $k_{th}$  & -       & $kg \cdot m^2$\\
+		Thrust force constant       & $k_{th}$  & -       & $N\cdot s^2 rad^{-2}$\\
 		\hline %-----------------------------------------------------------------------------------\\
-		Drag torque constant      & $k_{d}$  & -       & $kg \cdot m^2$\\
+		Drag torque constant      & $k_{d}$  & -       & $Nm\cdot m^2 rad^{-2}$\\
 		\hline %-----------------------------------------------------------------------------------\\
 	\end{tabular}
 	\caption{Parameters used in the simulation of the model.}
@@ -113,21 +118,21 @@ The simulations carried out in the translational models are shown in  \autoref{f
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/xCompModel}
-	\caption{.}
+	\caption{Behavior of the non linear and linear models along the x axis.}
 	\label{fig:xCompModel}
 \end{figure}
 The response along the y inertial direction is depicted in \autoref{fig:yCompModel}. It is similar to that of the x direction but in this case a change in roll is needed to change the acceleration. Now, a positive roll angle generates a positive acceleration, as opposed to the x axis case. All goes in accordance with \autoref{eq:AccelerationEqInertialVelocitiescombined2}. As previously, the linear approximation performs well in the simulation.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/yCompModel}
-	\caption{.}
+	\caption{Behavior of the non linear and linear models along the y axis.}
 	\label{fig:yCompModel}
 \end{figure}
 Finally, \autoref{fig:zCompModel} presents the behavior along the z axis. The pitch and roll angle are kept to zero and the summation of motor velocities are changed. For a higher sum, a more negative acceleration in the z axis is generated as it can be seen in \autoref{eq:AccelerationEqInertialVelocitiescombined3} and in the simulation through the z position. In this case, the linear approximation of the squared velocity term in the equations creates a difference in the output z position between the two models that is noticeable in the graph. This difference can be considered not to affect the system as the controller designed will handle it.  
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/zCompModel}
-	\caption{.}
+	\caption{Behavior of the non linear and linear models along the z axis..}
 	\label{fig:zCompModel}
 \end{figure}
 
