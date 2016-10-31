@@ -14,7 +14,7 @@ The motor can be seen in \autoref{fig:Motor}.
 	\label{fig:Motor}
 \end{figure} 
 
-The propellers come with the motors. It is XX long and has a SHAPE (find proper name), see \autoref{fig:Propeller}.
+The propellers which comes with the motors are 10 inches long and has a pitch of 4.5 inches. The pitch is the travel distance in which the propeller move in one complete rotation in a solid surface. Hence the travel distance is 4.5 inches when a 4.5 pitch propeller completes one 360 degrees rotation in a solid surface. A higher pitch can create more turbulence and make the quadcopter less steady when in flight.\fxnote{Source: https://oscarliang.com/quadcopter-motor-propeller/} A picture of the utilized propellers can be seen in \autoref{fig:Propeller}.
 
 \begin{figure}[H]
 	\centering
@@ -23,7 +23,12 @@ The propellers come with the motors. It is XX long and has a SHAPE (find proper 
 	\label{fig:Propeller}
 \end{figure}
 
-The relationship between PWM signal to the motor controllers and the velocity of the propeller can be seen in Figure ZZ. \fxnote{pull diagram from measurement report}
+The length of the propeller is proportional to the efficiency of the quadcopter. Hence a longer propeller has an increase in maximum speed. The acceleration of a small propeller is greater than that of a larger propeller. Thus it is easier to change the inertia of moment if utilizing a small propeller compared to a larger one. \fxnote{source: https://oscarliang.com/quadcopter-motor-propeller/} 
+
+In this case a propeller which is 10 inches long and has a pitch of 4.5 is suitable for the utilized quadcopter, as it has been utilized in multiple cases before. 
+
+
+%The relationship between PWM signal to the motor controllers and the velocity of the propeller can be seen in Figure ZZ. \fxnote{pull diagram from measurement report}
 
 %It has been observed during tests, that the motor runs faster as it's temperature increases. This is not expected due to the increased resistance, that occurs when the coils within the motor are heated. Therefore the relationship between PWM signal and velocity is not representative for all cases. It is however deemed reasonable to neglect this variance and presume a relationship as it is derived in the measurement report, see Appendix YY.
  

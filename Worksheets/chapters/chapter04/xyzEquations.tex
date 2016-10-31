@@ -4,9 +4,15 @@ The aim of this section is to model the translational behavior of the quadcopter
 From \autoref{fig:diagramQuad} in the previous section, it is possible to derive equations for the translational accelerations in the inertial frame using Newton's Second Law.
 %
 \begin{flalign}
-    m \cdot a = \sum F_i
+    m \cdot a = \sum F
 \end{flalign}
 %
+\begin{where}
+\va{m}{is the mass of the quadcopter}{kg}
+\va{a}{is the translational acceleration}{m \cdot s^{-2}}
+\va{F}{are the forces of the system}{N}
+\end{where}
+
 All the forces that are applied to the quadcopter create an acceleration on it. The forces are the gravity and the thrust that the propellers generate. 
 
 A seen in \autoref{fig:framesDiagram} in \autoref{sec:ModelOverview} the gravity force has effect only in the \si{z_I} direction and the four forces from the motors need to be transformed into the inertial system. This is done through the rotation matrix showed in \autoref{eq:RotMatrix}.
@@ -21,13 +27,10 @@ Taking into account this transformation, the movement can be described using \au
 \end{flalign}
 %
 \begin{where}
-    \va{m} {is the mass of the quadcopter}         {kg}
     \va{\ddot{x}_I} {is the translational acceleration in the $x_I$ direction}        {m \cdot s^{-2} }
     \va{\ddot{y}_I} {is the translational acceleration in the $y_I$ direction}        {m \cdot s^{-2} }
     \va{\ddot{z}_I} {is the translational acceleration in the $z_I$ direction}        {m \cdot s^{-2} }
-    \va{\phi} {is the roll position}        {rad}
-    \va{\theta} {is the pitch position}        {rad}
-    \va{F_g} {is the gravity force acting on the quadcopter} {N}
+    \va{F_g} {is the gravitational force acting on the quadcopter} {N}
 \end{where}
 
 This equations can also be rewritten taking into account that the forces are assumed to be proportional to the square of the speeds of the motors. This assumption results in \autoref{eq:AccelerationEqInertialVelocities1}, \ref{eq:AccelerationEqInertialVelocities2} and \ref{eq:AccelerationEqInertialVelocities3}.
@@ -39,3 +42,6 @@ This equations can also be rewritten taking into account that the forces are ass
     \label{eq:AccelerationEqInertialVelocities3}
 \end{flalign}
 %
+\autoref{eq:AccelerationEqInertialVelocities1}, \ref{eq:AccelerationEqInertialVelocities2} and \ref{eq:AccelerationEqInertialVelocities3} are the final model expressions of the translational model.
+
+Now that both the attitude model and the translational model are derived, it is desirable to linearise the model expressions. 
