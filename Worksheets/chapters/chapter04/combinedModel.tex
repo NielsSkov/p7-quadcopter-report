@@ -51,7 +51,7 @@ The block diagrams of the linear approximated attitude and translational equatio
 \end{figure}
 
 \subsection{Simulation}
-The simulation of the model is done in Simulink. The parameters used for the simulations are shown in \autoref{ParametersQuadcopter}.
+A simulation of the different models is done using Simulink. The parameters needed for the simulations, that come from the model equations, can be seen in \autoref{ParametersQuadcopter}.
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|l|l|l|p{3cm}|}
@@ -59,24 +59,25 @@ The simulation of the model is done in Simulink. The parameters used for the sim
 		\textbf{Parameter Name}&\textbf{Symbol} &\textbf{Value} &\textbf{Units}\\
 		\hline %-----------------------------------------------------------------------------------
 		Mass of the quadcopter  & $m$ & 0.996       &$kg$\\
-		\hline
-		%-----------------------------------------------------------------------------------
+		\hline %-----------------------------------------------------------------------------------
+        Length of quadcopter arm       & $L$  &   0.225       & $m$\\
+        \hline %-----------------------------------------------------------------------------------
 		Moment of inertia around x axis       & $J_x$  & 0.01073       & $kg \cdot m^2$\\
 		\hline %-----------------------------------------------------------------------------------
 		Moment of inertia around y axis       & $J_y$  & 0.01073       & $kg \cdot m^2$\\
 		\hline %-----------------------------------------------------------------------------------
 		Moment of inertia around z axis       & $J_z$  & 0.02135       & $kg \cdot m^2$\\
 		\hline %-----------------------------------------------------------------------------------
-		Length of quadcopter arm       & $L$  &   0.225       & $m$\\
-		\hline %-----------------------------------------------------------------------------------
-		Thrust force constant       & $k_{th}$  & -       & $N\cdot s^2 rad^{-2}$\\
+		Thrust force constant       & $k_{th}$  & $5,316868\cdot10^{-5}$       & $N \cdot s^2 \cdot rad^{-2}$\\
 		\hline %-----------------------------------------------------------------------------------\\
-		Drag torque constant      & $k_{d}$  & -       & $Nm\cdot m^2 rad^{-2}$\\
+		Drag torque constant      & $k_{d}$  & $9,423327\cdot10^{-7}$       & $N \cdot m \cdot s^2 \cdot rad^{-2}$\\
 		\hline %-----------------------------------------------------------------------------------\\
 	\end{tabular}
 	\caption{Parameters used in the simulation of the model.}
 	\label{ParametersQuadcopter}
 \end{table}\vspace{-18pt}
+
+The mass and the length are measured directly on the system, the three inertias are calculated analytically and the constants are found though tests (\autoref{app:ThrustTest} and \ref{app:TorqueTest}).
 
 \subsubsection{Attitude Model Simulations}
 In \autoref{fig:rollCompModel}, \ref{fig:pitchCompModel} and \ref{fig:yawCompModel}, the angular behavior of the model is analyzed. The input to the system are the four motor velocities. They are defined so the response of the model is predictable and the its performance can be evaluated.
