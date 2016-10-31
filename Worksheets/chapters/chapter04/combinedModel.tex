@@ -38,12 +38,12 @@ In the following section an overview of the chapter is given. The found models, 
 \subsection{Linearized Block Diagrams}
 A block diagram of the linear approximated attitude and translational equations is illustrated in \autoref{fig:LinearModelBlockDiagram}.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.45]{figures/LinearModelBlockDiagram.pdf}
-	\caption{A block diagram of the two models linear approximated equations. The input is the angular velocity of the four motors and the output is the three angles roll, pitch and yaw.}
-	\label{fig:LinearModelBlockDiagram}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=0.45]{figures/LinearModelBlockDiagram.pdf}
+%	\caption{A block diagram of the two models linear approximated equations. The input is the angular velocity of the four motors and the output is the three angles roll, pitch and yaw.}
+%	\label{fig:LinearModelBlockDiagram}
+%\end{figure}
 
 \subsection{Simulation}
 The simulation of the model is done in Simulink. The parameters used for the simulations are shown in \autoref{ParametersQuadcopter}.
@@ -125,7 +125,7 @@ The response along the y inertial direction is depicted in \autoref{fig:yCompMod
 	\label{fig:yCompModel}
 \end{figure}
 
-Finally, \autoref{fig:zCompModel} presents the behavior along the z axis. The pitch and roll angle are kept to zero and the sumation of motor velocities are changed. The higher the sum is.
+Finally, \autoref{fig:zCompModel} presents the behavior along the z axis. The pitch and roll angle are kept to zero and the summation of motor velocities are changed. For a higher sum, a more negative acceleration in the z axis is generated as it can be seen in \autoref{eq:AccelerationEqInertialVelocitiescombined3} and in the simulation through the position. In this case, the approximation of the squared velocity term in the equations creates a difference in the output position between the two models. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/zCompModel}
