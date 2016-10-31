@@ -1,10 +1,10 @@
-\chapter{Model}
+\chapter{Model}\label{chap:Model}
 A description of the physical behavior of the quadcopter is convenient in order to achieve a steady flight. From the obtained model, a control system can be designed such that the desired flying characteristics are obtained.
 
 In this chapter, an overview is first presented. Then, the model is derived and a linear approximation is performed. Finally, these two are compared in simulation. This ensures that the linear approximation yields acceptable results.
 
 \section{Model Overview} \label{sec:ModelOverview}
-The model can be split into two submodels, one describing the angular behavior and the other being a translational model.
+The model can be split into two submodels, one describing the angular behaviour and the other being a translational model.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{figures/modelOverview}
@@ -12,18 +12,20 @@ The model can be split into two submodels, one describing the angular behavior a
     \label{fig:modelOverview}
 \end{figure}
 %
+\autoref{fig:modelOverview} shows the relation between the two submodels. The attitude model, that the describes the angular behaviour, get the velocities of the four motors as input its output is the angles pitch, roll and yaw. These angles are input of the translational model. The translational model do also have the velocities of the motors as input, resulting in seven inputs in total. The output of the translational model is a position given in the x, y and z axes.
+
 Another consideration to be made before modeling the quadcopter is the usage of two coordinate frames. A body frame, that is fixed to the flying object and an inertial frame, that is fixed to the Vicon room. 
 %
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.25]{figures/framesDiagram}
-    \caption{}
+    \caption{The quadcopter with its body frame (B-index) placed in the intial frame (I-index) of the Vicon room. }
     \label{fig:framesDiagram}
 \end{figure}
-%
-The use of these two frames is necessary, as it is desired to know where the quadcopter is within the inertial frame to determine its position. To obtain the orientation of the quadcopter, the body frame's orientation is compared to the inertial frame and yields the angles of roll, pitch and yaw. 
 
-The transformation from the body frame to the inertial one is done through a rotation matrix, \autoref{eq:RotMatrix}.
+\autoref{fig:framesDiagram} shows the two frames, which are necessary to use, as it is desired to know where the quadcopter is within the inertial frame to determine its position. To obtain the orientation of the quadcopter, the body frame's orientation is compared to the inertial frame and yields the angles of roll, pitch and yaw. 
+
+The transformation from the body frame to the inertial one is done through a  rotation matrix, \autoref{eq:RotMatrix}, that describes a total rotation in terms of three consecutive rotations, assuming first in roll, then in pitch and finally in yaw.
 %
 \footnotesize
 \begin{flalign}
@@ -36,11 +38,16 @@ The transformation from the body frame to the inertial one is done through a rot
 \end{flalign}
 \normalsize
 %
-It describes a total rotation in terms of three consecutive rotations, assuming first in roll, then in pitch and finally in yaw.
- 
+\begin{where}
+\va{R_{\phi, \theta, \psi}}{is the rotation matrix of roll, pitch and yaw}{1}
+\va{\phi}{is the angle around roll}{rad}
+\va{\theta}{is the angle around pitch}{rad}
+\va{\psi}{is the angle around yaw}{rad}
+\end{where}
+
+It shall be noted, that due to the size of the matrix sine and cosine are referenced $s$ and $c$ respectively.
+
 Once these considerations have been taken into account, the two submodels can be derived.
- 
- 
  
 %Angle and Linear
 %Explain the two frames and include drawing showing them
