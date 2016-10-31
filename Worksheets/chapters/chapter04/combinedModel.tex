@@ -1,13 +1,14 @@
 \section{Combined Model} \label{sec:CombinedModel}
-The model derived is presented as the equations that constitute it and a block diagram. The simulations carried out are also depicted and compared.
+In the following section an overview of the chapter is given. The found models, i.e. the attitude - and translational model of the system, is presented with the constituted non-linear equations following the same equations linearised. Hereafter, to give the reader a better overview, a block diagram illustrating the linearised equations is given. In the last part of the section the two models are simulated, this is to analyse the angular and translational behaviours around the three axis. The simulation will furthermore yield if the linear approximation of the equations gives a valid result compared to the non-linear equations.
+
 \subsection{Attitude Model Equations}
 \begin{itemize}
 	\item Non-linear equations
 	\begin{align}
-		J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L &\\
-		J_y \cdot\ddot{\theta}&=k_{th} \cdot(\omega^2_1-\omega^2_3) \cdot L &\\
+		J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L\label{eq:AngleEqVelocitiescombined1}\\
+		J_y \cdot\ddot{\theta}&=k_{th} \cdot(\omega^2_1-\omega^2_3) \cdot L\label{eq:AngleEqVelocitiescombined2}\\
 		J_z\cdot\ddot{\psi}&=k_d \cdot(\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)
-		\label{eq:AngleEqVelocitiescombined}
+		\label{eq:AngleEqVelocitiescombined3}
 	\end{align}
 	\item Linearized equations
 	\begin{flalign}
@@ -21,10 +22,10 @@ The model derived is presented as the equations that constitute it and a block d
 \begin{itemize}
 	\item Non-linear equations
 	\begin{flalign}
-		\eq{m\cdot\ddot{x}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)} &\\
-		\eq{m\cdot\ddot{y}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta)} &\\
+		\eq{m\cdot\ddot{x}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)} \label{eq:AccelerationEqInertialVelocitiescombined1}\\
+		\eq{m\cdot\ddot{y}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta)} \label{eq:AccelerationEqInertialVelocitiescombined2}\\
 		\eq{m\cdot\ddot{z}_I}{F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)}
-		\label{eq:AccelerationEqInertialVelocitiescombined}
+		\label{eq:AccelerationEqInertialVelocitiescombined3}
 	\end{flalign}
 	\item Linearized equations 
 	\begin{flalign}
@@ -35,10 +36,12 @@ The model derived is presented as the equations that constitute it and a block d
 \end{itemize}
 
 \subsection{Linearized Block Diagrams}
+A block diagram of the linear approximated attitude and translational equations is illustrated in \autoref{fig:LinearModelBlockDiagram}.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.45]{figures/LinearModelBlockDiagram.pdf}
-	\caption{.}
+	\caption{A block diagram of the two models linear approximated equations. The input is the angular velocity of the four motors and the output is the three angles roll, pitch and yaw.}
 	\label{fig:LinearModelBlockDiagram}
 \end{figure}
 
@@ -70,45 +73,68 @@ The simulation of the model is done in Simulink. The parameters used for the sim
 	\label{ParametersQuadcopter}
 \end{table}\vspace{-18pt}
 
+\subsubsection{Attitude Model Simulations}
+In \autoref{fig:rollCompModel}, \ref{fig:pitchCompModel} and \ref{fig:yawCompModel}, the angular behavior of the model around the is analyzed. The input to the system are the four motor velocities. They are defined so the response of the model is predictable and the its performance can be evaluated.
+
+The behavior around x axis is shown in \autoref{fig:rollCompModel}. Only the speeds of motors 2 and 4 are changed as they are supposed to be the ones that affect the roll angle. It can be seen that a positive difference in the rotation speed of these motors generates a positive acceleration in the roll direction, which is consistent with \autoref{eq:AngleEqVelocitiescombined1}.
+
+It can also be observed that the linear approximation of the equations yields an accurate result as the two responses show no perceptible difference. 
+%
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/rollCompModel}
-	\caption{.}
+	\caption{Behavior of the non linear and linear models in roll angle.}
 	\label{fig:rollCompModel}
 \end{figure}
-
+%
+The behavior around the y axis is very similar to that of the roll angle. It is shown in \autoref{fig:pitchCompModel}. In this case, the motor velocities that are modified are those from motors 1 and 3. 
+%
+\autoref{eq:AngleEqVelocitiescombined2} states that a positive rotational speed difference creates a positive pitch acceleration. This is confirmed by the simulations in both models. Again, the linear approximation can be considered adequate.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{figures/pitchCompModel}
-	\caption{.}
+	\caption{Behavior of the non linear and linear models in pitch angle.}
 	\label{fig:pitchCompModel}
 \end{figure}
-
+%
+The last response simulated is around the z axis and is displayed in \autoref{fig:YawCompModel}. In this case all motor velocities affect the yaw angle. In the simulation, velocities of motors 1 and 3 are increased while those of motors 2 and 4 are decreased and vice versa. This creates yaw accelerations according to \autoref{eq:AngleEqVelocitiescombined3}. The response of the model is also correct and the linear approximation can be said to be accurate. 
+%
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{figures/yawCompModel}
-	\caption{.}
+	\includegraphics[scale=0.65]{figures/yawCompModel}
+	\caption{Behavior of the non linear and linear models in yaw angle.}
 	\label{fig:yawCompModel}
 \end{figure}
-\fxnote{Title should say z-axis}
 
+\subsubsection{Translational Model Simulations}
+The simulations carried out in the translational models are shown in  \autoref{fig:rollCompModel}, \ref{fig:pitchCompModel} and \ref{fig:yawCompModel}. The inputs for these model are roll and pitch angles and the addition of the four motor velocities. 
+
+\autoref{fig:xCompModel} shows how the inertial position in the x axis evolves with constant velocities of the motors and a change in the pitch angle. As expected a negative translational acceleration is generated and that affects the position. This response follows \autoref{eq:AccelerationEqInertialVelocitiescombined1}. The linear approximation is considered suitable when looking at the linear model response.
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{figures/xCompModel}
+	\includegraphics[scale=0.65]{figures/xCompModel}
 	\caption{.}
 	\label{fig:xCompModel}
 \end{figure}
 
+The response along the y inertial direction is depicted in \autoref{fig:yCompModel}. It is similar to that of the x direction but in this case a change in roll is needed to change the acceleration. In this case, a positive roll angle generates a positive acceleration, as opposed to the x axis case. All goes in accordance with \autoref{eq:AccelerationEqInertialVelocitiescombined2}. As previously, the linear approximation performs well in the simulation.
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{figures/yCompModel}
+	\includegraphics[scale=0.65]{figures/yCompModel}
 	\caption{.}
 	\label{fig:yCompModel}
 \end{figure}
 
+Finally, \autoref{fig:zCompModel} presents the behavior along the z axis. EXPLAIN THIS.
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.55]{figures/zCompModel}
+	\includegraphics[scale=0.65]{figures/zCompModel}
 	\caption{.}
 	\label{fig:zCompModel}
 \end{figure}
+
+
+
+
+
+
