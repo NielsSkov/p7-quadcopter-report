@@ -28,9 +28,15 @@ The basis for deriving the model are the free body diagrams illustrated in \auto
 From the diagrams above, the equations of angular motion along the three body axes can be derived by first principles modeling, that is, using only laws of physics. In this case, Newton's Second Law for rotational motion, as seen in \autoref{eq:newtonangular}.
 %
 \begin{align}
-	J\cdot\alpha=\sum\tau_i
+	J\cdot\alpha=\sum\tau
 	\label{eq:newtonangular}
 \end{align}
+\begin{where}
+\va{J}{is the moment of inertia}{kg \cdot m^2}
+\va{\alpha}{is the angular acceleration}{rad\cdot s^{-2}}
+\va{\tau}{are the torques of the system}{Nm}
+\end{where}
+
 %\begin{where}
 %	\va{J}{is the moment of inertia}{kg\cdot m^2}
 %	\va{\alpha}{is the angular acceleration}{rad\cdot m\cdot s^{-2}}
@@ -77,10 +83,10 @@ J_y \cdot\ddot{\theta}&=k_{th} \cdot(\omega^2_1-\omega^2_3) \cdot L \label{eq:An
 J_z\cdot\ddot{\psi}&=k_d \cdot(\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)
 \label{eq:AngleEqVelocities3}
 \end{align}
-%\begin{where}
-%\va{k_{th}}{is the thrust constant}{N$\cdot$s$^2 \cdot$m$^{-2}$}
-%\va{k_d}{is the drag constant}{N$\cdot$m$\cdot$s$^2 \cdot$m$^{-2}$}
-%\va{\omega_n}{is the angular velocity of the nth motor}{rad$\cdot$s$^{-1}$}
-%\end{where}
+\begin{where}
+\va{k_{th}}{is the thrust constant found from test}{N\cdot s^2 \cdot rad^{-2}}
+\va{k_d}{is the drag constant found from test}{N \cdot m\cdot s^2 \cdot rad^{-2}}
+\end{where}
 
-%Now that the attitude model is known, the translational model must be derived. This is done in the following section. 
+\autoref{eq:AngleEqVelocities1}, \ref{eq:AccelerationEqInertialVelocities2} 
+and \ref{eq:AccelerationEqInertialVelocities3} are the final attitude model expressions that are brought forward. %Now that the attitude model is known, the translational model must be derived. This is done in the following section. 
