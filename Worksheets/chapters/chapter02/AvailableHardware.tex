@@ -16,7 +16,7 @@ The motor can be seen in \autoref{fig:Motor}.
 	\label{fig:Motor}
 \end{figure} 
 
-The propellers come with the motors. It is XX long and has a SHAPE (find proper name), see \autoref{fig:Propeller}.
+The propellers which comes with the motors are 10 inches long and has a pitch of 4.5 inches. The pitch is the travel distance in which the propeller move in one complete rotation in a solid surface.\fxnote{Source: \url{ http://www.propellerpages.com/?c=articles&f=2006-03-08_what_is_propeller_pitch}} Hence the travel distance is 4.5 inches when a 4.5 pitch propeller completes one 360 degrees rotation in a solid surface. A higher pitch can create more turbulence and make the quadcopter less steady when in flight.\fxnote{Source: \url{https://oscarliang.com/quadcopter-motor-propeller/}} A picture of the utilized propellers can be seen in \autoref{fig:Propeller}.
 
 \begin{figure}[H]
 	\centering
@@ -25,17 +25,22 @@ The propellers come with the motors. It is XX long and has a SHAPE (find proper 
 	\label{fig:Propeller}
 \end{figure}
 
-The relationship between PWM signal to the motor controllers and the velocity of the propeller can be seen in Figure ZZ. \fxnote{pull diagram from measurement report}
+The length of the propeller is proportional to the efficiency of the quadcopter. Hence a longer propeller has an increase in maximum speed. The acceleration of a small propeller is greater than that of a larger propeller. Thus it is easier to change the inertia of moment if utilizing a small propeller compared to a larger one. \fxnote{source: \url{https://oscarliang.com/quadcopter-motor-propeller/}} 
+
+In this case a propeller which is 10 inches long and has a pitch of 4.5 is suitable for the utilized quadcopter, as it has been utilized in multiple cases before. 
+
+
+%The relationship between PWM signal to the motor controllers and the velocity of the propeller can be seen in Figure ZZ. \fxnote{pull diagram from measurement report}
 
 %It has been observed during tests, that the motor runs faster as it's temperature increases. This is not expected due to the increased resistance, that occurs when the coils within the motor are heated. Therefore the relationship between PWM signal and velocity is not representative for all cases. It is however deemed reasonable to neglect this variance and presume a relationship as it is derived in the measurement report, see Appendix YY.
  
 \subsection{Motor Controller}
-The quadcopter comes with four electronic speed controllers, ESCs, one for each motor. The ESCs produce an 8 kHz PWM, are rated for a 2-4 cell Li-Po battery and can handle a constant current of up to 30 A. The ESCs also has a 5.5 V, 4 A output for powering e.g. a controller board.\fxnote{source missing - \url{https://www.hobbyking.com/en_us/turnigy-multistar-30-amp-multi-rotor-brushless-esc-2-4s.html} - hobbyking took the site down - still archived by google}
+The quadcopter comes with four electronic speed controllers, ESCs, one for each motor. The ESCs produce an 8 kHz PWM, are rated for a 2-4 cell Li-Po battery and can handle a constant current of up to 30 A. The ESCs also has a 5.5 V, 4 A output for powering e.g. a controller board.\cite{HKing}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{figures/ESC}
-	\caption{One of the four Electronic Speed Controllers mounted on the quadcopter}
+	\caption{One of the four Electronic Speed Controllers mounted on the quadcopter.\cite{HKing}}
 	\label{fig:esc}
 \end{figure}
  
