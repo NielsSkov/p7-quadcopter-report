@@ -10,7 +10,7 @@ Brushless motors are powered with a DC power and require a electronic conmutator
 
 Outrunner motors are brushless motors that have their magnets in the outer shell, the rotor. The rotor spins around the fixed coils, stator, in the center. Due to this feature, they normally have more poles that inrunner motors, and thus are able to produce more torque for the same size.  
 
-The motor used has a $k_v$ of 935 $rpm/V$, 14 poles and maximum current of 15 $A$. 
+The motor used has a $k_v$ of 935 $rpm/V$, 14 poles and maximum current of 15 $A$. \fxnote{Source: \url{https://www.hobbyking.com/en_us/mt2213-935kv-multistar-motor-and-propeller-combo-10x4-5-cw-ccw.html}}
 
 The motor can be seen in \autoref{fig:Motor}.
 \begin{figure}[H]
@@ -47,7 +47,17 @@ The quadcopter comes with four electronic speed controllers, ESCs, one for each 
 	\caption{One of the four Electronic Speed Controllers mounted on the quadcopter.\cite{HKing}}
 	\label{fig:esc}
 \end{figure}
- 
+\subsection{Processor}
+The implementation is done in a microprocessor from Atmel, the AtMega2560, mounted in the ArduinoMEGA development board.
+
+This processor has up to 16 PWM output channels, two 8-bit timers and four 16-bit timers, 8 kilobytes of internal memory and a processing speed of 16 MIPS. With this capabilities, a quadcopter control could be implemented.
+
+The use of the development board makes the used of the wireless modules easier as an arduino shield can be directly plugged in. Furthermore, it allows a faster set up of the microcontroller as all reuired hardware (oscillatior, power, etc.) is already present in the board. 
+PICTURE  OF ATMEL2560 AND BOARD
+\subsection{Wireless Modules}
+The wireless modules used in the quadcopter are called XBEE. They communicate at a 2.4 GHz frequency and they take care of all communication layers but the transport layer protocol. FINISH THIS
+PICTURE OF XBEEs
+
 \subsection{Battery}
 The battery available for the prototype, is a Zippy Flightmax battery. It weighs 141 gram, has a capacity of 1500 mAh, a voltage of 11.1 volts and a discharge current of 20 amperes.
 
