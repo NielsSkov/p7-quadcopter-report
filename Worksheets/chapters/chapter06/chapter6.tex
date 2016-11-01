@@ -1,4 +1,19 @@
 \chapter{Controller Design}\label{chap:Control}
+Attitude controller: Statespace 
+Translational controller: X and Y two p controlles in cascade 
+clasical controller, bodeplots, root locus. 
+
+
+The system of the quadcopter has been described by a mathematical model, that is to be used in the design of a control system. The control system must stabilize the naturally unstable system of the quadcopter. It shall also ensure the desired behaviour, that is a stable flying mode, that can tolerate distubances \fxnote{we have not said that, purhaps, the text should just be removed.}
+
+The model consists of two submodels, an attitude model and a translational model. It is therefore desirable to design two controlsystems, one for each model. These will however have to interact, as they share input and rely on each other. 
+
+\autoref{fig:ControlHeadDiagram} is a block diagram of the overall control system. 
+
+
 
 Control Strategy (all the relations between controllers)\\
+
+
+
 Flow of chapter\\
