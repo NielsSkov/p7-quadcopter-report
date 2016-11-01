@@ -1,0 +1,141 @@
+\chapter{Matrices for State Space Design}\label{app:matricesSS} 
+In this appendix the exact matrices used in the state space design are presented.
+%
+\begin{flalign}
+    \vec{A}_{6 \times 6} =
+    \begin{bmatrix}
+        \ 0 & 0 & 0 & 1 & 0 & 0     \ \ \ \\ 
+        \ 0 & 0 & 0 & 0 & 1 & 0     \ \ \ \\ 
+        \ 0 & 0 & 0 & 0 & 0 & 1     \ \ \ \\
+        \ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
+        \ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
+        \ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ 		
+    \end{bmatrix} \nonumber
+\end{flalign}
+\begin{flalign}
+    \vec{B}_{6 \times 4} =
+    \begin{bmatrix}
+        \ 0 & 0 & 0 & 0      \ \ \ \\ 
+        \ 0 & 0 & 0 & 0      \ \ \ \\ 
+        \ 0 & 0 & 0 & 0      \ \ \ \\
+        \ 0 & -0.4793 & 0 & 0.4793      \ \ \ \\ 
+        \ 0.4793 & 0 & -0.4793 & 0      \ \ \ \\ 
+        \ 0.0189 & -0.0189 & 0.0189 & -0.0189      \ \ \ 		
+    \end{bmatrix} \nonumber
+\end{flalign}
+\begin{flalign}
+    \vec{C}_{3 \times 6} =	 
+    \begin{bmatrix}
+        \ 1 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
+        \ 0 & 1 & 0 & 0 & 0 & 0     \ \ \ \\ 
+        \ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 		
+    \end{bmatrix} \nonumber
+\end{flalign}
+\begin{flalign}
+    \vec{{\mathcal C}}_{6 \times 24} = 
+    \begin{bmatrix}
+     0 & 0 & 0 & 0 & 0 & -0.4793 & 0 & 0.4793 & 0 & \hdots  \\
+     0 & 0 & 0 & 0 & 0.4793 & 0 & 0.4793 & 0 & 0 & \hdots  \\
+     0 & 0 & 0 & 0 & 0.0189 & -0.0189 & 0.0189 & -0.0189 & 0 & \hdots  \\
+     0 & -0.4793 & 0 & 0.4793 & 0 & 0 & 0 & 0 & 0 & \hdots  \\
+     0.4793 & 0 & -0.4793 & 0 & 0 & 0 & 0 & 0 & 0 & \hdots  \\
+     0.0189 & -0.0189 & 0.0189 & -0.0189 & 0 & 0 & 0 & 0 & 0  & \hdots    
+    \end{bmatrix} \nonumber           
+\end{flalign}
+\begin{flalign}
+    \vec{{\mathcal O}}_{18 \times 6} = 
+    \begin{bmatrix}
+     1 & 0 & 0 & 0 & 0 & 0  \\
+     0 & 1 & 0 & 0 & 0 & 0  \\ 
+     0 & 0 & 1 & 0 & 0 & 0  \\ 
+     0 & 0 & 0 & 1 & 0 & 0  \\ 
+     0 & 0 & 0 & 0 & 1 & 0  \\ 
+     0 & 0 & 0 & 0 & 0 & 1  \\ 
+     0 & 0 & 0 & 0 & 0 & 0  \\ 
+     0 & 0 & 0 & 0 & 0 & 0  \\ 
+     0 & 0 & 0 & 0 & 0 & 0  \\
+     0 & 0 & 0 & 0 & 0 & 0  \\ 
+     0 & 0 & 0 & 0 & 0 & 0  \\ 
+     0 & 0 & 0 & 0 & 0 & 0  \\  
+     0 & 0 & 0 & 0 & 0 & 0  \\  
+     0 & 0 & 0 & 0 & 0 & 0  \\  
+     0 & 0 & 0 & 0 & 0 & 0  \\  
+     0 & 0 & 0 & 0 & 0 & 0  \\  
+     0 & 0 & 0 & 0 & 0 & 0  \\  
+     0 & 0 & 0 & 0 & 0 & 0  \\  
+    \end{bmatrix} \nonumber           
+\end{flalign}
+\begin{flalign}
+    \vec{F}_{4 \times 6} =
+    \begin{bmatrix}
+   \ -22.7 &  -70.1 &  -1122.7 & -2.0  & -15.4   & -216.3 \ \ \ \\
+   \ 110.7  & -22.0  &  1126.1  &  19.0  & -2.0   & 216.6 \ \ \ \\
+   \ -21.1 &   115.4 &  -1126.0 &  -1.9 &   19.4  & -216.6 \ \ \ \\
+   \ -66.8 &  -23.2 &   1122.7 &  -15.1 &  -2.1  &  216.3 \ \ \	
+    \end{bmatrix} \nonumber
+\end{flalign}
+\begin{flalign}
+    \vec{F_{Int}}_{4 \times 6} =
+    \begin{bmatrix}
+   \ -61.4  & -99.6  & -1876.9  \ \ \ \\
+   \ 208.5 &  -58.4  &  1885.8  \ \ \ \\
+   \ -056.8  &  220.4 &  -1885.7  \ \ \ \\
+   \ -90.4 &  -62.3  &  1876.7  \ \ \ 
+    \end{bmatrix} \nonumber
+\end{flalign}
+\begin{flalign}
+    \vec{A11}_{3 \times 3} =
+    \begin{bmatrix}
+        \ 0 & 0 & 0      \ \ \ \\ 
+        \ 0 & 0 & 0      \ \ \ \\ 
+        \ 0 & 0 & 0      \ \ \ 		
+    \end{bmatrix} \nonumber
+\end{flalign}
+\begin{flalign}
+    \vec{A12}_{3 \times 3} =
+    \begin{bmatrix}
+        \ 1 & 0 & 0     \ \ \ \\ 
+        \ 0 & 1 & 0     \ \ \ \\ 
+        \ 0 & 0 & 1     \ \ \ 		
+    \end{bmatrix} \nonumber
+\end{flalign}\\
+\begin{flalign}
+    \vec{A21}_{3 \times 3} =
+    \begin{bmatrix}
+        \ 0 & 0 & 0  \ \ \ \\ 
+        \ 0 & 0 & 0 \ \ \ \\ 
+        \ 0 & 0 & 0 \ \ \ 		
+    \end{bmatrix} \nonumber
+\end{flalign}
+\begin{flalign}
+    \vec{A22}_{3 \times 3} =
+    \begin{bmatrix}
+        \ 0 & 0 & 0  \ \ \ \\ 
+        \ 0 & 0 & 0 \ \ \ \\ 
+        \ 0 & 0 & 0 \ \ \ 		
+    \end{bmatrix} \nonumber
+\end{flalign}
+\begin{flalign}
+    \vec{B1}_{3 \times 4} =
+    \begin{bmatrix}
+        \ 0 & 0 & 0 & 0      \ \ \ \\ 
+        \ 0 & 0 & 0 & 0      \ \ \ \\ 
+        \ 0 & 0 & 0 & 0      \ \ \ 		
+    \end{bmatrix} \nonumber
+\end{flalign}
+\begin{flalign}
+    \vec{B2}_{3 \times 4} =
+    \begin{bmatrix}
+        \ 0 & -0.4793 & 0 & 0.4793      \ \ \ \\ 
+        \ 0.4793 & 0 & -0.4793 & 0      \ \ \ \\ 
+        \ 0.0189 & -0.0189 & 0.0189 & -0.0189      \ \ \ 		
+    \end{bmatrix} \nonumber
+\end{flalign}
+\begin{flalign}
+    \vec{L_{obs}} = 
+    \begin{bmatrix}
+        \ -50 & 0 & 0  \ \ \ \\ 
+        \ 0 & -60 & 0  \ \ \ \\ 
+        \ 0 & 0 & -70  \ \ \  
+    \end{bmatrix}
+\end{flalign}
