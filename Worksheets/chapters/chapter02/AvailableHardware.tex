@@ -48,15 +48,25 @@ The quadcopter comes with four electronic speed controllers, ESCs, one for each 
 	\label{fig:esc}
 \end{figure}
 \subsection{Processor}
-The implementation is done in a microprocessor from Atmel, the AtMega2560, mounted in the ArduinoMEGA development board.
+The implementation is done in a microprocessor from Atmel, the AtMega2560, mounted in the ArduinoMEGA development board,as seen in figure \autoref{fig:ATmega}.
 
-This processor has up to 16 PWM output channels, two 8-bit timers and four 16-bit timers, 8 kilobytes of internal memory and a processing speed of 16 MIPS. With this capabilities, a quadcopter control could be implemented.
+This processor has up to 16 PWM output channels, two 8-bit timers and four 16-bit timers, four USART modules, 8 kilobytes of internal memory and a processing speed of 16 MIPS. With this capabilities, a quadcopter control could be implemented.
 
-The use of the development board makes the used of the wireless modules easier as an arduino shield can be directly plugged in. Furthermore, it allows a faster set up of the microcontroller as all reuired hardware (oscillatior, power, etc.) is already present in the board. 
-PICTURE  OF ATMEL2560 AND BOARD
+The use of the development board makes the used of the wireless modules easier as an arduino shield can be directly plugged in. Furthermore, it allows a faster set up of the microcontroller as all required hardware (oscillatior, power supply, etc.) is already present in the board. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.17]{figures/ARDUINO_MEGA}
+	\caption{AtMega2560 mounted in the ArduinoMEGA development board.}
+	\label{fig:ATmega}
+\end{figure}
 \subsection{Wireless Modules}
-The wireless modules used in the quadcopter are called XBEE. They communicate at a 2.4 GHz frequency and they take care of all communication layers but the transport layer protocol. FINISH THIS
-PICTURE OF XBEEs
+The wireless modules used to communicate with the quadcopter are called XBEE, see \autoref{fig:XBEE}. They communicate at a 2.4 GHz frequency and they take care of all communication layers but the transport layer protocol. In order to use this modules, the packet has to be sent through the serial port when using the computer or through the USART module when using the microcontroller. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{figures/XBEE}
+	\caption{XBEE wireless modules.}
+	\label{fig:XBEE}
+\end{figure}
 
 \subsection{Battery}
 The battery available for the prototype, is a Zippy Flightmax battery. It weighs 141 gram, has a capacity of 1500 mAh, a voltage of 11.1 volts and a discharge current of 20 amperes.
