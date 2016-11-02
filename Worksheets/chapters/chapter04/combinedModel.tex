@@ -77,7 +77,7 @@ A simulation of the different models is done using Simulink. The parameters need
 	\label{ParametersQuadcopter}
 \end{table}\vspace{-18pt}
 
-The mass and the length are measured directly on the system, the three inertias are calculated analytically and the constants are found though tests (\autoref{app:ThrustTest} and \ref{app:TorqueTest}).
+The mass and the length are measured directly on the system, the three inertias are calculated analytically and the constants are found through tests (\autoref{app:ThrustTest} and \ref{app:TorqueTest}).
 
 \subsubsection{Attitude Model Simulations}
 In \autoref{fig:rollCompModel}, \ref{fig:pitchCompModel} and \ref{fig:yawCompModel}, the angular behavior of the model is analyzed. The input to the system are the four motor velocities. They are defined so the response of the model is predictable and the its performance can be evaluated.
@@ -103,7 +103,7 @@ The behavior around the y axis is very similar to that of the roll angle. It is 
 	\label{fig:pitchCompModel}
 \end{figure}
 %
-The last attitude response simulated is around the z axis and is displayed in \autoref{fig:YawCompModel}. In this case all motor velocities affect the yaw angle. In the simulation, velocities of motors 1 and 3 are increased while those of motors 2 and 4 are decreased and vice versa. This creates yaw accelerations according to \autoref{eq:AngleEqVelocitiescombined3}. The response of the model is also correct and the linear approximation can be said to be accurate. 
+The last attitude response simulated is around the z axis and is displayed in \autoref{fig:yawCompModel}. In this case all motor velocities affect the yaw angle. In the simulation, velocities of motors 1 and 3 are increased while those of motors 2 and 4 are decreased and vice versa. This creates yaw accelerations according to \autoref{eq:AngleEqVelocitiescombined3}. The response of the model is also correct and the linear approximation can be said to be accurate. 
 %
 \begin{figure}[H]
 	\centering
