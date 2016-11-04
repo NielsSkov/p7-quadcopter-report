@@ -26,12 +26,20 @@ As it can be seen from \autoref{eq:conHx}, the submodel of the translational rol
 A proportional controller is considered sufficient, as it does not have to compensate for a steady state error. By increasing the gain the system will become faster, which is desirable. To determine how large the gain can be without making the system unstable by saturation issues, it is necessary to consider the bandwidth. \newpar
 The data from the Vicon is transmitted with 100 Hz. This means the attitude controller must run with 50 Hz as maximum to ensure the controller is slower than the sensor data. A rule of thumb states that the bandwidth of the system shall be 25 times smaller than the attitude controller. The desired bandwidth of the translational roll controller is calculated as follows:
 \begin{align}
-BW=2\cdot \pi\cdot \frac{f_s}{25}=2\cdot \pi \frac{100}{25}=25.13
+BW=2\cdot \pi\cdot \frac{f_s}{25}=2\cdot \pi \frac{50}{25}=12.57\label{eq:bw_X}
 \end{align}
 \begin{where}
 \va{BW}{is the bandwidth of the plant}{rad \cdot s^{-1}}
 \va{f_s}{is the sampling frequency of the plant}{Hz}
 \end{where}
+
+From \autoref{eq:bw_X} it is known, that the ideal bandwidth of the system is 12.57 rad/s. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/bode_x.png}
+	\caption{Bodeplot of the plant, with the bandwidth of 12.6 rad/s displayed.}\label{fig:bode_x}
+\end{figure}
+The bodeplot in \autoref{fig:bode_x} reveals that the magnitude is 2.15 dB at 12.6 rad/s and must be lifted by 
 
 \subsection*{Pitch translational controller}
 The model expression for pitch is previously derived to be:
