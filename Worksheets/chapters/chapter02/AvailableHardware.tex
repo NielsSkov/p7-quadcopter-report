@@ -6,13 +6,13 @@ The hardware used to develop this project consists of the quadcopter and the Vic
 \subsection{Motor and Propeller}
 The quadcopter is equipped with four brushless outrunner motors named Turnigy Multistar. 
 
-Brushless motors are powered with a DC power and require a electronic conmutator in order to generate a sinusoidal or trapezoidal waveform to run the motor. They have a higher power density and reliability than conventional DC motors.
+Brushless motors are electric powered with a DC power that require a electronic commutator, which generates a sinusoidal or trapezoidal waveform, to run the motor. They have a higher power density and higher reliability than conventional DC motors.
 
-Outrunner motors are brushless motors that have their magnets in the outer shell, the rotor. The rotor spins around the fixed coils, stator, in the center. Due to this feature, they normally have more poles that inrunner motors, and thus are able to produce more torque for the same size.  
+Within this kind, outrunner motors have their magnets in the outer shell, the rotor. The rotor spins around the fixed coils that form the stator. Due to the more space in the rotor for magnets, they normally have more poles that inrunner motors, and thus, are able to produce more torque for the same size.  
 
 The motor used has a $k_v$ of 935 $rpm/V$, 14 poles and maximum current of 15 $A$. \fxnote{Source: \url{https://www.hobbyking.com/en_us/mt2213-935kv-multistar-motor-and-propeller-combo-10x4-5-cw-ccw.html}}
 
-The motor can be seen in \autoref{fig:Motor}.
+The motor used is shown in \autoref{fig:Motor}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{figures/motor.png}
@@ -20,7 +20,13 @@ The motor can be seen in \autoref{fig:Motor}.
 	\label{fig:Motor}
 \end{figure} 
 
-The propellers which comes with the motors are 10 inches long and has a pitch of 4.5 inches. The pitch is the travel distance in which the propeller move in one complete rotation in a solid surface.\fxnote{Source: \url{ http://www.propellerpages.com/?c=articles&f=2006-03-08_what_is_propeller_pitch}} Hence the travel distance is 4.5 inches when a 4.5 pitch propeller completes one 360 degrees rotation in a solid surface. A higher pitch can create more turbulence and make the quadcopter less steady when in flight.\fxnote{Source: \url{https://oscarliang.com/quadcopter-motor-propeller/}} A picture of the utilized propellers can be seen in \autoref{fig:Propeller}.
+The propellers are sold with the motors and are 10 inches long (25.4 cm) and has a pitch of 4.5 (11,43 cm) inches. The pitch is the distance traveled by a propeller after one complete rotation. For this to be true the propeller must turn inside a solid surface, the traveled distance is less if it rotates inside a liquid or gas. \fxnote{Source: \url{ http://www.propellerpages.com/?c=articles&f=2006-03-08_what_is_propeller_pitch}} A higher pitch creates more turbulence and make the quadcopter less steady when flying.\fxnote{Source: \url{https://oscarliang.com/quadcopter-motor-propeller/}} 
+
+The length of the propeller is proportional to the efficiency of the quadcopter. Hence, a longer propeller has an increase in maximum speed. The acceleration of a small propeller is greater than that of a larger propeller. Thus it is easier to change the inertia of moment if utilizing a small propeller compared to a larger one. \fxnote{source: \url{https://oscarliang.com/quadcopter-motor-propeller/}} 
+
+In this case a propeller which is 10 inches long and has a pitch of 4.5 is suitable for the utilized quadcopter, as it has been utilized in multiple cases before. 
+
+A picture of the utilized propellers can be seen in \autoref{fig:Propeller}.
 
 \begin{figure}[H]
 	\centering
@@ -28,11 +34,6 @@ The propellers which comes with the motors are 10 inches long and has a pitch of
 	\caption{Two of the four propellers mounted on the quadcopter's motors.}
 	\label{fig:Propeller}
 \end{figure}
-
-The length of the propeller is proportional to the efficiency of the quadcopter. Hence a longer propeller has an increase in maximum speed. The acceleration of a small propeller is greater than that of a larger propeller. Thus it is easier to change the inertia of moment if utilizing a small propeller compared to a larger one. \fxnote{source: \url{https://oscarliang.com/quadcopter-motor-propeller/}} 
-
-In this case a propeller which is 10 inches long and has a pitch of 4.5 is suitable for the utilized quadcopter, as it has been utilized in multiple cases before. 
-
 
 %The relationship between PWM signal to the motor controllers and the velocity of the propeller can be seen in Figure ZZ. \fxnote{pull diagram from measurement report}
 
@@ -48,11 +49,11 @@ The quadcopter comes with four electronic speed controllers, ESCs, one for each 
 	\label{fig:esc}
 \end{figure}
 \subsection{Processor}
-The implementation is done in a microprocessor from Atmel, the AtMega2560, mounted in the ArduinoMEGA development board,as seen in figure \autoref{fig:ATmega}.
+The implementation of the controllers is done in a microprocessor from Atmel, the ATmega2560, mounted in the ArduinoMEGA development board, as seen in figure \autoref{fig:ATmega}.
 
 This processor has up to 16 PWM output channels, two 8-bit timers and four 16-bit timers, four USART modules, 8 kilobytes of internal memory and a processing speed of 16 MIPS. With this capabilities, a quadcopter control could be implemented.
 
-The use of the development board makes the used of the wireless modules easier as an arduino shield can be directly plugged in. Furthermore, it allows a faster set up of the microcontroller as all required hardware (oscillatior, power supply, etc.) is already present in the board. 
+The use of the development board makes the use of the wireless modules easier as an arduino shield can be directly plugged in. Furthermore, it allows a faster set up of the microcontroller as all required hardware (oscillatior, power supply, etc.) is already present in the board. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.17]{figures/ARDUINO_MEGA}
@@ -72,7 +73,7 @@ The wireless modules used to communicate with the quadcopter are called XBEE, se
 The battery available for the prototype, is a Zippy Flightmax battery. It weighs 141 gram, has a capacity of 1500 mAh, a voltage of 11.1 volts and a discharge current of 20 amperes.
 
 %removed by Niels: It shall be noted, that the battery level...
-The battery level drops over time, with a significance, that can not be neglected, as it has great impact on the output of the motor and therefore on the lift of the propeller. It is possible to measure the battery level while operating the quadrotor. By taking into account the battery level in the test of the PWM signal to velocity, it is possible to obtain a quadcopter having constant lift force, if this is requested\fxnote{Niels suggests: With this information and knowledge of the relationship between voltage and RPM it is possible to account for the battery level, and thereby rectify the problem. [ref to test - maybe - should the test be discussed this early?]}.
+The battery level drops over time, with a significance that can not be neglected as it may have great impact on the output of the motor and therefore on the lift of the propeller. It is possible to measure the battery level while operating the quadrotor. By taking into account the battery level in the test of the PWM signal to velocity, it is possible to obtain a quadcopter having constant lift force, if this is requested\fxnote{Niels and Alejandro suggest: With this information and knowledge of the relationship between voltage and RPM it is possible to account for the battery level, and thereby rectify the problem. [ref to test - maybe - should the test be discussed this early?]}.
 
 \subsection{Vicon System}
 The Vicon system is a powerful tool that provides real-time position and orientation data captured with 9 infrared cameras.This information can be used to track objects inside the room the system is built in.
