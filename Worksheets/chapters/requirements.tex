@@ -1,1 +1,21 @@
 \chapter{Requirements}
+The purpose of this chapter is to consider requirements for the system, that will function as guideline when the control system is to be designed at a later point.
+
+The quadcopter has to be able to fly and hover stabalily. It must be able to withstand a disturbance of a certain size.\fxfatal{This is to be settled by choice} 
+Requirements for the system's steprespons  is to be set, as this will be the dynamic behaviour of the system. 
+
+The quadcopter must be able to obtain stability after it has been given an impulse, as this will simulate a disturbance.
+
+The user gives a position input at the ground station, that is send to the quadcopter. The controllers are run on board. To simplify matters as the three axis are coupled, the controllers shall get the quadcopter to the requested position by first moving it in one axes, then the other and lastly the third. This is not an efficient movement, but due to the time constraint of the project, it is not considered reasonable to obtain a robust control system that will be able to change all three axis while maintaining stable. \fxfatal{you will probably have last part removed, i just wrote it quickly - no harm done ;)}
+
+To be written:
+
+Time domain\\
+What will overshoot mean for the system physically ? \\
+What will a steady state error mean? \\
+What will a slow rise time mean? Slow system? Do we want a really fast system. Fast and stable is a compromise - how should that compromise be levelled in our project? 
+
+Frequency domain\\
+Phase margin and gain margin - how robust is the controller. How far is the system from instability? 
+
+
