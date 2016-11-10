@@ -21,8 +21,8 @@ H_{x1}(s)=\frac{x_1(s) s}{\theta}=\frac{k_{th} (\omega_1 ^2 + \omega_2 ^2 + \ome
 From \autoref{eq:conHx} it is clearly seen that the plant is a first order system, that has one pole in zero and no zeroes. This means the system is marginally stable. It is also negative, which requires a negative controller gain to become positive. If this is not done, the controller gain will move the pole to the right half plane, making the system unstable. 
 
 Moreover the zero-pole makes it a type 1 system, which means no steady state error will be present in its step response. 
-A proportional controller is considered sufficient, as it does not have to compensate for a steady state error. By increasing the gain the system will become faster, which is desirable. To determine how large the gain can be without making the system unstable by saturation issues, it is necessary to consider the bandwidth. \newpar
-The data from the Vicon is transmitted with 100 Hz. This means the attitude controller must run with 50 Hz as maximum to ensure the controller is slower than the sensor data. A rule of thumb states that the bandwidth of the system shall be 25 times smaller than the attitude controller. The desired bandwidth of the translational roll controller is calculated as follows:
+A proportional controller is considered sufficient, as it does not have to compensate for a steady state error. By increasing the absolute gain value the system will become faster, which is desirable. To determine how large the absolute gain can be without making the system unstable due to saturation issues, it is necessary to consider the bandwidth. \\ \\
+The data from the Vicon room is transmitted with 100 Hz. This means the attitude controller must run with 50 Hz as maximum to ensure the controller is slower than the sensor data. A rule of thumb states that the bandwidth of the system shall be 25 times smaller than the attitude controller. The desired bandwidth of the translational roll controller is calculated as follows:
 \begin{align}
 BW=2\cdot \pi\cdot \frac{f_s}{25}=2\cdot \pi \frac{50}{25}=12.57\label{eq:bw_X}
 \end{align}
@@ -37,18 +37,31 @@ From \autoref{eq:bw_X} it is known, that the ideal bandwidth of the system is 12
 	\includegraphics[width=0.7\textwidth]{figures/bode_x.png}
 	\caption{Bodeplot of the plant, with the bandwidth of 12.6 rad/s displayed.}\label{fig:bode_x}
 \end{figure}
-The bodeplot in \autoref{fig:bode_x} reveals that the magnitude is 2.15 dB at 12.6 rad/s and must be lifted by 
+The bodeplot in \autoref{fig:bode_x} reveals that the magnitude is -2.15 dB at 12.6 rad/s and must be lowered by 0.85 dB. 
 
-The frequency response of the plant with a  proportional controller with a negative gain of one can be seen in \autoref{fig:step_x}
+The gain of the P-controller is found to be: 
+\begin{align}
+C_x=10^{\frac{-0.85}{20}}=0.907
+\end{align}
+
+The step response for the designed controller with a negative gain of 0.907 can be seen in \autoref{fig:step_x}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/step_x.png}
-	\caption{Stepresponse for the plant with a proportional controller with a gain of negative one.}\label{fig:step_x}
+	\caption{Step response for P-controller with a gain of -0.907.}\label{fig:step_x}
 \end{figure}
+When examining \autoref{fig:step_x}it is seen that, as expected,there is no steady state error. The system settles at 0.41 seconds and has a rise time of 0.12 seconds. Both settling time and rise time is within the requirements. As it is a first order system, there is no overshoot and it can therefore be concluded that the P-controller meets all requirements.
+\\
+\\
+Before it can be implemented and tested on the quadcopter, it needs to be discretized. As it is a P-controller, it simply means to encounter the sampling rate. The discretized controller is presented along with the continious controller in \fxnote{make graph}.
+\\ \\
+Now that the translational roll controller has been designed, the translational pitch controller is to be designed.  
 \subsubsection*{Pitch translational controller}
+The roll and pitch translational models are very similar and will be designed similar. Therefore a proportional controller is to be designed in the following.\\
+
 The model expression for pitch is previously derived to be:
 \begin{align}
-m\cdot\Delta\ddot{y}_I = k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi
+m\Delta\ddot{y}_I = k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\phi})\cos(\overline{\theta})\Delta\phi
 \label{eq:model_y_transl}
 \end{align}
 Laplace transforming \autoref{eq:model_y_transl_y} yields:
