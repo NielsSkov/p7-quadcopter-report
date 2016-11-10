@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  10 NOV 2016 16:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  10 NOV 2016 19:54
 entering extended mode
 **./16gr733.tex
 (16gr733.tex
@@ -2809,6 +2809,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
+Underfull \vbox (badness 3646) has occurred while \output is active []
+
+ [2 <./droneDiagram.pdf>]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -2825,26 +2828,27 @@ Before submitting the final camera ready copy, remember to:
 
 
 AED: lastpage setting LastPage
-[2 <./droneDiagram.pdf>] (16gr733.aux) ) 
+[3
+
+] (16gr733.aux) ) 
 Here is how much of TeX's memory you used:
- 36572 strings out of 493634
- 815117 string characters out of 3151048
- 1042581 words of memory out of 3000000
- 39420 multiletter control sequences out of 15000+200000
+ 36580 strings out of 493634
+ 815255 string characters out of 3151048
+ 1047634 words of memory out of 3000000
+ 39428 multiletter control sequences out of 15000+200000
  109061 words of font info for 118 fonts, out of 3000000 for 9000
  1028 hyphenation exceptions out of 8191
- 57i,19n,78p,10462b,866s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/MikTex/fonts/enc/dvips/fontname/8r.
-enc}<D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/MikTex/fonts/type1
-/public/amsfonts/cm/cmmi7.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.p
-fb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/MikTex/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb
-><D:/MikTex/fonts/type1/urw/times/utmb8a.pfb><D:/MikTex/fonts/type1/urw/times/u
-tmbi8a.pfb><D:/MikTex/fonts/type1/urw/times/utmr8a.pfb><D:/MikTex/fonts/type1/u
-rw/times/utmri8a.pfb>
-Output written on 16gr733.pdf (2 pages, 134880 bytes).
+ 57i,19n,78p,10462b,867s stack positions out of 5000i,500n,10000p,200000b,50000s
+{D:/MikTex/fonts/enc/dvips/fontname/8r.enc}<D:/MikTex/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MikTex/fonts/typ
+e1/public/amsfonts/cm/cmr7.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><D:/MikTex/fonts/type1
+/urw/times/utmb8a.pfb><D:/MikTex/fonts/type1/urw/times/utmbi8a.pfb><D:/MikTex/f
+onts/type1/urw/times/utmr8a.pfb><D:/MikTex/fonts/type1/urw/times/utmri8a.pfb>
+Output written on 16gr733.pdf (3 pages, 140825 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
+ 59 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
