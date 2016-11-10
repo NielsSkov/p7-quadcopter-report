@@ -23,23 +23,58 @@ Another consideration to be made before modeling the quadcopter is the usage of 
     \label{fig:framesDiagram}
 \end{figure}
 
-\autoref{fig:framesDiagram} shows the two frames, which are necessary to use, as it is desired to know where the quadcopter is within the inertial frame to determine its position. To obtain the orientation of the quadcopter, the body frame's orientation is compared to the inertial frame and yields the angles of roll, pitch and yaw. 
+\autoref{fig:framesDiagram} shows the two frames, which are necessary to use, as it is desired to know where the quadcopter is within the inertial frame to determine its position. 
 
-The transformation from the body frame to the inertial one is done through a  rotation matrix, \autoref{eq:RotMatrix}, that describes a total rotation in terms of three consecutive rotations, assuming first in roll, then in pitch and finally in yaw.
-%
-\footnotesize
+The orientation of the quadcopter is obtained by knowing the body frame orientation with respect to the inertial frame, yielding the roll, pitch and yaw angles. 
+
+The transformation from the body frame to the inertial one can be done through a rotation matrix, \autoref{eq:RotMatrix}, that describes a total rotation in terms of three consecutive rotations. In this case the rotation matrix is composed with a 1-2-3 convention, that is, first a rotation around $x_B$, then around $y_B$ and finally around $z_B$.
+
+\begin{minipage}{0.32\linewidth}
+    \begin{flalign}
+        \si{R_X} &=
+        \begin{bmatrix}
+            \ 1 & 0  & 0  \ \ \ \\ 
+            \ 0 & c(\phi)  & -s(\phi)  \ \ \ \\ 
+            \ 0 & s(\phi)  & c(\phi)  \ \ \ \nonumber  
+        \end{bmatrix} 	\label{eq:RotMatrix1}
+    \end{flalign}
+\end{minipage}\hfill
+\begin{minipage}{0.32\linewidth}
+    \begin{flalign}
+        \si{R_X} &=
+        \begin{bmatrix}
+            \ c(\theta) & 0  & s(\theta)  \ \ \ \\ 
+            \ 0 & 1  & 0  \ \ \ \\ 
+            \ -s(\theta) & 0  & c(\theta)  \ \ \ \nonumber 
+        \end{bmatrix} 	\label{eq:RotMatrix2}
+    \end{flalign}
+\end{minipage}\hfill
+\begin{minipage}{0.32\linewidth}
+    \begin{flalign}
+        \si{R_X} &=
+        \begin{bmatrix}
+            \ c(\psi) & -s(\psi)  & 0  \ \ \ \\ 
+            \ s(\psi) & c(\psi)  & 0  \ \ \ \\ 
+            \ 0 & 0  & 1  \ \ \ \nonumber 
+        \end{bmatrix} 	\label{eq:RotMatrix3}
+    \end{flalign}
+\end{minipage}\hfill
+\small
 \begin{flalign}
-	\si{R_{\phi, \theta, \psi}} &=
+	R = R_Z R_Y R_X =
 	\begin{bmatrix}
-		\ \si{c(\theta) \cdot c(\psi)}                & \si{-c(\theta) \cdot s(\psi)}  & \si{-c(\phi) \cdot s(\theta) \cdot c(\psi) + s(\phi) \cdot s(\psi)}  \ \ \ \\ 
-		\ \si{s(\phi) \cdot s(\theta) \cdot s(\psi) + c(\phi) \cdot s(\psi)}  	  & \si{-s(\phi) \cdot s(\theta) \cdot s(\psi) + c(\phi) \cdot c(\psi)} 		& \si{c(\phi) \cdot s(\theta) \cdot s(\psi) + s(\phi) \cdot c(\psi)}                \ \ \ \\ 
-		\ \si{s(\theta)}      	  & \si{-s(\phi) \cdot c(\theta)}    		& \si{c(\phi) \cdot c(\theta)}                 \ \ \ 
+		\ c(\theta) c(\psi)       & s(\phi) s(\theta) c(\psi) -c(\phi) s(\psi)  & c(\phi) s(\theta) c(\psi) + s(\phi) s(\psi)  \ \ \ \\ 
+		\ s(\phi) c(\theta) 	  & s(\phi) s(\theta) s(\psi) + c(\phi) c(\psi) 		& c(\phi) s(\theta) s(\psi) - s(\phi) c(\psi)                \ \ \ \\ 
+		\ -s(\theta)     	  & s(\phi) c(\theta)    		& c(\phi) c(\theta)                 \ \ \ 
 	\end{bmatrix} 	\label{eq:RotMatrix}
 \end{flalign}
 \normalsize
 %
 \begin{where}
-\va{R_{\phi, \theta, \psi}}{is the rotation matrix}{}
+\va{R_X}{is the matrix describing a rotation around the $x_B$ axis}{}
+\va{R_Y}{is the matrix describing a rotation around the $y_B$ axis}{}
+\va{R_Z}{is the matrix describing a rotation around the $z_B$ axis}{}
+\va{R}{is the total rotation matrix}{}
 \va{\phi}{is the roll}{rad}
 \va{\theta}{is the pitch}{rad}
 \va{\psi}{is the yaw}{rad}
@@ -47,6 +82,15 @@ The transformation from the body frame to the inertial one is done through a  ro
 
 It shall be noted, that due to the size of the matrix sine and cosine are referenced $s$ and $c$ respectively.
 
+To describe a vector in the inertial frame given its description in the body frame, a matrix-vector multiplication can be done as follows:
+\begin{flalign}
+    v_I=Rv_B 
+\end{flalign}
+\begin{where}
+    \va{v_I}{is a column vector that contains the description with respect to the inertial frame}{}
+    \va{v_B}{is a column vector that contains the description with respect to the body frame}{}
+\end{where}
+%
 Once these considerations have been taken into account, the two submodels can be derived.
  
 %Angle and Linear
