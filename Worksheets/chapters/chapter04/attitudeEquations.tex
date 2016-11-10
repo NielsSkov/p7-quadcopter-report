@@ -1,5 +1,5 @@
 \section{Attitude Model} \label{sec:AttitudeModel}
-The attitude model of the quadcopter describes how the roll, pitch and yaw angles evolve according to the forces and torques exerted by the propellers. 
+The attitude model of the quadcopter describes how the roll, pitch and yaw angles evolve according to the forces and torques exerted by the motors and the attached propellers. 
 
 The basis for deriving the model are the free body diagrams illustrated in \autoref{fig:droneDiagram} and \ref{fig:torquesDiagram}. 
 
@@ -25,7 +25,9 @@ The basis for deriving the model are the free body diagrams illustrated in \auto
 	\end{minipage}
 \end{minipage}
 
-From the diagrams above, the equations of angular motion along the three body axes can be derived by first principles modeling, that is, using only laws of physics. In this case, Newton's Second Law for rotational motion, as seen in \autoref{eq:newtonangular}.
+In \autoref{fig:droneDiagram} a freebody diagram of the drone is illustrated. This diagram is an extended diagram of \autoref{fig:framesDiagram} shown in \autoref{sec:ModelOverview}. In this extended diagram each of the thrust forces exerted by the motor with an attached propeller is included, $F_1$, $F_2$, $F_3$ and $F_4$. Besides these four forces the gravitational force is included as well. In \autoref{fig:torquesDiagram} the drone is seen from the above. Here the four torques produced by the drag forces at the propeller is illustrated. As can be seen on the figure torque one and three is pointing the opposite direction compared to torque two and four. This is due to the directions in which the motors turn.  
+
+From the diagrams above, the equations of angular motion along the three body axes can be derived by first principles modelling, that is, using only laws of physics. In this case, Newton's Second Law for rotational motion. This can be as seen in \autoref{eq:newtonangular} where the Newton's Second Law is applied to the three axis' separately.
 %
 \begin{align}
 	J\cdot\alpha=\sum\tau
@@ -33,7 +35,7 @@ From the diagrams above, the equations of angular motion along the three body ax
 \end{align}
 \begin{where}
 \va{J}{is the moment of inertia}{kg \cdot m^2}
-\va{\alpha}{is the angular acceleration}{rad\cdot s^{-2}}
+\va{\alpha}{is the angular acceleration around the specific axis}{rad\cdot s^{-2}}
 \va{\tau}{are the torques applied to the system}{N \cdot m}
 \end{where}
 
@@ -44,7 +46,7 @@ From the diagrams above, the equations of angular motion along the three body ax
 %\end{where}
 %It shall be noted, that the fact that Newton's laws, that only apply in relation to an inertial reference, are applied even though the earth is accelerating and rotating, as it is the assumption, that it is of little influence for the system of the quadcopter. 
 %
-From applying Newton's Second Law, \autoref{eq:AngleEq1}, \ref{eq:AngleEq2} and \ref{eq:AngleEq3} are obtained. As it can be seen, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed along the y- and x-axis of the quadcopter, respectively. The yaw angle changes due to the torques created by the drag forces in the propellers.
+From applying Newton's Second Law on all three axis in the body-frame, \autoref{eq:AngleEq1}, \ref{eq:AngleEq2} and \ref{eq:AngleEq3} are obtained. As it can be seen, the roll and pitch angular accelerations depend on the thrust forces exerted by the propellers placed along the y- and x-axis of the quadcopter, respectively. Hence The roll angular acceleration, $\ddot{\phi}$, depends on the difference in the thrust force exerted by propeller four and two. Similar the pitch angular acceleration, $\ddot{\theta}$, depends on the difference in the thrust force exerted by propeller one and three. The yaw angular acceleration, $\ddot{\psi}$, changes due to the torques created by the drag forces in the propellers. As the torques, $\tau_1$ and $\tau_3$, shown in \autoref{fig:torquesDiagram} are pointing in the opposite of $\tau_2$ and $\tau_4$, the latter is subtracted from the former to yield the total $\ddot{\psi}$.  
 %
 \begin{align}
 	J_x\cdot\ddot{\phi}&=(F_4-F_2)\cdot L  \label{eq:AngleEq1} \\
@@ -75,7 +77,7 @@ From applying Newton's Second Law, \autoref{eq:AngleEq1}, \ref{eq:AngleEq2} and 
 %\va{F_n}{is the thrust force produced in each propeller}{N}
 %\va{\tau_n}{is the torque due to the drag force in each propeller}{Nm}
 %\end{where}
-The thrust forces and drag torques from the propeller can be assumed to be proportional to the square of the velocity of the motor, related by constants obtained as described in \autoref{app:ThrustTest} and \ref{app:TorqueTest}. The equations above can be rewritten to include these terms.
+The thrust forces and drag torques from the propeller can be assumed to be proportional to the square of the rotational speed of the motor, related by the coefficients obtained as described in \autoref{app:ThrustTest} and \ref{app:TorqueTest}. The equations above can be rewritten to include these terms.
 %
 \begin{align}
 J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L \label{eq:AngleEqVelocities1}\\
@@ -84,9 +86,9 @@ J_z\cdot\ddot{\psi}&=k_d \cdot(\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)
 \label{eq:AngleEqVelocities3}
 \end{align}
 \begin{where}
-\va{k_{th}}{is the thrust constant}{N\cdot s^2 \cdot rad^{-2}}
-\va{k_d}{is the drag constant}{N \cdot m\cdot s^2 \cdot rad^{-2}}
+\va{k_{th}}{is the thrust coefficients}{N\cdot s^2 \cdot rad^{-2}}
+\va{k_d}{is the drag coefficients}{N \cdot m\cdot s^2 \cdot rad^{-2}}
 \end{where}
 
-\autoref{eq:AngleEqVelocities1}, \ref{eq:AccelerationEqInertialVelocities2} 
-and \ref{eq:AccelerationEqInertialVelocities3} are the final attitude model expressions that are brought forward. %Now that the attitude model is known, the translational model must be derived. This is done in the following section. 
+\autoref{eq:AngleEqVelocities1}, \autoref{eq:AngleEqVelocities2} 
+and \autoref{eq:AngleEqVelocities3} are the final attitude model expressions that are brought forward. %Now that the attitude model is known, the translational model must be derived. This is done in the following section. 

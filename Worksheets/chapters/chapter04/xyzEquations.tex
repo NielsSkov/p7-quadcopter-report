@@ -1,7 +1,5 @@
 \section{Translational Model} \label{sec:TranslationalModel}
-The aim of this section is to model the translational behavior of the quadcopter.
-
-From \autoref{fig:diagramQuad} in the previous section, it is possible to derive equations for the translational accelerations in the inertial frame using Newton's Second Law.
+The aim of this section is to model the translational behavior of the quadcopter. This can be done from \autoref{fig:droneDiagram} in \autoref{sec:AttitudeModel}. An equation for translational accelerations of each specific axis in the inertial frame can be derived by using Newton's Second Law.
 %
 \begin{flalign}
     m \cdot a = \sum F
@@ -9,13 +7,14 @@ From \autoref{fig:diagramQuad} in the previous section, it is possible to derive
 %
 \begin{where}
 \va{m}{is the mass}{kg}
-\va{a}{is the translational acceleration}{m \cdot s^{-2}}
+\va{a}{is the translational acceleration specific for each axis in the inertial frame}{m \cdot s^{-2}}
 \va{F}{are the forces applied to the system}{N}
 \end{where}
 
 All the forces that are applied to the quadcopter create an acceleration on it. The forces are the gravity and the thrust that the propellers generate. 
 
-A seen in \autoref{fig:framesDiagram} in \autoref{sec:ModelOverview} the gravity force has effect only in the \si{z_I} direction and the four forces from the motors need to be transformed into the inertial system. This is done through the rotation matrix showed in \autoref{eq:RotMatrix}.
+A seen in \autoref{fig:framesDiagram} in \autoref{sec:ModelOverview} the gravitational force has effect only in the \si{z_I} direction and the four forces from the motors need to be transformed into the inertial system. This is done through the rotation matrix showed in \autoref{eq:RotMatrix}.
+\fxnote{Anders: Hmmm, you need more details on how you do this? How do you use the 3x3 rotation matrix to obtain (3.10)-(3.12)?}
 
 Taking into account this transformation, the movement can be described using \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}.
 %
