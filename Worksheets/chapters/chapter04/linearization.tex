@@ -17,15 +17,15 @@ The goal of designing a linear controller requires a linearization of the model 
 The attitude equations, \autoref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}, and the translational equations, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must be linearized since these contain trigonometric functions and squared velocities. 
 
 The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This choice makes all equilibrium points equal to zero both angular and translational. In \autoref{eq:AccelerationEqInertialVelocities1} and \autoref{eq:AccelerationEqInertialVelocities2} it can be seen that to yield a zero in x and y accelerations, the pitch and roll of the quadcopter should be zero as well. To keep the acceleration in the z axis in the inertial frame equal to zero, the rotational speed of the motor, which ensures the equilibrium points, needs to be calculated. This can be done from \autoref{eq:AccelerationEqInertialVelocities3}.
-
+%
 \begin{flalign}
-	m\cdot\overline{\ddot{z}_I} &= F_g-k_{th}\cdot({\overline{\omega_1}}^2+{\overline{\omega_2}}^2+{\overline{\omega_3}}^2+{\overline{\omega_4}}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})
+	m\ \overline{\ddot{z}_I} &= F_g-k_{th}\ ({\overline{\omega_1}}^2+{\overline{\omega_2}}^2+{\overline{\omega_3}}^2+{\overline{\omega_4}}^2)\ \cos(\overline{\phi})\ \cos(\overline{\theta})
 \end{flalign}
 
 Since all the equilibrium points are set to zero the $\overline{\ddot{z}_I}$, $\overline{\phi}$ and $\overline{\theta}$ are equal to zero. The four rotational speeds of the motor should be the same to keep the acceleration in the z axis. Hence it is possible to combine the four to one, $\overline{\omega}_i$. By utilizing these changes the equation can be rearrange to the following.
 
 \begin{flalign}
-	\overline{\omega}_i=\sqrt{\frac{m\cdot g}{4k_{th}}}
+	\overline{\omega}_i=\sqrt{\frac{m\  g}{4k_{th}}}
 	\label{eq:equilibriumomegas}
 \end{flalign}
 
@@ -50,23 +50,23 @@ Applying the approximation to the attitude model equations around the equilibriu
 \end{where}
 %\begin{note}
 %\begin{flalign}
-%       \eqOne{m\cdot\Delta\ddot{x}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\theta})-}
-%       \eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta})\Delta\theta} &\\
-%       \eqOne{m\cdot\Delta\ddot{y}_I}{(k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})-}
-%       \eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\theta+}\nonumber\\
-%       \eqThree{+k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi} &\\
-%       \eqOne{m\cdot\Delta\ddot{z}_I}{(-k_{th}\cdot(2\textbf{ }{\overline{\omega}_1}^2\cdot\Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\cdot\Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\cdot\Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})-}
-%       \eqTwo{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\sin(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\theta-}\nonumber\\
-%       \eqThree{-k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\sin(\overline{\theta})\cdot\Delta\phi}
+%       \eqOne{m\ \Delta\ddot{x}_I}{(-k_{th}\ (2\textbf{ }{\overline{\omega}_1}^2\ \Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\ \Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\ \Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\ \Delta\omega_4)\ \sin(\overline{\theta})-}
+%       \eqTwo{-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \cos(\overline{\theta})\Delta\theta} &\\
+%       \eqOne{m\ \Delta\ddot{y}_I}{(k_{th}\ (2\textbf{ }{\overline{\omega}_1}^2\ \Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\ \Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\ \Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\ \Delta\omega_4)\ \sin(\overline{\phi})\ \cos(\overline{\theta})-}
+%       \eqTwo{-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \sin(\overline{\phi})\ \sin(\overline{\theta})\ \Delta\theta+}\nonumber\\
+%       \eqThree{+k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \cos(\overline{\phi})\ \cos(\overline{\theta})\ \Delta\phi} &\\
+%       \eqOne{m\ \Delta\ddot{z}_I}{(-k_{th}\ (2\textbf{ }{\overline{\omega}_1}^2\ \Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\ \Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\ \Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\ \Delta\omega_4)\ \cos(\overline{\phi})\ \cos(\overline{\theta})-}
+%       \eqTwo{-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \sin(\overline{\phi})\ \cos(\overline{\theta})\ \Delta\theta-}\nonumber\\
+%       \eqThree{-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \cos(\overline{\phi})\ \sin(\overline{\theta})\ \Delta\phi}
 %       \label{eq:LinearEquations}
 %\end{flalign}
 %\end{note}
 
 In a similar way as with the attitude equations, the translational model can be linearized, leading to \autoref{eq:TransLinearEquations1}, \ref{eq:TransLinearEquations2} and \ref{eq:TransLinearEquations3}.
 \begin{flalign}
-  m\cdot\Delta\ddot{x}_I &= -k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\theta}) \cdot \Delta\theta \label{eq:TransLinearEquations1} \\
-  m\cdot\Delta\ddot{y}_I &=  k_{th}\cdot({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\cdot\Delta\phi \label{eq:TransLinearEquations2}\\
-  m\cdot\Delta\ddot{z}_I &= -2\textbf{ }k_{th}\cdot({\overline{\omega}_1}\cdot\Delta\omega_1+{\overline{\omega}_2}\cdot\Delta\omega_2+{\overline{\omega}_3}\cdot\Delta\omega_3+{\overline{\omega}_4}\cdot\Delta\omega_4)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})\label{eq:TransLinearEquations3}
+  m\ \Delta\ddot{x}_I &= -k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \cos(\overline{\theta}) \  \Delta\theta \label{eq:TransLinearEquations1} \\
+  m\ \Delta\ddot{y}_I &=  k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \cos(\overline{\phi})\ \cos(\overline{\theta})\ \Delta\phi \label{eq:TransLinearEquations2}\\
+  m\ \Delta\ddot{z}_I &= -2\textbf{ }k_{th}\ ({\overline{\omega}_1}\ \Delta\omega_1+{\overline{\omega}_2}\ \Delta\omega_2+{\overline{\omega}_3}\ \Delta\omega_3+{\overline{\omega}_4}\ \Delta\omega_4)\ \cos(\overline{\phi})\ \cos(\overline{\theta})\label{eq:TransLinearEquations3}
 \end{flalign} 
 %
 \begin{where}
