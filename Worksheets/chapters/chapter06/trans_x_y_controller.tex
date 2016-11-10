@@ -12,7 +12,7 @@ m x_1(s)s^2=-k_{th}\cdot (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)
 It is desirable to have a transfer function where the input is the roll angle, as this is the output from the attitude controller that goes into the translational controller block. The output of the translational pitch controller must be the velocity in the x axes. \\
 The transfer function can now be written as:
 \begin{align}
-H_{x1}(s)=\frac{x_1(s) s}{\theta}=\frac{k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m s}\label{eq:conHx}
+H_{x1}(s)=\frac{x_1(s) s}{\theta}=\frac{-k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m s}\label{eq:conHx}
 \end{align}
 \begin{where}
 \va{H_{x1}}{is the plant for the translational roll}{1}
@@ -57,7 +57,7 @@ Before it can be implemented and tested on the quadcopter, it needs to be discre
 \\ \\
 Now that the translational roll controller has been designed, the translational pitch controller is to be designed.  
 \subsubsection*{Pitch translational controller}
-The roll and pitch translational models are very similar and will be designed similar. Therefore a proportional controller is to be designed in the following.\\
+The roll and pitch translational models are very similar and will therefore be designed similarly. The design procedure will be the same as for the translational roll controller.\\
 
 The model expression for pitch is previously derived to be:
 \begin{align}
@@ -76,9 +76,19 @@ H_{y1}(s)=\frac{y_1(s)\cdot s}{\phi}=\frac{k_{th}\cdot (\omega_1 ^2 + \omega_2 ^
 \va{H_{y1}}{is the plant for the translational pitch}{1}
 \end{where}
  
-Root locus and bode and all that and we end up with P controller
+The desired bandwidth is 12,57 rad/s as derived in \autoref{eq:bw_X}. 
 
-simulation of the controllers
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/bode_y.png}
+	\caption{Bode plot of the plant with the 12.6 bandwidth displayed.}\label{fig:bode_y}
+\end{figure}
+The bode plot in \autoref{fig:bode_y} reveals that the magnitude is 
+
+
+
+
+
 
 Before designing the controller limit checks of the transfer function to verify if the model behaves as the plant is expected to in reality is carried out. \\
 \fxfatal{I am having trouble thinking about it, as it is not entirely intuitive to me, when the input is an angle and not a force - however if possible, i think we should have a short piece of text to show we have been critical to the math we have derived - to check it before continuing.} 
