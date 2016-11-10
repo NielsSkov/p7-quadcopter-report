@@ -16,17 +16,29 @@ The goal of designing a linear controller requires a linearization of the model 
 
 The attitude equations, \autoref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}, and the translational equations, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must be linearized since these contain trigonometric functions and squared velocities. 
 
-The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This choice makes all equilibrium variables equal to zero both angular and translational. The equilibrium motor velocities, though, are those that keep the acceleration in the z axis in the inertial frame equal to zero. To calculate them, \autoref{eq:equilibriumomegas} is used.
-\begin{flalign}
-	\overline{\omega}_i=\sqrt{\frac{m\cdot g}{k_{th}\cdot 4}}
-	\label{eq:equilibriumomegas}
-\end{flalign}
-Applying the approximation to the attitude model equations around the equilibrium point, \autoref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3} are obtained.
+The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This choice makes all equilibrium points equal to zero both angular and translational. In \autoref{eq:AccelerationEqInertialVelocities1} and \autoref{eq:AccelerationEqInertialVelocities2} it can be seen that to yield a zero in x and y accelerations, the pitch and roll of the quadcopter should be zero as well. To keep the acceleration in the z axis in the inertial frame equal to zero, the rotational speed of the motor, which ensures the equilibrium points, needs to be calculated. This can be done from \autoref{eq:AccelerationEqInertialVelocities3}.
 
 \begin{flalign}
-  J_x\cdot\Delta\ddot{\phi}   &= 2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_4}\cdot \Delta \omega_2-{\overline{\omega}_2}\cdot \Delta \omega_4)\label{eqAngleLin1} \\
-  J_y\cdot\Delta\ddot{\theta} &= 2 \cdot k_{th} \cdot L \cdot({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_3}\cdot \Delta \omega_3) \label{eqAngleLin2} \\
-  J_z\cdot\Delta\ddot{\psi}   &= 2 \cdot k_d \cdot ({\overline{\omega}_1}\cdot \Delta \omega_1-{\overline{\omega}_2}\cdot \Delta \omega_2+{\overline{\omega}_3}\cdot \Delta \omega_3-{\overline{\omega}_4}\cdot \Delta \omega_4) \label{eqAngleLin3}
+	m\cdot\overline{\ddot{z}_I} &= F_g-k_{th}\cdot({\overline{\omega_1}}^2+{\overline{\omega_2}}^2+{\overline{\omega_3}}^2+{\overline{\omega_4}}^2)\cdot\cos(\overline{\phi})\cdot\cos(\overline{\theta})
+\end{flalign}
+
+Since all the equilibrium points are set to zero the $\overline{\ddot{z}_I}$, $\overline{\phi}$ and $\overline{\theta}$ are equal to zero. The four rotational speeds of the motor should be the same to keep the acceleration in the z axis. Hence it is possible to combine the four to one, $\overline{\omega}_i$. By utilizing these changes the equation can be rearrange to the following.
+
+\begin{flalign}
+	\overline{\omega}_i=\sqrt{\frac{m\cdot g}{4k_{th}}}
+	\label{eq:equilibriumomegas}
+\end{flalign}
+
+Applying the approximation to the attitude model equations around the equilibrium point, \autoref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3} are obtained.
+
+\fxnote{A little more explanation on how the delta comes into play  and how it relates to (3.16)}
+
+\begin{flalign}
+  J_x\Delta\ddot{\phi}   &= 2k_{th}L({\overline{\omega}_4} \Delta \omega_2-{\overline{\omega}_2} \Delta \omega_4)
+  \label{eqAngleLin1} \\
+  J_y\Delta\ddot{\theta} &= 2k_{th} L({\overline{\omega}_1} \Delta \omega_1-{\overline{\omega}_3} \Delta \omega_3) 
+  \label{eqAngleLin2} \\
+  J_z\Delta\ddot{\psi}   &= 2k_d({\overline{\omega}_1}\Delta \omega_1-{\overline{\omega}_2}\Delta \omega_2+{\overline{\omega}_3}\Delta \omega_3-{\overline{\omega}_4} \Delta \omega_4) \label{eqAngleLin3}
 \end{flalign} 
 %
 \begin{where}
@@ -68,5 +80,7 @@ In a similar way as with the attitude equations, the translational model can be 
   \va{\overline{\theta} }{ is the pitch in equilibrium                                     }{ rad            } \\
   \va{\overline{\psi}   }{ is the yaw in equilibrium                                       }{ rad            }
 \end{where}
+
+\fxnote{Hmm, that depends on what you mean. The direction of acceleration in the inertial frame must depend on what direction the quad is tilting, which again depends on the yaw?}
 
 It is worth mentioning that the yaw angle does not affect the translational accelerations in the inertial frame. This occurs due to the way the rotation matrix has been defined. It assumes that rotations are performed by first turning in roll direction, then in pitch direction and finally in yaw direction. This order makes the yaw angle not relevant as the force decomposition in the inertial frame directions is independent of the yaw angle as long as this is assumed to be the last angle that changes.
