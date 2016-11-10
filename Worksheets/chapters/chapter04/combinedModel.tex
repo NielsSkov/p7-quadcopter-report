@@ -22,10 +22,9 @@ In the following section an overview of the chapter is given. The found models, 
 \begin{itemize}
 	\item Non-linear equations
 	\begin{flalign}
-		\eq{m\cdot\ddot{x}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)} \label{eq:AccelerationEqInertialVelocitiescombined1}\\
-		\eq{m\cdot\ddot{y}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta)} \label{eq:AccelerationEqInertialVelocitiescombined2}\\
-		\eq{m\cdot\ddot{z}_I}{F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)}
-		\label{eq:AccelerationEqInertialVelocitiescombined3}
+    m\ \ddot{x}_I &= -k_{th}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\ (cos(\phi)\ sin(\theta)\ cos(\psi) + sin(\phi)\ sin(\psi)) \\
+    m\ \ddot{y}_I &= -k_{th}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\ (cos(\phi)\ sin(\theta)\ sin(\psi) - sin(\phi)\ cos(\psi)) \\
+    m\ \ddot{z}_I &= F_g-k_{th}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\ \cos(\phi)\ \cos(\theta)
 	\end{flalign}
 	\item Linearized equations 
 	\begin{flalign}

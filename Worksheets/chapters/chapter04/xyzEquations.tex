@@ -2,12 +2,12 @@
 The aim of this section is to model the translational behavior of the quadcopter. This can be done from \autoref{fig:droneDiagram} in \autoref{sec:AttitudeModel}. An equation for translational accelerations of each specific axis in the inertial frame can be derived by using Newton's Second Law.
 %
 \begin{flalign}
-    m \cdot a = \sum F
+    m \  a = \sum F
 \end{flalign}
 %
 \begin{where}
 \va{m}{is the mass}{kg}
-\va{a}{is the translational acceleration specific for each axis in the inertial frame}{m \cdot s^{-2}}
+\va{a}{is the translational acceleration specific for each axis in the inertial frame}{m \cdot  s^{-2}}
 \va{F}{are the forces applied to the system}{N}
 \end{where}
 
@@ -19,9 +19,9 @@ A seen in \autoref{fig:framesDiagram} in \autoref{sec:ModelOverview} the gravita
 Taking into account this transformation, the movement can be described using \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}.
 %
 \begin{flalign}
-    m\cdot\ddot{x}_I &= -(F1+F2+F3+F4)\cdot\sin(\theta)  \label{eq:AccelerationEqInertial1}\\
-    m\cdot\ddot{y}_I &= -(F1+F2+F3+F4)\cdot(-\sin(\phi))\cdot\cos(\theta)  \label{eq:AccelerationEqInertial2}\\
-    m\cdot\ddot{z}_I &= F_g-(F1+F2+F3+F4)\cdot\cos(\phi)\cdot\cos(\theta)
+    m\ \ddot{x}_I &= -(F1+F2+F3+F4)\ (cos(\phi)\ sin(\theta)\ cos(\psi) + sin(\phi)\ sin(\psi))  \label{eq:AccelerationEqInertial1}\\
+    m\ \ddot{y}_I &= -(F1+F2+F3+F4)\ (cos(\phi)\ sin(\theta)\ sin(\psi) - sin(\phi)\ cos(\psi))   \label{eq:AccelerationEqInertial2}\\
+    m\ \ddot{z}_I &= F_g-(F1+F2+F3+F4)\ \cos(\phi)\ \cos(\theta)
     \label{eq:AccelerationEqInertial3}
 \end{flalign}
 %
@@ -35,9 +35,9 @@ Taking into account this transformation, the movement can be described using \au
 This equations can also be rewritten taking into account that the forces are assumed to be proportional to the square of the speeds of the motors. This assumption results in \autoref{eq:AccelerationEqInertialVelocities1}, \ref{eq:AccelerationEqInertialVelocities2} and \ref{eq:AccelerationEqInertialVelocities3}.
 %
 \begin{flalign}
-    m\cdot\ddot{x}_I &= -k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)  \label{eq:AccelerationEqInertialVelocities1}\\
-    m\cdot\ddot{y}_I &= -k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta) \label{eq:AccelerationEqInertialVelocities2}\\
-    m\cdot\ddot{z}_I &= F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)
+    m\ \ddot{x}_I &= -k_{th}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\ (cos(\phi)\ sin(\theta)\ cos(\psi) + sin(\phi)\ sin(\psi))   \label{eq:AccelerationEqInertialVelocities1}\\
+    m\ \ddot{y}_I &= -k_{th}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\ (cos(\phi)\ sin(\theta)\ sin(\psi) - sin(\phi)\ cos(\psi))  \label{eq:AccelerationEqInertialVelocities2}\\
+    m\ \ddot{z}_I &= F_g-k_{th}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\ \cos(\phi)\ \cos(\theta)
     \label{eq:AccelerationEqInertialVelocities3}
 \end{flalign}
 %
