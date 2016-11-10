@@ -198,8 +198,51 @@ First, the modeling and controlled approaches are described in more detail. Then
 %\end{flalign}
 
 \section{Method}
+INTRO FOR MODEL
+\subsection{Model}
 \begin{itemize}
 \item Model - Drawing, equations, linear equations.
+The quadcopter system is shown in Figure \ref{droneDiagram}. As it can bee seen, the system is modeled by using two coordinate frames. The inertial frame is used to describe the translational movement while the body frame is attached to the quadcopter and applied to characterize its attitude behavior. In the figure, also the positive references for rotational and translational movements are depicted, as well as the main forces and torques acting on the quadcopter. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{droneDiagram}
+	\caption{Quadcopter diagram showing the forces acting on the system and the positive references chosen for rotations and translations in both Inertial and Body coordinate frames.}
+	\label{droneDiagram}
+\end{figure}
+In order to represent the different forces generated in the drone in the Inertial frame a rotation matrix is used. It is built considering a 321 or 123 rotation sequence. \textbf{SOURCE ROTATION  MATRIX} 
+\subsubsection{Motor and Propeller}
+The four motors in the quadcopter generate the rotation required so the propeller creates the force that lifts the quadcopter. This force is called thrust force and can be modeled as proportional to the square of the motor rotational velocity. MAYBE SOURCE. The coefficient for this equation is called thrust coefficient and has been found by experiments.  
+The rotation of the propellers also generates a torque on each motor due to drag between air and propeller. Drag torque is compensated in the quadcopter by having two of the motors turning in one direction and the two others in the opposite. It can also be described as proportional to the square of the velocity by terms of a drag coefficient that has also been obtained through tests.
+Equation \ref{eq:thrustForce} and \ref{eq:dragTorque} show the expression for the thrust force and drag torque caused by the rotation of the propeller.
+\begin{align}
+	F&=k_{th}\omega^2\label{eq:thrustForce}\\
+	\tau&=k_{d}\omega^2\label{eq:dragTorque}
+\end{align}
+INCLUDE WHERE
+\subsubsection{Attitude Model}
+The attitude model equations are based on Newton Second Law for rotational movement and are represented in Equation \ref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}. 
+\begin{align}
+	J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L \label{eq:AngleEqVelocities1}\\
+	J_y \cdot\ddot{\theta}&=k_{th} \cdot(\omega^2_1-\omega^2_3) \cdot L \label{eq:AngleEqVelocities2} \\
+	J_z\cdot\ddot{\psi}&=k_d \cdot(\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)
+	\label{eq:AngleEqVelocities3}
+\end{align}
+INCLUDE WHERE
+%\begin{where}
+%	\va{k_{th}}{is the thrust coefficients}{N\cdot s^2 \cdot rad^{-2}}
+%	\va{k_d}{is the drag coefficients}{N \cdot m\cdot s^2 \cdot rad^{-2}}
+%\end{where}
+The expressions above state how the thrust force difference between motors 1 and 3 affects the roll angular acceleration, how that between motors 4 and 2 affects the pitch angle and how the yaw acceleration depends on the four motors by means of the drag torque generated on the propeller.  
+\subsubsection{Translational Model}
+The equations describing the response of the system along the x, y and z axes is derived from Newton's Second Law. The forces that act on the system are those from the propellers and the gravitational. These expressions are shown in Equation \ref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}. FIX EQUATIONS
+\begin{flalign}
+ 	\eq{m\cdot\ddot{x}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)} \label{eq:AccelerationEqInertial1}\\
+ 	\eq{m\cdot\ddot{y}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta)} \label{eq:AccelerationEqInertial2}\\
+ 	\eq{m\cdot\ddot{z}_I}{F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)}
+ 	\label{eq:AccelerationEqInertial3}
+\end{flalign}
+It is worth mentioning that the forces 
+\subsection{Control}
 \item Controller - Diagram of controller.
 	\item Angle controller - include observer, linear controller.
 \item Network effect on the system - Analysis of delay in the system.
@@ -214,7 +257,7 @@ Discussing possible issues or improvements of the above results.
 
 \section{Conclusion}
 Summary - what we want the reader to remember.
-\section*{Acknowledgement}
+\section*{Acknowledgment}
 Henrik XXXXX, associated professor at Aalborg University \\
 Christoffer Sloth, associated professor at Aalborg University
 
