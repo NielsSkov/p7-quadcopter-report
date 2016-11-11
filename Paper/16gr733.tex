@@ -128,8 +128,6 @@ Abstract goes here.
 \end{abstract}
 
 % no keywords
-
-
 % For peer review papers, you can put extra information on the cover
 % page as needed:
 % \ifCLASSOPTIONpeerreview
@@ -147,7 +145,7 @@ Abstract goes here.
 \item Present topic - uses of drones in reality context, chosen because it is a control challenge, rather than revolutionary.\\
 In the last years, the interest for quadcopters has increased due to the great possibilities they offer. Among these, the most well-known ones are surveillance, inspection of big structures and search and rescue missions in difficult environments \textbf{SOURCE WEB}.
 
-The quadcopter constitutes a control challenge due to its naturally unstable and coupled behavior. The system has 6 degrees of freedom, the 3 position coordinates and the 3 orientations, and there are only four actuation variables which are the motor velocities. The dimension of the problem is explained by McKerrow in  \textbf{SOURCE}.
+The quadcopter constitutes a control challenge due to its naturally unstable and coupled behavior. The system has 6 degrees of freedom, the 3 position coordinates and the 3 orientations, and there are only four actuation variables which are the motor velocities. The dimension of the problem is explained by McKerrow in %\cite{draganflyer}.
 
 \item Previous Approaches - examples of what others have done to obtain similar goals of stabilization like we pursue. What have others done differently than we plan to do to obtain the same end result. \\ 
 The control of a quadcopter has been addressed many times in the recent years. In Mian et al. \textbf{SOURCE} the quadcopter is controlled using a back-stepping technique and non-linear controllers. Other way of solving the issue is presented in Tayebi et al. \textbf{SOURCE} in which the quadcopter attitude is modeled using quaternions and controlled with a PD based controller. In \textbf{SOURCE}, Mian and Yang model the system using its dynamic equations and use non linear controllers to achieve a steady flight while in Mokhtari et al. \textbf{SOURCE} the system is controlled by a mixture of a robust feedback linearization and a linear GH$_{\infty}$.
@@ -263,7 +261,7 @@ The resulting equations for the attitude model after the linearization are shown
 %	\va{ \overline{\omega}_i } {is the angular velocity of each motor in equilibrium}             { rad \cdot s^{-1} }
 %	\va{ \Delta \omega_i       } {is the change in angular velocity from equilibrium of each motor} { rad \cdot s^{-1} }
 %\end{where}
-Similarly, the equations of the translational model are linearized. The result is shown in \ref{eq:TransLinearEquations1}, \ref{eq:TransLinearEquations2} and \ref{eq:TransLinearEquations3}.
+Similarly, the equations of the translational model are linearized. The result is shown in \ref{eq:TransLinearEquations1}, \ref{eq:TransLinearEquations2} and \ref{eq:TransLinearEquations3}. \textbf{FIX EQUATIONS}
 \begin{flalign}
 	m\cdot\Delta\ddot{x}_I &= -k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\theta}) \Delta\theta \label{eq:TransLinearEquations1} \\
 	m\cdot\Delta\ddot{y}_I &=  k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\phi})\cos(\overline{\theta})\Delta\phi \label{eq:TransLinearEquations2}\\
@@ -283,6 +281,18 @@ Similarly, the equations of the translational model are linearized. The result i
 %	\va{\overline{\psi}   }{ is the yaw in equilibrium                                       }{ rad            }
 %\end{where}
 \subsection{Control}
+The control of the system is divided into two control systems. One handles the attitude equations and the other controls the translational variables. 
+\subsubsection{Attitude Controller}
+The attitude controller for the quadcopter has been designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter. In state space, the system looks like shown in \ref{eq:statespace}
+\begin{flalign}
+	\vec{\dot{x}}(t)&=\vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)
+	\label{xDotLinear} 
+\end{flalign}
+\begin{flalign}
+	\vec{y}(t)&=\vec{C} \cdot \vec{x}(t) + \vec{D} \cdot \vec{u}(t)
+	\label{yLinear} 
+\end{flalign}
+\subsubsection{Translational Controller}
 \item Controller - Diagram of controller.
 	\item Angle controller - include observer, linear controller.
 \item Network effect on the system - Analysis of delay in the system.
@@ -316,9 +326,10 @@ Christoffer Sloth, associated professor at Aalborg University
 % http://mirror.ctan.org/biblio/bibtex/contrib/doc/
 % The IEEEtran BibTeX style support page is at:
 % http://www.michaelshell.org/tex/ieeetran/bibtex/
-\bibliographystyle{IEEEtran}
+%\bibliographystyle{IEEEtran}
+\printbibliography
 % argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,../bib/paper}
+%\bibliography{setup/bibliography.bbl}
 %
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
