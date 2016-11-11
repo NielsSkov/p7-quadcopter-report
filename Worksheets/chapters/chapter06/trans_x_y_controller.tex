@@ -2,19 +2,27 @@ In this section the governing model equations for the x and y axes is Laplace tr
 
 For the sake of repetition, the model expression for roll and pitch are as follows:
 \begin{align}
-m\Delta\ddot{x}_I&= -k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\theta})\Delta\theta\\ \label{eq:model_x_transl}
-m\Delta\ddot{y}_I&= k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\phi})\cos(\overline{\theta})\Delta\phi \label{eq:model_y_transl}
-\end{align} 
-Laplace transforming \autoref{eq:model_x_transl} and \ref{eq:model_y_transl_y} yield:
+m\Delta\ddot{x}_I&= -k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\theta})\Delta\theta \label{eq:model_x_transl}
+\end{align}
 \begin{align}
-m x_1(s)s^2&=-k_{th}\cdot (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2) \theta\\
+m\Delta\ddot{y}_I&= k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\phi})\cos(\overline{\theta})\Delta\phi 
+\label{eq:model_y_transl}
+\end{align} 
+Laplace transforming \autoref{eq:model_x_transl} and \ref{eq:model_y_transl} yield:
+\begin{align}
+m x_1(s)s^2&=-k_{th}\cdot (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2) \theta
+\end{align}
+\begin{align}
 m y_1(s) s^2&= k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)\phi
 \end{align}
 It is desirable to have a transfer function where the input is the angle, as this is the output from the attitude controller that goes into the translational controller block. The output of the translational controller must be the velocity in the x and y axes respectively. \\
 The transfer functions can now be written as:
 \begin{align}
-H_{x1}(s)&=\frac{x_1(s) s}{\theta}=\frac{-k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m s}\label{eq:conHx}\\
-H_{y1}(s)&=\frac{y_1(s) s}{\phi}=\frac{k_{th}(\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\cdot s}\label{eq:conHy}
+H_{x1}(s)&=\frac{x_1(s) s}{\theta}=\frac{-k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m s}\label{eq:conHx}
+\end{align}
+\begin{align}
+H_{y1}(s)&=\frac{y_1(s) s}{\phi}=\frac{k_{th}(\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\cdot s}
+\label{eq:conHy}
 \end{align}
 \begin{where}
 \va{H_{x1}}{is the plant for the translational roll}{1}
@@ -55,7 +63,7 @@ The step response for the designed controller can be seen in \autoref{fig:step_x
 	\includegraphics[width=0.8\textwidth]{figures/step_x.png}
 	\caption{Step response for P-controller with a gain of -0.907 and 0.907 for x and y respectively.}\label{fig:step_x}
 \end{figure}
-When examining \autoref{fig:step_x}it is seen that, as expected,there is no steady state error. The system settles at 0.41 seconds and has a rise time of 0.12 seconds. Both settling time and rise time is within the requirements. As it is a first order system, there is no overshoot and it can therefore be concluded that the P-controller meets all requirements.
+When examining \autoref{fig:step_x}it is seen that, as expected,there is no steady state error. The system settles at 0.41 seconds and has a rise time of 0.12 seconds. Both settling time and rise time is within the requirements \fxnote{we have not set the requirements - i just wrote it, it seems reasonable, but at some point we must set requirements, that are argued for in a previous chater that is to be written}. As it is a first order system, there is no overshoot and it can therefore be concluded that the P-controller meets all requirements.
 \\
 \\
 Before it can be implemented and tested on the quadcopter, it needs to be discretized. As it is P-controllers, it simply means to encounter the sampling rate. The discretized controllers are presented along with the continuous controller in \fxnote{make graph}.
