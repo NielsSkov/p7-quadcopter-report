@@ -42,11 +42,10 @@
   year =    {2004}
 }
 
-@Article{rotationmatrix,
+@Article{,
   author =  {Eric W. Weisstein},
   title =   {Rotation Matrix},
-  journal = {MathWorld--A Wolfram Web Resource},
-  year =    {2016}
+  journal = {MathWorld--A Wolfram Web Resource}
 }@book{YDing,
 	author = {Yongwang Ding and Ramesh Harjani},
 	title = {High-Linearity CMOS RF Front-End Circuits},
