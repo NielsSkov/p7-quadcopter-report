@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  11 NOV 2016 10:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  12 NOV 2016 11:51
 entering extended mode
 **./16gr733.tex
 (16gr733.tex
@@ -3043,6 +3043,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 \c__siunitx_mathtt_int=\count407
 
+
+LaTeX Warning: Citation 'YDing' on page 1 undefined on input line 148.
+
 <droneDiagram.pdf, id=4, 614.65315pt x 583.20197pt>
 File: droneDiagram.pdf Graphic file (type pdf)
  <use droneDiagram.pdf>
@@ -3057,9 +3060,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ]
 Underfull \vbox (badness 3646) has occurred while \output is active []
 
- [2 <./droneDiagram.pdf>]
+ [2 <./droneDiagram.pdf>] <AttitudeControlDiagram.pdf, id=24, 727.11696pt x 295
+.6298pt>
+File: AttitudeControlDiagram.pdf Graphic file (type pdf)
 
-LaTeX Warning: Empty bibliography on input line 319.
+<use AttitudeControlDiagram.pdf>
+Package pdftex.def Info: AttitudeControlDiagram.pdf used on input line 359.
+(pdftex.def)             Requested size: 218.13676pt x 88.68962pt.
+
+
+LaTeX Warning: Empty bibliography on input line 398.
 
 
 ** Conference Paper **
@@ -3077,31 +3087,45 @@ Before submitting the final camera ready copy, remember to:
 
 
 AED: lastpage setting LastPage
-[3
+[3 <./AttitudeControlDiagram.pdf>] (16gr733.aux)
 
-] (16gr733.aux)
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                16gr733
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to '16gr733.run.xml'.
 \openout1 = `16gr733.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43199 strings out of 493634
- 934188 string characters out of 3151048
- 1524377 words of memory out of 3000000
- 45982 multiletter control sequences out of 15000+200000
- 109061 words of font info for 118 fonts, out of 3000000 for 9000
+ 43449 strings out of 493634
+ 938443 string characters out of 3151048
+ 1537521 words of memory out of 3000000
+ 46209 multiletter control sequences out of 15000+200000
+ 119347 words of font info for 150 fonts, out of 3000000 for 9000
  1028 hyphenation exceptions out of 8191
- 57i,19n,78p,10462b,1477s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 57i,21n,78p,10462b,1481s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/MikTex/fonts/enc/dvips/fontname/8r.enc}<D:/MikTex/fonts/type1/public/amsf
-onts/cm/cmmi10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/MikT
-ex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MikTex/fonts/type1/public/amsfo
-nts/cm/cmr7.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/MikTex
-/fonts/type1/public/amsfonts/cm/cmsy7.pfb><D:/MikTex/fonts/type1/urw/times/utmb
-8a.pfb><D:/MikTex/fonts/type1/urw/times/utmbi8a.pfb><D:/MikTex/fonts/type1/urw/
-times/utmr8a.pfb><D:/MikTex/fonts/type1/urw/times/utmri8a.pfb>
-Output written on 16gr733.pdf (3 pages, 141022 bytes).
+onts/cm/cmbx10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx8.pfb><D:/MikT
+ex/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MikTex/fonts/type1/public/amsf
+onts/cmextra/cmex8.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:
+/MikTex/fonts/type1/public/amsfonts/cm/cmmi5.pfb><D:/MikTex/fonts/type1/public/
+amsfonts/cm/cmmi6.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/M
+ikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MikTex/fonts/type1/public/am
+sfonts/cm/cmr5.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/MikTe
+x/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/MikTex/fonts/type1/public/amsfont
+s/cm/cmr8.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/MikTex/f
+onts/type1/public/amsfonts/cm/cmsy6.pfb><D:/MikTex/fonts/type1/public/amsfonts/
+cm/cmsy7.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/MikTex/fon
+ts/type1/urw/times/utmb8a.pfb><D:/MikTex/fonts/type1/urw/times/utmbi8a.pfb><D:/
+MikTex/fonts/type1/urw/times/utmr8a.pfb><D:/MikTex/fonts/type1/urw/times/utmri8
+a.pfb>
+Output written on 16gr733.pdf (3 pages, 246456 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
+ 119 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
