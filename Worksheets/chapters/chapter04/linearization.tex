@@ -10,29 +10,33 @@
 The goal of designing a linear controller requires a linearization of the model equations around an equilibrium point. This is done for each equation using the first order Taylor approximation. See \autoref{taylor}.
 %
 \begin{flalign}
-	f(x) &\approx f(x_0) + f'(x_0) (x-x_0)  \rightarrow\ \Delta f(x) \approx f'(x_0)\ \Delta x
+	f(x) &\approx f(\overline{x}) + f'(\overline{x}) (x-\overline{x})  \rightarrow\ \Delta f(x) \approx f'(\overline{x})\ \Delta x
 	\label{taylor}
 \end{flalign}
+In this equation, $\overline{x}$ represents the equilibrium point around which the equation is linearized.
 
-The attitude equations, \autoref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}, and the translational equations, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must be linearized since these contain trigonometric functions and squared velocities. 
+To apply the approximation, the function to be approximated must be differentiated with respect to each of the present variables. An example is shown in \autoref{eq:dummytaylor} in which an example function, $f$, dependent on some example variables, $x_1$, $x_2$ and $x_3$, is linearized. 
+\begin{flalign}
+	f &= f(x_1,x_2,x_3) \nonumber \\
+	\Delta f&=\frac{\partial f}{\partial x_1}\bigg|_{\overline{x}_1,\overline{x}_2,\overline{x}_3}\ \Delta x_1 + \frac{\partial f}{\partial x_2}\bigg|_{\overline{x}_1,\overline{x}_2,\overline{x}_3}\ \Delta x_2 + \frac{\partial f}{\partial x_3}\bigg|_{\overline{x}_1,\overline{x}_2,\overline{x}_3}\ \Delta x_3
+	\label{eq:dummytaylor}
+\end{flalign}
+Once linearized, the function is expressed in terms of variations from the equilibrium point. This is represented by the symbol $\Delta$ in all linearized equations.
+
+In the quadcopter model, the attitude equations, \autoref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}, and the translational equations, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must be linearized since these contain trigonometric functions and squared velocities. 
 
 The equilibrium point is chosen to be where the quadcopter is hovering at a fixed position in the inertial frame. This choice makes all equilibrium points equal to zero both angular and translational. In \autoref{eq:AccelerationEqInertialVelocities1} and \autoref{eq:AccelerationEqInertialVelocities2} it can be seen that to yield a zero in x and y accelerations, the pitch and roll of the quadcopter should be zero as well. To keep the acceleration in the z axis in the inertial frame equal to zero, the rotational speed of the motor, which ensures the equilibrium points, needs to be calculated. This can be done from \autoref{eq:AccelerationEqInertialVelocities3}.
 %
 \begin{flalign}
-	m\ \overline{\ddot{z}_I} &= F_g-k_{th}\ ({\overline{\omega_1}}^2+{\overline{\omega_2}}^2+{\overline{\omega_3}}^2+{\overline{\omega_4}}^2)\ \cos(\overline{\phi})\ \cos(\overline{\theta})
+	m\ \overline{\ddot{z}}_I &= F_g-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \cos(\overline{\phi})\ \cos(\overline{\theta})
 \end{flalign}
 
 Since all the equilibrium points are set to zero the $\overline{\ddot{z}_I}$, $\overline{\phi}$ and $\overline{\theta}$ are equal to zero. The four rotational speeds of the motor should be the same to keep the acceleration in the z axis. Hence it is possible to combine the four to one, $\overline{\omega}_i$. By utilizing these changes the equation can be rearrange to the following.
-
 \begin{flalign}
 	\overline{\omega}_i=\sqrt{\frac{m\  g}{4k_{th}}}
 	\label{eq:equilibriumomegas}
 \end{flalign}
-
-Applying the approximation to the attitude model equations around the equilibrium point, \autoref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3} are obtained.
-
-\fxnote{A little more explanation on how the delta comes into play  and how it relates to (3.16)}
-
+Applying the linearization procedure to the attitude model equations around the equilibrium point, \autoref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3} are obtained.
 \begin{flalign}
   J_x\ \Delta\ddot{\phi}   &= 2\ k_{th}\ L\ {\overline{\omega}_4}\ \Delta \omega_4\ -\ 2\ k_{th}\ L\ {\overline{\omega}_2}\ \Delta \omega_2
   \label{eqAngleLin1} \\
