@@ -29,7 +29,7 @@ In this approach a state feedback is used to allow the system to return to equil
 The feedback law is given by \autoref{eq:ssControllerAction}.
 %
 \begin{flalign} 
-	\vec{u}(t) &=\vec{F} \cdot \vec{x}(t) + \cdot\vec{F}_{Int} \cdot \vec{x}_{Int}(t)
+	\vec{u}(t) &=\vec{F} \  \vec{x}(t) + \ \vec{F}_{Int} \  \vec{x}_{Int}(t)
      \label{eq:ssControllerAction}
 \end{flalign}
 %
@@ -47,14 +47,14 @@ In this equation, \si{\vec{x}_{Int}(t)} is given by \autoref{eq:ssControllerActi
 This last equation can be introduced in the existing state space model, taking \si{\vec{x}_{Int}(t)} as new states, and giving the result shown in \autoref{xdotSSExtended} and \autoref{ySSExtended}.
 %
 \begin{flalign} 
-    \dot{\vec{x}}_e(t) &= \vec{A}_e \cdot \vec{x}_e(t) + \vec{B}_e \cdot \vec{u}(t) + 
+    \dot{\vec{x}}_e(t) &= \vec{A}_e \  \vec{x}_e(t) + \vec{B}_e \  \vec{u}(t) + 
     \begin{bmatrix}
        \ \vec{0}     \ \ \ \\ 
        \ \vec{-I}     \ \ \  		
    \end{bmatrix}
    \vec{r}(t) 
    \label{xdotSSExtended}\\ 
-    \vec{y}(t) &= \vec{C}_e \cdot \vec{x}_e 
+    \vec{y}(t) &= \vec{C}_e \  \vec{x}_e 
        \label{ySSExtended}
 \end{flalign} 
 %
