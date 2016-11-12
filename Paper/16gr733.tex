@@ -148,52 +148,13 @@ In the last years, the interest for quadcopters has increased due to the great p
 The quadcopter constitutes a control challenge due to its naturally unstable and coupled behavior. The system has 6 degrees of freedom, the 3 position coordinates and the 3 orientations, and there are only four actuation variables which are the motor velocities. The dimension of the problem is explained by McKerrow in \cite{draganflyer}.
 
 \item Previous Approaches - examples of what others have done to obtain similar goals of stabilization like we pursue. What have others done differently than we plan to do to obtain the same end result. \\ 
-The control of a quadcopter has been addressed many times in the recent years. In Mian et al. \cite{backstepping} the quadcopter is controlled using a back-stepping technique and non-linear controllers. Other way of solving the issue is presented in Tayebi et al. \cite{quaternionPD} in which the quadcopter attitude is modeled using quaternions and controlled with a PD based controller. In \cite{MianWang}, Mian and Yang model the system using its dynamic equations and use non linear controllers to achieve a steady flight while in Mokhtari et al. \cite{GHinf} the system is controlled by a mixture of a robust feedback linearization and a linear GH$_{\infty}$.
+The control of a quadcopter has been addressed many times in the recent years. In Mian et al. \cite{backstepping} the quadcopter is controlled using a back-stepping technique and non-linear controllers. Other way of solving the issue is presented in Tayebi et al. \cite{quaternionsPD} in which the quadcopter attitude is modeled using quaternions and controlled with a PD based controller. In \cite{MianWang}, Mian and Yang model the system using its dynamic equations and use non linear controllers to achieve a steady flight while in Mokhtari et al. \cite{GHinf} the system is controlled by a mixture of a robust feedback linearization and a linear GH$_{\infty}$.
 
 \item Describe our approach shortly.\\
 The approach presented here models the quadcopter by a first principles method. This approach yields a non linear model that describes the attitude and translational behavior of the quadcopter. The model is then linearized around an equilibrium point, which is chosen to be in hovering position. With the linearized equations, controllers for attitude and translational behaviors are designed. The angular controller is obtained by means of a State Space representation while the translational controller is designed using classical control techniques. In the control system, the translational constitutes an outer loop  and sets the reference for the attitude controller.
 
 In the last part of the paper, the simulations and experimental results of the designed controllers are shown and discussed.
 \end{itemize}
-
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[scale=0.3]{harrypotter}
-%	\caption{Test of figure.}
-%	\label{centerOfMassDiagram}
-%\end{figure}
-
-
-%\begin{table}[H]
-%	\centering
-%	\begin{tabular}{|p{4.8cm}|p{2cm}|}
-%		\hline%------------------------------------------------------------------------------------
-%		\textbf{Characteristics}                 &  \textbf{Value} \unitWh{Unit}  \\
-%		\hline%------------------------------------------------------------------------------------
-%		Nominal output current                   &  5 \unitWh{A}  	\\
-%		\hline%------------------------------------------------------------------------------------
-%		Peak current (<20 s)                     &  15 \unitWh{A}	\\
-%		\hline%------------------------------------------------------------------------------------
-%		Current control PWM frequency 				   &  53,6 \unitWh{kHz}  \\
-%		\hline%------------------------------------------------------------------------------------
-%		Sample Rate of PI current controller     &  53,6 \unitWh{kHz}  \\
-%		\hline%------------------------------------------------------------------------------------
-%	\end{tabular}
-%	\caption{Important parameters of the motor control board.}
-%	\label{MotorControlBoardTable}
-%\end{table}
-
-%\begin{flalign}
-%\eq{J_F \vec{\ddot{\theta}_F}} { -B_F \vec{\dot{\theta}_F} + \vec{l_F} \times (m_F\cdot \vec{g}) + \vec{l_w} \times \vec{F} - \vec{\tau_m} + B_w \vec{\dot{\theta}_w}} \unit{N\cdot m}
-%\label{frameModelEq}
-%\end{flalign}
-
-%\begin{flalign}
-%\eqOne{\tau_{m}[n]}{\num{-8,314} \cdot e_{\theta}[n]+ \num{7,422} \cdot e_{\theta}[n-1] + \num{8,3023} \cdot e_{\theta}[n-2] }
-%\eqTwo{ - \num{7,434} \cdot e_{\theta}[n-3] + \num{1,382} \cdot \tau_{m}[n-1] - \num{0,3415} \cdot \tau_{m}[n-2] }
-%\eqThree{- \num{0,001638} \cdot \tau_{m}[n-3]} \unit{N \cdot m} 
-%\label{eq:discControllerDiffEq}
-%\end{flalign}
 
 \section{Method}
 The methods presented in this section are constituted by the modelling of the system, the linearization of the obtained model and the design of the controllers.
@@ -203,7 +164,7 @@ The methods presented in this section are constituted by the modelling of the sy
 The quadcopter system is shown in Figure \ref{droneDiagram}. As it can bee seen, the system is modeled by using two coordinate frames. The inertial frame is utilized to describe the translational movement while the body frame is attached to the quadcopter and used to characterize its attitude behavior. In the figure, also the positive references for rotational and translational movements are depicted, as well as the main forces and torques acting on the quadcopter. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.3]{droneDiagram}
+	\includegraphics[scale=0.3]{figures/droneDiagram}
 	\caption{Quadcopter diagram showing the forces and torques acting on the system and the positive references chosen for rotations and translations in both Inertial and Body coordinate frames.}
 	\label{droneDiagram}
 \end{figure}
@@ -356,7 +317,7 @@ The values for the A, B, C and D matrices are obtained from the linearized attit
 The designed attitude controller is depicted in the block diagram shown in Figure \ref{attitudeControlDiagram}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.3]{AttitudeControlDiagram}
+	\includegraphics[scale=0.3]{figures/AttitudeControlDiagram}
 	\caption{Control structure for regulating the attitude response of the quadcopter. It includes the state feedback, the reduced order observer and the integral term.}
 	\label{attitudeControlDiagram}
 \end{figure}
