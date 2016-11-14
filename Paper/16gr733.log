@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.6.9)  14 NOV 2016 10:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.6.9)  14 NOV 2016 18:13
 entering extended mode
 **./16gr733.tex
 (16gr733.tex
@@ -1907,7 +1907,15 @@ Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
-))) (setup/macros.tex)
+))) (setup/macros.tex
+("C:\Users\Niels Skov Vestergaa\AppData\Roaming\MiKTeX\2.9\tex\latex\xifthen\xi
+fthen.sty"
+Package: xifthen 2015/11/05 v1.4.0 Extended ifthen features
+
+("C:\Users\Niels Skov Vestergaa\AppData\Roaming\MiKTeX\2.9\tex\latex\ifmtarg\if
+mtarg.sty"
+Package: ifmtarg 2009/09/02 v1.2a check for an empty argument
+)))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
@@ -3304,7 +3312,15 @@ Package pdftex.def Info: figures/droneDiagram.pdf used on input line 6.
 .map}
 
 
- <./figures/droneDiagram.pdf>])
+ <./figures/droneDiagram.pdf>]
+Overfull \hbox (3.40863pt too wide) in paragraph at lines 23--23
+[]|$\OML/cmm/m/it/10 k[]$| 
+ []
+
+
+Underfull \vbox (badness 1009) has occurred while \output is active []
+
+)
 (content/control.tex) (content/attitudeController.tex [2]
 <figures/AttitudeControlDiagram.pdf, id=26, 727.11696pt x 295.6298pt>
 File: figures/AttitudeControlDiagram.pdf Graphic file (type pdf)
@@ -3338,10 +3354,10 @@ Package logreq Info: Writing requests to '16gr733.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43221 strings out of 493335
- 950347 string characters out of 3136634
- 1516405 words of memory out of 3000000
- 46078 multiletter control sequences out of 15000+200000
+ 43239 strings out of 493335
+ 951092 string characters out of 3136634
+ 1518303 words of memory out of 3000000
+ 46088 multiletter control sequences out of 15000+200000
  119347 words of font info for 150 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,21n,78p,10416b,1440s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -3366,7 +3382,7 @@ lic/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
 /utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pf
 b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on 16gr733.pdf (3 pages, 249491 bytes).
+Output written on 16gr733.pdf (3 pages, 251420 bytes).
 PDF statistics:
  119 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
