@@ -31,17 +31,25 @@ From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants
 The systems is formed by an integrator and a gain. This means the systems are marginally stable in open-loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed-loop if no controller is placed. This feature requires a negative controller gain to compensate the plant.
 
 It is noticeable that the control action for this design is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. To take these dynamics into account, an approximation of the behavior of the attitude controller can be done, using a second order system and looking at the step response when a pitch reference is applied.
-
-XXXXXXXXXStep responseXXXX 
+%
+\begin{figure}[H]
+    \includegraphics[scale=.7]{figures/pitchResponseApprox}
+    \centering			
+    \captionof{figure}{Comparison between the behavior of the pitch due to the attitude controller and the approximation done with a second order system.} \label{fig:pitchResponseApprox}
+   \end{figure} 
 %
 \begin{flalign}
-        G_{pitch}(s)=\frac{\theta (s)}{\theta_{ref} (s)}=\frac{\omega^2_n}{s^2+\xi \ \omega_n \ s+\omega^2_n}=\frac{}{s^2+ \ s+}
+        G_{pitch}(s)=\frac{\theta (s)}{\theta_{ref} (s)}=\frac{\omega^2_n}{s^2+\xi \ \omega_n \ s+\omega^2_n}=\frac{86.05}{s^2+16.14 \ s+86.05}
 \end{flalign}
 %
-With this new dynamics added to the system, the design of the controller can be done. The final rot locus of the plant can be seen in \autoref{}.
-
-XXXXXXRoot Locus with dynamics of SSXXXXXXX
-
+With this new dynamics added to the system, the design of the controller can be done. The final rot locus of the plant can be seen in \autoref{fig:rLocusVelocity}.
+%
+\begin{figure}[H]
+    \includegraphics[scale=.7]{figures/rLocusVelocity}
+    \centering			
+    \captionof{figure}{Root locus of the plant for the velocity controller, that includes as well the dynamics of the attitude controller in pitch.} \label{fig:rLocusVelocity}
+\end{figure} 
+%
 A proportional controller is considered sufficient, as there is an integrator in the plant so there is no need to compensate for a steady state error.
 
 The value of this gain is chosen such that the system is as fast as possible without creating an overshoot and taking into account the control action required, which in this case is the pitch needed.
@@ -49,20 +57,37 @@ The value of this gain is chosen such that the system is as fast as possible wit
 The final expression for the controllers can be written as \autoref{eq:Cxdot} and \ref{eq:Cydot}. Since the plant for the y controller has already a positive gain, there is no need to include a negative sign in the controller.
 %
 \begin{flalign}
-C_{\dot{x}_I}(s)&= - \label{eq:Cxdot} \\
-C_{\dot{y}_I}(s)&= \label{eq:Cydot}
+C_{\dot{x}_I}(s)&= -0.19 \label{eq:Cxdot} \\
+C_{\dot{y}_I}(s)&= 0.19 \label{eq:Cydot}
 \end{flalign}
 %
 \begin{where}
-    \va{C_{x_I}}{is the controller for the translational velocity in $x_I$ direction}{}
-    \va{C_{y_I}}{is the controller for the translational velocity in $y_I$ direction}{}
+    \va{C_{\dot{x}_I}}{is the controller for the translational velocity in $x_I$ direction}{}
+    \va{C_{\dot{y}_I}}{is the controller for the translational velocity in $y_I$ direction}{}
 \end{where}
 
-The step responses and the corresponding control actions can be seen in \autoref{} and \ref{}.
-
-
-XXXXX Final step responses XXXXXX
-
+The step responses and the corresponding control actions can be seen in \autoref{fig:stepVelocity} and \ref{fig:stepVelocityControlAction}.
+%
+\begin{minipage}{\linewidth}
+    \begin{minipage}{0.5\linewidth}
+        \begin{figure}[H]
+            \includegraphics[scale=.55]{figures/stepVelocity}
+            \centering
+            \captionof{figure}{Step response from the reference to the translational velocity.}
+            \label{fig:stepVelocity}
+        \end{figure}
+    \end{minipage}
+    \hspace{0.03\linewidth}
+    \begin{minipage}{0.5\linewidth}
+        \begin{figure}[H]
+            \includegraphics[scale=.55]{figures/stepVelocityControlAction}
+            \centering
+            \captionof{figure}{Required control action (pitch angle) to achieve the reference in translational velocity.}
+            \label{fig:stepVelocityControlAction}
+        \end{figure}
+    \end{minipage}
+\end{minipage}
+%
 Once the velocities controllers have been done, the position controllers can be designed following a similar procedure.
 
 First, a transfer function from the velocity to the position is required, which is just an integrator.
@@ -77,11 +102,50 @@ G_{y_I}(s)&=\frac{y_I (s)}{\dot{y}_I (s)}=\frac{1}{s}  \label{eq:Gy}
     \va{G_{y_I}}{is the plant for the translational position in $y_I$ direction}{}
 \end{where}
 
-As in the case of the velocity controller, the inner dynamics are taken into account in the design of the controller. For doing so, the dynamics of the velocity control loop (which includes the attitude controller) are added, which result in the root locus of \autoref{}.
+As in the case of the velocity controller, the inner dynamics are taken into account in the design of the controller. For doing so, the dynamics of the velocity control loop (which includes the attitude controller) are added, which result in the root locus of \autoref{fig:rLocusPosition}.
+%
+\begin{figure}[H]
+    \includegraphics[scale=.7]{figures/rLocusPosition}
+    \centering			
+    \captionof{figure}{Root locus of the plant for the position controller, that includes as well the dynamics of the inner control loop.} \label{fig:rLocusPosition}
+\end{figure} 
+%
+As in the previous case, a proportional controller is enough to make the loop have the appropiate dynamics. The gain is then choose such that the system is as fast as possible and there is no overshoot.
 
+The final expression for the controllers can be written as \autoref{eq:Cx} and \ref{eq:Cy}. Since the plant for the y controller has already a positive gain, there is no need to include a negative sign in the controller.
+%
+\begin{flalign}
+    C_{x_I}(s)&= 0.8 \label{eq:Cx} \\
+    C_{y_I}(s)&= 0.8 \label{eq:Cy}
+\end{flalign}
+%
+\begin{where}
+    \va{C_{x_I}}{is the controller for the translational position in $x_I$ direction}{}
+    \va{C_{y_I}}{is the controller for the translational position in $y_I$ direction}{}
+\end{where}
 
-XXXXX Root locus for positionXXXXXX
+The step responses and the corresponding control actions can be seen in \autoref{fig:stepPosition} and \ref{fig:stepPositionControlAction}.
 
+\begin{minipage}{\linewidth}
+    \begin{minipage}{0.5\linewidth}
+        \begin{figure}[H]
+            \includegraphics[scale=.55]{figures/stepPosition}
+            \centering
+            \captionof{figure}{Step response from the reference to the translational position.}
+            \label{fig:stepPosition}
+        \end{figure}
+    \end{minipage}
+    \hspace{0.03\linewidth}
+    \begin{minipage}{0.5\linewidth}
+        \begin{figure}[H] 
+            \includegraphics[scale=.55]{figures/stepPositionControlAction}
+            \centering
+            \captionof{figure}{Required control action (velocity) to achieve the reference in translational position.}
+            \label{fig:stepPositionControlAction}
+        \end{figure}
+    \end{minipage}
+\end{minipage}
+%
 
 
 %To determine how large the absolute gain can be without making the system unstable due to saturation issues, it is necessary to consider the bandwidth. \\ \\
