@@ -2,7 +2,7 @@
 The attitude model of the quadcopter describes how the roll, pitch and yaw angles evolve according to the forces and torques exerted by the motors and the attached propellers. 
 
 The basis for deriving the model are the free body diagrams illustrated in \autoref{fig:droneDiagram} and \ref{fig:torquesDiagram}. 
-
+%
 \begin{minipage}{\linewidth}
 	\begin{minipage}{0.6\linewidth}
 		\begin{figure}[H]
@@ -24,7 +24,7 @@ The basis for deriving the model are the free body diagrams illustrated in \auto
 		\end{figure}
 	\end{minipage}
 \end{minipage}
-
+%
 In \autoref{fig:droneDiagram} a freebody diagram of the drone is illustrated. This diagram is an extended diagram of \autoref{fig:framesDiagram} shown in \autoref{sec:ModelOverview}. In this extended diagram each of the thrust forces exerted by the motor with an attached propeller is included, $F_1$, $F_2$, $F_3$ and $F_4$. Besides these four forces the gravitational force is included as well. In \autoref{fig:torquesDiagram} the drone is seen from the above. Here the four torques produced by the drag forces at the propeller is illustrated. As can be seen on the figure torque one and three is pointing the opposite direction compared to torque two and four. This is due to the directions in which the motors turn.  
 
 From the diagrams above, the equations of angular motion along the three body axes can be derived by first principles modelling, that is, using only laws of physics. In this case, Newton's Second Law for rotational motion. This can be as seen in \autoref{eq:newtonangular} where the Newton's Second Law is applied to the three axis' separately.
