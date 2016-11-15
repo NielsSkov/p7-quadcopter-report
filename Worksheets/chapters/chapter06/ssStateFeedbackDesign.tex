@@ -26,7 +26,7 @@ In this approach a state feedback is used to allow the system to return to equil
 \end{minipage}
 
 
-The feedback law is given by \autoref{eq:ssControllerAction}.
+From \autoref{fig:DetailedControllerColorDiagram}, the feedback law yields \autoref{eq:ssControllerAction}.
 %
 \begin{flalign} 
 	\vec{u}(t) &=\vec{F} \  \vec{x}(t) + \ \vec{F}_{Int} \  \vec{x}_{Int}(t)
@@ -35,10 +35,10 @@ The feedback law is given by \autoref{eq:ssControllerAction}.
 %
 \begin{where}
 	\va{\vec{F}}{is the 4x6 state feedback matrix}{}
-	\va{\vec{F}_{Int}}{is the 3x6 asdffsfaf matrix }{}
+	\va{\vec{F}_{Int}}{is the 3x6 integral feedback matrix }{}
 \end{where}
-%
-In this equation, \si{\vec{x}_{Int}(t)} is given by \autoref{eq:ssControllerAction1}, that is equivalent to \autoref{eq:ssControllerAction2}.
+
+In this equation, \si{\vec{x}_{Int}(t)} is given by \autoref{eq:ssControllerAction1}, that is equivalent to \autoref{eq:ssControllerAction2}, see \autoref{fig:DetailedControllerColorDiagram}.
 \begin{flalign}
     \vec{x}_{Int}(t) &= \int_{0}^{t} \vec{y}(\tau)-\vec{r}(\tau) d\tau	\label{eq:ssControllerAction1}\\
     \vec{\dot{x}}_{Int}(t) &= \vec{y}(t)-\vec{r}(t) \label{eq:ssControllerAction2}
