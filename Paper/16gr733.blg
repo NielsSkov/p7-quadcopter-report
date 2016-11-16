@@ -1,0 +1,15 @@
+[0] Config.pm:343> INFO - This is Biber 2.5
+[1] Config.pm:346> INFO - Logfile is '16gr733.blg'
+[56] biber-MSWIN64:290> INFO - === 
+[89] Biber.pm:351> INFO - Reading '16gr733.bcf'
+[239] Biber.pm:776> INFO - Found 7 citekeys in bib section 0
+[262] Biber.pm:3493> INFO - Processing section 0
+[296] Biber.pm:3657> INFO - Looking for bibtex format file 'setup/bibliography.bib' for section 0
+[308] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
+[312] bibtex.pm:1048> INFO - Found BibTeX data source 'setup/bibliography.bib'
+[355] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[355] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[355] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'en-US'
+[355] Biber.pm:3310> INFO - No sort tailoring available for locale 'en-US'
+[363] bbl.pm:526> INFO - Writing '16gr733.bbl' with encoding 'UTF-8'
+[365] bbl.pm:619> INFO - Output to 16gr733.bbl

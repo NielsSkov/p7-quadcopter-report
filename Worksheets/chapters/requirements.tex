@@ -1,21 +1,90 @@
 \chapter{Requirements}
-The purpose of this chapter is to consider requirements for the system, that will function as guideline when the control system is to be designed at a later point.
+\chapter{Technical requirements}
+\label{ch:technicalRequirements}
+Based on the preanalysis, technical requirements can be put up for the prototype:
+\begin{enumerate}[label=\textbf{\arabic*})]
+%\item What will the link budget be?
+%\begin{itemize}
+%	\item How does the chosen frequency band(s) and antenna type(s) affect the link budget?
+%	\item How much noise is present in the channel?
+%	\item What bit error rate is acceptable?
+%	\item What amount of throughput does different modulation schemes yield?
+%\end{itemize}
+%\item \textbf{Use an amateur radio frequency}
+%\begin{itemize}
+%\item[] Since a dedicated frequency allocation costs money, using an amateur radio band saves the costs and lets radio amateurs help 
+%\end{itemize}
 
-The quadcopter has to be able to fly and hover stabalily. It must be able to withstand a disturbance of a certain size.\fxfatal{This is to be settled by choice} 
-Requirements for the system's steprespons  is to be set, as this will be the dynamic behaviour of the system. 
+\item \textbf{The quadcopter should be able to receive its own position and orientation from the Vicon system, through a computer.}
+\begin{itemize}
+\item[]  .
+\end{itemize}
 
-The quadcopter must be able to obtain stability after it has been given an impulse, as this will simulate a disturbance.
+\item \textbf{The prototype should be able to disregard incorrect packets transmitted from the computer.}
+\begin{itemize}
+\item[] .
+\end{itemize}
 
-The user gives a position input at the ground station, that is send to the quadcopter. The controllers are run on board. To simplify matters as the three axis are coupled, the controllers shall get the quadcopter to the requested position by first moving it in one axes, then the other and lastly the third. This is not an efficient movement, but due to the time constraint of the project, it is not considered reasonable to obtain a robust control system that will be able to change all three axis while maintaining stable. \fxfatal{you will probably have last part removed, i just wrote it quickly - no harm done ;)}
+\item \textbf{The quadcopter should be able to land if the battery voltage is below ??.}
+\begin{itemize}
+\item[] .
+\end{itemize}
 
-To be written:
+\item \textbf{The quadcopter should be able to }
+\begin{itemize}
+\item[] .
+\end{itemize}
 
-Time domain\\
-What will overshoot mean for the system physically ? \\
-What will a steady state error mean? \\
-What will a slow rise time mean? Slow system? Do we want a really fast system. Fast and stable is a compromise - how should that compromise be levelled in our project? 
+\item \textbf{Transmit \& receive data with a rate of min. 1.3 Mbps}
+\begin{itemize}
+\item[] This requirement is based on calculations found in \autoref{technicalAnalysisConclusion}, showing that for the LEO orbit with a throughput of 1.3 Mbps, the data can be decoded with a BER of ${10^{-5}}$ if Viterbi FEC is used. The prototype should demonstrate the use of this bitrate, but without considering the BER, as FEC is not implemented.
+\end{itemize}
 
-Frequency domain\\
-Phase margin and gain margin - how robust is the controller. How far is the system from instability? 
+\item \textbf{Transmit \& receive data with a rate of 900 bps}
+\begin{itemize}
+\item[] This requirement is based on calculations found in \autoref{technicalAnalysisConclusion}, showing that for the lunar orbit with a throughput of 900 bps, the data can be decoded with a BER of ${10^{-5}}$ if Viterbi FEC is used. The prototype should demonstrate the use of this bitrate, but without considering the BER, as FEC is not implemented.
+\end{itemize}
+
+\item \textbf{Deliver a BER of max. $\mathbf{2.6\cdot10^{-2}}$ under LEO conditions}
+%\item \textbf{Deliver a BER of max. $\mathbf{10^{-5}}$ at an SNR of  2.1 dB and 1.4 dB when using forward error coding}
+\begin{itemize}
+\item[] The acceptable bit-error rate (BER) is decided to be $2.6\cdot10^{-2}$, without FEC. This is based on the theoretical BER for OQPSk, see \autoref{fig:BER}, with a 10 \% margin added to the BER. The BER is calculated at the theoretical Eb/N$_0$ for LEO conditions, as shown in \autoref{fig:BER}. By LEO conditions is meant the SNR, bitrate and bandwidth calculated for the LEO link, see \autoref{tab:key-values}.
+\end{itemize}
+
+\item \textbf{Deliver a BER of max. $\mathbf{2.8\cdot10^{-2}}$ under lunar conditions}
+%\item \textbf{Deliver a BER of max. $\mathbf{10^{-5}}$ at an SNR of  2.1 dB and 1.4 dB when using forward error coding}
+\begin{itemize}
+\item[] The acceptable bit-error rate (BER) is decided to be $2.8\cdot10^{-2}$. This is based on the theoretical BER for OQPSk, see \autoref{fig:BER}, with a 10 \% margin added to the BER. The BER is calculated at the theoretical Eb/N$_0$ for lunar conditions conditions, as shown in \autoref{fig:BER}. By lunar conditions is meant the SNR, bitrate and bandwidth calculated for the lunar link, see \autoref{tab:key-values}.
+\end{itemize}
+
+%\item \textbf{The prototype should, with modifications, be %realizable as a functional radio in a cubesat}
+%\begin{itemize}
+%\item[] It is important that the choices and designs made in the %prototype are possible to implement in a cubesat, with the %constraints set for this platform as described in% \autoref{cha:Introduction}.
+%\end{itemize}
+\end{enumerate}
+
+
+
+
+
+
+%The purpose of this chapter is to consider requirements for the system, that will function as guideline when the control system is to be designed at a later point.
+
+%The quadcopter has to be able to fly and hover stabalily. It must be able to withstand a disturbance of a certain size.\fxfatal{This is to be settled by choice} 
+%Requirements for the system's steprespons  is to be set, as this will be the dynamic behaviour of the system. 
+
+%The quadcopter must be able to obtain stability after it has been given an impulse, as this will simulate a disturbance.
+
+%The user gives a position input at the ground station, that is send to the quadcopter. The controllers are run on board. To simplify matters as the three axis are coupled, the controllers shall get the quadcopter to the requested position by first moving it in one axes, then the other and lastly the third. This is not an efficient movement, but due to the time constraint of the project, it is not considered reasonable to obtain a robust control system that will be able to change all three axis while maintaining stable. \fxfatal{you will probably have last part removed, i just wrote it quickly - no harm done ;)}
+
+%To be written:
+
+%Time domain\\
+%What will overshoot mean for the system physically ? \\
+%What will a steady state error mean? \\
+%What will a slow rise time mean? Slow system? Do we want a really fast system. Fast and stable is a compromise - how should that compromise be levelled in our project? 
+
+%Frequency domain\\
+%Phase margin and gain margin - how robust is the controller. How far is the system from instability? 
 
 
