@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.11.2)  16 NOV 2016 15:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.11.2)  16 NOV 2016 15:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -3200,8 +3200,17 @@ Overfull \hbox (6.43546pt too wide) in paragraph at lines 23--23
 []|$\OML/cmm/m/it/10 G[]$| 
  []
 
-) (./content/results.tex [3 <./figures/cascade_paper.png>])
-(./content/discussion.tex) (./content/conclusion.tex)
+[3 <./figures/cascade_paper.png>]
+Overfull \hbox (6.9146pt too wide) in paragraph at lines 34--34
+[]|$\OML/cmm/m/it/10 G[]$| 
+ []
+
+
+Overfull \hbox (6.43546pt too wide) in paragraph at lines 35--35
+[]|$\OML/cmm/m/it/10 G[]$| 
+ []
+
+) (./content/results.tex) (./content/discussion.tex) (./content/conclusion.tex)
 (./content/acknowledgments.tex)
 
 LaTeX Warning: Empty bibliography on input line 114.
@@ -3238,10 +3247,10 @@ Package logreq Info: Writing requests to '16gr733.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37280 strings out of 493315
- 804684 string characters out of 6137904
+ 37281 strings out of 493315
+ 804694 string characters out of 6137904
  1310599 words of memory out of 5000000
- 40021 multiletter control sequences out of 15000+600000
+ 40022 multiletter control sequences out of 15000+600000
  124393 words of font info for 154 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  58i,21n,78p,930b,1412s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3267,7 +3276,7 @@ type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/u
 rw/times/utmb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/u
 tmbi8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
 ></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on 16gr733.pdf (4 pages, 3929480 bytes).
+Output written on 16gr733.pdf (4 pages, 3931400 bytes).
 PDF statistics:
  115 PDF objects out of 1000 (max. 8388607)
  83 compressed objects within 1 object stream

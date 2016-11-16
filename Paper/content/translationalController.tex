@@ -23,4 +23,15 @@ The model equations derived previously, see Equation \ref{eq:AccelerationEqInert
 \va{G_{y_I}}{is the plant for the translational velocity in $y_I$ direction}{1}
 \end{where}
 The plants are similar but with different signs. The controller design is carried out for the x translational velocity and applied to the y translational velocity afterwards.\\
-The plant has an integrator and is therefore marginally stable in open loop. A proportional controller is chosen. The gain will be the same for both controllers, but must be negative for the x translational controller in order to compensate for its negative plant as this will otherwise be unstable in the closed loop.
+A proportional controller is sufficient as the plant already has an integrator, that will eliminate a steady state error and output disturbances. The gain will be the same for both controllers, but must be negative for the x translational controller in order to compensate for its negative plant as this will otherwise be unstable in the closed loop.
+
+The final proportional controllers are as follows:
+\begin{align}
+C_{\dot{x}I(s)= -0.19}\\
+C_{\dot{y}I(s)= 0.19}
+\end{align}
+\begin{where}
+    \va{G_{x_I}}{is the plant for the translational position in $x_I$ direction}{1}
+    \va{G_{y_I}}{is the plant for the translational position in $y_I$ direction}{1}
+\end{where}
+The gain is designed such that it encounters a bandwidth that is three times lower than the attitude model to ensure minimum effect of disturbances. TO BE CONTINUED \fxnote{to be continued - Andrea}
