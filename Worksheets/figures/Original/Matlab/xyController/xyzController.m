@@ -5,43 +5,47 @@ clc
 
 run Parameters.m
 run attitudeController.m
-roll_ref=0;
-pitch_ref=1;
-sim('attitudeControllerSim')
+% roll_ref=0;
+% pitch_ref=1;
 
-% Find dynamics for pitch controller
-close all
-ts=0.57;
-Mp=0;
-chi=0.87;
-wn=4.6/ts/chi;
+%sim('attitudeControllerSim')
+% Get Bode ---> w_BW=5rad/s
 
+% % Find dynamics for pitch controller
+% close all
+% ts=0.57;
+% Mp=0;
+% chi=0.87;
+% wn=4.6/ts/chi;
+% 
 s=tf('s');
-Gpitch=wn^2/(s^2+2*chi*wn*s+wn^2);
-disp(Gpitch);
-
+% Gpitch=wn^2/(s^2+2*chi*wn*s+wn^2);
+% disp(Gpitch);
+% 
 Kx=-kth*(w1_bar^2+w2_bar^2+w3_bar^2+w4_bar^2);
 Gxdot=Kx/(m*s);
-
-FigHandle = figure('Position', [100, 100, 600, 400]);
-step(Gpitch);
-set(findall(gcf,'Type','line'),'LineWidth',1.2);
-hold on;
-plot(pitch.Time, pitch.Data,'k','LineWidth',1.2);
-grid on;
-grid minor;
-ylabel('Angle (rad)');
-legend('Simulated Response','Second Order Approximation','Location','SouthEast');
+% 
+% FigHandle = figure('Position', [100, 100, 600, 400]);
+% step(Gpitch);
+% set(findall(gcf,'Type','line'),'LineWidth',1.2);
+% hold on;
+% plot(pitch.Time, pitch.Data,'k','LineWidth',1.2);
+% grid on;
+% grid minor;
+% ylabel('Angle (rad)');
+% legend('Simulated Response','Second Order Approximation','Location','SouthEast');
 
 % Design the velocity controller
-%sisotool(Gpitch*Gxdot);
-FigHandle = figure('Position', [100, 100, 600, 400]);
-rlocus(-Gpitch*Gxdot);
+%sisotool(Gxdot);
+Cxdot=-0.17;
+FigHandle = figure('Position', [100, 100, 700, 400]);
+bode(Gxdot*Cxdot);
+grid on;
+grid minor;
 hold on;
 set(findall(gcf,'Type','line'),'LineWidth',1.2);
 
-Cxdot=-0.19;
-Gxdot_cl=Cxdot*Gxdot*Gpitch/(1+Cxdot*Gxdot*Gpitch);
+Gxdot_cl=Cxdot*Gxdot/(1+Cxdot*Gxdot);
 
 % Step response (output, control action) of the final velocity control loop
 FigHandle = figure('Position', [100, 100, 600, 400]);
@@ -53,7 +57,7 @@ grid minor;
 ylabel('Translational Velocity (m/s)');
 
 FigHandle = figure('Position', [100, 100, 600, 400]);
-step(Cxdot/(1+Cxdot*Gxdot*Gpitch))
+step(Cxdot/(1+Cxdot*Gxdot))
 hold on;
 set(findall(gcf,'Type','line'),'LineWidth',1.2);
 grid on;
@@ -63,13 +67,16 @@ ylabel('Angle (rad)');
 % Design the position controller
 Gx=1/s;
 %sisotool(Gx*Gxdot_cl);
+Cx=0.55;
+
 FigHandle = figure('Position', [100, 100, 600, 400]);
-rlocus(Gx*Gxdot_cl);
+bode(Gx*Cx);
+grid on;
+grid minor;
 hold on;
 set(findall(gcf,'Type','line'),'LineWidth',1.2);
 
-Cx=0.8;
-Gx_cl=Cx*Gx*Gxdot_cl/(1+Cx*Gx*Gxdot_cl);
+Gx_cl=Cx*Gx/(1+Cx*Gx);
 
 % Step response (output, control action) of the final poition control loop
 FigHandle = figure('Position', [100, 100, 600, 400]);
@@ -81,7 +88,7 @@ grid minor;
 ylabel('Translational Position (m)');
 
 FigHandle = figure('Position', [100, 100, 600, 400]);
-step(Cx/(1+Cx*Gx*Gxdot_cl))
+step(Cx/(1+Cx*Gx))
 hold on;
 set(findall(gcf,'Type','line'),'LineWidth',1.2);
 grid on;
