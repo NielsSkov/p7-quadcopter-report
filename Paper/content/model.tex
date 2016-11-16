@@ -1,4 +1,4 @@
-\subsection{Model}
+\section{Model}
 %Model - Drawing, equations, linear equations.
 The quadcopter system is shown in Figure \ref{droneDiagram}. As it can bee seen, the system is modeled by using two coordinate frames. The inertial frame is utilized to describe the translational movement while the body frame is attached to the quadcopter and used to characterize its attitude behavior. In the figure, also the positive references for rotational and translational movements are depicted, as well as the main forces and torques acting on the quadcopter. 
 \begin{figure}[H]
@@ -10,7 +10,7 @@ The quadcopter system is shown in Figure \ref{droneDiagram}. As it can bee seen,
 The forces generated in the propeller are easily explained in the Body coordinate frame. In order to represent them in the Inertial frame a rotation matrix is used. It is built considering a 123 rotation sequence \cite{rotationmatrix}
  
 The dynamic model of the quadcopter can be explain through three sets of equations. The first describes the motor and the propeller, the second presents the attitude response of the quadcopter and the third explains hos the translational variables of the system evolve with time.
-\subsubsection{Motor and Propeller}
+\subsection{Motor and Propeller}
 The four motors in the quadcopter generate the rotation required so the propeller creates the force that lifts the quadcopter. This force is called thrust force and can be modeled as proportional to the square of the motor rotational velocity. MAYBE SOURCE. The coefficient for this equation is called thrust coefficient and has been found by experiments.  
 The rotation of the propellers also generates a torque on each motor due to drag between air and propeller. Drag torque is compensated in the quadcopter by having two of the motors turning in one direction and the two others in the opposite. It can also be described as proportional to the square of the velocity by terms of a drag coefficient that has also been obtained through tests.
 Equation \ref{eq:thrustForce} and \ref{eq:dragTorque} show the expression for the thrust force and drag torque caused by the rotation of the propeller.
@@ -27,7 +27,7 @@ Equation \ref{eq:thrustForce} and \ref{eq:dragTorque} show the expression for th
 \end{where}
 %
 This equations are included in the attitude and translational models derived below.
-\subsubsection{Attitude Model}
+\subsection{Attitude Model}
 The attitude model equations are based on Newton Second Law for rotational movement and are represented in Equation \ref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}. 
 \begin{align}
 	J_x\ddot{\phi}&=k_{th} (\omega^2_4-\omega^2_2)  L \label{eq:AngleEqVelocities1}\\
@@ -40,7 +40,7 @@ The attitude model equations are based on Newton Second Law for rotational movem
 %	\va{k_d}{is the drag coefficients}{N \cdot m\cdot s^2 \cdot rad^{-2}}
 %\end{where}
 The expressions above state how the thrust force difference between motors 1 and 3 affects the roll angular acceleration, how that between motors 4 and 2 affects the pitch angle and how the yaw acceleration depends on the four motors by means of the drag torque generated on the propeller.  
-\subsubsection{Translational Model}
+\subsection{Translational Model}
 The equations describing the response of the system along the x, y and z axes is derived from Newton's Second Law. The forces that act on the system are those from the propellers and the gravitational. These expressions are shown in Equation \ref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}. FIX EQUATIONS
 \begin{flalign}
  	\eq{m\ddot{x}_I}{-k_{th}({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\sin(\theta)} \label{eq:AccelerationEqInertial1}\\
@@ -49,7 +49,7 @@ The equations describing the response of the system along the x, y and z axes is
  	\label{eq:AccelerationEqInertial3}
 \end{flalign}
 It is worth mentioning that, as the thrust forces always point in the negative z direction in the body coordinate frame, the accelerations in x and y directions in the inertial frame are zero as long as pitch and roll angles are 0.
-\subsection{Linearization}
+\section{Linearization}
 The linearization of the model equations has been developed following the first order Taylor approximation around an equilibrium point of the system. The chosen point is the hovering position and that implies that all variables have a value of zero, that is, the translational and attitude accelerations, velocities and positions. Choosing a zero acceleration equilibrium point along the Inertial z axis yields a equilibrium rotational speeds so that the necessary thrust is generated to compensate for the gravitational force.
 
 The resulting equations for the attitude model after the linearization are shown in Equation \ref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3}. 

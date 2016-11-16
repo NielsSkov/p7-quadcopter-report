@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.6.9)  14 NOV 2016 18:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.6.9)  15 NOV 2016 15:37
 entering extended mode
 **./16gr733.tex
 (16gr733.tex
@@ -3301,8 +3301,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 \c__siunitx_mathtt_int=\count409
 
-(content/abstract.tex) (content/introduction.tex) (content/method.tex)
-(content/model.tex <figures/droneDiagram.pdf, id=4, 614.65315pt x 583.20197pt>
+(content/abstract.tex) (content/introduction.tex) (content/model.tex
+<figures/droneDiagram.pdf, id=4, 614.65315pt x 583.20197pt>
 File: figures/droneDiagram.pdf Graphic file (type pdf)
 
 <use figures/droneDiagram.pdf>
@@ -3317,21 +3317,9 @@ Overfull \hbox (3.40863pt too wide) in paragraph at lines 23--23
 []|$\OML/cmm/m/it/10 k[]$| 
  []
 
-
-Underfull \vbox (badness 1009) has occurred while \output is active []
-
-)
-(content/control.tex) (content/attitudeController.tex [2]
-<figures/AttitudeControlDiagram.pdf, id=26, 727.11696pt x 295.6298pt>
-File: figures/AttitudeControlDiagram.pdf Graphic file (type pdf)
-
-<use figures/AttitudeControlDiagram.pdf>
-Package pdftex.def Info: figures/AttitudeControlDiagram.pdf used on input line 
-75.
-(pdftex.def)             Requested size: 218.13676pt x 88.68962pt.
-) (content/translationalController.tex) (content/results.tex) (content/discussi
-on.tex) (content/conclusion.tex)
-(content/acknowledgments.tex)
+) (content/control.tex) (content/attitudeController.tex [2])
+(content/translationalController.tex) (content/results.tex)
+(content/discussion.tex) (content/conclusion.tex) (content/acknowledgments.tex)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -3348,16 +3336,16 @@ Before submitting the final camera ready copy, remember to:
 
 
 AED: lastpage setting LastPage
-[3 <./figures/AttitudeControlDiagram.pdf>] (16gr733.aux)
+[3] (16gr733.aux)
 Package logreq Info: Writing requests to '16gr733.run.xml'.
 \openout1 = `16gr733.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43239 strings out of 493335
- 951092 string characters out of 3136634
- 1518303 words of memory out of 3000000
- 46088 multiletter control sequences out of 15000+200000
+ 43230 strings out of 493335
+ 950845 string characters out of 3136634
+ 1521279 words of memory out of 3000000
+ 46083 multiletter control sequences out of 15000+200000
  119347 words of font info for 150 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,21n,78p,10416b,1440s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -3382,9 +3370,9 @@ lic/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
 /utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pf
 b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on 16gr733.pdf (3 pages, 251420 bytes).
+Output written on 16gr733.pdf (3 pages, 244561 bytes).
 PDF statistics:
- 119 PDF objects out of 1000 (max. 8388607)
+ 103 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

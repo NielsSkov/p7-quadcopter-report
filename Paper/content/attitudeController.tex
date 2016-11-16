@@ -1,5 +1,5 @@
-\subsubsection{Attitude Controller}
-The attitude controller for the quadcopter has been designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter.The chosen states for the system are the three angular positions and the three angular velocities. The input of the attitude system are the four motor rotational speeds and the output are the three angles roll, pitch and yaw. Below, the state vector, the input and the output are represented.
+\subsection{Attitude Controller}
+The attitude controller for the quadcopter has been designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter. The chosen states for the system are the three angular positions and the three angular velocities. The input vector of the attitude system consists of the four motor rotational speeds and the output vector consists of the three angles, roll, pitch and yaw. Below, the state, input and the output vectors are presented.
 %
 \begin{flalign}
 	\vec{x}(t) = 
@@ -26,16 +26,20 @@ The attitude controller for the quadcopter has been designed using a state space
 	\label{uVector}
 \end{flalign}
 %
-The state space matrix representation is displayed in Equation \ref{xDotSS} and \ref{ySS}.
+The above is then used in construction of the state space matrix representation as displayed in Equation \ref{xDotSS} and \ref{ySS}.
 \begin{flalign}
 	\vec{\dot{x}}(t)&=\vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)
 	\label{xDotSS} 
 \end{flalign}
 \begin{flalign}
-	\vec{y}(t)&=\vec{C} \cdot \vec{x}(t) + \vec{D} \cdot \vec{u}(t)
-	\label{ySS} 
+	\vec{y}(t)&=\vec{C} \cdot \vec{x}(t) + \vec{D} \cdot \vec{u}(t)\label{ySS} 
 \end{flalign}
-\textbf{INCLUDEWHERE}
+\begin{where}
+  \va{\vec{A}}{is the system matrix}{}
+  \va{\vec{B}}{is the input matrix}{}
+  \va{\vec{C}}{is the output matrix}{}
+  \va{\vec{D}}{is the feed forward matrix}{}
+\end{where}
 The values for the A, B, C and D matrices are obtained from the linearized attitude equations, yielding the matrices shown below. As D is a zero matrix, only A, B and C are shown.
 \footnotesize
 \begin{flalign}   \label{Amatrix}
@@ -69,10 +73,25 @@ The values for the A, B, C and D matrices are obtained from the linearized attit
 	\end{bmatrix}\nonumber
 \end{flalign}
 \normalsize
-The designed attitude controller is depicted in the block diagram shown in Figure \ref{attitudeControlDiagram}.
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.3]{figures/AttitudeControlDiagram}
-	\caption{Control structure for regulating the attitude response of the quadcopter. It includes the state feedback, the reduced order observer and the integral term.}
-	\label{attitudeControlDiagram}
-\end{figure}
+%The designed attitude controller is depicted in the block diagram shown in Figure \ref{attitudeControlDiagram}.
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=0.3]{figures/AttitudeControlDiagram}
+%	\caption{Control structure for regulating the attitude response of the quadcopter. It includes the state feedback, the reduced order observer and the integral term.}
+%	\label{attitudeControlDiagram}
+%\end{figure}
+
+State feedback and integral control
+For the quadcopter to hover, it is desired to keep the attitude in equilibrium; this is achieved using a state feedback. To be able to change and track a reference an integral controller is designed around the state feedback. This allows changing the attitude in order to move in the xy-plane of the inertial system.
+
+
+
+
+
+
+
+
+
+
+
+
