@@ -1,5 +1,5 @@
 \subsection{Controllers for x and y Axes}
-The design of the controllers for the translational movement in $x_I$ and $y_I$ directions is done through the use of the root locus design method.
+The design of the controllers for the translational movement in $x_I$ and $y_I$ directions is done using a Bode plot based design method.
 
 The linear equations for the translational model relate this movements with the roll and the pitch that the quadcopter has at each moment.
 %
@@ -26,33 +26,34 @@ The inner velocity controller design requires a transfer function from each of t
 \va{G_{y_I}}{is the plant for the translational velocity in $y_I$ direction}{}
 \end{where}
 
-From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants are similar but with different sign. The controller design is carried out for the x translational velocity and applied to the both afterwards.
+From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants are similar but with different sign. The controller design is carried out for the x translational velocity and applied to both afterwards.
 
-The systems is formed by an integrator and a gain. This means the systems are marginally stable in open-loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed-loop if no controller is placed. This feature requires a negative controller gain to compensate the plant.
+The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open-loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed-loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate that of the plant.
 
-It is noticeable that the control action for this design is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. To take these dynamics into account, an approximation of the behavior of the attitude controller can be done, using a second order system and looking at the step response when a pitch reference is applied.
+It is noticeable that, for this design, the variable changed by the controller is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. This is not accounted in the transfer function derivation. In order to include them, a Bode plot approximation is created from the pitch angle reference to the real pitch angle set by the attitude controller. This bode plot constitutes the plant for which the controller is designed.
 %
-\begin{figure}[H]
-    \includegraphics[scale=.7]{figures/pitchResponseApprox}
-    \centering			
-    \captionof{figure}{Comparison between the behavior of the pitch due to the attitude controller and the approximation done with a second order system.} \label{fig:pitchResponseApprox}
-   \end{figure} 
+The obtained Bode diagram is shown in \autoref{}.
+%\begin{figure}[H]
+%    \includegraphics[scale=.7]{figures/pitchResponseApprox}
+%    \centering			
+%    \captionof{figure}{Comparison between the behavior of the pitch due to the attitude controller and the approximation done with a second order system.} \label{fig:pitchResponseApprox}
+%   \end{figure} 
 %
-\begin{flalign}
-        G_{pitch}(s)=\frac{\theta (s)}{\theta_{ref} (s)}=\frac{\omega^2_n}{s^2+\xi \ \omega_n \ s+\omega^2_n}=\frac{86.05}{s^2+16.14 \ s+86.05}
-\end{flalign}
+%\begin{flalign}
+%        G_{pitch}(s)=\frac{\theta (s)}{\theta_{ref} (s)}=\frac{\omega^2_n}{s^2+\xi \ \omega_n \ s+\omega^2_n}=\frac{86.05}{s^2+16.14 \ s+86.05}
+%\end{flalign}
 %
-With this new dynamics added to the system, the design of the controller can be done. The final rot locus of the plant can be seen in \autoref{fig:rLocusVelocity}.
+%With this new dynamics added to the system, the design of the controller can be done. The final rot locus of the plant can be seen in \autoref{fig:rLocusVelocity}.
+%%
+%\begin{figure}[H]
+%    \includegraphics[scale=.7]{figures/rLocusVelocity}
+%    \centering			
+%    \captionof{figure}{Root locus of the plant for the velocity controller, that includes as well the dynamics of the attitude controller in pitch.} \label{fig:rLocusVelocity}
+%\end{figure} 
 %
-\begin{figure}[H]
-    \includegraphics[scale=.7]{figures/rLocusVelocity}
-    \centering			
-    \captionof{figure}{Root locus of the plant for the velocity controller, that includes as well the dynamics of the attitude controller in pitch.} \label{fig:rLocusVelocity}
-\end{figure} 
-%
-A proportional controller is considered sufficient, as there is an integrator in the plant so there is no need to compensate for a steady state error.
+A proportional controller is considered sufficient as there is an integrator in the plant that accounts for possible steady state errors and output disturbances. Input disturbances are considered not to occur as those are related with the motors and the inner attitude controller handles them.
 
-The value of this gain is chosen such that the system is as fast as possible without creating an overshoot and taking into account the control action required, which in this case is the pitch needed.
+The value for the proportional gain is chosen so the bandwidth of the control loop is 3 times lower than that of the inner closed loop formed by the attitude controller. It can be seen from \autoref{} that the bandwidth is 5 rad/s. This defines the velocity controller  
 
 The final expression for the controllers can be written as \autoref{eq:Cxdot} and \ref{eq:Cydot}. Since the plant for the y controller has already a positive gain, there is no need to include a negative sign in the controller.
 %
