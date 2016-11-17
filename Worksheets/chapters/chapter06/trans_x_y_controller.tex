@@ -1,5 +1,5 @@
 \subsection{Controllers for x and y Axes}
-The design of the controllers for the translational movement in $x_I$ and $y_I$ directions is done using a Bode plot based design method.
+The design of the controllers for the translational movement in $x_I$ and $y_I$ directions is done using the transfer function of the system in a Bode plot based design.
 
 The linear equations for the translational model relate this movements with the roll and the pitch that the quadcopter has at each moment.
 %
@@ -25,21 +25,21 @@ The inner velocity controller design requires a transfer function from each of t
 \va{G_{x_I}}{is the plant for the translational velocity in $x_I$ direction}{}
 \va{G_{y_I}}{is the plant for the translational velocity in $y_I$ direction}{}
 \end{where}
-
+%
 From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants are similar but with different sign. The controller design is carried out for the x translational velocity and applied to both afterwards.
 
 The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open-loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed-loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate that of the plant.
 
-It is noticeable that, for this design, the variable changed by the controller is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. This is not accounted in the transfer function derivation. In order to include them, a Bode plot approximation is created from the pitch angle reference to the translational velocities. This bode plot constitutes the plant for which the controller is designed and accounts for the inner controller loop and the transfer function dynamics shown in \autoref{eq:Gxdot} and \ref{eq:Gydot}.
-%
-The obtained Bode diagram is shown in \autoref{}.
+It is noticeable that, for this design, the variable changed by the controller is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. This is not accounted in the transfer functions. In order to be able to not consider the inner loop in the controller design, the closed loop bandwidth of the control loop should be 3 to 5 times lower.\fxnote{SOURCE 3 TO 5 TIMES} 
 
-\fxnote{INCLUDE BODE DIAGRAM}
-%\begin{figure}[H]
-%    \includegraphics[scale=.7]{figures/pitchResponseApprox}
-%    \centering			
-%    \captionof{figure}{Comparison between the behavior of the pitch due to the attitude controller and the approximation done with a second order system.} \label{fig:pitchResponseApprox}
-%   \end{figure} 
+The bandwidth of the inner angular control is obtained by making a Bode plot approximation from the pitch angle reference to the real pitch angle in the quadcopter. The obtained Bode diagram is shown in \autoref{fig:bodePitch}. It can be seen that the frequency of the inner loop is 5 rad/s and this defines the bandwidth of the velocity control loop to be 1.67 rad/s.
+%
+\begin{figure}[H]
+    \includegraphics[scale=.7]{figures/bodePitch}
+    \centering			
+    \captionof{figure}{Attitude control loop Bode diagram.} 
+    \label{fig:bodePitch}
+\end{figure} 
 %
 %\begin{flalign}
 %        G_{pitch}(s)=\frac{\theta (s)}{\theta_{ref} (s)}=\frac{\omega^2_n}{s^2+\xi \ \omega_n \ s+\omega^2_n}=\frac{86.05}{s^2+16.14 \ s+86.05}
@@ -53,14 +53,18 @@ The obtained Bode diagram is shown in \autoref{}.
 %    \captionof{figure}{Root locus of the plant for the velocity controller, that includes as well the dynamics of the attitude controller in pitch.} \label{fig:rLocusVelocity}
 %\end{figure} 
 %
+For the velocity control, proportional controller is considered sufficient as there is an integrator in the plant that accounts for possible steady state errors and output disturbances. Input disturbances are considered not to occur as those are related with the motors and the inner attitude controller handles them. In order to design the controller, the Bode diagram of the transfer function has been used. It is shown in \autoref{fig:bodeVelocity}.
+%
+\begin{figure}[H]
+	\includegraphics[scale=.7]{figures/bodeVelocity}
+	\centering			
+	\captionof{figure}{Velocity open loop transfer function bode diagram for the translational y direction.} 
+	\label{fig:bodeVelocity}
+\end{figure}
+% 
+The value for the proportional gain is chosen can be seen directly in \autoref{fig:bodeVelocity} as the distance between the 0 dB level and the gain curve at the desired frequency of 1.67 rad/s. The resulting value is -15.35 dB, which results in a gain of 0.17 with negative sign.
 
-A proportional controller is considered sufficient as there is an integrator in the plant that accounts for possible steady state errors and output disturbances. Input disturbances are considered not to occur as those are related with the motors and the inner attitude controller handles them.
-
-The value for the proportional gain is chosen so the bandwidth of the control loop is 3 times lower than that of the inner closed loop formed by the attitude controller, in this way the attitude control loop can be neglected and only the transfer functions, $G_{\dot{x}_I}$ and $G_{\dot{y}_I}$, need to be taken into account in further analysis \fxnote{SOURCE 3 TO 5 TIMES}. It can be seen from \autoref{} that the bandwidth is 5 rad/s. This defines the velocity controller bandwidth to be 1.67 rad/s. 
-
-The final gain of the controller is seen directly in \autoref{} as the distance between the -3 dB margin and the gain curve at the desired frequency of 1.67 rad/s. The resulting value is \fxnote{FINAL GAIN VALUE}.
-
-The final expression for the controllers can be written as \autoref{eq:Cxdot} and \ref{eq:Cydot}. Since the plant for the y controller has already a positive gain, there is no need to include a negative sign in the controller.
+The final expression for the controllers for x and y translational velocity control is written as \autoref{eq:Cxdot} and \ref{eq:Cydot}, respectively. The plant for the y controller has already a positive gain and this makes it unnecessary to include a negative sign in the controller.
 %
 \begin{flalign}
 C_{\dot{x}_I}(s)&= -0.17 \label{eq:Cxdot} \\
@@ -94,7 +98,7 @@ The step responses and the corresponding control actions can be seen in \autoref
     \end{minipage}
 \end{minipage}
 %
-Once the velocity controllers have been designed, the position controllers for $x_I$ and $y_I$ directions can be designed by using a similar procedure. In this case, the Bode plot includes the velocity control loop and the integrator that transforms velocity into position.
+Once the velocity controllers have been designed, the position controllers for $x_I$ and $y_I$ directions can be designed by using the same procedure. In this case, the position transfer function is just an integrator as seen in \autoref{eq:Gx} and \ref{eq:Gy}. 
 %
 \begin{flalign}
 G_{x_I}(s)&=\frac{x_I (s)}{\dot{x}_I (s)}=\frac{1}{s}  \label{eq:Gx} \\
@@ -105,22 +109,22 @@ G_{y_I}(s)&=\frac{y_I (s)}{\dot{y}_I (s)}=\frac{1}{s}  \label{eq:Gy}
     \va{G_{x_I}}{is the plant for the translational position in $x_I$ direction}{}
     \va{G_{y_I}}{is the plant for the translational position in $y_I$ direction}{}
 \end{where}
+Again, a proportional controller is sufficient to control the position of the quadcopter in the x direction as there is an integrator in the plant and the input disturbances are considered in the inner loops. 
 
-As in the case of the velocity controller, the inner dynamics are taken into account in the design of the controller. For doing so, the dynamics of the velocity control loop (which includes the attitude controller) are added, which result in the root locus of \autoref{fig:rLocusPosition}.
+The proportional gain is chosen so that the bandwidth of the position loop is 3 times lower than that of the velocity loop. This defines it to be 0.56 rad/s. To set this bandwidth, the Bode plot of the plant shown in \autoref{fig:bodePosition} is used. The distance between the gain curve and the 0 dB level at 0.56 rad/s sets the gain of the controller to be -5.19 dB or 0.55.
 %
 \begin{figure}[H]
-    \includegraphics[scale=.7]{figures/rLocusPosition}
-    \centering			
-    \captionof{figure}{Root locus of the plant for the position controller, that includes as well the dynamics of the inner control loop.} \label{fig:rLocusPosition}
-\end{figure} 
+	\includegraphics[scale=.7]{figures/bodePosition}
+	\centering			
+	\captionof{figure}{Position open loop transfer function bode diagram for the translational y direction.} 
+	\label{fig:bodePosition}
+\end{figure}
 %
-As in the previous case, a proportional controller is enough to make the loop have the appropiate dynamics. The gain is then choose such that the system is as fast as possible and there is no overshoot.
-
-The final expression for the controllers can be written as \autoref{eq:Cx} and \ref{eq:Cy}. Since the plant for the y controller has already a positive gain, there is no need to include a negative sign in the controller.
+The final expression for the translational position controllers can be written as \autoref{eq:Cx} and \ref{eq:Cy}. In this case, both x and y controllers are equal.
 %
 \begin{flalign}
-    C_{x_I}(s)&= 0.8 \label{eq:Cx} \\
-    C_{y_I}(s)&= 0.8 \label{eq:Cy}
+    C_{x_I}(s)&= 0.55 \label{eq:Cx} \\
+    C_{y_I}(s)&= 0.55 \label{eq:Cy}
 \end{flalign}
 %
 \begin{where}
