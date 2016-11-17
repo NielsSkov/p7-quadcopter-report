@@ -1,6 +1,5 @@
 \subsection{Translational Controller}
-SOMETHING ON THE RELATION BETWEEN ALL TRANSLATIONAL CONTROLLERS  DIAGRAM.
-\fxnote{see the text}
+The movements of the quadcopter along the inertial frame directions x, y and z are controlled by the translational controllers. It is decided to structure the controllers as cascade loops. The relation between the controllers are presented in \fxnote{figure}
 
 %The translational control systems for x and y are structured as cascade, where the velocity and position are controlled in the inner and outer loop respectively.
 
@@ -10,8 +9,11 @@ SOMETHING ON THE RELATION BETWEEN ALL TRANSLATIONAL CONTROLLERS  DIAGRAM.
 	\caption{Cascade loop for the translational controllers where the inner and outer loop control velocity and position respectively.}
 	\label{fig:cascade}
 \end{figure}
+The vertical position is controlled by the cascade loop for the z axis' velocity and position, obtaining the required sum of motor rotational speeds. 
 The x and y controller share similar properties as the output for each are an angle reference, namely $\theta_{ref}$ and $\phi_{ref}$ respectively.
-Firstly the inner loop is designed followed by the outer loop.
+Firstly the x and y controllers are designed similarly followed by an individual design for the z controller.\\ 
+
+The inner loop for the x and y translational controllers are now designed followed by the outer loop.
 The model equations derived previously, see Equation \ref{eq:AccelerationEqInertial1} and \ref{eq:AccelerationEqInertial2}, are Laplace transformed and put on transfer function in respect to the inner loop, yielding:
 \begin{flalign}
     G_{\dot{x}_I}(s)&=\frac{\dot{x}_I (s)}{\theta (s)}=\frac{-k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s} \\
@@ -34,4 +36,13 @@ C_{\dot{y}I(s)= 0.19}
     \va{G_{x_I}}{is the plant for the translational position in $x_I$ direction}{1}
     \va{G_{y_I}}{is the plant for the translational position in $y_I$ direction}{1}
 \end{where}
-The gain is designed such that it encounters a bandwidth that is three times lower than the attitude model to ensure minimum effect of disturbances. TO BE CONTINUED \fxnote{to be continued - Andrea}
+The gain is designed such that it encounters a bandwidth that is three times lower than the attitude model to ensure minimum effect of disturbances.
+The plant of the outer loop is simply an integrator to transform velocity to position. The controller of the outer loop is a proportional controller. The outer loop is designed to have three times less bandwidth than the inner loop to ensure minimization of disturbances to secure a stable system.
+The proportional controllers are the following:
+\begin{align}
+C_{\dot{x}O(s)= XX}\\
+C_{\dot{y}0(s)= YY}
+\end{align}
+WHEREs for the controllers are not needed i think - take up too much space. 
+The translational z controller is designed as cascade as well. The 
+
