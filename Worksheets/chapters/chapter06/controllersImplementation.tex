@@ -2,10 +2,54 @@
 
 The implementation of the controllers can not be done having them as a continuous expression due to the discrete operation of the microcontroller. 
 
-In order to discretize the controllers in the system, they need to be expressed in terms of the $z$ operator, the equivalent to the Laplace operator in the discrete domain. This transformation is done through the Tustin or bilinear approximation in which the $s$ term in the transfer function is substituted as seen in \autoref{tustin}.
+In order to discretize the controllers in the system, they need to be expressed in terms of the $z$ operator, the equivalent to the Laplace operator in the discrete domain. This transformation is done through the Tustin (bilinear) approximation in which the $s$ term in the transfer function is substituted as seen in \autoref{tustin}. \fxnote{Source Feedback control of dynamic systems}
 \begin{flalign}
 	s\approx\frac{2}{T}\frac{z-1}{z+1}
 	\label{tustin}
 \end{flalign}
+\begin{where}
+	\va{s}{is the Laplace Operator}{}
+	\va{z}{is the discrete operator}{}
+	\va{T}{is the sampling time}{}
+\end{where}
+The Tustin approximation maps the Laplace stable region into the discrete stable region, that is, the unit circle, as seen in \autoref{fig:tustinmap}.
+\begin{figure}[H]
+	\includegraphics[scale=.7]{figures/tustinmapping}
+	\centering			
+	\captionof{figure}{Attitude control loop Bode diagram.} 
+	\label{fig:tustinmap}
+\end{figure} 
+\fxnote{Talk about sampling frequency}
 
-FINISH THIS 
+
+The discrete transfer function is then transformed into a difference equation to obtain the expression to be applied in the microcontroller. This is done taking into account that a $z^{-1}$ term implies taking the previous sample of the data. 
+
+\subsection{Attitude Controllers}
+The attitude controller is mainly composed of gains formed by the state feedback, the integral and the observer matrices. this makes the discretization easier as there are no $s$ terms in the controller. There are though two integrators, one is in the observer and the other one is placed in the integral term of the controller.
+
+The discrete form of an integrator using the bilinear approximation is shown in \autoref{discreteIntegrator}. The formula shows how the integrator in the integral term of the attitude control looks like when discretized.  
+\begin{flalign}
+	\frac{x_{int}}{\phi_{ref}-\phi}=\frac{x_{int}}{e_{\phi}} \approx \frac{T}{2}\frac{z+1}{z-1}
+	\label{discreteIntegrator}
+\end{flalign}
+This transformation yields a difference equation as seen in \autoref{discreteIntegratordifferences}, which shows the example in the roll angle case. It gives the current value of the integral state as a function of the previous integral state and the current and the previous error between the angular reference and the angular data.
+\begin{flalign}
+	x_{int}(k)=x_{int}(k-1) + \frac{T}{2} e_{\phi}(k) + \frac{T}{2} e_{\phi}(k-1)
+	\label{discreteIntegratordifferences}
+\end{flalign}
+
+\subsection{Translational Controllers}
+
+The translational controllers are all proportional controllers except the velocity z controller, which is a PID controller. The gais look similar in both continuous and discrete domains but the PID needs to be discretized with the Tustin rule. 
+
+The discrete version of the z controller is shown in \autoref{discreteVelocityZcontroller}.
+\begin{flalign}
+	x_{int}(k)=x_{int}(k-1) + \frac{T}{2} e_{\phi}(k) + \frac{T}{2} e_{\phi}(k-1)
+	\label{discreteVelocityZcontroller}
+\end{flalign}
+
+
+
+
+
+
