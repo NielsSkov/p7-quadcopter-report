@@ -1,5 +1,4 @@
 \section{Controllers Implementation}
-
 The implementation of the controllers can not be done having them as a continuous expression due to the discrete operation of the microcontroller. 
 
 In order to discretize the controllers in the system, they need to be expressed in terms of the $z$ operator, the equivalent to the Laplace operator in the discrete domain. This transformation is done through the Tustin (bilinear) approximation in which the $s$ term in the transfer function is substituted as seen in \autoref{tustin}. \fxnote{Source Feedback control of dynamic systems}
@@ -19,11 +18,11 @@ The Tustin approximation maps the Laplace stable region into the discrete stable
 	\captionof{figure}{Attitude control loop Bode diagram.} 
 	\label{fig:tustinmap}
 \end{figure} 
-\fxnote{Talk about sampling frequency}
-
-
 The discrete transfer function is then transformed into a difference equation to obtain the expression to be applied in the microcontroller. This is done taking into account that a $z^{-1}$ term implies taking the previous sample of the data. 
 
+When discretizing the controller, the sampling time must also be considered. In the system at hand, the sampling frequency is limited by the sensor data (Vicon System) to be 100 Hz as a maximum. The lower limit comes from the bandwidth of the controllers as for the discretization to work, the sampling frequency should be 25 times higher than the bandwidth of the control loop. The fastest control loop in the system is the attitude controller and has a bandwidth of 5 rad/s, that is, 0.8 Hz. This implies a minimum sampling frequency of 20 Hz.
+
+The chosen sampling frequency in the system is 30 Hz in order to keep the controllers with a good performance an far from the 100 Hz that Vicon provides in order to have time for processing the communication task and the control program.
 \subsection{Attitude Controllers}
 The attitude controller is mainly composed of gains formed by the state feedback, the integral and the observer matrices. this makes the discretization easier as there are no $s$ terms in the controller. There are though two integrators, one is in the observer and the other one is placed in the integral term of the controller.
 
@@ -38,18 +37,26 @@ This transformation yields a difference equation as seen in \autoref{discreteInt
 	\label{discreteIntegratordifferences}
 \end{flalign}
 
-\subsection{Translational Controllers}
+The effect of the discretization in the designed attitude controllers is shown in 
+\fxnote{INCLUDE COMPARISON}
 
-The translational controllers are all proportional controllers except the velocity z controller, which is a PID controller. The gais look similar in both continuous and discrete domains but the PID needs to be discretized with the Tustin rule. 
+It can be seen that the performance of the discrete attitude controller is still stable to track the references with a similar response. 
+\subsection{Translational Controllers}
+The translational controllers are all proportional controllers except the velocity z controller, which is a PI controller. The gains are the same in both continuous and discrete domains but the PI needs to be discretized with the Tustin rule. 
 
 The discrete version of the z controller is shown in \autoref{discreteVelocityZcontroller}.
 \begin{flalign}
-	x_{int}(k)=x_{int}(k-1) + \frac{T}{2} e_{\phi}(k) + \frac{T}{2} e_{\phi}(k-1)
+	\frac{\omega_{sum}}{e_{\dot{z}}} = tf_{cont} \approx tf_discrete
 	\label{discreteVelocityZcontroller}
 \end{flalign}
 
+From the above equation, the difference equation that should be implemented in the microcontroller is calculated. The final equation is shown in \autoref{discreteVelocityZcontrollerdiferences}. \fxnote{CHECK NUMBERS IN THE EQUATIONS}
 
+\begin{flalign}
+	\omega_{sum}(k)= \omega_{sum}(k-1) + e_{\dot{z}}(k) + e_{\dot{z}}(k-1)
+	\label{discreteVelocityZcontrollerdiferences}
+\end{flalign}
 
-
+In \fxnote{INCLUDE COMPARIOSN OF THE X Y AND Z} the comparison of the translational controllers discrete and continuous versions. With this 
 
 
