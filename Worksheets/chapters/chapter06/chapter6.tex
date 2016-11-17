@@ -1,15 +1,7 @@
 \chapter{Controller Design}\label{chap:Control}
-The system of the quadcopter has been described by a mathematical model, that is to be used in the design of a control system. The control system must stabilize the naturally unstable system of the quadcopter. It shall also ensure a stable flying mode, that can tolerate disturbances \fxnote{we have not said that, must be stated in requirements chapter.}
-\section{Design Considerations}
-From \ref{chap:considerations} requirements have been set in order to obtain a desired behavior of the system. These requirements are listed below for the purpose of repetition.\\
-Steady state error: \\
-Rise time: \\
-Settling time:\\
-Overshoot:\\
-Phase margin: \\
-Gain margin: \\
+The system of the quadcopter has been described by a mathematical model, that is to be used in the design of a control system. The control system must stabilize the naturally unstable system of the quadcopter. It shall also meet the functional requirements stated in \fxnote{chapter reference}.
 
-With these requirements in mind a control system is now to be designed. In order to do so, an overview of the control system is presented, as this will make the development and correlation of the controllers more intuitive. \\
+An overview of the control system is presented, as this will make the development and correlation of the controllers more intuitive. \\
 
 The model consists of two submodels, an attitude model and a translational model. It is therefore desirable to design two control systems, one for each model. These will however have to interact, as they share input and rely on each other. 
 
