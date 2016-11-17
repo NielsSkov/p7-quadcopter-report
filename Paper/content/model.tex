@@ -43,9 +43,9 @@ The expressions above state how the thrust force difference between motors 1 and
 \subsection{Translational Model}
 The equations describing the response of the system along the x, y and z axes is derived from Newton's Second Law. The forces that act on the system are those from the propellers and the gravitational. These expressions are shown in Equation \ref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}. FIX EQUATIONS
 \begin{flalign}
- 	\eq{m\ddot{x}_I}{-k_{th}({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\sin(\theta)} \label{eq:AccelerationEqInertial1}\\
- 	\eq{m\ddot{y}_I}{-k_{th}({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)(-\sin(\phi))\cdot\cos(\theta)} \label{eq:AccelerationEqInertial2}\\
- 	\eq{m\ddot{z}_I}{F_g-k_{th}({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cos(\phi)\cdot\cos(\theta)}
+ 	\eq{m\ddot{x}}{-k_{th}({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\sin(\theta)} \label{eq:AccelerationEqInertial1}\\
+ 	\eq{m\ddot{y}}{-k_{th}({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)(-\sin(\phi))\cdot\cos(\theta)} \label{eq:AccelerationEqInertial2}\\
+ 	\eq{m\ddot{z}}{F_g-k_{th}({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cos(\phi)\cdot\cos(\theta)}
  	\label{eq:AccelerationEqInertial3}
 \end{flalign}
 It is worth mentioning that, as the thrust forces always point in the negative z direction in the body coordinate frame, the accelerations in x and y directions in the inertial frame are zero as long as pitch and roll angles are 0.
@@ -70,9 +70,9 @@ The resulting equations for the attitude model after the linearization are shown
 %\end{where}
 Similarly, the equations of the translational model are linearized. The result is shown in \ref{eq:TransLinearEquations1}, \ref{eq:TransLinearEquations2} and \ref{eq:TransLinearEquations3}. \textbf{FIX EQUATIONS}
 \begin{flalign}
-	m\cdot\Delta\ddot{x}_I &= -k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\theta}) \Delta\theta \label{eq:TransLinearEquations1} \\
-	m\cdot\Delta\ddot{y}_I &=  k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\phi})\cos(\overline{\theta})\Delta\phi \label{eq:TransLinearEquations2}\\
-	m\Delta\ddot{z}_I &= -2\textbf{ }k_{th}({\overline{\omega}_1}\Delta\omega_1+{\overline{\omega}_2}\Delta\omega_2+{\overline{\omega}_3}\Delta\omega_3+{\overline{\omega}_4}\Delta\omega_4)\cos(\overline{\phi})\cos(\overline{\theta})\label{eq:TransLinearEquations3}
+	m\Delta\ddot{x} &= -k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\theta}) \Delta\theta \label{eq:TransLinearEquations1} \\
+	m\Delta\ddot{y} &=  k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\cos(\overline{\phi})\cos(\overline{\theta})\Delta\phi \label{eq:TransLinearEquations2}\\
+m\Delta\ddot{z} &= -2\textbf{ }k_{th}({\overline{\omega}_1}\Delta\omega_1+{\overline{\omega}_2}\Delta\omega_2+{\overline{\omega}_3}\Delta\omega_3+{\overline{\omega}_4}\Delta\omega_4)\cos(\overline{\phi})\cos(\overline{\theta})\label{eq:TransLinearEquations3}
 \end{flalign} 
 \textbf{INCLUDEWHERE}
 %

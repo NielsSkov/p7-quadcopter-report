@@ -16,8 +16,8 @@ Firstly the x and y controllers are designed similarly followed by an individual
 The inner loop for the x and y translational controllers are now designed followed by the outer loop.
 The model equations derived previously, see Equation \ref{eq:AccelerationEqInertial1} and \ref{eq:AccelerationEqInertial2}, are Laplace transformed and put on transfer function in respect to the inner loop, yielding:
 \begin{align}
-    G_{\dot{x}_I}(s)&=\frac{\dot{x}_I (s)}{\theta (s)}=\frac{-k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s} \\
-    G_{\dot{y}_I}(s)&=\frac{\dot{y}_I (s)}{\phi (s)}=\frac{k_{th}(\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s} 
+    G_{\dot{x}}(s)&=\frac{\dot{x} (s)}{\theta (s)}=\frac{-k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s} \\
+    G_{\dot{y}}(s)&=\frac{\dot{y} (s)}{\phi (s)}=\frac{k_{th}(\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s} 
 \end{align}
 %
 %\begin{where}
@@ -37,10 +37,13 @@ The plant of the outer loop is simply an integrator to transform velocity to pos
 The inner loop for the z translational controller is first designed followed by the outer loop.
 The model equation derived previously, see Equation \ref{eq:AccelerationEqInertial3} is Laplace transformed and put on transfer function, where the velocity in z direction is the output and the sum of motor rotational speeds is input:
 \begin{align}
-G_{\dot{z}_I}=\frac{\dot{Z}_I}{\omega_{sum}} &= \frac{ \frac{1}{4}\ (-2 k_{th})\ \overline{\omega}_{sum} }{ m\ s } & \label{eq:linearTransferFunctionZ}
+G_{\dot{z}}=\frac{\dot{Z}}{\omega_{sum}} &= \frac{ \frac{1}{4}\ (-2 k_{th})\ \overline{\omega}_{sum} }{ m\ s } & \label{eq:linearTransferFunctionZ}
 \end{align}
 Due to an integrator and a negative gain the system's locus will move into the right half plane as the gain increases.
+A p controller with negative gain will ensure the locus will move into the left half plane and becoming stable. However, due to input disturbances an integrator is added, as this will eliminate this issue. As the feedback loop now holds two poles in zero, the root locus system will branch along the imaginary axis. A differentiator is added to attract the poles and by that eliminating oscillations. The final z translational controller of the inner loop is a PID-controller. 
 
+Before the designed controllers can be implemented on the micro controller on the quadcopter, they must be discretized. 
+The discretization is done as billinear approximation, also known as Tustin, where the half plane side in Laplace domain is mapped as the unit cycle in the discrete domain. 
 %\begin{where}
 %  \va{\dot{Z}_I}{is the velocity in the z-direction in the inertial system}{}
 %  \va{\omega_{sum}}{is the sum of velocities to be controlled}{}
