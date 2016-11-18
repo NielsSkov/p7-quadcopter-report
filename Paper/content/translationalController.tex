@@ -40,7 +40,9 @@ The model equation derived previously, see Equation \ref{eq:AccelerationEqInerti
 G_{\dot{z}}=\frac{\dot{Z}}{\omega_{sum}} &= \frac{ \frac{1}{4}\ (-2 k_{th})\ \overline{\omega}_{sum} }{ m\ s } & \label{eq:linearTransferFunctionZ}
 \end{align}
 Due to an integrator and a negative gain the system's locus will move into the right half plane as the gain increases.
-A p controller with negative gain will ensure the locus will move into the left half plane and becoming stable. However, due to input disturbances an integrator is added, as this will eliminate this issue. As the feedback loop now holds two poles in zero, the root locus system will branch along the imaginary axis. A differentiator is added to attract the poles and by that eliminating oscillations. The final z translational controller of the inner loop is a PID-controller. 
+A p controller with negative gain will ensure the locus will move into the left half plane and becoming stable. However, due to input disturbances an integrator is added, as this will eliminate this issue. 
+%As the feedback loop now holds two poles in zero, the root locus system will branch along the imaginary axis. A differentiator is added to attract the poles and by that eliminating oscillations.
+The final z translational controller of the inner loop is a PI-controller. 
 
 Before the designed controllers can be implemented on the micro controller on the quadcopter, they must be discretized. 
 The discretization is done as billinear approximation, also known as Tustin, where the half plane side in Laplace domain is mapped as the unit cycle in the discrete domain. 
