@@ -1,1 +1,10 @@
 \section{Network}
+The effects on the control performance of the usage of the wireless network to get the sensor data can be divided in two. These are the delay and the packet loss.
+
+The theoretical modeling of these effects has been studied by many researchers in order to obtain stability criteria and maximum allowable delay or packet dropout. However, this approach often leads to an increased complexity in the model \fxnote{THEORETICAL APPROACHES SOURCES}.
+
+An alternative to account for these effects in the control system is using a network simulator like TrueTime \cite{TrueTime}. This toolbox helps finding the maximum delay and packet loss probability such that the control system is still stable by simulating the controllers and the network together.
+
+The delay is modeled as an exponential distribution whose mean parameter has been obtained experimentally by averaging multiple delay measurements in the communication channel. 
+
+The packet loss is defined as a constant probability of loosing a packet in the network. This probability is also obtained experimentally by \fxnote{HOW TO FINISH THIS}.
