@@ -34,13 +34,10 @@ The above is then used in construction of the state space matrix representation 
 \begin{flalign}
 	\vec{y}(t)&=\vec{C} \cdot \vec{x}(t) + \vec{D} \cdot \vec{u}(t)\label{ySS} 
 \end{flalign}
-\begin{where}
-  \va{\vec{A}}{is the system matrix}{}
-  \va{\vec{B}}{is the input matrix}{}
-  \va{\vec{C}}{is the output matrix}{}
-  \va{\vec{D}}{is the feed forward matrix}{}
-\end{where}
-The values for the A, B, C and D matrices are obtained from the linearized attitude equations, yielding the matrices shown below. As D is a zero matrix, only A, B and C are shown.
+
+Where $\vec{A}$ is the system matrix, $\vec{B}$ is the input matrix, $\vec{C}$ is the output matrix and $\vec{D}$ is the feedback matrix.
+
+The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are obtained from the linearized attitude equations, yielding the matrices shown below. As $\vec{D}$ is a zero matrix, only $\vec{A}$, $\vec{B}$ and $\vec{C}$ are shown.
 \footnotesize
 \begin{flalign}   \label{Amatrix}
 	\vec{A}=
