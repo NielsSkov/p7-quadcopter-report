@@ -1,20 +1,13 @@
 \section{Results}
 Simulation vs. reality. \\
+\\
+
 %Design a setup that allows a nice measurement of reality - yet to be done\\
-Comment on the results and how that correlates with reality, without discussing possible issues or improvements.
-Model parameters: \fxnote{bring table with values}
-Controllers:
-Attitude controller:
-Translational controller:
-
-The inner loop proportional controller of the x and y translational cascade controllers are as follows:
-\begin{align}
-C_{\dot{x}}(s)= -0.19\\
-C_{\dot{y}}(s)= 0.19
-\end{align}
-
-The outer loop  proportional controller of the x and y translational cascade are as follows:
-\begin{align}
-C_x(s)&= 0.55\\
-C_y(s)&= 0.55
-\end{align}
+Comment on the results and how that correlates with reality, without discussing possible issues or improvements.\\
+Model parameters: \fxnote{bring table with values}\\
+Controllers:\\
+The inner loop proportional controller of the x and y translational cascade controllers are $C_{\dot{x}}(s)= -0.19$
+, $C_{\dot{y}}(s)= 0.19$ and the outer loops are $C_x(s)= 0.55$, $C_y(s)= 0.55$
+The inner loop proportional controller of the z translational cascade controller is
+$C_{\dot{z}}(s)=\frac{-201s+0.8}{s}$ and the outer loop is $C_z=TBD$ \fxnote{to do}.\\ \\
+From this the following simulation and test are derived: 
