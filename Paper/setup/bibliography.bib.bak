@@ -47,13 +47,6 @@
   title =   {Rotation Matrix},
   journal = {MathWorld--A Wolfram Web Resource},
   year =    {2016}
-}
-
-@Article{TrueTime,
-  author =  {Anton Cervin, Dan Henriksson, Bo Lincoln, Johan Eker, Karl-Erik Årzén},
-  title =   {How Does Control Timing Affect Performance? Analysis and Simulation of Timing Using Jitterbug and TrueTime.},
-  journal = {IEEE Control Systems Magazine},
-  year =    {2003}
 }@book{YDing,
 	author = {Yongwang Ding and Ramesh Harjani},
 	title = {High-Linearity CMOS RF Front-End Circuits},
