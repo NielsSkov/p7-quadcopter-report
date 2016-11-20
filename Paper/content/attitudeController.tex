@@ -23,10 +23,10 @@ The attitude controller for the quadcopter has been designed using a state space
 		\omega_1 & \omega_2 &	\omega_3 &	\omega_4 \\
 	\end{bmatrix}\nonumber	
 	^T
-	\label{uVector}
+	\label{uVector}+
 \end{flalign}
 %
-The above is then used in construction of the state space matrix representation as displayed in Equation \ref{xDotSS} and \ref{ySS}.
+The above is then used in construction of the state space matrix representation as displayed in \autoref{xDotSS} and \ref{ySS}.
 \begin{flalign}
 	\vec{\dot{x}}(t)&=\vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)
 	\label{xDotSS} 

@@ -47,7 +47,36 @@
   title =   {Rotation Matrix},
   journal = {MathWorld--A Wolfram Web Resource},
   year =    {2016}
-}@book{YDing,
+}
+
+@InBook{ssReference,
+  chapter   = {7},
+  title     = {Feedback Control of Dynamic Systems},
+  publisher = {Pearson},
+  year      = {2015},
+  author    = {Gene F. Franklin, J. David Powell, Abbas Emami-Naeini},
+  edition   = {7th Edition},
+}
+
+@InBook{bandwidthReference,
+  chapter   = {TBD},
+  title     = {Feedback Control of Dynamic Systems},
+  publisher = {Pearson},
+  year      = {2015},
+  author    = {Gene F. Franklin, J. David Powell, Abbas Emami-Naeini},
+  edition   = {7th Edition},
+}
+
+@Article{TrueTimeNew,
+  author  = {Anton Cervin et al., Dan Henriksson},
+  title   = {How Does Control Timing Affect Performance? Analysis and Simulation of Timing Using Jitterbug and TrueTime.},
+  year    = {2003},
+  journal = {IEEE Control Systems Magazine},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}
+
+{YDing,
 	author = {Yongwang Ding and Ramesh Harjani},
 	title = {High-Linearity CMOS RF Front-End Circuits},
 	date = {2006},
@@ -89,4 +118,4 @@
 	OPTeprinttype = {eprinttype},
 	OPTurl = {url},
 	OPTurldate = {urldate},
-}￿
+}

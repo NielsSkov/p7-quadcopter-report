@@ -1,7 +1,5 @@
 \subsection{Translational Controller}
-The movements of the quadcopter along the inertial frame directions x, y and z are controlled by the translational controllers. It is decided to structure the controllers as cascade loops. The relation between the controllers are presented in \autoref{fig:cascade}.
-
-%The translational control systems for x and y are structured as cascade, where the velocity and position are controlled in the inner and outer loop respectively.
+The movements of the quadcopter along the inertial frame directions x, y and z are controlled by the translational controllers. It is decided to structure them as cascade loops, where the velocity and position are controlled in the inner and outer loop respectively. The relation between the controllers is presented in \autoref{fig:cascade}.
 
 \begin{figure}[H]
 	\centering
@@ -9,44 +7,32 @@ The movements of the quadcopter along the inertial frame directions x, y and z a
 	\caption{Overview of control structure.}
 	\label{fig:cascade}
 \end{figure}
-The vertical position is controlled by the cascade loop for the z axis' velocity and position, obtaining the required sum of motor rotational speeds. 
 
-The x and y controller share similar properties as the output for each are an angle reference, namely $\theta_{ref}$ and $\phi_{ref}$ respectively.
-Firstly the x and y controllers are designed similarly followed by an individual design for the z controller.
+The x and y controller share similar properties as the output for each are an angle reference, $\theta_{ref}$ and $\phi_{ref}$ respectively, while the output of the z controller is the required sum of rotational speeds in the motors.
+Firstly the x and y controllers are designed, followed by an individual design for the z controller.\\
 
-The inner loop for the x and y translational controllers are now designed followed by the outer loop.
-The model equations derived previously, see Equation \ref{eq:AccelerationEqInertial1} and \ref{eq:AccelerationEqInertial2}, are Laplace transformed and put on transfer function in respect to the inner loop, yielding:
-\begin{align}
+To design the inner controllers for x and y velocities, the model equations derived previously, see Equation \ref{eq:AccelerationEqInertial1} and \ref{eq:AccelerationEqInertial2}, are Laplace transformed. They are used to create a transfer function between the angles and the velocities, yielding:
+\begin{flalign}
     G_{\dot{x}}(s)&=\frac{\dot{x} (s)}{\theta (s)}=\frac{-k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s} \\
     G_{\dot{y}}(s)&=\frac{\dot{y} (s)}{\phi (s)}=\frac{k_{th}(\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s} 
-\end{align}
+\end{flalign}
+
+Where $G_{x_I}$ and $G_{y_I}$ are the plants used to design the velocity controllers in $x_I$ and $y_I$ direction respectively.
+
+It can be noticed that the plants are the same but with different signs. That is why the controller design is carried out for the x translational velocity and applied to the y translational velocity afterwards.
+
+A proportional controller is considered the plant already has an integrator, that eliminates a steady state error and output disturbances. The gain is the same for both controllers, but must be negative for the x translational controller in order to compensate for its negative plant as this will otherwise be unstable in the closed loop. The gain is designed such that it encounters a bandwidth that is three times lower than the attitude model to ensure minimum effect of disturbances \cite{bandwidthReference}.
+
+The plant of the outer loop is simply an integrator to transform velocity to position. As in the inner loop, the controller of the outer loop is a proportional controller. The outer loop is again designed to have three times less bandwidth than the inner loop to ensure minimization of disturbances and a stable system.\\
+
+To be able to design the inner loop for the z translational controller, the model equation derived previously, see \autoref{eq:AccelerationEqInertial3} is Laplace transformed and written on the form of a transfer function, being the velocity in z direction is the output and the sum of motor rotational speeds is the input.
 %
-%\begin{where}
-%\va{G_{x_I}}{is the plant for the translational velocity in $x_I$ direction}{1}
-%\va{G_{y_I}}{is the plant for the translational velocity in $y_I$ direction}{1}
-%\end{where}
-The plants are similar but with different signs. The controller design is carried out for the x translational velocity and applied to the y translational velocity afterwards.\\
-A proportional controller is sufficient as the plant already has an integrator, that will eliminate a steady state error and output disturbances. The gain will be the same for both controllers, but must be negative for the x translational controller in order to compensate for its negative plant as this will otherwise be unstable in the closed loop.
-
-%\begin{where}
-%    \va{G_{x_I}}{is the plant for the translational position in $x_I$ direction}{1}
-%    \va{G_{y_I}}{is the plant for the translational position in $y_I$ direction}{1}
-%\end{where}
-The gain is designed such that it encounters a bandwidth that is three times lower than the attitude model to ensure minimum effect of disturbances.
-The plant of the outer loop is simply an integrator to transform velocity to position. The controller of the outer loop is a proportional controller. The outer loop is designed to have three times less bandwidth than the inner loop to ensure minimization of disturbances to secure a stable system.
-
-The inner loop for the z translational controller is first designed followed by the outer loop.
-The model equation derived previously, see Equation \ref{eq:AccelerationEqInertial3} is Laplace transformed and put on transfer function, where the velocity in z direction is the output and the sum of motor rotational speeds is the input.
 \begin{align}
 G_{\dot{z}}=\frac{\dot{z}}{\omega_{sum}} &= \frac{ \frac{1}{4}\ (-2 k_{th})\ \overline{\omega}_{sum} }{ m\ s } & \label{eq:linearTransferFunctionZ}
 \end{align}
 
-Where $\dot{z}_I$ is the velocity in the $z_I$ direction, $\omega_{sum}$ is the sum of the rotational speeds of the motors and $\overline{\omega}_{sum}$ is the sum of the rotational speeds in equilibriumm.
+Where $\dot{z}_I$ is the velocity in the $z_I$ direction, $\omega_{sum}$ is the sum of the rotational speeds of the motors and $\overline{\omega}_{sum}$ is the sum of the rotational speeds in equilibrium.
 
-Due to an integrator and a negative gain the system's locus will move into the right half plane as the gain increases.
-A proportional controller with negative gain will ensure the system to become stable. However, due to input disturbances an integrator is added, as this will eliminate this issue. 
-%As the feedback loop now holds two poles in zero, the root locus system will branch along the imaginary axis. A differentiator is added to attract the poles and by that eliminating oscillations.
-The final z translational controller of the inner loop is a PI-controller. 
+Due to an integrator and a negative gain the system's locus will move into the right half plane as the gain increases. A proportional controller with negative gain will ensure the system to become stable and to have zero steady state error. However, there are input disturbances given as the equilibrium rotational speeds of the motors maybe be not exactly equal in reality than the calculated ones. In this case, an integrator in the plant is not enough to handle them so another one is added to the controller to eliminate this issue. The final z translational velocity controller results in a  PI-controller. 
 
-Before the designed controllers can be implemented on the micro controller on the quadcopter, they must be discretized. 
-The discretization is done as billinear approximation, also known as Tustin, where the half plane side in Laplace domain is mapped as the unit cycle in the discrete domain. 
+As in the case of the x and y outer controllers for position, the plant is just an integrator and, since the disturbances are handled by the inner one, a proportional controller is considered sufficient. This is as well designed so that the bandwidth frequency is three times lower than the inner one.
