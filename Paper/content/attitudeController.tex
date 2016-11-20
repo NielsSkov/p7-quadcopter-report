@@ -23,10 +23,10 @@ The attitude controller for the quadcopter has been designed using a state space
 		\omega_1 & \omega_2 &	\omega_3 &	\omega_4 \\
 	\end{bmatrix}\nonumber	
 	^T
-	\label{uVector}
+	\label{uVector}+
 \end{flalign}
 %
-The above is then used in construction of the state space matrix representation as displayed in Equation \ref{xDotSS} and \ref{ySS}.
+The above is then used in construction of the state space matrix representation as displayed in \autoref{xDotSS} and \ref{ySS}.
 \begin{flalign}
 	\vec{\dot{x}}(t)&=\vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)
 	\label{xDotSS} 
@@ -78,8 +78,17 @@ The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are ob
 %	\label{attitudeControlDiagram}
 %\end{figure}
 
-State feedback and integral control
-For the quadcopter to hover, it is desired to keep the attitude in equilibrium; this is achieved using a state feedback. To be able to change and track a reference an integral controller is designed around the state feedback. This allows changing the attitude in order to move in the xy-plane of the inertial system.
+For the quadcopter to hover, it is desired to keep the attitude in equilibrium; this is achieved using a state feedback. To be able to change and track a reference an integral controller is designed combined with the other one. It is also desirable to use an observer in order to estimate the angular velocities that are part of the state of the system. This is done using a reduced-order observer. These two designs can be done independently due to the separation principle. \cite{ssReference}
+
+\autoref{AttitudeControlDiagram} shows how this designs are related.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.2]{figures/AttitudeControlDiagram}
+    \caption{}
+    \label{AttitudeControlDiagram}
+\end{figure}
+
 
 
 

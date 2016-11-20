@@ -1,6 +1,6 @@
 \section{Model}
 %Model - Drawing, equations, linear equations.
-The quadcopter system is shown in Figure \ref{droneDiagram}. 
+The quadcopter system is shown in \autoref{droneDiagram}. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.25]{figures/droneDiagram}
@@ -48,7 +48,7 @@ Where $J_x$, $J_y$ and $J_z$ are the moments of inertia around the three axis of
 
 The expressions above state how the thrust force difference between motors 1 and 3 affects the roll angular acceleration, how that between motors 4 and 2 affects the pitch angle and how the yaw acceleration depends on the four motors by means of the drag torques generated on the propellers.  
 \subsection{Translational Model}
-The equations describing the response of the system along the x, y and z axes is derived from Newton's Second Law. The forces that act on the system are those from the propellers and the gravitational one. These expressions are shown in Equation \ref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}.
+The equations describing the response of the system along the x, y and z axes is derived from Newton's Second Law. The forces that act on the system are those from the propellers and the gravitational one. These expressions are shown in \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}.
 %
 \begin{flalign}
      m\ \ddot{x}_I = &-k_{th}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \nonumber\\
@@ -65,8 +65,11 @@ Where $m$ is the mass of the quadcopter, $\ddot{x}$, $\ddot{y}$ and $\ddot{z}$ a
 It is worth mentioning that, as the thrust forces always point in the negative z direction in the body coordinate frame, the accelerations in x and y directions in the inertial frame are zero as long as pitch and roll angles are 0.
 \subsection{Linearization}
 The linearization of the model equations has been developed following the first order Taylor approximation around an equilibrium point of the system. The chosen point is the hovering position and that implies that all variables have a value of zero, that is, the translational and attitude accelerations, velocities and positions. Choosing a zero acceleration equilibrium point along the Inertial z axis yields a equilibrium rotational speeds so that the necessary thrust is generated to compensate for the gravitational force.
-
-The resulting equations for the attitude model after the linearization are shown in Equation \ref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3}. 
+\begin{flalign}
+    \overline{\omega}_i=\sqrt{\frac{m\  g}{4k_{th}}}
+    \label{eq:equilibriumomegas}
+\end{flalign}
+The resulting equations for the attitude model after the linearization are shown in \autoref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3}. 
 \begin{flalign}
   J_x\ \Delta\ddot{\phi}   = \ &2\ k_{th}\ L\ {\overline{\omega}_4}\ \Delta \omega_4\ -\ 2\ k_{th}\ L\ {\overline{\omega}_2}\ \Delta \omega_2
   \label{eqAngleLin1} \\
@@ -78,7 +81,7 @@ The resulting equations for the attitude model after the linearization are shown
 
 Where $\Delta\ddot{\phi}$, $\Delta\ddot{\theta}$ and $\Delta\ddot{\psi}$ are the changes in rotational acceleration from equilibrium, $\overline{\omega}_i$ is the rotational speed of each motor in equilibrium and $\Delta \omega_i$ is the change in rotational speed of each motor from equilibrium. 
 
-Similarly, the equations of the translational model are linearized. The result is shown in \ref{eq:TransLinearEquations1}, \ref{eq:TransLinearEquations2} and \ref{eq:TransLinearEquations3}.
+Similarly, the equations of the translational model are linearized. The result is shown in \autoref{eq:TransLinearEquations1}, \ref{eq:TransLinearEquations2} and \ref{eq:TransLinearEquations3}.
 \begin{flalign}
   m\ \Delta\ddot{x}_I =\ &-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\  \Delta\theta \label{eq:TransLinearEquations1} \\
   m\ \Delta\ddot{y}_I =\ & k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \Delta\phi \label{eq:TransLinearEquations2}\\
