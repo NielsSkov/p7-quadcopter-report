@@ -1,10 +1,12 @@
 \section{Network}
-The effects on the control performance of the usage of the wireless network to get the sensor data can be divided in two. These are the delay and the packet loss.
+The wireless network between the sensor and the quadcopter can influence the performance of the controller. This influence can be divide into to categories: the delay, from when the sensor receives data to the microcontroller utilizes the data, and the loss of packages in the communication channel.
 
-The theoretical modeling of these effects has been studied by many researchers in order to obtain stability criteria and maximum allowable delay or packet dropout. However, this approach often leads to an increased complexity in the model \fxnote{THEORETICAL APPROACHES SOURCES}.
+%The effects on the control performance of the usage of the wireless network to get the sensor data can be divided in two. These are the delay and the packet loss.
 
-An alternative to account for these effects in the control system is using a network simulator like TrueTime \cite{TrueTime}. This toolbox helps finding the maximum delay and packet loss probability such that the control system is still stable by simulating the controllers and the network together.
+%The theoretical modelling of these influences has been studied by several researchers in order to obtain stability criteria, maximum allowable delay and maximum packet loss. However, this approach often leads to an increased complexity in the model. 
 
-The delay is modeled as an exponential distribution whose mean parameter has been obtained experimentally by averaging multiple delay measurements in the communication channel. 
+The theoretical modelling of these influences has been studied by several researchers in order to find a maximum allowable delay and packet loss while the control system keeps stable \fxnote{THEORETICAL APPROACHES SOURCES}. However, this approach often leads to an increased complexity in the model. 
 
-The packet loss is defined as a constant probability of loosing a packet in the network. This probability is also obtained experimentally by \fxnote{HOW TO FINISH THIS}.
+An alternative to account for these effects in the control system is to utilize a network simulator like TrueTime \cite{TrueTime}. Truetime enables the opportunity to simulate the network and the controller together. It is thereby possible to find the probability for packet loss and the maximum occurring delay in the system while insuring the control system is still stable. This can hereafter be compared to the delay occurring in reality. To find the maximum delay in reality, the delay is modelled as an exponential distribution with a mean parameter obtained experimentally by averaging multiple delay measurements in the communication channel. The packet loss, defined as a constant probability of loosing a packet, is found experimentally by sending a large amount of packages and see how many of these packages are lost.  
+
+%This probability is also obtained experimentally by \fxnote{HOW TO FINISH THIS}.
