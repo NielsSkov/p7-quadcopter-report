@@ -61,17 +61,17 @@ With this observer gain, the observer in \autoref{eq:observerStable} ensures an 
 %
 To calculate an appropriate observer gain, $L_{obs}$, it is necessary to  evaluate the reliability of the utilized sensor. If the gain is set very high, the estimation will rely more on the actual measurements of the outputs, whereas if it is very low, there will be more influence of the model in the final calcuations. The sensor utilized for the prototype is the Vicon system and, since it is highly reliable, it is possible to chose a high observer gain.
 
-The matrix in \autoref{Matrix:Lobs} is the decided observer gains utilized in the reduced order observer.
+%The matrix in \autoref{Matrix:Lobs} is the decided observer gains utilized in the reduced order observer.
 %
-\begin{flalign}
-	\vec{L_{obs}} = 
-	\begin{bmatrix}
-	\ -50 & 0 & 0  \ \ \ \\ 
-	\ 0 & -60 & 0  \ \ \ \\ 
-	\ 0 & 0 & -70  \ \ \  
-	\end{bmatrix}
-	\label{Matrix:Lobs}
-\end{flalign}
+%\begin{flalign}
+%	\vec{L_{obs}} = 
+%	\begin{bmatrix}
+%	\ -50 & 0 & 0  \ \ \ \\ 
+%	\ 0 & -60 & 0  \ \ \ \\ 
+%	\ 0 & 0 & -70  \ \ \  
+%	\end{bmatrix}
+%	\label{Matrix:Lobs}
+%\end{flalign}
 
 With the final design, \autoref{eq:eqobserverderived} shows how to estimate $\hat{x}_2$.
 %
