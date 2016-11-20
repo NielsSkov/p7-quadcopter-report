@@ -74,16 +74,6 @@
   year    = {2003},
 }
 
-@InBook{ssSeparationPrinciple,
-  chapter   = {7},
-  pages     = {521-522},
-  title     = {Feedback Control of Dynamic Systems},
-  publisher = {Pearson},
-  year      = {2015},
-  author    = {Gene F. Franklin, J. David Powell, Abbas Emami-Naeini},
-  edition   = {7th Edition},
-}
-
 @Comment{jabref-meta: databaseType:bibtex;}
 
 {YDing,

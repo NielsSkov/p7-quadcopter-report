@@ -65,7 +65,10 @@ Where $m$ is the mass of the quadcopter, $\ddot{x}$, $\ddot{y}$ and $\ddot{z}$ a
 It is worth mentioning that, as the thrust forces always point in the negative z direction in the body coordinate frame, the accelerations in x and y directions in the inertial frame are zero as long as pitch and roll angles are 0.
 \subsection{Linearization}
 The linearization of the model equations has been developed following the first order Taylor approximation around an equilibrium point of the system. The chosen point is the hovering position and that implies that all variables have a value of zero, that is, the translational and attitude accelerations, velocities and positions. Choosing a zero acceleration equilibrium point along the Inertial z axis yields a equilibrium rotational speeds so that the necessary thrust is generated to compensate for the gravitational force.
-
+\begin{flalign}
+    \overline{\omega}_i=\sqrt{\frac{m\  g}{4k_{th}}}
+    \label{eq:equilibriumomegas}
+\end{flalign}
 The resulting equations for the attitude model after the linearization are shown in \autoref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3}. 
 \begin{flalign}
   J_x\ \Delta\ddot{\phi}   = \ &2\ k_{th}\ L\ {\overline{\omega}_4}\ \Delta \omega_4\ -\ 2\ k_{th}\ L\ {\overline{\omega}_2}\ \Delta \omega_2
