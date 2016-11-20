@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.8)  20 NOV 2016 14:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.8)  20 NOV 2016 14:18
 entering extended mode
 **./16gr733.tex
 (16gr733.tex
@@ -3330,21 +3330,21 @@ Package hyperref Info: bookmark level for unknown fixme defaults to 0 on input
 line 6.
 )
 (content/results.tex
-<figures/PositionControl.pdf, id=232, 378.41376pt x 315.1775pt>
+<figures/PositionControl.pdf, id=231, 378.41376pt x 315.1775pt>
 File: figures/PositionControl.pdf Graphic file (type pdf)
 
 <use figures/PositionControl.pdf>
-Package pdftex.def Info: figures/PositionControl.pdf used on input line 43.
+Package pdftex.def Info: figures/PositionControl.pdf used on input line 45.
 (pdftex.def)             Requested size: 189.2064pt x 157.58836pt.
 
-<figures/AttitudeControl.pdf, id=234, 383.4325pt x 319.1925pt>
+<figures/AttitudeControl.pdf, id=233, 386.44376pt x 312.16624pt>
 File: figures/AttitudeControl.pdf Graphic file (type pdf)
 
 <use figures/AttitudeControl.pdf>
-Package pdftex.def Info: figures/AttitudeControl.pdf used on input line 51.
-(pdftex.def)             Requested size: 191.71577pt x 159.59586pt.
+Package pdftex.def Info: figures/AttitudeControl.pdf used on input line 53.
+(pdftex.def)             Requested size: 193.2214pt x 156.08273pt.
 
-Underfull \vbox (badness 5359) has occurred while \output is active []
+Underfull \vbox (badness 1953) has occurred while \output is active []
 
  [5 <./figures/PositionControl.pdf>]) (content/discussion.tex) (content/conclus
 ion.tex)
@@ -3379,8 +3379,8 @@ Package logreq Info: Writing requests to '16gr733.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 121.
  ) 
 Here is how much of TeX's memory you used:
- 45178 strings out of 493634
- 958029 string characters out of 3134424
+ 45177 strings out of 493634
+ 958018 string characters out of 3134424
  1550313 words of memory out of 3000000
  47776 multiletter control sequences out of 15000+200000
  128410 words of font info for 166 fonts, out of 3000000 for 9000
@@ -3416,9 +3416,9 @@ sy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9
 les (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files (x86)/
 MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/
 fonts/type1/urw/times/utmri8a.pfb>
-Output written on 16gr733.pdf (6 pages, 780139 bytes).
+Output written on 16gr733.pdf (6 pages, 796297 bytes).
 PDF statistics:
- 448 PDF objects out of 1000 (max. 8388607)
- 68 named destinations out of 1000 (max. 500000)
+ 454 PDF objects out of 1000 (max. 8388607)
+ 67 named destinations out of 1000 (max. 500000)
  160 words of extra memory for PDF output out of 10000 (max. 10000000)
 
