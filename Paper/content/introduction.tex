@@ -9,10 +9,10 @@ The quadcopter constitutes a control challenge due to its unstable nature and co
 The control of a quadcopter has been addressed many times in the recent years. In Mian et al. \cite{backstepping} the quadcopter is controlled using a back-stepping technique and non-linear controllers. Another way of solving the issue is presented in Tayebi et al. \cite{quaternionsPD} in which the quadcopter attitude is modeled using quaternions and controlled with a PD based controller. In \cite{MianWang}, Mian and Wang model the system using its dynamic equations and use non linear controllers to achieve a steady flight while in Mokhtari et al. \cite{GHinf} the system is controlled by a mixture of a robust feedback linearization and a modified optimization control method.
 
 %Describe our approach shortly.
-The approach presented here models the quadcopter by a first principles method. This approach yields a non linear model that describes the attitude and translational behavior of the quadcopter. The model is then linearized around an equilibrium point, which is chosen to be in hovering position. 
-
-With the linearized equations, controllers for attitude and translational behaviors are designed. The attitude controller is obtained by means of a state space representation while the translational controller is designed using classical control. In the control system, the translational constitutes an outer loop and sets the reference for the attitude controller. 
-
-Since the sensors are not placed in the quadcopter and the information comes from an external motion tracking system \cite{vicon}, an analysis on how the network affects the control loop is also presented. 
-
+The approach presented here models the quadcopter by a first principles method. This approach yields a non linear model that describes the attitude and translational behavior of the quadcopter. The model is then linearized around an equilibrium point, which is chosen to be in hovering position.
+%
+With the linearized equations, controllers for attitude and translational behaviors are designed. The attitude controller is obtained by means of a state space representation while the translational controller is designed using classical control. In the control system, the translational constitutes an outer loop and sets the reference for the attitude controller.
+%
+Since the sensors are not placed in the quadcopter and the information comes from an external motion tracking system \cite{vicon}, an analysis on how the network affects the control loop is also presented.
+%
 Lastly, the simulations and experimental results of the designed controllers are presented and discussed.
