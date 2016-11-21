@@ -1,6 +1,6 @@
 \section{Discussion}
-The results obtained in the simulations show both the position and the angular response of the quadcopter. 
+The results obtained in the simulations show both the attitude and position response of the quadcopter. 
 
-It can be seen from them that the controllers achieve their goal even though the network delay and the sampling rate affect the performance. The main network effect is the designed bandwidth of the controllers. This occurs due to the limited frequency in which the sensor data is obtained from the motion tracking system. 
+It is seen that the controllers achieve the desired reference even though the network delay and the sampling rate affect the performance. The main network effect is the designed bandwidth of the controllers. This occurs due to the limited frequency in which the sensor data is obtained from the motion tracking system through the wireless connection. 
 
-It is also worth observing how the angular controllers show a permanent error with respect to the reference. This is generated as the integral control has been designed, for the sake of simplicity, as having constant reference applied. This consideration does not affect the final position of the quadcopter.
+It is also worth observing how the attitude controller shows a permanent error with respect to the reference. This is generated as a result of the integral controller design because it assumes a constant reference applied to it. This issue, though, does not affect the final position of the quadcopter.
