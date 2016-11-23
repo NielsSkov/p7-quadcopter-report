@@ -1,9 +1,9 @@
 \section{Network}
-The wireless network between the sensor and the quadcopter can influence the performance of the controller. This influence can be divided into two categories: the delay, from when the sensor receives data until the microcontroller utilizes the data, and the loss of packages in the communication channel.
+The wireless network between the sensor and the quadcopter can influence the performance of the controller. This influence can be divided into two categories: the delay, from when the sensor receives data until the data is available in the microcontroller, and the loss of packages in the communication channel.
 
 %The effects on the control performance of the usage of the wireless network to get the sensor data can be divided in two. These are the delay and the packet loss.
 
-The theoretical modeling of these influences has been studied by several researchers in order to find a maximum allowable delay and packet loss, while the control system remains stable \cite{wang}, \cite{walsh}. However, this approach often leads to an increased complexity in the model. 
+The theoretical modeling of these influences has been studied by several researchers in order to obtain a criteria for finding maximum allowable delay and packet loss, while the control system remains stable. However, these approaches often lead to an increased complexity as the network effect is included in the model of the system.\fxnote{SOURCES}
 
 An alternative to account for these effects in the control system is to utilize a network simulator such as TrueTime \cite{TrueTimeNew}.
 
