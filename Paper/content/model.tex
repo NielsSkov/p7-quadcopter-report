@@ -10,7 +10,7 @@ The quadcopter free body diagram is shown in \autoref{droneDiagram}.
 %
 As it is seen, the system is modeled by using two coordinate frames. The inertial frame is utilized to describe the translational movement while the body frame is attached to the quadcopter and used to characterize its attitude behavior. In the figure, also the positive references for rotational and translational movements are depicted, as well as the main forces and torques acting on the quadcopter. 
 
-The forces generated in the propeller are readily obtained in the body coordinate frame. In order to represent them in the inertial frame a rotation matrix is used. It is built considering a 123 rotation sequence \cite{rotationmatrix}.
+The forces generated in the propeller are readily obtained in the body coordinate frame. In order to represent them in the inertial frame a rotation matrix is used. It is built considering a 123 rotation sequence \cite{rotationmatrix}, that is, rotations are described as three rotations happening first around the $x_\mathrm{B}$, then around  $y_\mathrm{B}$ and finally around $z_\mathrm{B}$.
  
 The dynamic model of the quadcopter is given by through three sets of equations. The first describes the motor and the propeller, the second presents the attitude response of the quadcopter and the third explains how the translational variables of the system evolve.
 
@@ -58,8 +58,7 @@ The equations describing the response of the system along the inertial x, y and 
      m\ \ddot{y}_I = &-k_{th}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\\
      & \cdot (\cos(\phi)\ \sin(\theta)\ \sin(\psi) - \sin(\phi)\ \cos(\psi))  \label{eq:AccelerationEqInertial2}\nonumber\\
      m\ \ddot{z}_I = &F_g-k_{th}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\\
-     & \cdot \cos(\phi)\ \cos(\theta)\label{eq:AccelerationEqInertial3}
-     \nonumber
+     & \cdot \cos(\phi)\ \cos(\theta) \label{eq:AccelerationEqInertial3} \nonumber
 \end{flalign}
 
 Where $m$ is the mass of the quadcopter, $\ddot{x}_I$, $\ddot{y}_I$ and $\ddot{z}_I$ are the accelerations along the inertial reference frame directions, $\phi$, $\theta$ and $\psi$ are the roll, pitch and yaw angles respectively and $F_g$ is the gravitational force acting on the quadcopter.
