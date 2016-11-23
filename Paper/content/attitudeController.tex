@@ -21,14 +21,15 @@ The attitude controller for the quadcopter is designed using a state space repre
 
 The vectors above are then used in construction of the state space matrix representation as displayed in \autoref{xDotSS} and \ref{ySS}.
 \begin{flalign}
-	\vec{\dot{x}}(t)&=\vec{A} \cdot \vec{x}(t) + \vec{B} \cdot \vec{u}(t)
+	\vec{\dot{x}}(t)&=\vec{A} \ \vec{x}(t) + \vec{B} \ \vec{u}(t)
 	\label{xDotSS} 
 \end{flalign}
+\vspace{-0.9 cm}
 \begin{flalign}
-	\vec{y}(t)&=\vec{C} \cdot \vec{x}(t) + \vec{D} \cdot \vec{u}(t)\label{ySS} 
+	\vec{y}(t)&=\vec{C} \ \vec{x}(t) + \vec{D} \ \vec{u}(t)\label{ySS} 
 \end{flalign}
-
-Where $\vec{A}$ is the system matrix, $\vec{B}$ is the input matrix, $\vec{C}$ is the output matrix and $\vec{D}$ is the feedback matrix.
+%
+where $\vec{A}$ is the system matrix, $\vec{B}$ is the input matrix, $\vec{C}$ is the output matrix and $\vec{D}$ is the feedback matrix.
 
 The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are obtained from the linearized attitude equations, yielding the matrices shown below. As $\vec{D}$ is a zero matrix, only $\vec{A}$, $\vec{B}$ and $\vec{C}$ are shown. 
 
@@ -41,32 +42,35 @@ The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are ob
 		\ 0 & 0 & 0 & 0 & 0 & 1     \ \ \ \\
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
-		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \  		
+		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \  
 	\end{bmatrix}\nonumber
 \end{flalign} \label{Bmatrix}
+\vspace{-0.3 cm}
 \begin{flalign}
     \vec{B} =
 	\begin{bmatrix}
 		\ 0 & 0 & 0 & 0      \ \ \ \\ 
 		\ 0 & 0 & 0 & 0      \ \ \ \\ 
-		\ 0 & 0 & 0 & 0      \ \ \ \\
+		\ 0 & 0 & 0 & 0     ^{•} \ \ \ \\
 		\ 0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_2}{J_x}} & 0 & \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_4}{J_x}}      \ \ \ \\ 
 		\ \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_1}{J_y}} & 0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_3}{J_y}} & 0      \ \ \ \\ 
 		\ \frac{2 \cdot k_d \cdot {\overline{\omega}_1}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_2}}{J_z} & \frac{2 \cdot k_d \cdot {\overline{\omega}_3}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_4}}{J_z}      \ \ \ 		
 	\end{bmatrix}\nonumber
 \end{flalign}
+\vspace{-0.3 cm}
 \begin{flalign} \label{Cmatrix}
 	\vec{C} =	 
 	\begin{bmatrix}
 		\ 1 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 1 & 0 & 0 & 0 & 0     \ \ \ \\ 
-		\ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 		
+		\ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 
 	\end{bmatrix}\nonumber
 \end{flalign} }
 \normalsize
 The attitude control is based on a state feedback and an integral term in order to be able to track a given reference. As not all states are measured a reduced order observer is implemented to estimate the angular velocities of the quadcopter. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
-
-\autoref{AttitudeControlDiagram} shows how these designs are related.
+\\
+\\
+\noindent\autoref{AttitudeControlDiagram} shows how these designs are related.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.25]{figures/AttitudeControlDiagram}
@@ -77,40 +81,39 @@ The attitude control is based on a state feedback and an integral term in order 
 %--------------------- StateFeedback with Integral Control ----------------------------
 The design of the state feedback and integral control is shown in \autoref{fig:DetailedControllerColorDiagram}.
 \begin{figure}[H]
-    \includegraphics[scale=.35]{figures/DetailedControllerColorDiagram}
+    \includegraphics[scale=.3]{figures/DetailedControllerColorDiagram}
     \centering
     \captionof{figure}{State feedback and integral controller in the attitude control structure.}
     \label{fig:DetailedControllerColorDiagram}
 \end{figure}
-As there are three outputs to track, three states, $\vec{x}_{int}(t)$, are added to the already existing state vector. This leads to the extended system shown in \autoref{xdotSSExtended} and \ref{ySSExtended}.
+As there are three outputs to track, three states, $\vec{x}_{\mathrm{int}}(t)$, are added to the already existing state vector. This leads to the extended system shown in \autoref{xdotSSExtended} and \ref{ySSExtended}.
 %
 \begin{flalign} 
-\dot{\vec{x}}_e(t) &= \vec{A}_e \  \vec{x}_e(t) + \vec{B}_e \  \vec{u}(t) + 
+\dot{\vec{x}}_\mathrm{e}(t) &= \vec{A}_\mathrm{e} \  \vec{x}_\mathrm{e}(t) + \vec{B}_\mathrm{e} \  \vec{u}(t) + 
 \begin{bmatrix}
 \ \vec{0}     \ \ \ \\ 
 \ \vec{-I}     \ \ \  		
 \end{bmatrix}
 \vec{r}(t) 
 \label{xdotSSExtended}\\ 
-\vec{y}(t) &= \vec{C}_e \  \vec{x}_e 
+\vec{y}(t) &= \vec{C}_\mathrm{e} \  \vec{x}_\mathrm{e} 
 \label{ySSExtended}
 \end{flalign} 
 %
-
-Where\\
+where\\
 \scriptsize{
 \begin{minipage}{0.28\linewidth}
     \begin{flalign}
-    \dot{\vec{x}}_e(t)= 
+    \dot{\vec{x}}_\mathrm{e}(t)= 
     \begin{bmatrix}
     \ \dot{\vec{x}}(t)      \ \  \\ 
-    \ \dot{\vec{x}}_{int}(t)      \ \   		
+    \ \dot{\vec{x}}_{\mathrm{int}}(t)      \ \   		
     \end{bmatrix} \nonumber
     \end{flalign}
 \end{minipage}\hfill
 \begin{minipage}{0.2\linewidth}
     \begin{flalign}
-    \vec{A}_e=
+    \vec{A}_\mathrm{e}=
     \begin{bmatrix}
     \ \vec{A}  & \vec{0}    \ \  \\ 
     \ \vec{C}  & \vec{0}    \ \   		
@@ -119,7 +122,7 @@ Where\\
 \end{minipage}   \hfill 
 \begin{minipage}{0.2\linewidth}
     \begin{flalign}
-    \vec{B}_e=
+    \vec{B}_\mathrm{e}=
     \begin{bmatrix}
     \ \vec{B}    \ \  \\ 
     \ \vec{0}     \ \   		
@@ -128,7 +131,7 @@ Where\\
 \end{minipage}\hfill
 \begin{minipage}{0.2\linewidth}
     \begin{flalign}
-    \vec{C}_e=
+    \vec{C}_\mathrm{e}=
     \begin{bmatrix}
     \ \vec{C}  & \vec{0}  \ \   		
     \end{bmatrix} \nonumber
@@ -137,27 +140,27 @@ Where\\
 \\
 \normalsize
 
-The feedback law for this design approach is given by \autoref{eq:ssControllerAction}. Its design is done as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_e=[\vec{F} \ \vec{F}_{int}]$ matrix, such that the eigenvalues of $\vec{A}_e+\vec{B}_e\vec{F}_e$ are the closed loop poles giving the desired dynamics.
+The feedback law for this design approach is given by \autoref{eq:ssControllerAction}. Its design is done as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_\mathrm{e}=[\vec{F} \ \vec{F}_{\mathrm{int}}]$ matrix, such that the eigenvalues of $\vec{A}_\mathrm{e}+\vec{B}_\mathrm{e}\vec{F}_\mathrm{e}$ are the closed loop poles giving the desired dynamics.
 %
 \begin{flalign} 
-    \vec{u}(t) &=\vec{F} \  \vec{x}(t) + \ \vec{F}_{int} \  \vec{x}_{int}(t)
+    \vec{u}(t) &=\vec{F} \  \vec{x}(t) + \ \vec{F}_{\mathrm{int}} \  \vec{x}_{\mathrm{int}}(t)
     \label{eq:ssControllerAction}
 \end{flalign}
 %
-Once $\vec{F}_e$ is obtained, it is split into $F$ and $F_{int}$. In this way, the controller is implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.\\
+Once $\vec{F}_\mathrm{e}$ is obtained, it is split into $F$ and $F_{\mathrm{int}}$. In this way, the controller is implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.\\
 
 %--------------------- Reduced-Order Observer ----------------------------
 
-Since certain states in the system are not measured, an observer estimates the remaining states by means of the system output and input. With this approach, the first three states, $\vec{x}_1$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_2$, are estimated as $\hat{\vec{x}}_2$.
+Since certain states in the system are not measured, an observer estimates the remaining states by means of the system output and input. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$.
 
-The observer is designed by finding the matrix $\vec{L}_{obs}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{obs}\ \vec{A}_{12}$ \cite{ssReference}. This is done splitting the original system matrices into submatrices, as seen below.\\
+The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\ \vec{A}_{12}$ \cite{ssReference}. This is done splitting the original system matrices into submatrices, as seen below.\\
 %
 \begin{minipage}{0.45\linewidth}
     \begin{flalign}
     \vec{A}=
     \begin{bmatrix}
-    \ \vec{A11}  & \vec{A12}    \ \ \ \\ 
-    \ \vec{A21}  & \vec{A22}    \ \ \  		
+    \ \vec{A}_{11}  & \vec{A}_{12}    \ \ \ \\ 
+    \ \vec{A}_{21}  & \vec{A}_{22}    \ \ \  		
     \end{bmatrix} \nonumber
     \end{flalign}
 \end{minipage}   \hfill 
@@ -165,23 +168,24 @@ The observer is designed by finding the matrix $\vec{L}_{obs}$ such that the eig
     \begin{flalign}
     \vec{B}=
     \begin{bmatrix}
-    \ \vec{B1}    \ \ \ \\ 
-    \ \vec{B2}     \ \ \  		
+    \ \vec{B}_1    \ \ \ \\ 
+    \ \vec{B}_2     \ \ \  		
     \end{bmatrix} \nonumber
     \end{flalign}
-\end{minipage}\hfill
-\\
+\end{minipage}\\
+\normalsize
 
-With the observer matrix, the observer equation is derived. See \autoref{eq:eqobservertheorem}. This ensures an estimate $\hat{\vec{x}}_2$ which converges to $\vec{x}_2$ at a rate given by the chosen observer poles.
+With the observer matrix, the observer equation is derived. See \autoref{eq:eqobservertheorem}. This ensures an estimate $\hat{\vec{x}}_{4:6}$ which converges to $\vec{x}_{4:6}$ at a rate given by the chosen observer poles.
 \small{
 \begin{flalign}
-    \vec{\hat{\dot{x}}_2} &= \vec{A_{21}}\vec{y} + \vec{A_{22}}\vec{\hat{x}_2} + \vec{B_2u} + \vec{L_{obs}}\vec{(A_{12}\hat{x}_2} - \vec{A_{21}x_2}) \label{eq:eqobservertheorem}
-\end{flalign}}
+    \vec{\hat{\dot{x}}}_{4:6} &= \vec{A}_{21}\vec{y} + \vec{A}_{22}\vec{\hat{x}}_{4:6} + \vec{B_2} + \vec{L}_{\mathrm{obs}}\vec{(A}_{12}\vec{\hat{x}}_{4:6} - \vec{A}_{21}\vec{x}_{4:6}) \label{eq:eqobservertheorem}
+\end{flalign}
 \normalsize
 \\
-This estimation of $\hat{\vec{x}}_2$ is also seen in \autoref{fig:observerDiagram}.
+This estimation of $\vec{x}_{4:6}$ is also seen in \autoref{fig:observerDiagram}.
+
 \begin{figure}[H]
-    \includegraphics[scale=.2]{figures/observerDiagram}
+    \includegraphics[scale=.15]{figures/observerDiagram}
     \centering
     \captionsetup{justification=centering}
     \captionof{figure}{Detailed diagram of the reduced order observer that shows its implementation.}
