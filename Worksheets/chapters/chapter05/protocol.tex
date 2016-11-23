@@ -1,3 +1,24 @@
 \section{Communication Protocol}
+The main information necessary to transmit from the computer to the micro controller, is the position, attitude and translational velocity of the quadcopter. A created transport layer protocol is utilized to ensure transmitted packages can be detected and that erroneous packages is not utilized by the micro controller.
 
-Explain the communication protocol
+The Vicon system has a sampling rate of 100 Hz. A connectionless protocol can thereby be utilized, as it is sufficient to transmit the latest data to the micro controller instead of asking for a retransmission, e.g. if a package is lost or corrupt. Furthermore a retransmission will cause a delay in the system, this is not desired as this real time system is sensitive to delay.
+
+\subsection{Package Structure}
+The communication link is only between two nodes, i.e. the computer and the micro controller. It is decided not to change the length of the package relative to the gathered data. If a package is lost it is not detected, however, this could be done by implementing a sequence number in the header of the package, but since this is decided to be a connectionless protocol it is deemed unnecessary. These considerations simplifies the protocol header and tail, as only a start sequence and not an end byte is necessary, as the length is constant. Furthermore it is decided that for the prototype a checksum is enough for detecting corrupt packages. The structure of a created package is illustrated in \autoref{tab:Packagestructure}.
+
+\begin{table}[H]\centering
+\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{2cm}|>{\centering\arraybackslash}m{2cm}|}
+\hline
+Start Sequence & Data & Checksum \\
+\hline
+\end{tabular}
+\caption{The structure of a package}
+\label{tab:Packagestructure}
+\end{table}
+
+\subsubsection{Start Byte}
+
+
+\subsubsection{Data}
+
+\subsubsection{Checksum}
