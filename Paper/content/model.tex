@@ -15,18 +15,18 @@ The forces generated in the propeller are readily obtained in the body coordinat
 The dynamic model of the quadcopter can be explained through three sets of equations. The first describes the motor and the propeller, the second presents the attitude response of the quadcopter and the third explains how the translational variables of the system evolve.
 
 \subsection{Motor and Propeller}
-The four motors in the quadcopter generate a rotation in the propellers that creates the force that lifts the quadcopter. The thrust force can be modeled as proportional to the square of the motor rotational speed. The thrust coefficient is found experimentally. 
+The four motors in the quadcopter generate a rotation in the propellers that creates the force that lifts the quadcopter. The thrust force can be modeled as proportional to the square of the motor rotational speed. The thrust coefficient for one motor is found experimentally. 
  
-The rotation also generates a torque on each motor due to drag between air and propeller. Drag torque is compensated in the quadcopter by having two of the motors turning in one direction and the two others in the opposite direction. It is as well described as proportional to the square of the rotational speed in terms of a drag coefficient, which is also obtained experimentally.
+The rotation also generates a torque on each motor due to the aerodynamic drag. Drag torque is compensated in the quadcopter by having two of the motors turning in one direction and the two others in the opposite direction. It is as well described as proportional to the square of the rotational speed in terms of a drag coefficient, which is also obtained experimentally.
 
-\autoref{eq:thrustForce} and \ref{eq:dragTorque} show the expression for the thrust force and drag torque caused by the rotation of each propeller.
+The expressions for the thrust force and drag torque caused by the rotation of each propeller are
 %
 \begin{flalign}
-	F&=k_{th}\omega^2\label{eq:thrustForce}\\
-	\tau&=k_{d}\omega^2\label{eq:dragTorque}
+	F&=k_{\mathrm{th}}\omega^2\label{eq:thrustForce}\\
+	\tau&=k_{\mathrm{d}}\omega^2\label{eq:dragTorque}
 \end{flalign}
 %
-Where $F$ is the thrust force, $k_{th}$ is the thrust coefficient, $\omega$ is the angular speed of the motor, $\tau$ is the drag torque and $k_d$ is the drag coefficient.
+\noindent where $F$ is the thrust force, $k_{th}$ is the thrust coefficient, $\omega$ is the angular speed of the motor, $\tau$ is the drag torque and $k_d$ is the drag coefficient.
 %\begin{where}
 %  \va{F}{is the thrust force}{N}
 %  \va{k_{th}}{is the thrust coefficient}{N\  s^2 \  rad^{-2}}
