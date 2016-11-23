@@ -24,6 +24,7 @@ The vectors above are then used in construction of the state space matrix repres
 	\vec{\dot{x}}(t)&=\vec{A} \ \vec{x}(t) + \vec{B} \ \vec{u}(t)
 	\label{xDotSS} 
 \end{flalign}
+\vspace{-0.9 cm}
 \begin{flalign}
 	\vec{y}(t)&=\vec{C} \ \vec{x}(t) + \vec{D} \ \vec{u}(t)\label{ySS} 
 \end{flalign}
@@ -41,32 +42,35 @@ The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are ob
 		\ 0 & 0 & 0 & 0 & 0 & 1     \ \ \ \\
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
-		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \  		
+		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \  
 	\end{bmatrix}\nonumber
 \end{flalign} \label{Bmatrix}
+\vspace{-0.3 cm}
 \begin{flalign}
     \vec{B} =
 	\begin{bmatrix}
 		\ 0 & 0 & 0 & 0      \ \ \ \\ 
 		\ 0 & 0 & 0 & 0      \ \ \ \\ 
-		\ 0 & 0 & 0 & 0      \ \ \ \\
+		\ 0 & 0 & 0 & 0     ^{•} \ \ \ \\
 		\ 0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_2}{J_x}} & 0 & \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_4}{J_x}}      \ \ \ \\ 
 		\ \si{\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_1}{J_y}} & 0 & \si{-\frac{2 \cdot k_{th} \cdot L \cdot \overline{\omega}_3}{J_y}} & 0      \ \ \ \\ 
 		\ \frac{2 \cdot k_d \cdot {\overline{\omega}_1}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_2}}{J_z} & \frac{2 \cdot k_d \cdot {\overline{\omega}_3}}{J_z} & - \frac{2 \cdot k_d \cdot {\overline{\omega}_4}}{J_z}      \ \ \ 		
 	\end{bmatrix}\nonumber
 \end{flalign}
+\vspace{-0.3 cm}
 \begin{flalign} \label{Cmatrix}
 	\vec{C} =	 
 	\begin{bmatrix}
 		\ 1 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 1 & 0 & 0 & 0 & 0     \ \ \ \\ 
-		\ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 		
+		\ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 
 	\end{bmatrix}\nonumber
 \end{flalign} }
 \normalsize
 The attitude control is based on a state feedback and an integral term in order to be able to track a given reference. As not all states are measured a reduced order observer is implemented to estimate the angular velocities of the quadcopter. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
-
-\autoref{AttitudeControlDiagram} shows how these designs are related.
+\\
+\\
+\noindent\autoref{AttitudeControlDiagram} shows how these designs are related.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.25]{figures/AttitudeControlDiagram}
@@ -168,17 +172,18 @@ The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such tha
     \ \vec{B}_2     \ \ \  		
     \end{bmatrix} \nonumber
     \end{flalign}
-\end{minipage}\hfill
-\\
+\end{minipage}\\
+\normalsize
 
-With the observer matrix, the observer equation is derived. See \autoref{eq:eqobservertheorem}. This ensures an estimate $\hat{\vec{x}}_{4:6}$ which converges to $\vec{x}_2$ at a rate given by the chosen observer poles.
+With the observer matrix, the observer equation is derived. See \autoref{eq:eqobservertheorem}. This ensures an estimate $\hat{\vec{x}}_{4:6}$ which converges to $\vec{x}_{4:6}$ at a rate given by the chosen observer poles.
 \small{
 \begin{flalign}
     \vec{\hat{\dot{x}}}_{4:6} &= \vec{A}_{21}\vec{y} + \vec{A}_{22}\vec{\hat{x}}_{4:6} + \vec{B_2} + \vec{L}_{\mathrm{obs}}\vec{(A}_{12}\vec{\hat{x}}_{4:6} - \vec{A}_{21}\vec{x}_{4:6}) \label{eq:eqobservertheorem}
-\end{flalign}}
+\end{flalign}
 \normalsize
 \\
 This estimation of $\vec{x}_{4:6}$ is also seen in \autoref{fig:observerDiagram}.
+
 \begin{figure}[H]
     \includegraphics[scale=.15]{figures/observerDiagram}
     \centering
