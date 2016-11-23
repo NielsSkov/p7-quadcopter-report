@@ -2,7 +2,7 @@
 
 The controllers have been simulated in MATLAB Simulink in order to generate results presented in this section. 
 
-The model parameters can be seen in \autoref{ParametersQuadcopter}. All of them have been obtained through test but the moments of inertia, which were calculated with following an analytical procedure.
+The model parameters can be seen in \autoref{ParametersQuadcopter}. All of them have been obtained through test except for the moments of inertia, which were calculated by following an analytical procedure.
 
 \begin{table}[H]
     \centering
@@ -28,17 +28,15 @@ The model parameters can be seen in \autoref{ParametersQuadcopter}. All of them 
         
     \end{tabular}
     \caption{Parameters used though the analysis and design.}
-
     \label{ParametersQuadcopter}
 \end{table}
-The attitude controller is defined chosen feedback and integral poles and the observer poles. These are chosen to be $[-6 -6.2 -6.4 -6.6 -6.8 -7 -7.2 -7.4 -7.6]$ and $[-20 -25 30]$ respectively.
+The attitude controller is defined by the chosen feedback, integral poles, $[-6 -6.2 -6.4 -6.6 -6.8 -7 -7.2 -7.4 -7.6]$, and  the observer poles, $[-20 -25 -30]$.
 
-The translation velocity controllers of the x and y translational are $C_{\dot{x}}(s)= -0.1$, $C_{\dot{y}}(s)= 0.1$ and the position ones are $C_x(s)= 0.5$, $C_y(s)= 0.5$. The inner loop proportional controller of the z translational cascade controller is
-$C_{\dot{z}}(s)=\frac{-201s+0.8}{s}$ and the outer loop is $C_z=0.9$
+The translation velocity controllers for x and y are $C_{\dot{x}}(s)= -0.1$, $C_{\dot{y}}(s)= 0.1$ and the position ones are $C_x(s)= 0.5$, $C_y(s)= 0.5$. The PI-controller for the z translational velocity is $C_{\dot{z}}(s)=\frac{-201s+0.8}{s}$ and the outer loop P-controller is $C_z=0.9$.
 
-This controllers have been discretized using th Tustin method with a sampling period of 30 ms. 
+These controllers are discretized using the Tustin method with a sampling period of 30 ms. 
 
-Regarding the network, the mean delay selected is 30 ms and the package loss probability has been set to 0 due to the low sending frequency used in the system.
+Regarding the network, the mean delay selected is 30 ms and the package loss probability is set to 0 due to the low sending frequency used in the system.
 The simulation results obtained with these parameters and controllers are shown in \autoref{PositionControl}.
 \begin{figure}[H]
 	\centering
@@ -47,7 +45,8 @@ The simulation results obtained with these parameters and controllers are shown 
 	\label{PositionControl}
 \end{figure}
 
-The inner attitude controller results are also included and shown in \autoref{AttitudeControl}, so the performance of the attitude control can be evaluated. 
+The inner attitude controller results are also included and shown in \autoref{AttitudeControl} so the performance of the attitude control can be evaluated. 
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.55]{figures/AttitudeControl}
