@@ -38,7 +38,7 @@ The expressions for the thrust force and drag torque caused by the rotation of e
 These equations are used in the attitude and translational models presented below.
 %
 \subsection{Attitude Model}
-The attitude model equations are based on Newton's Second Law for rotational movement and are represented in  \autoref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}. 
+The attitude model equations are based on Newton's Second Law for rotational movement are \autoref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}. 
 %
 \begin{flalign}
 	J_x\ddot{\phi}&=k_{th} (\omega^2_4-\omega^2_2)  L \label{eq:AngleEqVelocities1}\\
@@ -46,11 +46,11 @@ The attitude model equations are based on Newton's Second Law for rotational mov
 	J_z\ddot{\psi}&=k_d (\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)\label{eq:AngleEqVelocities3}
 \end{flalign}
 
-Where $J_x$, $J_y$ and $J_z$ are the moments of inertia around the three axes of rotation, $\ddot{\phi}$, $\ddot{\theta}$ and $\ddot{\psi}$ are the accelerations in roll, pitch and yaw angles, respectively, $\omega_i$ is the rotational speed of each motor and $L$ is the distance between the center of the quadcopter and the position of the motors.
+\noindent where $J_x$, $J_y$ and $J_z$ are the moments of inertia around the three axes of rotation, $\ddot{\phi}$, $\ddot{\theta}$ and $\ddot{\psi}$ are the accelerations in roll, pitch and yaw angles, respectively, $\omega_i$ is the rotational speed of each motor and $L$ is the distance between the center of the quadcopter and the position of the motors.
 
 The expressions above state how the thrust forces and the drag torques generated on the propellers affect the attitude behavior of the quadcopter.  
 \subsection{Translational Model}
-The equations describing the response of the system along the inertial x, y and z axes are derived from Newton's Second Law. The forces that act on the system are those from the propellers and the gravitational force. These expressions are shown in \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}.
+The equations describing the response of the system along the inertial x, y and z axes are derived from Newton's Second Law. The forces that act on the system are those from the propellers and the gravitational force. These expressions are
 %
 \begin{flalign}
      m\ \ddot{x}_I = &-k_{th}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \\
@@ -61,13 +61,12 @@ The equations describing the response of the system along the inertial x, y and 
      & \cdot \cos(\phi)\ \cos(\theta)
      \label{eq:AccelerationEqInertial3}\nonumber
 \end{flalign}
-
-Where $m$ is the mass of the quadcopter, $\ddot{x}_I$, $\ddot{y}_I$ and $\ddot{z}_I$ are the accelerations along the inertial reference frame directions, $\phi$, $\theta$ and $\psi$ are the roll, pitch and yaw angles respectively and $F_g$ is the gravitational force acting on the quadcopter.
+\noindent where $m$ is the mass of the quadcopter, $\ddot{x}_I$, $\ddot{y}_I$ and $\ddot{z}_I$ are the accelerations along the inertial reference frame directions, $\phi$, $\theta$ and $\psi$ are the roll, pitch and yaw angles respectively and $F_g$ is the gravitational force acting on the quadcopter.
 
 It is worth mentioning that, as the thrust forces always point in the negative ${z}_B$ direction, the accelerations along ${x}_I$ and ${y}_I$ directions are zero when pitch and roll angles are zero.
 
 \subsection{Linearization}
-The model equations are linearized using the first order Taylor approximation around an equilibrium point of the system. The chosen point is the hovering position, which implies that all variables have a value of zero, that is, the attitude and translational accelerations, velocities and positions. Choosing a zero acceleration equilibrium point along the ${z}_I$ axis yields an equilibrium rotational speed so that the necessary thrust is generated to compensate for the gravitational force. \autoref{eq:equilibriumomegas} expresses this relation.
+The model equations are linearized using the first order Taylor approximation around an equilibrium point of the system. The chosen point is the hovering position, which implies that all variables have a value of zero, that is, the attitude and translational accelerations, velocities and positions. Choosing a zero acceleration equilibrium point along the ${z}_I$ axis yields an equilibrium rotational speed so that the necessary thrust is generated to compensate for the gravitational force. The relation is expressed as
 \begin{flalign}
     \overline{\omega}_i=\sqrt{\frac{m\  g}{4k_{th}}}
     \label{eq:equilibriumomegas}
@@ -81,14 +80,13 @@ The resulting equations for the attitude model after the linearization are shown
   J_z\ \Delta\ddot{\psi}   = \ &2\ k_d\ {\overline{\omega}_1}\ \Delta \omega_1\ -\ 2\ k_d\ {\overline{\omega}_2}\ \Delta \omega_2\ \label{eqAngleLin3}
   \\ & +\ 2\ k_d\ {\overline{\omega}_3}\ \Delta \omega_3\ -\ 2\ k_d\ {\overline{\omega}_4}\ \Delta \omega_4\nonumber  
 \end{flalign}
+\noindent where $\Delta\ddot{\phi}$, $\Delta\ddot{\theta}$ and $\Delta\ddot{\psi}$ are the changes in rotational acceleration from equilibrium, $\overline{\omega}_i$ is the rotational speed of each motor in equilibrium and $\Delta \omega_i$ is the change in rotational speed of each motor from equilibrium. 
 
-Where $\Delta\ddot{\phi}$, $\Delta\ddot{\theta}$ and $\Delta\ddot{\psi}$ are the changes in rotational acceleration from equilibrium, $\overline{\omega}_i$ is the rotational speed of each motor in equilibrium and $\Delta \omega_i$ is the change in rotational speed of each motor from equilibrium. 
-
-Similarly, the equations of the translational model are linearized. The result is shown in \autoref{eq:TransLinearEquations1}, \ref{eq:TransLinearEquations2} and \ref{eq:TransLinearEquations3}.
+Similarly, the equations of the translational model are linearized. The result is
 \begin{flalign}
   m\ \Delta\ddot{x}_I =\ &-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\  \Delta\theta \label{eq:TransLinearEquations1} \\
   m\ \Delta\ddot{y}_I =\ & k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \Delta\phi \label{eq:TransLinearEquations2}\\
   m\ \Delta\ddot{z}_I =\ &-2\ k_{th}\ \overline{\omega}_1\ \Delta\omega_1 -2\ k_{th}\ \overline{\omega}_2\ \Delta\omega_2 \label{eq:TransLinearEquations3} \\
   &\ \ -2\ k_{th}\ \overline{\omega}_3\ \Delta\omega_3-2\ k_{th}\ \overline{\omega}_4\ \Delta\omega_4\ \nonumber 
 \end{flalign} 
-Where $\Delta\ddot{x_I}$, $\Delta\ddot{y_I}$ and $\Delta\ddot{z_I}$ are the changes in linear acceleration from equilibrium in each direction of the inertial frame and $\Delta \phi$ and $\Delta \theta$ are the changes in roll and pitch from equilibrium respectively.
+\noindent where $\Delta\ddot{x_I}$, $\Delta\ddot{y_I}$ and $\Delta\ddot{z_I}$ are the changes in linear acceleration from equilibrium in each direction of the inertial frame and $\Delta \phi$ and $\Delta \theta$ are the changes in roll and pitch from equilibrium respectively.
