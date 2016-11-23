@@ -1,3 +1,9 @@
 \section{Delay Simulation}
 
-Explain how we estimate the delay and how we model it with an exponential distribution and how se use it in true time.
+The delay in the system constitutes one of the main network effects in the system. In order to consider the delay on the system, the TrueTime simulation toolbox for MATLAB is utilized. 
+
+In the simulation, a model for the delay needs to be found in order to implement it in TrueTime. The chosen approach is to model the delay as being exponentially distributed. \autoref{eq:exponentialdist} shows the probability density function of the exponential distribution.
+\begin{flalign}
+		f=-\lambda\mathrm{e}^{-\lambda t}
+		\label{eq:exponentialdist}
+\end{flalign}

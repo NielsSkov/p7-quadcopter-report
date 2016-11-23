@@ -20,9 +20,9 @@ The model parameters can be seen in \autoref{ParametersQuadcopter}. All of them 
         \hline %-----------------------------------------------------------------------------------
         $J_z$  & 0.02135       & \si{kg \  m^2}\\
         \hline %-----------------------------------------------------------------------------------
-        $k_{th}$  & $1.32922\cdot10^{-5}$       & \si{N \  s^2 \  rad^{-2}}\\
+        $k_{\mathrm{th}}$  & $1.32922\cdot10^{-5}$       & \si{N \  s^2 \  rad^{-2}}\\
         \hline %-----------------------------------------------------------------------------------
-        $k_{d}$  & $9.39741 \cdot10^{-7}$       & \si{N \  m \  s^2 \  rad^{-2}}\\
+        $k_{\mathrm{d}}$  & $9.39741 \cdot10^{-7}$       & \si{N \  m \  s^2 \  rad^{-2}}\\
         \hline %-----------------------------------------------------------------------------------
         $\overline{\omega}_i$& 429      & \si{rad \ s^{-1}}\\
         
@@ -32,11 +32,11 @@ The model parameters can be seen in \autoref{ParametersQuadcopter}. All of them 
 \end{table}
 The attitude controller is defined by the chosen feedback, integral poles, $[-6.0, -6.2, -6.4, -6.6, -6.8, -7.0, -7.2, -7.4, -7.6]$, and  the observer poles, $[-20, -25, -30]$.
 
-The translation velocity controllers for x and y are $C_{\dot{x}}(s)= -0.1$, $C_{\dot{y}}(s)= 0.1$ and the position ones are $C_x(s)= 0.5$, $C_y(s)= 0.5$. The PI-controller for the z translational velocity is $C_{\dot{z}}(s)=\frac{-201s+0.8}{s}$ and the outer loop P-controller is $C_z=0.9$.
+The translation velocity controllers for x and y are $C_{\dot{x}}(s)= -0.1$, $C_{\dot{y}}(s)= 0.1$ and the position ones are $C_x(s)= 0.5$, $C_y(s)= 0.5$. The PI-controller for the z translational velocity is $C_{\dot{z}}(s)=-201\frac{s+0.8}{s}$ and the outer loop P-controller is $C_z=0.9$.
 
-These controllers are discretized using the Tustin method with a sampling period of 30 ms. 
+These controllers are discretized using the Tustin method with a sampling period of 35 ms, as this is the fastest available frequency in which data can be acquired from the motion tracking system and transmitted to the quadcopter.
 
-Regarding the network, the mean delay selected is 30 ms and the package loss probability is set to 0 due to the low sending frequency used in the system.
+Regarding the network, the mean delay is 30 ms and the package loss probability is set to zero due to the low transmission frequency used in the system.
 The simulation results obtained with these parameters and controllers are shown in \autoref{PositionControl}.
 \begin{figure}[H]
 	\centering
