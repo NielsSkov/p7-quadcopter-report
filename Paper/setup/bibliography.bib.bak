@@ -83,7 +83,7 @@
   url       = {www.vicon.com},
 }
 
-@Article{,
+@Article{wang,
   author  = {Wang C, Wang Y},
   title   = {Design networked control systems via time-varying delay compensation approach},
   journal = {Proceedings of the Fifth World Congress on Intelligent Control and Automation, Hangzhou, P. R. China},

@@ -118,15 +118,15 @@ The dynamics of the system can be analyzed by looking at the system matrix A. Th
 
 As the output is formed by the the three angles, these are the only measured states in the system. For doing the state feedback, the angular velocities are also needed. The way of obtaining it i chosen to be a reduce order observer even though when using the vicon system, the angular velocities could be estimated with a numerical differentiation procedure. The observer is more convenient in case of using on board sensors and by using it, that possibility is kept open.
 
-This way of approaching the control of the system is simplified by the possibility of designing the state feedback and integral controller and the observer independently. This holds due to the separation principle SOURCE SEPARATION PRINCIPLE.
+This way of approaching the control of the system is simplified by the possibility of designing the state feedback and integral controller and the observer independently. This holds due to the separation principle \cite{ssReference}.
 
-Before designing the controller and the observer, it is advisable to check the controllability and observability of the system. For doing so, the matrices shown in \autoref{controlabilityandobserbability} are used.\\
+Before designing the controller and the observer, it is advisable to check the controllability and observability of the system. For doing so, the matrices shown in \autoref{controlabilityandobservability} are used.\\
 \begin{minipage}{0.45\linewidth}
-\begin{flalign}\label{controlabilityandobservability} 
+\begin{flalign}
 \vec{{\mathcal C}} = 
 \begin{bmatrix}
 \vec{B}&\vec{A}\vec{B}&\vec{A^2}\vec{B}&\vec{A^3}\vec{B}&\vec{A^4}\vec{B}&\vec{A^5}\vec{B} \\	
-\end{bmatrix}\nonumber
+\end{bmatrix}\nonumber 
 \end{flalign}
 \end{minipage}\hfill
 %\hspace{0.03\linewidth}
@@ -140,11 +140,11 @@ Before designing the controller and the observer, it is advisable to check the c
 \vec{C}\vec{A}^3 \\
 \vec{C}\vec{A}^4 \\
 \vec{C}\vec{A}^5 \\		
-\end{bmatrix}														
+\end{bmatrix}					\label{controlabilityandobservability} 									
 \end{flalign}
 \end{minipage}\hfill
 
-The rank of these matrices is 6, that is, the number of states. This makes the system both controllable and observable. The precise value of the matrices can be seen in appendix MATRIX APPENDIX.
+The rank of these matrices is 6, that is, the number of states. This makes the system both controllable and observable. The precise value of the matrices can be seen in \autoref{app:matricesSS}.
 
 The block diagram showing the system overview of the attitude controller is showed in \autoref{attitudecontrollerdiagram}, in which the state feedback, the integral control and the observer can be seen.
 \begin{figure}[H]
