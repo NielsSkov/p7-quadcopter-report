@@ -18,7 +18,7 @@ Start Sequence & Data & Checksum \\
 \end{table}
 
 \subsubsection{Start Sequence}
-A start sequence is necessary for the micro controller to be able to differentiate between packages and noise. As the micro controller receives packages from the computer, a queue of packages stored on the micro controller together with some noise is generated. The start sequence enables the system to scan the information in the queue after the specific start sequence. If the start sequence is found the micro controller can extract the package, as the length is fixed. It has not been deemed necessary to have an end byte, as the package length is fixed and the checksum ensures that an incorrect packages is not utilized. Thus it is deemed redundant to check is the end of the package is the desired.
+A start sequence is necessary for the micro controller to be able to differentiate between packages and noise. As the micro controller receives packages from the computer, a queue of packages stored on the micro controller together with some noise is generated. The start sequence enables the system to scan the information in the queue after the specific start sequence. If the start sequence is found the micro controller can extract the package, as the length is fixed. It has not been deemed necessary to have an end byte, as the package length is fixed and the checksum ensures that an incorrect packages is not utilized. Thus it is deemed redundant to check is the end of the package is the desired end.
 
 %The queue of packages could be due to a slow package handler, as the sampling rate is set to low \fxnote{true? maybe som actual values}.
 \subsubsection{Data}
