@@ -18,11 +18,13 @@ Start Sequence & Data & Checksum \\
 \end{table}
 
 \subsubsection{Start Sequence}
-A start sequence is necessary for the micro controller to be able to differentiate between packages and noise. As the micro controller receives packages from the computer, a queue of packages stored on the micro controller together with some noise is generated. The start sequence enables the system to scan the information in the queue after the specific start sequence. If the start sequence is found the micro controller can extract the package, as the length is fixed. It has not been deemed necessary to have an end byte, as the package length is fixed and the checksum ensures that an incorrect packages is not utilized. Thus it is deemed redundant to check is the end of the package is the desired end.
+A start sequence is necessary for the micro controller to be able to differentiate between packages and noise. As the micro controller receives packages from the computer, a queue of packages stored on the micro controller together with some noise is generated. The start sequence enables the system to scan the information in the queue for the specific start sequence. If the start sequence is found the micro controller can extract the package, as the length is fixed. It has not been deemed necessary to have an end byte, as the package length is fixed and the checksum ensures that an incorrect packages is not utilized. Thus it is deemed redundant to check if the end of the package is the desired end.
+
+The start sequence is set to three bytes. The chosen length of the start sequence is explain later in checksum. To ensure the unlikeliness of finding a start sequence in the middle of a package all the bits of the start sequence is set to ones. As it is highly unlikely for the Vicon system to register two of the transmitted variables, which are place beside each other in the package, to be all ones at the same time. The header (the start sequence) can be seen included in \autoref {tab:Protocolpackage}.
 
 %The queue of packages could be due to a slow package handler, as the sampling rate is set to low \fxnote{true? maybe som actual values}.
 \subsubsection{Data}
-
+The data which is transmitted from the computer to the micro controller, is the attitude (roll, pitch and yaw), the position (x, y and z) and the translational velocity ($\dot{x}$, $\dot{y}$ and $\dot{z}$). 
 
 \begin{table}[H]
 \centering
@@ -46,7 +48,7 @@ A start sequence is necessary for the micro controller to be able to differentia
                            &                          & \multicolumn{1}{l}{}   &                        &                        &                        &                        &                        &                        &                        &                        &                        &                         &                         &                         &                         &                         &                        
 \end{tabular}
 \caption{My caption}
-\label{my-label}
+\label{tab:Protocolpackage}
 \end{table}
 
 
