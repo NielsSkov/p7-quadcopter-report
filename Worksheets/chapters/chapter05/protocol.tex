@@ -1,5 +1,5 @@
 \section{Communication Protocol}
-The main information necessary to transmit from the computer to the micro controller, is the position, attitude and translational velocity of the quadcopter. A created transport layer protocol is utilized to ensure transmitted packages can be detected and that erroneous packages is not utilized by the micro controller.
+The main information necessary to transmit from the computer to the micro controller, is the attitude, position, position reference and the translational velocity of the quadcopter. A created transport layer protocol is utilized to ensure transmitted packages can be detected and that erroneous packages is not utilized by the micro controller.
 
 The Vicon system has a sampling rate of 100 Hz. A connectionless protocol can thereby be utilized, as it is sufficient to transmit the latest data to the micro controller instead of asking for a retransmission, e.g. if a package is lost or corrupt. Furthermore a retransmission will cause a delay in the system, this is not desired as this real time system is sensitive to delay.
 
@@ -24,19 +24,16 @@ The start sequence is set to three bytes. The chosen length of the start sequenc
 
 %The queue of packages could be due to a slow package handler, as the sampling rate is set to low \fxnote{true? maybe som actual values}.
 \subsubsection{Data}
-The variable which are transmitted from the computer to the micro controller, are the attitude (roll, pitch and yaw), the position (x, y and z) and the translational velocity ($\dot{x}$, $\dot{y}$ and $\dot{z}$).
+The variable which are transmitted from the computer to the micro controller, are the attitude (roll, pitch and yaw), the position (x, y and z), the position references and the translational velocity ($\dot{x}$, $\dot{y}$ and $\dot{z}$).
 
-The size of the roll, pitch and yaw are measured in radians and is set to be 9 bits each. The first bit of the nine is set up as the sign bit. As radians operates in decimal numbers, the number is multiplied by 100 to not remove essential data. Yielding a maximum value of 314, rounded down. This value is only measured by the Vicon system if the quadcopter does a 180 degree turn. If this occurs in the roll and pitch, it is not possible for the prototype to recover from being turned upside down. Thus a byte is enough for containing the necessary data, as a 90 degree turn yield a value of 157. However, if the quadcopter rotates 180 degrees in yaw, 9 bites are needed to contain the variable. Nevertheless, in this prototype the controller is not implemented for a 180 degree rotated yaw, this is discuss further in \autoref{chap:Control} \fxnote{discuss this in control}. One byte is therefore sufficient for the yaw. When the package is received the micro controller casts the 9 bits to a float and divides by a 100.
+The size of the roll, pitch and yaw are measured in radians and are contained in 9 bits each. The first bit of the nine is set up as the sign bit. As radians operates in decimal numbers, the number is multiplied by 100 to not remove essential data. Yielding a maximum value of 314, rounded down. This value is only measured by the Vicon system if the quadcopter does a 180 degree turn. If this occurs in the roll and pitch, it is not possible for the prototype to recover from being turned upside down. Thus a byte is enough for containing the necessary data, as a 90 degree turn yield a value of 157. However, if the quadcopter rotates 180 degrees in yaw, 9 bites are needed to contain the variable. Nevertheless, in this prototype the controller is not implemented for a 180 degree rotated yaw, this is discuss further in \autoref{chap:Control} \fxnote{discuss this in control}. One byte is therefore sufficient for the yaw. When the package is received the micro controller casts the 9 bits to a float and divides by a 100 returning it to radians.
 
-The position coordinates (x, y and z) are measured in millimetre by the vicon system and are set in the protocol to have a size of 10 bits each. The first bit is utilized as a sign bit. It is deemed unnecessary to measure the distance in millimetre. By changing the variable to centimetre, 9 bits is sufficient, as values between 512 and minus 512 yields a maximum distance around 5 meters. Thus, making it sufficient for this prototype, as the quadcopter is operated in the Vicon room, see \autoref{cha:Systemdescription} \fxnote{ensure the dimensions of the vicon room is written in the system description}.
+The actual position coordinates (x, y and z) are measured in millimetre by the vicon system and are contained in 10 bits each. The first bit is utilized as a sign bit. It is deemed unnecessary to measure the distance in millimetre. By changing the variable to centimetre, 9 bits is sufficient, as values between 512 and minus 512 yields a maximum distance around 5 meters. Thus, making it sufficient for this prototype, as the quadcopter is operated in the Vicon room, see \autoref{cha:Systemdescription} \fxnote{ensure the dimensions of the vicon room is written in the system description}. The position reference utilizes the same units as the actual position and the same amount of bits for its variables.
 
-The translational velocity ($\dot{x}$, $\dot{y}$ and $\dot{z}$) 
-
-
-
+The translational velocity ($\dot{x}$, $\dot{y}$ and $\dot{z}$) is contained in 11 bits, with the first bit assigned to be a sign bit. Yielding a possibility of transmitting a value between 1024 and minus 1024. This yields a maximum velocity of about 10 \si{m \cdot s^{-1}}, which is deemed sufficient.
 
  % It should be noted that both the computer and the micro controller are little endians. The most significant bit is therefore the sign bit in both systems. 
-
+\subsubsection{Checksum}
 
 \begin{table}[H]
 \centering
@@ -62,13 +59,6 @@ The translational velocity ($\dot{x}$, $\dot{y}$ and $\dot{z}$)
 \caption{My caption}
 \label{tab:Packagestructure}
 \end{table}
-
-
-
-
-
-
-\subsubsection{Checksum}
 
 
 
