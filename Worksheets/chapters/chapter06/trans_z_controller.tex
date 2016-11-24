@@ -43,16 +43,16 @@ To see this effect, the P-controller is tested on the nonlinear model with an ad
 	\label{fig:ZstepPcontrolNonlinear}
 \end{figure}
 
-In order to remove the steady state error an integral is introduced to the controller. The root locus of the system, which now contains two poles in zero, will branch along the imaginary axis. To avoid oscillations the two loci are attracted by use of a zero, placed on the left real axis as seen on \autoref{fig:rootLocusOfZwithPI}.
+In order to remove the steady state error an integrator is introduced to the controller. The root locus of the system, which now contains two poles in zero, will branch along the imaginary axis. To avoid oscillations the two loci are attracted by the use of a zero, placed on the left real axis as seen in \autoref{fig:rootLocusOfZwithPI}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.6\textwidth]{figures/rootLocusOfZwithPI.pdf}
-	\caption{Root locus of the system with PI control. The zero is placed in \num{-0.8}.}
+	\caption{Root locus of the system with PI control. The zero is placed in (0,-0.8).}
 	\label{fig:rootLocusOfZwithPI}
 \end{figure}
 
-The zero is placed and the gain is scaled to achieve a good rise time with a reasonable control action while still keeping the zero far enough from the poles, such that the integrator is not canceled. The zero is placed in \num{-0.8} and with a gain of \num{-201}. The step response of the linear system with the PI controller is seen on \autoref{fig:stepOfZwithPI}.
+The zero is placed and the gain is scaled to achieve a good rise time with a reasonable control action while still keeping the zero far enough from the poles, such that the integrator is not canceled. The zero is placed in -0.8 on the real axis and with a gain of -201. The step response of the linear system with the PI controller is seen on \autoref{fig:stepOfZwithPI}.
 
 \begin{figure}[H]
 	\centering
