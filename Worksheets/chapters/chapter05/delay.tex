@@ -2,8 +2,38 @@
 
 The delay in the system constitutes one of the main network effects in the system. In order to consider the delay on the system, the TrueTime simulation toolbox for MATLAB is utilized. 
 
-In the simulation, a model for the delay needs to be found in order to implement it in TrueTime. The chosen approach is to model the delay as being exponentially distributed. \autoref{eq:exponentialdist} shows the probability density function of the exponential distribution.
+In the simulation, a model for the delay needs to be found in order to implement it in TrueTime. The chosen approach is to model the delay as being exponentially distributed. \autoref{eq:exponentialdist} shows the probability and cumulative density functions of the exponential distribution.
 \begin{flalign}
-		f=-\lambda\mathrm{e}^{-\lambda t}
+		f=-\lambda\mathrm{e}^{-\lambda t}\mathrm{;}\ \ \ \ \  F=1-\mathrm{e}^{-\lambda t}
 		\label{eq:exponentialdist}
 \end{flalign}
+\begin{where}
+	\va{f} {is the probability density function} { }
+	\va{F} {is the cumulative density function} { }
+	\va{\lambda} {is the rate parameter} { }
+	\va{t} {is time} { }
+\end{where}
+The parameter lambda can be interpreted as the inverse of the mean time between observations, that is, the mean delay in the system. The value for this parameter has been found experimentally by measuring and averaging the experienced delays in \fxnote{PUT NUMBER} transmissions. The detailed experiments can be seen in \fxnote{APPENDIX WITH DATA}. The average delay obtained is \fxnote{PUT NUMBER} which leads to a value for $\lambda$ of \fxnote{PUT NUMBER}
+ 
+To generate the exponential distributed delays, the inverse transformation theorem has been applied. This theorem allows to transform an uniformly distributed random variable, easier to generate, into a random variable distributed with any other known cumulative density function. \autoref{eq:invtransthorem} illustrates this theorem.
+\begin{flalign}
+	\mathrm{Y}= F^{-1}\mathrm{X}
+	\label{eq:invtransthorem}
+\end{flalign}
+\begin{where}
+	\va{F} {is the desired cumulative density function for the random variable} { }
+	\va{\mathrm{X}} {is a uniformly distributed random variable} {}
+	\va{\mathrm{Y}} {is a random variable distributed according to the cumulative density function $F$} {}
+\end{where}
+
+The final expression obtained can be seen in \autoref{eq:formuladelay}.
+\begin{flalign}
+	\mathrm{delay}= -\frac{\ln(1-\mathrm{X})}{\lambda}
+	\label{eq:formuladelay}
+\end{flalign}
+
+
+
+
+
+

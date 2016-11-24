@@ -42,8 +42,40 @@ To see this effect, the P-controller is tested on the nonlinear model with an ad
 	\caption{Step response of the nonlinear transfer function with a P-controller with a gain of $-200$.}
 	\label{fig:ZstepPcontrolNonlinear}
 \end{figure}
+%
+%In order to remove the steady state error an integrator is introduced to the controller. 
 
-In order to remove the steady state error an integrator is introduced to the controller. The root locus of the system, which now contains two poles in zero, will branch along the imaginary axis. To avoid oscillations the two loci are attracted by the use of a zero, placed on the left real axis as seen in \autoref{fig:rootLocusOfZwithPI}.
+The plant is a type 1 system and steady state error is handled by the naturally occurring integrator within the plant. However, due to input disturbances a steady state error will be present in the output of the closed loop. This can be explained by the following derivations.   
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\textwidth]{figures/inputdisturbance.png}
+	\caption{Feedback loops including input disturbance.}
+	\label{fig:rootLocusOfZwithPI}
+\end{figure}\fxnote{dnt draw the rightmost figure}
+A transfer function for the closed loop from disturbance to output is expressed as
+\begin{align}
+H=\frac{G}{1+CG}
+\end{align}  
+The plant is replaced with an integrator only. To show the present steady state error, the DC gain is considered.
+%\begin{align}
+%H\olestreg{P=\frac{1}{s}}=\frac{1}{S+C} \Rightarrow \lim_{s \to 0} H(s)\olestreg{P=\frac{1}{s}}= \frac{1}{C} \label{eq:dc_sse}
+%\end{align}
+\begin{where}
+\va{H_{\mathrm{P}}}{is the transfer function, where the plant is an integrator}{1}
+\end{where}
+From \autoref{eq:dc_sse} it is clearly seen that a steady state is present and an increasing controller gain will decrease the error.
+Adding an integrator to the controller, the DC gain is given as:
+%\begin{align}
+%H(s)\olestregTo{P=\frac{1}{s}}{I=frac{1}{s}} =\frac{1+s}{s^2+1} \Rightarrow \  \lim_{s \to 0} H(s)\olestreg{P=\frac{1}{s}} = 1 \label{eq:dc}
+%\end{align}
+\begin{where}
+\va{H_{\mathrm{PI}}}{is the transfer function, where the plant and controller are both integrators}{1}
+\end{where}
+From \autoref{eq:dc} it is seen that no steady state error is eliminated. 
+An integrator is therefore included in the control design. 
+
+The root locus of the system, which now contains two poles in zero, will branch along the imaginary axis. To avoid oscillations the two loci are attracted by the use of a zero, placed on the left real axis as seen in \autoref{fig:rootLocusOfZwithPI}.
 
 \begin{figure}[H]
 	\centering
@@ -52,7 +84,7 @@ In order to remove the steady state error an integrator is introduced to the con
 	\label{fig:rootLocusOfZwithPI}
 \end{figure}
 
-The zero is placed and the gain is scaled to achieve a good rise time with a reasonable control action while still keeping the zero far enough from the poles, such that the integrator is not canceled. The zero is placed in -0.8 on the real axis and with a gain of -201. The step response of the linear system with the PI controller is seen on \autoref{fig:stepOfZwithPI}.
+The zero is placed and the gain is scaled to achieve a good rise time with a reasonable control action while still keeping the zero far enough from the poles, such that the integrator is not cancelled. The zero is placed in -0.8 on the real axis and with a gain of -201. The step response of the linear system with the PI controller is seen on \autoref{fig:stepOfZwithPI}.
 
 \begin{figure}[H]
 	\centering
