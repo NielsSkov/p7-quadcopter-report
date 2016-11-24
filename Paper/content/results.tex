@@ -35,7 +35,7 @@ The translation velocity controllers for x and y are $C_{\dot{x}}(s)= -0.1$, $C_
 
 These controllers are discretized using the Tustin method with a sampling period of 35 ms, as this is the fastest available frequency in which data can be acquired from the motion tracking system and transmitted to the quadcopter.
 
-Regarding the network, the mean delay is 30 ms and the package loss probability is set to zero due to the low transmission frequency used in the system.
+Regarding the network, the delay is 40 ms and the package loss probability is set to zero due to the low transmission frequency used in the system.
 The simulation results obtained with these parameters and controllers are shown in \autoref{PositionControl}.
 \begin{figure}[H]
 	\centering
