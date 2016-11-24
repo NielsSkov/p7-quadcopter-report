@@ -1,3 +1,65 @@
 \section{Communication Protocol}
+The main information necessary to transmit from the computer to the micro controller, is the position, attitude and translational velocity of the quadcopter. A created transport layer protocol is utilized to ensure transmitted packages can be detected and that erroneous packages is not utilized by the micro controller.
 
-Explain the communication protocol
+The Vicon system has a sampling rate of 100 Hz. A connectionless protocol can thereby be utilized, as it is sufficient to transmit the latest data to the micro controller instead of asking for a retransmission, e.g. if a package is lost or corrupt. Furthermore a retransmission will cause a delay in the system, this is not desired as this real time system is sensitive to delay.
+
+\subsection{Package Structure}
+The communication link is only between two nodes, i.e. the computer and the micro controller. The protocol thus therefore not need either a source port or destination addresses, as typically seen in a connectionless UDP protocol. Furthermore, it is decided not to change the length of the package relative to the gathered data.\\
+If a package is lost, the loss is not detected. However, this could be done by implementing a sequence number in the header of the package, but since the protocol is decided to be a connectionless protocol, it is deemed unnecessary. As the length is constant only a start sequence and not an end sequence is necessary. These considerations simplifies the protocol header and tail. It is decided that for the prototype a checksum is enough for detecting corrupted packages. An overall structure of a generated package is illustrated in \autoref{tab:Packagestructure}.
+
+\begin{table}[H]\centering
+\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{2cm}|>{\centering\arraybackslash}m{2cm}|}
+\hline
+Start Sequence & Data & Checksum \\
+\hline
+\end{tabular}
+\caption{The structure of a package}
+\label{tab:Packagestructure}
+\end{table}
+
+\subsubsection{Start Sequence}
+A start sequence is necessary for the micro controller to be able to differentiate between packages and noise. As the micro controller receives packages from the computer, a queue of packages stored on the micro controller together with some noise is generated. The start sequence enables the system to scan the information in the queue after the specific start sequence. If the start sequence is found the micro controller can extract the package, as the length is fixed. It has not been deemed necessary to have an end byte, as the package length is fixed and the checksum ensures that an incorrect packages is not utilized. Thus it is deemed redundant to check is the end of the package is the desired end.
+
+%The queue of packages could be due to a slow package handler, as the sampling rate is set to low \fxnote{true? maybe som actual values}.
+\subsubsection{Data}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llclllllllllllllll}
+\hline
+\multicolumn{2}{|c|}{Offset}                          & \multicolumn{8}{c|}{Byte 1}                                                                                                                                                                           & \multicolumn{8}{c|}{Byte 2}                                                                                                                                                                                 \\ \hline
+\multicolumn{1}{|l|}{Byte} & \multicolumn{1}{l|}{Bit} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{8} & \multicolumn{1}{l|}{9} & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{11} & \multicolumn{1}{l|}{12} & \multicolumn{1}{l|}{13} & \multicolumn{1}{l|}{14} & \multicolumn{1}{l|}{15} \\ \hline
+\multicolumn{1}{|l|}{0}    & \multicolumn{1}{l|}{0}   & \multicolumn{16}{c|}{Header}                                                                                                                                                                                                                                                                                                                                                                                        \\ \hline
+\multicolumn{1}{|l|}{2}    & \multicolumn{1}{l|}{16}  & \multicolumn{8}{l|}{}                                                                                                                                                                                 & \multicolumn{8}{c|}{$\phi$}                                                                                                                                                                                 \\ \hline
+\multicolumn{1}{|l|}{4}    & \multicolumn{1}{l|}{32}  & \multicolumn{1}{c|}{}  & \multicolumn{9}{c|}{$\theta$}                                                                                                                                                                                                  & \multicolumn{6}{c|}{$\psi$}                                                                                                                               \\ \hline
+\multicolumn{1}{|l|}{6}    & \multicolumn{1}{l|}{48}  & \multicolumn{3}{c|}{}                                                    & \multicolumn{10}{c|}{$x$}                                                                                                                                                                                                                                  & \multicolumn{3}{l|}{}                                                       \\ \hline
+\multicolumn{1}{|l|}{8}    & \multicolumn{1}{l|}{64}  & \multicolumn{7}{c|}{$y$}                                                                                                                                                     & \multicolumn{9}{c|}{$z$}                                                                                                                                                                                                             \\ \hline
+\multicolumn{1}{|l|}{10}   & \multicolumn{1}{l|}{80}  & \multicolumn{1}{c|}{}  & \multicolumn{10}{c|}{$x_{ref}$}                                                                                                                                                                                                                          & \multicolumn{5}{c|}{$y_{ref}$}                                                                                                  \\ \hline
+\multicolumn{1}{|l|}{12}   & \multicolumn{1}{l|}{96}  & \multicolumn{5}{c|}{}                                                                                                      & \multicolumn{10}{c|}{$z_{ref}$}                                                                                                                                                                                                                              & \multicolumn{1}{l|}{}   \\ \hline
+\multicolumn{1}{|l|}{14}   & \multicolumn{1}{l|}{112} & \multicolumn{10}{c|}{$\dot{x}$}                                                                                                                                                                                                                         & \multicolumn{6}{l|}{$\dot{y}$}                                                                                                                            \\ \hline
+\multicolumn{1}{|l|}{16}   & \multicolumn{1}{l|}{128} & \multicolumn{5}{l|}{}                                                                                                      & \multicolumn{11}{l|}{$\dot{z}$}                                                                                                                                                                                                                                                        \\ \hline
+\multicolumn{1}{|l|}{18}   & \multicolumn{1}{l|}{144} & \multicolumn{16}{c|}{Checksum}                                                                                                                                                                                                                                                                                                                                                                                      \\ \hline
+\multicolumn{1}{|l|}{20}   & \multicolumn{1}{l|}{160} & \multicolumn{8}{c|}{}                                                                                                                                                                                 & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
+                           &                          & \multicolumn{1}{l}{}   &                        &                        &                        &                        &                        &                        &                        &                        &                        &                         &                         &                         &                         &                         &                         \\
+                           &                          & \multicolumn{1}{l}{}   &                        &                        &                        &                        &                        &                        &                        &                        &                        &                         &                         &                         &                         &                         &                         \\
+                           &                          & \multicolumn{1}{l}{}   &                        &                        &                        &                        &                        &                        &                        &                        &                        &                         &                         &                         &                         &                         &                        
+\end{tabular}
+\caption{My caption}
+\label{my-label}
+\end{table}
+
+
+
+
+
+
+
+\subsubsection{Checksum}
+
+
+
+
+
+
+
