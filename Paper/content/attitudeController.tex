@@ -1,5 +1,5 @@
 \subsection{Attitude Controller}
-The attitude controller for the quadcopter is designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter. The chosen states for the system are the three angular positions and the three angular velocities. The input vector of the attitude system consists of the four motor rotational speeds and the output vector consists of the three angles, roll, pitch and yaw. Below, the state, input and output vectors are seen as.
+The attitude controller for the quadcopter is designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter. The chosen states for the system are the three angular positions and the three angular velocities. The input vector of the attitude system consists of the four motor rotational speeds and the output vector consists of the three angles, roll, pitch and yaw. Below, the state, input and output vectors are seen.
 %
 \begin{flalign}
 	\vec{x}(t)&= 
@@ -103,8 +103,7 @@ As there are three outputs to track, three states, $\vec{x}_{\mathrm{int}}(t)$, 
 \end{flalign} 
 %
 where\\
-\scriptsize{
-\begin{minipage}{0.28\linewidth}
+\begin{minipage}{0.45\linewidth}
     \begin{flalign}
     \dot{\vec{x}}_\mathrm{e}(t)= 
     \begin{bmatrix}
@@ -113,7 +112,7 @@ where\\
     \end{bmatrix} \nonumber
     \end{flalign}
 \end{minipage}\hfill
-\begin{minipage}{0.2\linewidth}
+\begin{minipage}{0.45\linewidth}
     \begin{flalign}
     \vec{A}_\mathrm{e}=
     \begin{bmatrix}
@@ -122,24 +121,25 @@ where\\
     \end{bmatrix} \nonumber
     \end{flalign}
 \end{minipage}   \hfill 
-\begin{minipage}{0.2\linewidth}
+
+\begin{minipage}{0.45\linewidth}
     \begin{flalign}
-    \vec{B}_\mathrm{e}=
-    \begin{bmatrix}
-    \ \vec{B}    \ \  \\ 
-    \ \vec{0}     \ \   		
-    \end{bmatrix} \nonumber
+        \vec{B}_\mathrm{e}=
+        \begin{bmatrix}
+            \ \vec{B}    \ \  \\ 
+            \ \vec{0}     \ \   		
+        \end{bmatrix} \nonumber
     \end{flalign}
 \end{minipage}\hfill
-\begin{minipage}{0.2\linewidth}
+\begin{minipage}{0.45\linewidth}
     \begin{flalign}
-    \vec{C}_\mathrm{e}=
-    \begin{bmatrix}
-    \ \vec{C}  & \vec{0}  \ \   		
-    \end{bmatrix} \nonumber
+        \vec{C}_\mathrm{e}=
+        \begin{bmatrix}
+            \ \vec{C}  & \vec{0}  \ \   		
+        \end{bmatrix} \nonumber
     \end{flalign}
-\end{minipage} }
-\normalsize\vspace{.3cm}
+\end{minipage}
+\\ 
 
 The feedback law for this design approach is given by \eqref{eq:ssControllerAction}. Its design is done as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_\mathrm{e}=[\vec{F} \ \vec{F}_{\mathrm{int}}]$ matrix, such that the eigenvalues of $\vec{A}_\mathrm{e}+\vec{B}_\mathrm{e}\vec{F}_\mathrm{e}$ are the closed loop poles giving the desired dynamics.
 %
@@ -147,14 +147,14 @@ The feedback law for this design approach is given by \eqref{eq:ssControllerActi
     \vec{u}(t) &=\vec{F} \  \vec{x}(t) + \ \vec{F}_{\mathrm{int}} \  \vec{x}_{\mathrm{int}}(t)
     \label{eq:ssControllerAction}
 \end{flalign}
-%
+
 Once $\vec{F}_\mathrm{e}$ is obtained, it is split into $F$ and $F_{\mathrm{int}}$. In this way, the controller is implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.\\
 
 %--------------------- Reduced-Order Observer ----------------------------
 
-Since certain states in the system are not measured, an observer estimates the remaining states by means of the system output and input. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$.
+Since certain states in the system are not measured, an observer estimates the remaining states by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$.
 
-The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\ \vec{A}_{12}$ \cite{ssReference}. This is done splitting the original system matrices into submatrices, as seen below\\
+The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\ \vec{A}_{12}$ give the desired dynamics for the estimation \cite{ssReference}. This is done splitting the original system matrices into submatrices, as seen below\\
 %
 \begin{minipage}{0.45\linewidth}
     \begin{flalign}
@@ -176,14 +176,14 @@ The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such tha
 \end{minipage}\\
 \normalsize
 
-With the observer matrix, the observer equation is derived. See \eqref{eq:eqobservertheorem}. This ensures an estimate $\hat{\vec{x}}_{4:6}$ which converges to $\vec{x}_{4:6}$ at a rate given by the chosen observer poles.
+With the observer matrix, the observer equation is derived, see \eqref{eq:eqobservertheorem}. This ensures an estimate $\hat{\vec{x}}_{4:6}$ which converges to $\vec{x}_{4:6}$ at a rate given by the chosen observer poles.
 \small{
 \begin{flalign}
     \vec{\hat{\dot{x}}}_{4:6} &= \vec{A}_{21}\vec{y} + \vec{A}_{22}\vec{\hat{x}}_{4:6} + \vec{B_2} + \vec{L}_{\mathrm{obs}}\vec{(A}_{12}\vec{\hat{x}}_{4:6} - \vec{A}_{21}\vec{x}_{4:6}) \label{eq:eqobservertheorem}
 \end{flalign}
 \normalsize
 \\
-This estimation of $\vec{x}_{4:6}$ is also seen in \autoref{fig:observerDiagram}.
+This estimation of $\vec{x}_{4:6}$ is implemented as shown in \autoref{fig:observerDiagram}.
 
 \begin{figure}[H]
     \includegraphics[width=.38\textwidth]{figures/observerDiagram}

@@ -1,7 +1,7 @@
 \section{Results}
 The controllers have been simulated in MATLAB Simulink in order to generate results presented in this section. 
 
-The model parameters can be seen in \autoref{ParametersQuadcopter}. All of them have been obtained through test except for the moments of inertia, which were calculated by following an analytical procedure.
+The model parameters can be seen in \autoref{ParametersQuadcopter} . All of them have been obtained through test except for the moments of inertia, which were calculated by following an analytical procedure.
 
 \begin{table}[H]
     \centering
@@ -29,7 +29,7 @@ The model parameters can be seen in \autoref{ParametersQuadcopter}. All of them 
     \caption{Parameters used though the analysis and design.}
     \label{ParametersQuadcopter}
 \end{table}
-The attitude controller is defined by the chosen feedback, integral poles, \\$[-6.0, -6.2, -6.4, -6.6, -6.8, -7.0, -7.2, -7.4, -7.6]$, and  the observer poles, $[-20, -25, -30]$.
+The attitude controller is defined by the chosen feedback and integral poles, \\$[-6.0, -6.2, -6.4, -6.6, -6.8, -7.0, -7.2, -7.4, -7.6]$, and  the observer poles, $[-20, -25, -30]$.
 
 The translation velocity controllers for x and y are $C_{\dot{x}}(s)= -0.1$, $C_{\dot{y}}(s)= 0.1$ and the position ones are $C_x(s)= 0.5$, $C_y(s)= 0.5$. The PI-controller for the z translational velocity is $C_{\dot{z}}(s)=-201\frac{s+0.8}{s}$ and the outer loop P-controller is $C_z=0.9$.
 
@@ -39,7 +39,7 @@ Regarding the network, the delay is 40 ms and the package loss probability is se
 The simulation results obtained with these parameters and controllers are shown in \autoref{PositionControl}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.4\textwidth]{figures/PositionControl}
+	\includegraphics[width=.45\textwidth]{figures/PositionControl}
 	\caption{Position control results in the three inertial axes directions. The references given to the control system are shown with dashed lines.}
 	\label{PositionControl}
 \end{figure}
@@ -47,7 +47,7 @@ The simulation results obtained with these parameters and controllers are shown 
 The inner attitude controller results are also included and shown in \autoref{AttitudeControl} so the performance of the attitude control can be evaluated. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.4\textwidth]{figures/AttitudeControl}
+	\includegraphics[width=.45\textwidth]{figures/AttitudeControl}
 	\caption{Attitude control results in the three angles. The references given to the attitude control system are shown with dashed lines.}
 	\label{AttitudeControl}
 \end{figure}
