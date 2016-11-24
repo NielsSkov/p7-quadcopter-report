@@ -3,7 +3,7 @@
 The quadcopter free body diagram is shown in \autoref{droneDiagram}. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.25]{figures/droneDiagram}
+	\includegraphics[width=.4\textwidth]{figures/droneDiagram}
 	\caption{Forces and torques acting on the quadcopter and the positive references chosen for rotations and translations in both inertial and body coordinate frames.}
 	\label{droneDiagram}
 \end{figure}
@@ -53,13 +53,12 @@ The expressions above state how the thrust forces and the drag torques generated
 The equations describing the response of the system along the inertial x, y and z axes are derived from Newton's Second Law. The forces that act on the system are those from the propellers and the gravitational force. These expressions are
 %
 \begin{flalign}
-     m\ddot{x}_{\mathrm{I}} = &-k_{\mathrm{th}} ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \\
-     & \ \times (\cos\phi \sin\theta \cos\psi + \sin\phi\sin\psi)   \label{eq:AccelerationEqInertial1}\nonumber\\
-     m \ddot{y}_{\mathrm{I}} = &-k_{\mathrm{th}}({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\\
-     & \ \times(\cos\phi \sin\theta \sin\psi - \sin\phi \cos\psi)  \label{eq:AccelerationEqInertial2}\nonumber\\
-     m\ddot{z}_{\mathrm{I}} = &F_g-k_{\mathrm{th}}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\\
-     & \ \times \cos\phi\cos\theta
-     \label{eq:AccelerationEqInertial3}\nonumber
+     m\ddot{x}_{\mathrm{I}} = &-k_{\mathrm{th}} ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \label{eq:AccelerationEqInertial1}\\
+     & \ \times (\cos\phi \sin\theta \cos\psi + \sin\phi\sin\psi)   \nonumber\\
+     m \ddot{y}_{\mathrm{I}} = &-k_{\mathrm{th}}({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \label{eq:AccelerationEqInertial2}\\
+     & \ \times(\cos\phi \sin\theta \sin\psi - \sin\phi \cos\psi)  \nonumber\\
+     m\ddot{z}_{\mathrm{I}} = &F_g-k_{\mathrm{th}}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \label{eq:AccelerationEqInertial3}\\
+     & \ \times \cos\phi\cos\theta  \nonumber
 \end{flalign}
 \noindent where $m$ is the mass of the quadcopter, $\ddot{x}_I$, $\ddot{y}_I$ and $\ddot{z}_I$ are the accelerations along the inertial reference frame directions, $\phi$, $\theta$ and $\psi$ are the roll, pitch and yaw angles respectively and $F_g$ is the gravitational force acting on the quadcopter.
 

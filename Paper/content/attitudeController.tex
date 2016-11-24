@@ -31,9 +31,9 @@ The vectors above are then used in construction of the state space matrix repres
 %
 where $\vec{A}$ is the system matrix, $\vec{B}$ is the input matrix, $\vec{C}$ is the output matrix and $\vec{D}$ is the feedback matrix.
 
-The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are obtained from the linearized attitude equations, yielding the matrices shown below. As $\vec{D}$ is a zero matrix, only $\vec{A}$, $\vec{B}$ and $\vec{C}$ are shown. 
+The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are obtained from the linearized attitude equations, yielding the matrices shown below. As $\vec{D}$ is a zero matrix, only $\vec{A}$, $\vec{B}$ and $\vec{C}$ are shown.
 
-\footnotesize{
+\vspace{-.5cm}\footnotesize{
 \begin{flalign}   \label{Amatrix}
 	\vec{A}=
 	\begin{bmatrix}
@@ -67,13 +67,14 @@ The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are ob
 	\end{bmatrix}\nonumber
 \end{flalign} }
 \normalsize
+
 The attitude control is based on a state feedback and an integral term in order to be able to track a given reference. As not all states are measured a reduced order observer is implemented to estimate the angular velocities of the quadcopter. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
 \\
 \\
 \noindent\autoref{AttitudeControlDiagram} shows how these designs are related.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{figures/AttitudeControlDiagram}
+    \includegraphics[width=.4\textwidth]{figures/AttitudeControlDiagram}
     \caption{ Control structure for the system, including the state feedback, the integral controller and the reduced order observer.}
     \label{AttitudeControlDiagram}
 \end{figure}
@@ -81,13 +82,14 @@ The attitude control is based on a state feedback and an integral term in order 
 %--------------------- StateFeedback with Integral Control ----------------------------
 The design of the state feedback and integral control is shown in \autoref{fig:DetailedControllerColorDiagram}.
 \begin{figure}[H]
-    \includegraphics[scale=.3]{figures/DetailedControllerColorDiagram}
+    \includegraphics[width=.35\textwidth]{figures/DetailedControllerColorDiagram}
     \centering
     \captionof{figure}{State feedback and integral controller in the attitude control structure.}
     \label{fig:DetailedControllerColorDiagram}
 \end{figure}
 As there are three outputs to track, three states, $\vec{x}_{\mathrm{int}}(t)$, are added to the already existing state vector. This leads to the extended system
 %
+\vspace{-.2cm}
 \begin{flalign} 
 \dot{\vec{x}}_\mathrm{e}(t) &= \vec{A}_\mathrm{e} \  \vec{x}_\mathrm{e}(t) + \vec{B}_\mathrm{e} \  \vec{u}(t) + 
 \begin{bmatrix}
@@ -137,8 +139,7 @@ where\\
     \end{bmatrix} \nonumber
     \end{flalign}
 \end{minipage} }
-\\
-\normalsize
+\normalsize\vspace{.3cm}
 
 The feedback law for this design approach is given by \eqref{eq:ssControllerAction}. Its design is done as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_\mathrm{e}=[\vec{F} \ \vec{F}_{\mathrm{int}}]$ matrix, such that the eigenvalues of $\vec{A}_\mathrm{e}+\vec{B}_\mathrm{e}\vec{F}_\mathrm{e}$ are the closed loop poles giving the desired dynamics.
 %
@@ -185,7 +186,7 @@ With the observer matrix, the observer equation is derived. See \eqref{eq:eqobse
 This estimation of $\vec{x}_{4:6}$ is also seen in \autoref{fig:observerDiagram}.
 
 \begin{figure}[H]
-    \includegraphics[scale=.15]{figures/observerDiagram}
+    \includegraphics[width=.38\textwidth]{figures/observerDiagram}
     \centering
     \captionsetup{justification=centering}
     \captionof{figure}{Detailed diagram of the reduced order observer that shows its implementation.}
