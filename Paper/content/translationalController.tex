@@ -2,8 +2,8 @@
 The translational controllers are structured as cascade loops, where the velocity and position are controlled in the inner and outer loop, respectively. The relation between the controllers is presented in \autoref{fig:cascade}.
 %
 \begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.17]{figures/TranslationalControlDiagram.pdf}
+	\hspace{-.37cm}
+	\includegraphics[width=.54\textwidth]{figures/TranslationalControlDiagram.pdf}
 	\caption{Overview of translational controllers structure.}
 	\label{fig:cascade}
 \end{figure}
@@ -12,11 +12,11 @@ The x and y controllers share similar properties as both their outputs are angle
 
 To design the inner controllers for the velocities $\dot{x}$ and $\dot{y}$, the model equations derived previously, see \eqref{eq:AccelerationEqInertial1} and \eqref{eq:AccelerationEqInertial2}, are Laplace transformed. These are used to create a transfer function between the angles and the velocities, yielding:
 \begin{flalign}
-    G_{\dot{x}}(s)&=\frac{\dot{x} (s)}{\theta (s)}=\frac{-k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s}\label{transferfunctionxdot} \\
-    G_{\dot{y}}(s)&=\frac{\dot{y} (s)}{\phi (s)}=\frac{k_{th}(\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s}\label{transferfunctionydot} 
+    G_{\dot{x}}(s)&=\frac{\dot{x} (s)}{\theta (s)}=\frac{-k_{\mathrm{th}} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m s}\label{transferfunctionxdot} \\
+    G_{\dot{y}}(s)&=\frac{\dot{y} (s)}{\phi (s)}=\frac{k_{\mathrm{th}}(\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m s}\label{transferfunctionydot} 
 \end{flalign}
 
-\noindent where $G_{\dot{x}}$ and $G_{\dot{y}}$ are the plants used to design the velocity controllers in $x_I$ and $y_I$ directions respectively.
+\noindent where $G_{\dot{x}}$ and $G_{\dot{y}}$ are the plants used to design the velocity controllers in $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ directions respectively.
 
 Since the plants are the same but with different signs, the controller design is carried out for $\dot{x}$ and applied to $\dot{y}$ afterwards with negative sign.
 
@@ -27,10 +27,10 @@ The outer loop is again designed to have three times less bandwidth than the inn
 To be able to design the inner loop for the z translational controller, the model equation derived previously, see \eqref{eq:AccelerationEqInertial3}, is Laplace transformed and written on the form of a transfer function, see
 %
 \begin{align}
-G_{\dot{z}}=\frac{\dot{z}}{\omega_{sum}} &= \frac{ \frac{1}{4}\ (-2 k_{th})\ \overline{\omega}_{sum} }{ m\ s }\label{eq:linearTransferFunctionZ}
+G_{\dot{z}}=\frac{\dot{z}}{\omega_{\mathrm{sum}}} &= \frac{ \frac{1}{4}\ (-2 k_{\mathrm{th}})\ \overline{\omega}_{\mathrm{sum}} }{ m s }\label{eq:linearTransferFunctionZ}
 \end{align}
 
-\noindent where $\dot{z}$ is the velocity in the $z_I$ direction, $\omega_{sum}$ is the sum of the rotational speeds of the motors and $\overline{\omega}_{sum}$ is the sum of the rotational speeds in equilibrium.
+\noindent where $\dot{z}$ is the velocity in the $z_{\mathrm{I}}$ direction, $\omega_{\mathrm{sum}}$ is the sum of the rotational speeds of the motors and $\overline{\omega}_{\mathrm{sum}}$ is the sum of the rotational speeds in equilibrium.
 
 Due to an integrator and a negative gain the system's root locus will move into the right half plane as the gain increases. A proportional controller with negative gain ensures the system to be stable. 
 
