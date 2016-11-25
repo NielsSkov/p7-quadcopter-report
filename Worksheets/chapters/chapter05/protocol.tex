@@ -20,7 +20,7 @@ Start Sequence & Data & Checksum \\
 \subsubsection{Start Sequence}
 A start sequence is necessary for the micro controller to be able to differentiate between packages and noise. As the micro controller receives packages from the computer, a queue of packages stored on the micro controller together with some noise is generated. The start sequence enables the system to scan the information in the queue for the specific start sequence. If the start sequence is found the micro controller can extract the package, as the length is fixed. It has not been deemed necessary to have an end byte, as the package length is fixed and the checksum ensures that an incorrect packages is not utilized. Thus it is deemed redundant to check if the end of the package is the desired end.
 
-The start sequence is set to three bytes. The chosen length of the start sequence is explain later in checksum. To ensure the unlikeliness of finding a start sequence in the middle of a package all the bits of the start sequence is set to ones. As it is highly unlikely for the Vicon system to register two of the transmitted variables, which are place beside each other in the package, to be all ones at the same time. The header (the start sequence) can be seen included in \autoref{tab:Packagestructure}.
+The start sequence is set to three bytes and all the bits are set to ones. These considerations should ensure the unlikeliness of finding a start sequence in the middle of a package. As it is highly unlikely for the Vicon system to register two of the transmitted variables, which are place beside each other in the package, to be all ones at the same time. The header (the start sequence) can be seen included in \autoref{tab:Packagestructure}.
 
 %The queue of packages could be due to a slow package handler, as the sampling rate is set to low \fxnote{true? maybe som actual values}.
 \subsubsection{Data}
@@ -30,10 +30,7 @@ The size of the roll, pitch and yaw are measured in radians and are contained in
 
 The actual position coordinates (x, y and z) are measured in millimetre by the vicon system and are contained in 10 bits each. The first bit is utilized as a sign bit. It is deemed unnecessary to measure the distance in millimetre. By changing the variable to centimetre, 9 bits is sufficient, as values between 512 and minus 512 yields a maximum distance around 5 meters. Thus, making it sufficient for this prototype, as the quadcopter is operated in the Vicon room, see \autoref{cha:Systemdescription} \fxnote{ensure the dimensions of the vicon room is written in the system description}. The position reference utilizes the same units as the actual position and the same amount of bits for its variables.
 
-The translational velocity ($\dot{x}$, $\dot{y}$ and $\dot{z}$) is contained in 11 bits, with the first bit assigned to be a sign bit. Yielding a possibility of transmitting a value between 1024 and minus 1024. This yields a maximum velocity of about 10 \si{m \cdot s^{-1}}, which is deemed sufficient.
-
- % It should be noted that both the computer and the micro controller are little endians. The most significant bit is therefore the sign bit in both systems. 
-\subsubsection{Checksum}
+The translational velocity ($\dot{x}$, $\dot{y}$ and $\dot{z}$) is contained in 11 bits, with the first bit assigned to be a sign bit. Yielding a possibility of transmitting a value between 1024 and minus 1024. This yields a maximum velocity of about 10 \si{m \cdot s^{-1}}, which is deemed sufficient. The total package with the start sequence, data and checksum can be seen in \autoref{tab:Packagestructure}.
 
 \begin{table}[H]
 \centering
@@ -52,13 +49,41 @@ The translational velocity ($\dot{x}$, $\dot{y}$ and $\dot{z}$) is contained in 
 \multicolumn{1}{|l|}{16}   & \multicolumn{1}{l|}{128} & \multicolumn{5}{l|}{}                                                                                                      & \multicolumn{11}{c|}{$\dot{z}$}                                                                                                                                                                                                                                                        \\ \hline
 \multicolumn{1}{|l|}{18}   & \multicolumn{1}{l|}{144} & \multicolumn{16}{c|}{Checksum}                                                                                                                                                                                                                                                                                                                                                                                      \\ \hline
 \multicolumn{1}{|l|}{20}   & \multicolumn{1}{l|}{160} & \multicolumn{8}{c|}{}                                                                                                                                                                                 & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}   \\ \hline
-                           &                          & \multicolumn{1}{l}{}   &                        &                        &                        &                        &                        &                        &                        &                        &                        &                         &                         &                         &                         &                         &                         \\
-                           &                          & \multicolumn{1}{l}{}   &                        &                        &                        &                        &                        &                        &                        &                        &                        &                         &                         &                         &                         &                         &                         \\
-                           &                          & \multicolumn{1}{l}{}   &                        &                        &                        &                        &                        &                        &                        &                        &                        &                         &                         &                         &                         &                         &                        
 \end{tabular}
-\caption{My caption}
+\caption{The generated package transmitted from the computer to the micro controller}
 \label{tab:Packagestructure}
 \end{table}
+
+The start sequence is three bytes, the data is 15 bytes and the checksum is 3 bytes, as seen in \autoref{tab:Packagestructure}.
+ % It should be noted that both the computer and the micro controller are little endians. The most significant bit is therefore the sign bit in both systems. 
+\subsubsection{Checksum}
+If the start sequence is found and the next 15 bytes are extract to be utilized in the controller, it is not certain that an actual full package is extracted. As explained earlier, it could occur that a start sequence is found in the middle of the package, and arbitrary information is utilized. Furthermore it is possible that the package is receptive to noise when transmitted from the computer to the micro controller and the data therefore gets corrupted. It is necessary to check if the package contains the expected information. This is done by utilizing a checksum. An example of how the checksum is utilized and implemented can be seen in \autoref{tab:checksum}.  
+
+The example in \autoref{tab:checksum} is a simplified version of the actual implemented checksum, as the original checksum is three bytes long.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Bit array  & Bit 8                 & \multicolumn{1}{l|}{Bit 7:4} & Bit 3:0 \\ \hline
+Part 1     &                       & 0010                         & 0100    \\ \hline
+Part 2     &                       & 1000                         & 0001    \\ \hline
+Part 3     &                       & 1111                         & 1111    \\ \hline
+Part 1+2+3 & 1                     & 1010                         & 0100    \\ \hline
+Add carry  & \multicolumn{1}{l|}{} & 1010                         & 0101    \\ \hline
+Checksum   & \multicolumn{1}{l|}{} & 0101                         & 1010    \\ \hline
+Check      & \multicolumn{1}{l|}{} & 1111                         & 1111    \\ \hline
+\end{tabular}
+\caption{An example of how the checksum is utilized and implemented.}
+\label{tab:checksum}
+\end{table}
+Before the computer transmits the package, the data is split up into three parts. The three parts is then summed, which can result in a carry. If an carry occurs, it is removed and then added to the summation as a bit with value 1. The generated sum with the added carry, is then inverted. The generated checksum is then placed at the end of the package, see \autoref{tab:Packagestructure}.\\ 
+When the micro controller examines the package for errors, it utilizes the checksum generated by the computer. The micro controller executes the same steps as before except for the last step where the generated sum (with an added carry) is inverted. Instead the micro controller adds the generated sum  with the checksum received from the computer. If the outcome is all bits of ones, the package is recognized as correct.
+
+The chosen length for the actual checksum is three bytes. The length of the checksum needs to be a multiple of the length of the data, which is 15 bytes in this case. The checksum could be 5 bytes. Thus splitting the package up into 3 parts. However, this increases the package size, which is not desired. By setting the checksum to one or two bytes the computation time increases when generating the checksum, which is not an desired property on the micro controller either. A length of three bytes is therefore set as a compromise. 
+ 
+
+
 
 
 
