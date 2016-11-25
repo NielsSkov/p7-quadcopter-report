@@ -1,5 +1,5 @@
 \subsection{Attitude Controller}
-The attitude controller for the quadcopter is designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter. The chosen states for the system are the three angular positions and the three angular velocities. The input vector of the attitude system consists of the four motor rotational speeds and the output vector consists of the three angles, roll, pitch and yaw. Below, the state, input and output vectors are seen.
+The attitude controller for the quadcopter is designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter. The chosen states for the system are the three angular positions and the three angular velocities. The input vector of the attitude system consists of the four motor rotational speeds and the output vector consists of the three angles, roll, pitch and yaw. The state, input and output vectors are
 %
 \begin{flalign}
 	\vec{x}(t)&= 
@@ -154,7 +154,7 @@ Once $\vec{F}_\mathrm{e}$ is obtained, it is split into $F$ and $F_{\mathrm{int}
 
 Since certain states in the system are not measured, an observer estimates the remaining states by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$.
 
-The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\ \vec{A}_{12}$ give the desired dynamics for the estimation \cite{ssReference}. This is done splitting the original system matrices into submatrices, as seen below\\
+The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\ \vec{A}_{12}$ give the desired dynamics for the estimation \cite{ssReference}. This is done splitting the original system matrices into the submatrices\\
 %
 \begin{minipage}{0.45\linewidth}
     \begin{flalign}
