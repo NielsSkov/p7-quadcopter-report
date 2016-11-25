@@ -58,17 +58,17 @@ A transfer function for the closed loop from disturbance to output is expressed 
 H=\frac{G}{1+CG}
 \end{align}  
 The plant is replaced with an integrator only. To show the present steady state error, the DC gain is considered.
-%\begin{align}
-%H\olestreg{P=\frac{1}{s}}=\frac{1}{S+C} \Rightarrow \lim_{s \to 0} H(s)\olestreg{P=\frac{1}{s}}= \frac{1}{C} \label{eq:dc_sse}
-%\end{align}
+\begin{align}
+H\oleStreg{P=\frac{1}{s}}=\frac{1}{S+C} \Rightarrow \lim_{s \to 0} H(s)\oleStreg{P=\frac{1}{s}}= \frac{1}{C} \label{eq:dc_sse}
+\end{align}
 \begin{where}
 \va{H_{\mathrm{P}}}{is the transfer function, where the plant is an integrator}{1}
 \end{where}
 From \autoref{eq:dc_sse} it is clearly seen that a steady state is present and an increasing controller gain will decrease the error.
 Adding an integrator to the controller, the DC gain is given as:
-%\begin{align}
-%H(s)\olestregTo{P=\frac{1}{s}}{I=frac{1}{s}} =\frac{1+s}{s^2+1} \Rightarrow \  \lim_{s \to 0} H(s)\olestreg{P=\frac{1}{s}} = 1 \label{eq:dc}
-%\end{align}
+\begin{align}
+H(s)\oleStregTwo{P=\frac{1}{s}}{I=\frac{1}{s}} =\frac{1+s}{s^2+1} \ \ \Rightarrow\ \  \lim_{s \to 0} H(s)\oleStregTwo{P=\frac{1}{s}}{I=\frac{1}{s}} = 1 \label{eq:dc}
+\end{align}
 \begin{where}
 \va{H_{\mathrm{PI}}}{is the transfer function, where the plant and controller are both integrators}{1}
 \end{where}
