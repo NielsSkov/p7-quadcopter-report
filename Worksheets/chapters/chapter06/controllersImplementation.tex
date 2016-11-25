@@ -1,17 +1,17 @@
 \section{Controllers Implementation}
 The implementation of the controllers can not be done having them as a continuous expression due to the discrete operation of the microcontroller. 
 
-In order to discretize the controllers in the system, they need to be expressed in terms of the $z$ operator, the equivalent to the Laplace operator in the discrete domain. This transformation is done through the Tustin (bilinear) approximation in which the $s$ term in the transfer function is substituted as seen in \autoref{tustin}. \fxnote{Source Feedback control of dynamic systems}
+In order to discretize the controllers in the system, they need to be expressed in terms of the $z$ operator, the equivalent to the Laplace operator in the discrete domain. This transformation is done through the Tustin (bilinear) approximation in which the $s$ term in the transfer function is substituted as seen in \autoref{tustin} \cite{tustin}.
 \begin{flalign}
 	s\approx\frac{2}{T}\frac{z-1}{z+1}
 	\label{tustin}
 \end{flalign}
 \begin{where}
-	\va{s}{is the Laplace Operator}{}
+	\va{s}{is the Laplace operator}{}
 	\va{z}{is the discrete operator}{}
 	\va{T}{is the sampling time}{}
 \end{where}
-The Tustin approximation maps the Laplace stable region into the discrete stable region, that is, the unit circle, as seen in \autoref{fig:tustinmap}, for these reason, is one of the most used discretization methods.
+The Tustin approximation maps the Laplace stable region into the discrete stable region, that is, the unit circle, as seen in \autoref{fig:tustinmap}. For these reason, is one of the most used discretization methods.
 \begin{figure}[H]
 	\includegraphics[scale=.7]{figures/tustinmapping}
 	\centering			
@@ -20,9 +20,10 @@ The Tustin approximation maps the Laplace stable region into the discrete stable
 \end{figure} 
 The discrete transfer function is then transformed into a difference equation to obtain the expression to be applied in the microcontroller. This is done taking into account that a $z^{-1}$ term implies taking the previous sample of the data. 
 
-When discretizing the controller, the sampling time must also be considered. In the system at hand, the sampling frequency is limited by the sensor data (Vicon System) to be 100 Hz as a maximum. The lower limit comes from the bandwidth of the controllers as for the discretization not to affect the controller response, the sampling frequency should be 25 times higher than the bandwidth of the control loop \fxnote{SOURCE}. The fastest control loop in the system is the attitude controller and has a bandwidth of 5 rad/s, that is, 0.8 Hz. This implies a minimum sampling frequency of 20 Hz.\fxnote{CHECK NUMBERS}
+When discretizing the controller, the sampling time must also be considered. In the system at hand, the sampling frequency is limited by the sensor data (Vicon System) to be 100 Hz as a maximum. The lower limit comes from the bandwidth of the controllers as for the discretization not to affect the controller response, the sampling frequency should from 10 to 20 times higher than the bandwidth of the control loop. The fastest control loop in the system is the attitude controller and has a bandwidth of 5 rad/s, that is, 0.8 Hz. This implies a minimum sampling frequency of 20 Hz.\fxnote{CHECK NUMBERS}
 
 The chosen sampling frequency in the system is 30 Hz in order to keep the controllers with a good performance an far from the 100 Hz that Vicon provides in order to have time for processing the communication task and the control program.\fxnote{CHECK NUMBERS}
+
 \subsection{Attitude Controllers}
 The attitude controller is mainly composed of gains formed by the state feedback, the integral and the observer matrices. this makes the discretization easier as there are no $s$ terms in the controller. There are though two integrators, one is in the observer and the other one is placed in the integral term of the controller.
 
@@ -45,7 +46,7 @@ The translational controllers are all proportional controllers except the veloci
 
 The discrete version of the z controller is shown in \autoref{discreteVelocityZcontroller}.
 \begin{flalign}
-	\frac{\omega_{sum}}{e_{\dot{z}}} = tf_{cont} \approx tf_discrete
+	\frac{\omega_{sum}}{e_{\dot{z}}} = tf_{cont} \approx tf_{discrete}
 	\label{discreteVelocityZcontroller}
 \end{flalign}
 

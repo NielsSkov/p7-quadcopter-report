@@ -5,7 +5,7 @@ The linear equations for the translational model relate this movements with the 
 %
 \begin{flalign}
     m\ \Delta\ddot{x}_I &= -k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \Delta\theta \label{eq:model_x_transl} \\
-    m\ \Delta\ddot{y}_I &=  k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \cos(\overline{\phi})\ \cos(\overline{\theta})\ \Delta\phi \label{eq:model_y_transl} 
+    m\ \Delta\ddot{y}_I &=  k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \Delta\phi \label{eq:model_y_transl} 
 \end{flalign} 
 Laplace transforming \autoref{eq:model_x_transl} and \ref{eq:model_y_transl} yields:
 %
@@ -22,10 +22,10 @@ The inner velocity controller design requires a transfer function from each of t
 \end{flalign}
 %
 \begin{where}
-\va{G_{x_I}}{is the plant for the translational velocity in $x_I$ direction}{}
-\va{G_{y_I}}{is the plant for the translational velocity in $y_I$ direction}{}
+    \va{G_{x_I}}{is the plant for the translational velocity in $x_I$ direction}{}
+    \va{G_{y_I}}{is the plant for the translational velocity in $y_I$ direction}{}
 \end{where}
-%
+
 From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants are similar but with different sign. The controller design is carried out for the x translational velocity and applied to both afterwards.
 
 The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open-loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed-loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate that of the plant.
@@ -109,6 +109,7 @@ G_{y_I}(s)&=\frac{y_I (s)}{\dot{y}_I (s)}=\frac{1}{s}  \label{eq:Gy}
     \va{G_{x_I}}{is the plant for the translational position in $x_I$ direction}{}
     \va{G_{y_I}}{is the plant for the translational position in $y_I$ direction}{}
 \end{where}
+
 Again, a proportional controller is sufficient to control the position of the quadcopter in the x direction as there is an integrator in the plant and the input disturbances are considered in the inner loops. 
 
 The proportional gain is chosen so that the bandwidth of the position loop is 3 times lower than that of the velocity loop. This defines it to be 0.56 rad/s. To set this bandwidth, the Bode plot of the plant shown in \autoref{fig:bodePosition} is used. The distance between the gain curve and the 0 dB level at 0.56 rad/s sets the gain of the controller to be -5.19 dB or 0.55.
