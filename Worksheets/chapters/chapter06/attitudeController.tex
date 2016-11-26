@@ -12,7 +12,7 @@ In state space, the system behavior is represented by means of the linearized mo
 	\label{yDiffEq} 
 \end{flalign}
 %
-The description of the system can also be expressed in matrix form, giving \autoref{xDotLinear} and \autoref{yLinear}.
+The description of the system can also be expressed in matrix form, giving \autoref{xDotLinear} and \ref{yLinear}.
 %
 \begin{flalign}
 	\vec{\dot{x}}(t)&=\vec{A} \  \vec{x}(t) + \vec{B} \  \vec{u}(t)
@@ -114,9 +114,9 @@ The specific matrices for the description of the angular behavior are obtained f
 \end{flalign}
 
 
-The dynamics of the system can be analyzed by looking at the system matrix A. The eigenvalues of this matrix represent the location of the open loop poles of the system. In this case, the system shows 6 poles located in zero, which means that the system is marginally stable. In order to place those poles at a better location state feedback is used together with an integral action to be able to set a desired reference for the angles that is different from zero. 
+The dynamics of the system can be analyzed by looking at the system matrix A. The eigenvalues of this matrix represent the location of the open loop poles of the system. In this case, the system shows six poles located in zero, which means that the system is marginally stable. In order to place those poles at a better location state feedback is used together with an integral action to be able to set a desired reference for the angles that is different from zero. 
 
-As the output is formed by the the three angles, these are the only measured states in the system. For doing the state feedback, the angular velocities are also needed. The way of obtaining it i chosen to be a reduce order observer even though when using the Vicon system, the angular velocities could be estimated with a numerical differentiation procedure. The observer is more convenient in case of using on board sensors and by using it, that possibility is kept open.
+As the output is formed by the the three angles, these are the only measured states in the system. For doing the state feedback, the angular velocities are also needed. The way of obtaining it is chosen to be a reduced order observer even though when using the Vicon system, the angular velocities could be estimated with a numerical differentiation procedure. The observer is more convenient in case of using on board sensors and by using it, that possibility is kept open.
 
 This way of approaching the control of the system is simplified by the possibility of designing the state feedback and integral controller and the observer independently. This holds due to the separation principle.
 
@@ -144,7 +144,7 @@ Before designing the controller and the observer, it is advisable to check the c
 \end{flalign}
 \end{minipage}\hfill
 
-The rank of these matrices is 6, that is, the number of states. This makes the system both controllable and observable. The precise value of the matrices can be seen in \autoref{app:matricesSS}.
+The rank of these matrices is six, that is, the number of states. This makes the system both controllable and observable. The precise value of the matrices can be seen in \autoref{app:matricesSS}.
 
 The block diagram showing the system overview of the attitude controller is showed in \autoref{attitudecontrollerdiagram}, in which the state feedback, the integral control and the observer can be seen.
 \begin{figure}[H]
