@@ -1,8 +1,8 @@
 \subsection{Reduced Order Observer Design}
 
-In general an observer is utilized in a control system if either one of two specific cases occurs. If certain states in the system are not measured, an observer can estimate the unmeasured states by means of the system output and input. However, it is also possible to use an observer if the measured data gathered from the sensors is affected by noise.  The observer can thereby use both the noisy measured states and the estimated states creating a filtered version. This case will however not be utilized in the prototype.
+In general an observer is utilized in a control system if either one of two specific cases occurs. If certain states in the system are not measured, an observer can estimate the unmeasured states by means of the system output and input. However, it is also possible to use an observer if the measured data gathered from the sensors is affected by noise.  The observer can thereby use both the noisy measured states and the estimated states creating a filtered version. 
 
-In the attitude control an reduced order observer is used. As described in ?? the attitude model has six states, the three angles of the quadcopter (roll, pitch and yaw) and the three corresponding angular velocities. By using the Vicon system, see ??, the three angles of the quadcopter are measured, making it possible to estimate the angular velocities.
+In the attitude control an reduced order observer is used. As described before, the attitude model has six states, the three angles of the quadcopter (roll, pitch and yaw) and the three angular velocities. By using the Vicon system, the three angles of the quadcopter are measured, making it possible to estimate the angular velocities.
 
 With this approach, the first three states, $x_1$ with be equal to the outputs, $y$, whereas the other three states will be estimated, $\hat{x}_2$.
 
