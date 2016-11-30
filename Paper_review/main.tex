@@ -1,0 +1,131 @@
+\input{setup/preamble.tex}% package inclusion and set up of the document
+
+\input{setup/macros.tex}% my new macros
+
+%\toggleNotes{on}
+
+\begin{document}
+	%%% Prereport %%%
+	\setlength\cftaftertoctitleskip{2pt}
+	\setlength\cftafterloftitleskip{6pt}
+	\setlength\cftafterlottitleskip{6pt}
+	\selectlanguage{english}
+	\title{Quadcopter}
+	
+	%%% Frontmatter Settings %%%
+	\pagestyle{empty} %disable headers and footers
+	\pagenumbering{roman} %use roman page numbering in the frontmatter I II...
+	\fancyfoot[RE,LO]{16gr733} %page number on all pages
+	\fancyfoot[LE,RO]{\thepage}
+	\fancyhead[LE,LO,RE,RO]{}
+	
+	%%% Introductory Formalities %%%
+	\input{chapters/frontpage}
+	\pagestyle{fancy}
+	\input{formalities/kolofon}
+	\input{formalities/titleSheet}
+	%%% Preface %%%
+	%\cleardoublepage
+	\input{formalities/preface.tex}
+	
+	\cleardoublepage
+	
+	\pdfbookmark[0]{Table of Contents}{label: tableOfContents}
+	\tableofcontents
+	\cleardoublepage
+	
+	
+	%%% Mainmatter Settings %%%
+	\pagenumbering{arabic} %use arabic page numbering in the mainmatter
+	\fancyfoot[RO,LE]{\thepage \text{ of} \pageref{LastPage}}
+	\fancyfoot[RE,LO]{16gr733}
+	\fancyhead[RE,LO]{}
+	\fancyhead[RE,LO]{\color{aaublue}\small\nouppercase\leftmark} %even page - chapter title
+	\pagestyle{fancy}
+	
+	%%% Part 1 %%%
+	\part{Pre-Analysis}
+	
+	%---------- Chapter 1 ---------------------------------------- 
+	\input{chapters/chapter01/chapter1.tex}
+	
+
+	%---------- Chapter 2 ---------------------------------------- 
+	\input{chapters/chapter02/chapter2.tex}
+	\input{chapters/chapter02/AvailableHardware.tex}		
+	\input{chapters/chapter02/prototypeDescription.tex}
+
+	%---------- Chapter 3 ----------------------------------------
+	\input{chapters/requirements.tex}
+	%---------- Chapter 4 ---------------------------------------- 
+	\input{chapters/chapter04/chapter4.tex}
+	\input{chapters/chapter04/attitudeEquations.tex}
+	\input{chapters/chapter04/xyzEquations.tex}
+	\input{chapters/chapter04/linearization.tex}
+	\input{chapters/chapter04/combinedModel.tex}
+	
+	\part{Design}	
+		
+	%---------- Chapter 6 ---------------------------------------- 	
+	\input{chapters/chapter06/chapter6.tex}	
+	\input{chapters/chapter06/attitudeController.tex}
+	\input{chapters/chapter06/ssStateFeedbackDesign.tex} 			%----- Subsection
+	\input{chapters/chapter06/ssObserverDesign.tex} 				%----- Subsection
+	\input{chapters/chapter06/simAttutudeController.tex}
+	%\input{chapters/chapter06/ssReference.tex}						%----- Subsection
+	\input{chapters/chapter06/translationalController.tex}
+    \input{chapters/chapter06/trans_x_y_controller.tex}            %----- Subsection
+    \input{chapters/chapter06/trans_z_controller.tex}              %----- Subsection
+	\input{chapters/chapter06/simTranslationalController.tex}    
+	\input{chapters/chapter06/controllersImplementation.tex}
+%	
+	%---------- Chapter 5 ----------------------------------------
+	\input{chapters/chapter05/chapter5.tex}
+	\input{chapters/chapter05/protocol.tex}
+	\input{chapters/chapter05/delay.tex}
+	\input{chapters/chapter05/packetloss.tex}
+	\input{chapters/chapter05/networksimulation.tex}
+		%%% Part 2 %%%
+	%%% Part 3 %%%
+	\part{Test \& Conclusion}
+	
+	%%% Setup for Appendix and Bibliography %%%
+	
+	
+	\bookmarksetup{startatroot}
+	\addtocontents{toc}{\bigskip}
+	\newpage
+	\fancyhead[RO]{\color{aaublue}\small Appendix \nouppercase\rightmark} %even page - chapter title
+	\fancyhead[LE]{\color{aaublue}\small Appendix \nouppercase\rightmark} %uneven page - section title
+	\fancyhead[RE,LO]{}
+	\titleformat{\section}[hang]{\Large\bfseries}{\thesection\hsp\textcolor{aaublue}{|}\hsp}{0pt}{\Large\bfseries}
+
+	%%% Appendix %%%
+		%\renewcommand{\thechapter}{\Alph{chapter}}
+		%	\addcontentsline{toc}{chapter}{Appendix}
+		%	\setcounter{chapter}{0}
+		%	\setcounter{section}{0}
+		%	\setcounter{table}{0}
+		%	\setcounter{equation}{0}
+		%	\setcounter{figure}{0}
+		
+	\appendix
+	\part*{Appendix} \addcontentsline{toc}{chapter}{Appendix}
+	\cleardoublepage\makeatletter\@openrightfalse\makeatother
+	
+
+	%---------- Appendix A ----------------------------------------
+	\input{appendix/aThrustTest.tex}
+    \input{appendix/bTorqueTest.tex}	
+	\input{appendix/cVoltageLevelTest.tex}
+	\input{appendix/dInertia.tex}
+    \input{appendix/mMatrixAppendix.tex}
+  
+%	\end{appendices}
+		
+	%%% Bibliography %%%
+	\printbibliography
+	
+	%%% To Do List %%%
+
+	\end{document}
