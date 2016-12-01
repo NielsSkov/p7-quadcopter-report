@@ -10,7 +10,7 @@ The translational controllers are structured as cascade loops, where the velocit
 
 The x and y controllers share similar properties as both their outputs are angle references, $\theta_{\mathrm{ref}}$ and $\phi_{\mathrm{ref}}$, while the output of the z controller is the required sum of motor rotational speeds.\\
 
-To design the inner controllers for the velocities $\dot{x}$ and $\dot{y}$, the model equations derived previously, see \eqref{eq:AccelerationEqInertial1} and \eqref{eq:AccelerationEqInertial2}, are Laplace transformed. These are used to create a transfer function between the angles and the velocities, yielding:
+To design the inner controllers for the velocities $\dot{x}$ and $\dot{y}$, the model equations derived previously, see \eqref{eq:AccelerationEqInertial1} and \eqref{eq:AccelerationEqInertial2}, are Laplace transformed. These are used to create a transfer function between the angles and the velocities, yielding
 \begin{flalign}
     G_{\dot{x}}(s)&=\frac{\dot{x}_{\mathrm{I}} (s)}{\theta (s)}=\frac{-k_{\mathrm{th}} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m s}\label{transferfunctionxdot} \\
     G_{\dot{y}}(s)&=\frac{\dot{y}_{\mathrm{I}} (s)}{\phi (s)}=\frac{k_{\mathrm{th}}(\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m s}\label{transferfunctionydot} 

@@ -1,5 +1,5 @@
 \subsection{Controllers for x and y Axes}
-The design of the controllers for the translational movement in $x_I$ and $y_I$ directions is done using the transfer function of the system in a Bode plot based design.
+The design of the controllers for the translational movement in $x_I$ and $y_I$ directions is done using the transfer function of the system in a Bode plot based design.\fxnote{check numbers in the whole section}
 
 The linear equations for the translational model relate this movements with the roll and the pitch that the quadcopter has at each moment.
 %
@@ -30,7 +30,7 @@ From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants
 
 The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open-loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed-loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate that of the plant.
 
-It is noticeable that, for this design, the variable changed by the controller is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. This is not accounted in the transfer functions. In order to be able to not consider the inner loop in the controller design, the closed loop bandwidth of the control loop should be 3 to 5 times lower.\fxnote{SOURCE 3 TO 5 TIMES} 
+It is noticeable that, for this design, the variable changed by the controller is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. This is not accounted in the transfer functions. In order to be able to not to consider the effect of the inner loop in the controller design, the closed loop bandwidth of the control loop should be 3 to 5 times lower.\fxnote{SOURCE 3 TO 5 TIMES} 
 
 The bandwidth of the inner angular control is obtained by making a Bode plot approximation from the pitch angle reference to the real pitch angle in the quadcopter. The obtained Bode diagram is shown in \autoref{fig:bodePitch}. It can be seen that the frequency of the inner loop is 5 rad/s and this defines the bandwidth of the velocity control loop to be 1.67 rad/s.
 %

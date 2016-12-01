@@ -22,7 +22,7 @@ The discrete transfer function is then transformed into a difference equation to
 
 When discretizing the controller, the sampling time must also be considered. In the system at hand, the sampling frequency is limited by the sensor data (Vicon System) to be 100 Hz as a maximum. The lower limit comes from the bandwidth of the controllers as for the discretization not to affect the controller response, the sampling frequency should from 10 to 20 times higher than the bandwidth of the control loop. The fastest control loop in the system is the attitude controller and has a bandwidth of 5 rad/s, that is, 0.8 Hz. This implies a minimum sampling frequency of 20 Hz.\fxnote{CHECK NUMBERS}
 
-The chosen sampling frequency in the system is 30 Hz in order to keep the controllers with a good performance an far from the 100 Hz that Vicon provides in order to have time for processing the communication task and the control program.\fxnote{CHECK NUMBERS}
+The chosen sampling frequency in the system is 28 Hz in order to keep the controllers with a good performance an far from the 100 Hz that Vicon provides in order to have time for processing the communication and the control tasks.\fxnote{CHECK NUMBERS}
 
 \subsection{Attitude Controllers}
 The attitude controller is mainly composed of gains formed by the state feedback, the integral and the observer matrices. this makes the discretization easier as there are no $s$ terms in the controller. There are though two integrators, one is in the observer and the other one is placed in the integral term of the controller.
@@ -38,9 +38,22 @@ This transformation yields a difference equation as seen in \autoref{discreteInt
 	\label{discreteIntegratordifferences}
 \end{flalign}
 
-The effect of the discretization in the designed attitude controllers is shown in \fxnote{INCLUDE COMPARISON}. As the attitude information is transmitted through the network, the delay effect and packet loss are also included in the discrete simulation by using the network simulator TrueTime. 
+The effect of the discretization in the designed attitude controllers has been simulated in the non-linear system and it is commpared with the continuous designed previously developed. See \autoref{fig:AttitudeDiscrete}. It can be seen that the discretized version of the controller makes it slower, but the overshoot is slightly reduced. There no change in the final value of the controller.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{figures/simAttitudeDiscrete}
+	\caption{Attitude controller performance when discretized with a sampling rate of 28 Hz and its continuous version.}
+	\label{fig:AttitudeDiscrete}
+\end{figure}
 
-It can be seen that the performance of the discrete attitude controller is still able to track the given references with a similar response. 
+The discrete attitude controller is also evaluated by its control action, which is depicted in \autoref{fig:AttitudeDiscreteControlAction}. As it can be appreciated, the variations from equilibrium of the motor rotational speeds are larger in the discrete controller and the signals are away from equilibrium for a longer time.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{figures/simAttitudeDiscreteControlAction}
+	\caption{Attitude controller control action when discretized with a sampling rate of 28 Hz and its continuous version.}
+	\label{fig:AttitudeDiscreteControlAction}
+\end{figure}
+ 
 \subsection{Translational Controllers}
 The translational controllers are all proportional controllers except the velocity z controller, which is a PI controller. The gains are the same in both continuous and discrete domains but the PI needs to be discretized with the Tustin rule. 
 
@@ -57,7 +70,11 @@ From the above equation, the difference equation that should be implemented in t
 	\label{discreteVelocityZcontrollerdiferences}
 \end{flalign}
 
-In \fxnote{INCLUDE COMPARIONS OF THE X Y AND Z} the comparison of the translational controllers discrete and continuous versions. In the simulation, the delay and the package loss network effects are also included, as not only the sampling rate affects the response but also these two network effects. 
-
-
-It can be seen that the response bla bla bla
+In \autoref{fig:} the comparison of the translational controllers discrete and continuous versions. In the simulation, only the sampling rate effect is taken into account. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{figures/simTranslationalDiscrete}
+	\caption{Translational position controller when discretized with a sampling rate of 28 Hz and its continuous version.}
+	\label{fig:TranslationalDiscrete}
+\end{figure}
+The response of the controller becomes slower in both the x and y cases, in which the overshoot is also slightly reduced this is due to the effect of the sampling in the inner attitude controllers, see \autoref{fig:AttitudeDiscrete}, rather than on the translational controllers themselves as they are slow compared to the sampling rate of the system. In the z controller there is no noticeable differences between continuous and discrete versions as the sampling rate is fast compared with the controller.\fxnote{Include control action figure}
