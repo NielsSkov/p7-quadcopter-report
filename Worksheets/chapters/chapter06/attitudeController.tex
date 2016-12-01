@@ -1,5 +1,5 @@
 \section{Attitude Controller}
-The angular response of the quadcopter constitutes a coupled behavior as the three Euler angles ($\phi$, $\theta$ and $\psi$) are affected by the four motor velocities. This makes it harder to utilize independent controllers for each angle. A state space approach is instead considered.   
+The attitude controller constitutes an inner loop which receives references for the roll and pitch from the outer loop, the $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ translational controller. As it is decided only to move the drone in one inertial axis at a time, the yaw reference is always set to zero. The angular response of the quadcopter constitutes a coupled behavior, as the three Euler angles ($\phi$, $\theta$ and $\psi$) are affected by the four motor velocities. This makes it harder to utilize independent controllers for each angle. A state space approach is instead considered.
 
 In state space, the system behavior is represented by means of the linearized model equations. These show how the output and the states of the system evolve as a function of the current states values and the input applied to the system. \autoref{xDotDiffEq} and \autoref{yDiffEq} show the idea of state space representation.
 %

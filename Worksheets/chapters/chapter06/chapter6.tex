@@ -1,15 +1,21 @@
 \chapter{Controller Design}\label{chap:Control}
-The system of the quadcopter has been described by a mathematical model. This is used in the design of a control system, which must stabilize the quadcopter and meet the functional requirements stated in \autoref{ch:functionalRequirements}.
+The system of the quadcopter has been described by both a linear and a non-linear mathematical model, these can be found in \autoref{chap:Model}. The models are utilized when designing the control system. The controllers are designed to be able to fulfil the relevant functional requirements stated in \autoref{ch:functionalRequirements}.
 
-The model is divided into two submodels, an attitude model and a translational one. It is therefore desirable to design two control systems, one for each subsystem. The attitude controller constitutes an inner loop surrounded by the translational x and y controllers, and the z controller handles the amount of thrust applied by the motors changing the required sum of their rotational speeds. \autoref{fig:ControlHeadDiagram} shows the relation between the different controllers in the system.
+The model is divided into two submodels, an attitude model and a translational model. It is therefore desirable to design two control systems, one for each subsystem.\autoref{fig:ControlHeadDiagram} shows the relation between the different controllers and models in the system.
+
+% The attitude controller constitutes the inner loop, which is surrounded by the x and y translational controllers. An z controller, separated from attitude controller, handles the amount of thrust applied by the motors, by changing the required sum of their rotational speeds. 
 %
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1 \textwidth]{figures/generalcontroldiagram}
-	\caption{Block diagram of overall control system.}
+	\includegraphics[width=1 \textwidth]{figures/generalcontroldiagram2}
+	\caption{Block diagram of the overall control system.}
 	\label{fig:ControlHeadDiagram}
 \end{figure}
 
-The attitude controller is designed using a state space approach  \cite{ssReference}. The translational control system is designed with classical control methods. The rotational speed calculator takes into account the rotational speeds that the attitude controller needs in each motor and the sum that is needed to get the desired thrust in the $z_\mathrm{I}$ direction. Then, it combines both to give the final control action that is applied to the system.
+The translational controller, inertial position in $x$ ($x\mathrm{_I}$), inertial position in $y$ ($y\mathrm{_I}$) and inertial position in $z$ ($z\mathrm{_I}$), are designed with classical control methods. This control block receives the desired $x_\mathrm{I_{ref}}$, $y_\mathrm{I_{ref}}$ and $z_\mathrm{I_{ref}}$ positions. The translational controllers for $x\mathrm{_I}$ and $y\mathrm{_I}$ constitutes an outer loop with the attitude controller as the inner loop. The $x\mathrm{_I}$ and $y\mathrm{_I}$ translational controller passes a roll and pitch reference to the attitude controller, as these are use to change the position. Note that a reference for yaw is not illustrated on the diagram. As the attitude controller is designed to always strive for a yaw of zero. The attitude controller is designed using a state space approach \cite{ssReference}. The $z\mathrm{_I}$ controller, separated from attitude controller, handles the amount of thrust applied by the motors, by changing the required sum of their rotational speeds.
 
-First the design of the attitude controller is done followed by the design of the translational controller. When the controllers are designed, they are simulated with the models to ensure that they yield the desired behavior. If the controllers yield an acceptable outcome, they are to be implemented in the system. To do so, they are first discretized. It is necessary to simulate the discrete controllers and compare the results with the continuous controllers, as some design considerations may be lost in the discretization. Lastly the controllers are implementation is presented. 
+The rotational speed calculator receives the total speed of each motor and the required sum needed to get the desired thrust. The rotational speed calculator's objective is to combine it's five inputs into the final control action applied to the system. Yielding a new inertial position.
+
+%takes into account the rotational speeds that the attitude controller needs in each motor and the sum that is needed to get the desired thrust in the $z_\mathrm{I}$ direction. Then, it combines both to give the final control action that is applied to the system.
+
+This chapters starts by designing the attitude controller followed by the design of the translational controller. When the controllers are designed, they are simulated together with the model and the maximum expected delay. This is to ensure the controllers yield the desired behavior with the delay. After the design and simulations of each controller, they are discretized. The discrete controllers are simulated and compared to the simulations of the continuous controllers. This is necessary as some design considerations may be lost in the discretization. Lastly an overview of the implementation of the controllers on the micro processor is presented. 
