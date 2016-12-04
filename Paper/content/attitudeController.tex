@@ -21,15 +21,15 @@ The attitude controller for the quadcopter is designed using a state space repre
 
 The vectors above are then used in construction of the state space matrix representation as
 \begin{flalign}
-	\vec{\dot{x}}(t)&=\vec{A} \ \vec{x}(t) + \vec{B} \ \vec{u}(t)
+	\vec{\dot{x}}(t)&=\vec{A} \vec{x}(t) + \vec{B} \vec{u}(t)
 	\label{xDotSS} 
 \end{flalign}
 \vspace{-0.9 cm}
 \begin{flalign}
-	\vec{y}(t)&=\vec{C} \ \vec{x}(t) + \vec{D} \ \vec{u}(t)\label{ySS} 
+	\vec{y}(t)&=\vec{C} \vec{x}(t) + \vec{D} \vec{u}(t)\label{ySS} 
 \end{flalign}
 %
-where $\vec{A}$ is the system matrix, $\vec{B}$ is the input matrix, $\vec{C}$ is the output matrix and $\vec{D}$ is the feedback matrix.
+where $\vec{A}$ is the system matrix, $\vec{B}$ is the input matrix, $\vec{C}$ is the output matrix and $\vec{D}$ is the feedforward matrix.
 
 The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are obtained from the linearized attitude equations, yielding the matrices shown below. As $\vec{D}$ is a zero matrix, only $\vec{A}$, $\vec{B}$ and $\vec{C}$ are shown.
 
@@ -91,14 +91,14 @@ As there are three outputs to track, three states, $\vec{x}_{\mathrm{int}}(t)$, 
 %
 \vspace{-.2cm}
 \begin{flalign} 
-\dot{\vec{x}}_\mathrm{e}(t) &= \vec{A}_\mathrm{e} \  \vec{x}_\mathrm{e}(t) + \vec{B}_\mathrm{e} \  \vec{u}(t) + 
+\dot{\vec{x}}_\mathrm{e}(t) &= \vec{A}_\mathrm{e} \vec{x}_\mathrm{e}(t) + \vec{B}_\mathrm{e} \vec{u}(t) + 
 \begin{bmatrix}
 \ \vec{0}     \ \ \ \\ 
 \ \vec{-I}     \ \ \  		
 \end{bmatrix}
 \vec{r}(t) 
 \label{xdotSSExtended}\\ 
-\vec{y}(t) &= \vec{C}_\mathrm{e} \  \vec{x}_\mathrm{e} 
+\vec{y}(t) &= \vec{C}_\mathrm{e} \vec{x}_\mathrm{e} 
 \label{ySSExtended}
 \end{flalign} 
 %
@@ -144,17 +144,17 @@ where\\
 The feedback law for this design approach is given by \eqref{eq:ssControllerAction}. Its design is done as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_\mathrm{e}=[\vec{F} \ \vec{F}_{\mathrm{int}}]$ matrix, such that the eigenvalues of $\vec{A}_\mathrm{e}+\vec{B}_\mathrm{e}\vec{F}_\mathrm{e}$ are the closed loop poles giving the desired dynamics.
 %
 \begin{flalign} 
-    \vec{u}(t) &=\vec{F} \  \vec{x}(t) + \ \vec{F}_{\mathrm{int}} \  \vec{x}_{\mathrm{int}}(t)
+    \vec{u}(t) &=\vec{F} \vec{x}(t) + \vec{F}_{\mathrm{int}} \vec{x}_{\mathrm{int}}(t)
     \label{eq:ssControllerAction}
 \end{flalign}
 
 Once $\vec{F}_\mathrm{e}$ is obtained, it is split into $F$ and $F_{\mathrm{int}}$. In this way, the controller is implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.\\
-
+\fxnote{Add LQR}
 %--------------------- Reduced-Order Observer ----------------------------
 
-Since certain states in the system are not measured, an observer estimates the remaining states by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$.
+Since certain states in the system are not measured, an observer estimates the remaining states by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$. \fxnote{inconsistency between L and Lobs}
 
-The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\ \vec{A}_{12}$ give the desired dynamics for the estimation \cite{ssReference}. This is done splitting the original system matrices into the submatrices\\
+The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\vec{A}_{12}$ give the desired dynamics for the estimation \cite{ssReference}. This is done splitting the original system matrices into the submatrices\\
 %
 \begin{minipage}{0.45\linewidth}
     \begin{flalign}
@@ -179,7 +179,7 @@ The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such tha
 With the observer matrix, the observer equation is derived, see \eqref{eq:eqobservertheorem}. This ensures an estimate $\hat{\vec{x}}_{4:6}$ which converges to $\vec{x}_{4:6}$ at a rate given by the chosen observer poles.
 \small{
 \begin{flalign}
-    \vec{\hat{\dot{x}}}_{4:6} &= \vec{A}_{21}\vec{y} + \vec{A}_{22}\vec{\hat{x}}_{4:6} + \vec{B_2} + \vec{L}_{\mathrm{obs}}\vec{(A}_{12}\vec{\hat{x}}_{4:6} - \vec{A}_{21}\vec{x}_{4:6}) \label{eq:eqobservertheorem}
+    \vec{\hat{\dot{x}}}_{4:6} &= \vec{A}_{21}\vec{y} + \vec{A}_{22}\vec{\hat{x}}_{4:6} + \vec{B_2}\vec{u} + \vec{L}_{\mathrm{obs}}\vec{(A}_{12}\vec{\hat{x}}_{4:6} - \vec{A}_{21}\vec{x}_{4:6}) \label{eq:eqobservertheorem}
 \end{flalign}
 \normalsize
 \\

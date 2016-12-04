@@ -1,5 +1,4 @@
-\section{Prototype Description}
-\label{sec:PrototypeDescription}
+\section{Prototype Description}\label{sec:PrototypeDescription}
 In the following section an overall description of the prototype is given. %This is done to help the reader understand the utilized setup in the project.
 The prototype is divided into three separate subsystems. The quadcopter, the ground station, and the Vicon system. These can be seen in \autoref{fig:prototypediagram}. 
 
@@ -11,13 +10,14 @@ The prototype is divided into three separate subsystems. The quadcopter, the gro
 	\label{fig:prototypediagram}
 \end{figure}
 
-%!!explain somewhere what vicon is and that it can be found in aalborg university, maybe we should have a little section, together with all the other hardware?!!
+%For this project the Vicon system is used to capture the position and orientation of the quadcopter. It captures the quadcopter's position, in form of coordinates, and its orientation, in the form of Euler angles. The information is then transmitted to the Ground Station.
+%The Ground Station utilizes the data it receives from the Vicon system to calculate the linear velocity and linear acceleration of the quadcopter.
+The Vicon system captures the quadcopter's position, in form of coordinates, and its attitude, in Euler angles. This information is then transmitted to the Ground Station. Along with the positioning data, reference commands for the controller, located on the quadcopter, are also needed and are generated from the ground station. These are transmitted together with the position, orientation, linear velocity and linear acceleration to the quadcopter. This information is transmitted by means of a network interface through the Xbees.
 
-For this project the Vicon system is used to capture the position and orientation of the quadcopter. This avoids the time consuming sensor set up on the quadcopter, as the Vicon system is already configured and ready to use. It captures the quadcopter's position, in form of coordinates, and its orientation, in the form of Euler angles. The information is then transmitted to the Ground Station.
-
-The Ground Station utilizes the data it receives from the Vicon system to calculate the linear velocity and linear acceleration of the quadcopter. Reference commands for the controller, located on the quadcopter, are also needed and are generated from the ground station. These are transmitted together with the position, orientation, linear velocity and linear acceleration to the quadcopter. This information is transmitted by means of a network interface and a wireless module.
-
-The quadcopter consist of a microcontroller, four motor controllers, four motors, a battery, and a wireless module. The microcontroller's main tasks are to handle the network between itself and the ground station, the control calculations and to generate the control signals which should be transmitted to the four motorcontrollers. \\To be able to calculate the rotational speed needed for the motors, the five variables received from the ground station are needed, i.e the control reference, position, orientation, linear velocity and linear acceleration of the quadcopter. Hereafter it is possible to calculate the necessary PWM signals, by utilizing the rotational speed calculated by the controller and the measured voltage on the battery. \\Furthermore, the quadcopter should be able to send the battery voltage level to the ground station in order to detect when the flight should end.
+The quadcopter consists of a microcontroller, four motor controllers, four motors, a battery, and a wireless module. The microcontroller's tasks are to handle the network between itself and the ground station, the control calculations and to generate the control signals which should be applied to the four motor controllers.\\
+To be able to calculate the rotational speed needed for the motors, the five variables received from the ground station are needed, i.e the control reference, position, orientation, linear velocity and linear acceleration of the quadcopter. Hereafter it is possible to calculate the necessary PWM signals, by utilizing the rotational speed calculated by the control system and the measured voltage on the battery. \\
+Furthermore, the quadcopter should be able to measure the battery voltage level and land when the battery is critically low.
+%to the ground station in order to detect when the flight should end.
 
 %The quadcopter's most complex component is the microcontroller. It handles the control calculations, the PWM calculations according to the required control action and battery level, and the communication protocol necessary to exchange data with the ground station.
 
@@ -35,5 +35,5 @@ The quadcopter consist of a microcontroller, four motor controllers, four motors
 %\textbf{Battery should be moved somewhere else}
 %The battery, which is available for the prototype, is a Zippy Flightmax battery. Its weights 141 gram, has an capacity of 1500 mAh, a voltage of 11.1 volts and a discharge current of 20 amperes. 
 
-This initial prototype description serves as a basis for designing the system. First, the model is derived in \autoref{chap:Model} and then the controllers are designed in \autoref{chap:Control}.
+This initial prototype description serves as a basis for requirements given in \autoref{ch:functionalRequirements}, after which the model is derived in \autoref{chap:Model}.
 
