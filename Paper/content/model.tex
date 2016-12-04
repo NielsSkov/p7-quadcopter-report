@@ -4,15 +4,17 @@ The quadcopter free body diagram is shown in \autoref{droneDiagram}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.4\textwidth]{figures/droneDiagram}
-	\caption{Forces and torques acting on the quadcopter and the positive references chosen for rotations and translations in both inertial and body coordinate frames.}
+	\caption{Forces and torques acting on the quadcopter and the positive references chosen for rotations and translations in both inertial and body coordinate frames.\fxnote{Explain symbols? Change the blue colors?}}
 	\label{droneDiagram}
 \end{figure}
 %
-As it is seen, the system is modelled by using two coordinate frames. The inertial frame is utilized to describe the translational movement while the body frame is attached to the quadcopter and used to characterize its attitude behavior. In the figure, also the positive references for rotational and translational movements are depicted, as well as the main forces and torques acting on the quadcopter. 
+As it is seen, the system is modeled by using two coordinate frames. The inertial frame is utilized to describe the translational movement while the body frame is attached to the quadcopter and used to characterize its attitude behavior. In the figure, also the positive references for rotational and translational movements are depicted, as well as the main forces and torques acting on the quadcopter. The positive rotations follow a right-hand fashion.
 
 The forces generated in the propeller are readily obtained in the body coordinate frame. In order to represent them in the inertial frame a rotation matrix is used. It is built considering a 123 rotation sequence \cite{rotationmatrix}. This means that any rotation is described as three rotations around the $x_\mathrm{B}$ axis first, then around the $y_\mathrm{B}$ axis and lastly around the $z_\mathrm{B}$ axis. 
  
 The dynamic model of the quadcopter is given by three sets of equations. The first describes the motor and the propeller, the second presents the attitude response of the quadcopter and the third explains how the translational variables of the system evolve.
+
+\fxnote{In the modeling section, what are your assumptions? What is the reason for not including model parts such as Gyroscopic torque, Air friction/drag on the quadcopter itself (even though you include it on the propellers), Aerodynamic lift, Mass placement and separation of masses, Coriolis acceleration?}
 
 \subsection{Motor and Propeller}
 The four motors in the quadcopter generate a rotation in the propellers that creates the force that lifts the quadcopter. The thrust force can be modeled as proportional to the square of the motor rotational speed. The thrust coefficient for one motor is found experimentally. 
@@ -65,11 +67,11 @@ The equations describing the response of the system along the inertial x, y and 
 It is worth mentioning that, as the thrust forces always point in the negative ${z}_B$ direction, the accelerations along ${x}_{\mathrm{I}}$ and ${y}_{\mathrm{I}}$ directions are zero when pitch and roll angles are zero.
 
 \subsection{Linearization}
-The model equations are linearized using the first order Taylor approximation around an equilibrium point of the system. The chosen point is the hovering position, which implies that all state derivatives have a value of zero, that is, the attitude and translational accelerations and velocities.The angular position of the quadcopter is also part of the point around which the linearization is made, and it is also set to zero in the three angles.
+The model equations are linearized using the first order Taylor approximation around an equilibrium point of the system. The chosen point is the hovering position, which implies that the attitude and translational accelerations and velocities are zero. The angular position of the quadcopter is also part of the point around which the linearization is made, and it is also set to zero in the three angles.
 
-Choosing a zero acceleration linearization point along the ${z}_{\mathrm{I}}$ axis yields an equilibrium rotational speed so that the necessary thrust is generated to compensate for the gravitational force. The relation is expressed as
+Choosing a zero acceleration linearization point along the ${z}_{\mathrm{I}}$ axis yields an equilibrium rotational speed so that the necessary thrust is generated to compensate for the gravitational force. The relation is expressed as\fxnote{Should we use the same $\overline{\omega}$?}
 \begin{flalign}
-    \overline{\omega}_i=\sqrt{\frac{m\  g}{4k_{th}}}
+    \overline{\omega}_i=\sqrt{\frac{mg}{4k_{th}}}
     \label{eq:equilibriumomegas}
 \end{flalign}
 The resulting equations for the attitude model after the linearization are 
