@@ -59,7 +59,7 @@ The quadcopter comes with four electronic speed controllers, ESCs, one for each 
 \end{figure}
 
 \subsection{Battery}
-The battery available for the prototype, is a Zippy Flightmax battery. It weighs \SI{141}{g}, has a capacity of \SI{1500}{mAh}, a voltage of \SI{11.1}{V} and a discharge current of \SI{20}{A}.
+The battery available for the prototype, is a Zippy Flightmax battery. It weighs \SI{141}{g}, has a capacity of \SI{1500}{mAh}, a voltage of \SI{11.1}{V} and a discharge current of \SI{20}{A}.\fxnote{source!}
 
 The battery level drops over time, with a significance that can not be neglected as it may have great impact on the output of the motor and therefore on the lift of the propeller. It is possible to measure the battery level while operating the quadrotor. By taking into account the battery level in the test of the PWM signal to velocity, it is possible to obtain a quadcopter having constant lift force, if this is requested. With this information and knowledge of the relationship between voltage and RPM, see \autoref{app:VoltageLevelTest}, it is possible to account for the battery level in the control realization and thereby rectify the problem.
 
@@ -67,7 +67,7 @@ The battery level drops over time, with a significance that can not be neglected
 The provided quadcopter is simply a frame as it is not capable of flying as it is. Therefore additional hardware must be implemented. This includes sensors, as the quadcopter will otherwise not be able to navigate. A processor, as a computation device needs to handle commands and control algorithms. And lastly a wireless module, as communication with the quadcopter is required. The chosen sensor solution is now presented.
 
 \subsection{Sensor}
-It is possible to implement on board sensors or use a real time position and attitude data capturing system such as Vicon, which is available at Aalborg University in a room of the dimensions: $5.849 \times 5.721 \times 3.715$ \si{m}.
+It is possible to implement on board sensors or use a real time position and attitude data capturing system such as Vicon, which is available at Aalborg University in a room of the dimensions: $5.85 \times 5.72 \times 3.72$ \si{m}.
 As the focus of this project is to design and implement a control system in a distributed network, it is chosen to use the Vicon system. This challenges the control system by introducing network delays and package loss. As this project develops a prototype, it is not essential that the quadcopter can operate outside of the Vicon system.
 
 The Vicon system provides real-time position and attitude captured with nine infrared cameras.
@@ -80,7 +80,7 @@ The Vicon system provides real-time position and attitude captured with nine inf
 %	\label{ViconRoom}
 %\end{figure}
 
-To use this system, reflective markers are attached to the tracked object. The Vicon system streams the position of the markers and the position and attitude of the object at 100 Hz for a computer to read them. The data can be received by using an SDK (software development kit) plug-in for MATLAB. In this way, data can be received by MATLAB, making it possible to directly perform calculations, which makes it easier to obtain variable derivatives like velocities or accelerations.
+To use this system, reflective markers are attached to the tracked object. The Vicon system streams the position of the markers and the position and attitude of the object at 100 Hz for a computer to read them\fxnote{source!}. The data can be received by using an SDK (software development kit) plug-in for MATLAB. In this way, data can be received by MATLAB, making it possible to directly perform calculations, which makes it easier to obtain variable derivatives like velocities or accelerations.
 
 The user interface of the Vicon system is shown in \autoref{fig:ViconTracker}. 
 \begin{figure}[H]
@@ -94,7 +94,7 @@ The software is called Vicon Tracker and it allows the creation of objects by gr
 
 \subsection{Processor}
 As the computer on the ground only handles the Vicon sensor data and the communication of this data, the processor of the quadcopter must be capable of handling the processing of the control system while also receiving the position and attitude of the quadcopter.
-The implementation of the controllers is done in a microprocessor from Atmel, ATmega2560, mounted on the ArduinoMEGA development board, as seen in figure \autoref{fig:ATmega}. This processor has up to 16 PWM output channels, two 8-bit timers and four 16-bit timers, four USART modules, 8 kilobytes of internal memory and a processing speed of 16M IPS. These capabilities are presumed to be sufficient for the control implementation on the quadcopter.
+The implementation of the controllers is done in a microprocessor from Atmel, ATmega2560, mounted on the ArduinoMEGA development board, as seen in figure \autoref{fig:ATmega}. This processor has up to 16 PWM output channels, two 8-bit timers and four 16-bit timers, four USART modules, 8 kilobytes of internal memory and a processing speed of 16M IPS. These capabilities are presumed to be sufficient for the control implementation on the quadcopter.\fxnote{source!}
 
 %The use of the development board makes the use of the wireless modules easier as an arduino shield can be directly plugged in. Furthermore, it allows a faster set up of the microcontroller as all required hardware (oscillatior, power supply, etc.) is already present in the board. 
 \begin{figure}[H]
@@ -105,10 +105,18 @@ The implementation of the controllers is done in a microprocessor from Atmel, AT
 \end{figure}
 
 \subsection{Wireless Modules}
-The wireless modules used to communicate with the quadcopter are called XBee, see \autoref{fig:XBEE}. They communicate at a \SI{2.4}{GHz} frequency and they take care of all communication layers except the transport layer protocol. In order to use these modules, the packet has to be sent through the serial port when using the computer or through the USART module when using the microcontroller.
+The wireless modules used to communicate with the quadcopter are called XBee, see \autoref{fig:XBEE}. These modules need a supply voltage between \si{2.8} and \si{3.4}{V}, which fits well with the \SI{3.3}{V} supply provided by the Arduino board\cite{XBee}.
+
 \begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.25]{figures/XBEE}
-	\caption{XBee wireless modules.}
-	\label{fig:XBEE}
+  \centering
+  \includegraphics[scale=0.25]{figures/XBEE}
+  \caption{XBee wireless modules.}
+  \label{fig:XBEE}
 \end{figure}
+
+The Xbee modules communicate at a frequency of \SI{2.4}{GHz} and has a range of up to \SI{30}{m} in indoor environments and a line-of-sight range of up to \SI{90}{m}. The modules transmit with an RF data rate of \SI{250}{Kbps} and are capable of communicating with a serial interface data rate of from SI{1200}{bps} up to \SI{250}{Kbps}. The Xbee modules take care of all communication layers except the transport layer protocol. The protocol used by the XBee modules is called ZigBee, which contains the IEEE $802.15.4$ standard.\cite{XBee}
+
+In order to use these modules, the packet has to be sent through the serial port when using the computer or through the USART module when using the microcontroller\fxnote{This is reffering to the explorer module used by the computer and the shield for the arduino I assume - we should write more clearly - present both pieces of hardware with an image (side by side) - also as far as I know both of these serves only as a direct wire connection between serial interface and Xbee module, we should be more specific - at time of writing I do not have access to the hardware, will look into it later - Niels.}.
+
+
+

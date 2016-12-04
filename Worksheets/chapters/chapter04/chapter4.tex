@@ -14,6 +14,34 @@ The model can be split into two submodels, one describing the angular behaviour 
 %
 \autoref{fig:modelOverview} shows the relation between the two submodels. The attitude model, that the describes the angular behaviour, get the velocities of the four motors as input its output is the angles pitch, roll and yaw. These angles are input of the translational model. The translational model do also have the velocities of the motors as input, resulting in seven inputs in total. The output of the translational model is a position given in the x, y and z axes.
 
+When flying a quadcopter two different configurations are generally considered, the cross and the plus configurations, see \autoref{fig:plusConfiguration} and \ref{fig:crossConfiguration}. The angles of rotation, roll, pitch and yaw, are generally defined around the three coordinate axes attached to the quadcopter. \cite{HLChan}
+%
+\begin{figure}[H]
+  \centering
+  \captionbox
+  {
+    The quadcopter with orientation in the coordinate system corresponding to plus configuration.
+    \label{fig:plusConfiguration}
+  }
+  {
+    \includegraphics[width=.42\textwidth]{figures/plusConfiguration}
+  }
+  \hspace{5pt}
+  \captionbox
+  {
+    The quadcopter with orientation in the coordinate system corresponding to cross configuration.
+    \label{fig:crossConfiguration}
+  }
+  {
+    \includegraphics[width=.40\textwidth]{figures/crossConfiguration}
+    \vspace{.5cm}
+  }
+\end{figure}
+%
+If the quadcopter is in plus configuration and i.e. the roll angle is increased, it will fly with one rotor in front. However if the same angle is applied to a quadcopter in cross configuration, it will fly with two rotors in front. \cite{HLChan}
+
+Cross configuration provides a more responsive flight since all four routers are engaged when changing an angle. Less actuation is also required from each motor since there are two to pull the quadcopter around. From a control perspective it is however more forthright to model and control a quadcopter in plus configuration, which is the choice for this prototype. \cite{HLChan}
+
 Another consideration to be made before modeling the quadcopter is the usage of two coordinate frames. A body frame, that is fixed to the flying object and an inertial frame, that is fixed to the Vicon room. 
 %
 \begin{figure}[H]
@@ -33,9 +61,9 @@ The transformation from the body frame to the inertial one can be done through a
     \begin{flalign}
         \si{R_X} &=
         \begin{bmatrix}
-            \ 1 & 0  & 0  \ \ \ \\ 
-            \ 0 & c(\phi)  & -s(\phi)  \ \ \ \\ 
-            \ 0 & s(\phi)  & c(\phi)  \ \ \ \nonumber  
+            1 & 0        & 0         \\ 
+            0 & c(\phi)  & -s(\phi)  \\ 
+            0 & s(\phi)  & c(\phi)   \nonumber  
         \end{bmatrix} 	\label{eq:RotMatrix1}
     \end{flalign}
 \end{minipage}\hfill
@@ -43,9 +71,9 @@ The transformation from the body frame to the inertial one can be done through a
     \begin{flalign}
         \si{R_X} &=
         \begin{bmatrix}
-            \ c(\theta) & 0  & s(\theta)  \ \ \ \\ 
-            \ 0 & 1  & 0  \ \ \ \\ 
-            \ -s(\theta) & 0  & c(\theta)  \ \ \ \nonumber 
+            c(\theta)  & 0  & s(\theta)  \\ 
+            0          & 1  & 0          \\ 
+            -s(\theta) & 0  & c(\theta)  \nonumber 
         \end{bmatrix} 	\label{eq:RotMatrix2}
     \end{flalign}
 \end{minipage}\hfill
@@ -53,9 +81,9 @@ The transformation from the body frame to the inertial one can be done through a
     \begin{flalign}
         \si{R_X} &=
         \begin{bmatrix}
-            \ c(\psi) & -s(\psi)  & 0  \ \ \ \\ 
-            \ s(\psi) & c(\psi)  & 0  \ \ \ \\ 
-            \ 0 & 0  & 1  \ \ \ \nonumber 
+            c(\psi) & -s(\psi)  & 0  \\ 
+            s(\psi) & c(\psi)   & 0  \\ 
+            0       & 0         & 1  \nonumber 
         \end{bmatrix} 	\label{eq:RotMatrix3}
     \end{flalign}
 \end{minipage}\hfill
@@ -63,9 +91,9 @@ The transformation from the body frame to the inertial one can be done through a
 \begin{flalign}
 	R = R_Z R_Y R_X =
 	\begin{bmatrix}
-		\ c(\theta)\ c(\psi)       & s(\phi)\ s(\theta)\ c(\psi)\ -c(\phi)\ s(\psi)  & c(\phi)\ s(\theta)\ c(\psi)\ + s(\phi)\ s(\psi)  \ \ \ \\ 
-		\ s(\phi)\ c(\theta) 	  & s(\phi)\ s(\theta)\ s(\psi) + c(\phi)\ c(\psi) 		& c(\phi)\ s(\theta)\ s(\psi)\ - s(\phi)\ c(\psi)                \ \ \ \\ 
-		\ -s(\theta)     	  & s(\phi)\ c(\theta)    		& c(\phi)\ c(\theta)  \ \ \ 
+		c(\theta) c(\psi)  & s(\phi) s(\theta) c(\psi) -c(\phi) s(\psi)  & c(\phi) s(\theta) c(\psi) + s(\phi) s(\psi)  \\ 
+		s(\phi) c(\theta)  & s(\phi) s(\theta) s(\psi) + c(\phi) c(\psi) & c(\phi) s(\theta) s(\psi) - s(\phi) c(\psi)  \\ 
+		-s(\theta)         & s(\phi) c(\theta)                           & c(\phi) c(\theta)
 	\end{bmatrix} 	\label{eq:RotMatrix}
 \end{flalign}
 \normalsize
