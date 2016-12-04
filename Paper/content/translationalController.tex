@@ -8,7 +8,7 @@ The translational controllers are structured as cascade loops, where the velocit
 	\label{fig:cascade}
 \end{figure}
 
-The x and y controllers share similar properties as both their outputs are angle references, $\theta_{\mathrm{ref}}$ and $\phi_{\mathrm{ref}}$, while the output of the z controller is the required sum of motor rotational speeds.\\
+The x and y controllers share similar properties as both their outputs are angle references, $\theta_{\mathrm{ref}}$ and $\phi_{\mathrm{ref}}$. This is true as long as the system is close to the linearization point. This implies that $\psi_{\mathrm{ref}}$ is set to zero all the time. The output of the z controller is the required sum of motor rotational speeds.\\
 
 To design the inner controllers for the velocities $\dot{x}$ and $\dot{y}$, the model equations derived previously, see \eqref{eq:AccelerationEqInertial1} and \eqref{eq:AccelerationEqInertial2}, are Laplace transformed. These are used to create a transfer function between the angles and the velocities, yielding
 \begin{flalign}
@@ -20,21 +20,21 @@ To design the inner controllers for the velocities $\dot{x}$ and $\dot{y}$, the 
 
 Since the plants are the same but with different signs, the controller design is carried out for $\dot{x}$ and applied to $\dot{y}$ afterwards with opposite sign.
 
-A proportional controller is chosen as the plant already has an integrator, which eliminates steady state tracking error and the effect of output disturbances. The gain is designed such that the system has a bandwidth that is three times lower than the attitude control loop to ensure that its dynamics do not affect the designed controller. %\cite{bandwidthReference}.
+A proportional controller is chosen as the plant already has an integrator, which eliminates steady state tracking error and the effect of output disturbances. The gain is designed such that the system has a bandwidth that is three times lower than the attitude control loop to ensure that its dynamics do not affect the designed controller.\fxnote{Change to PI controllers??} %\cite{bandwidthReference}.
 
-The outer loop is again designed to have three times less bandwidth than the inner velocity loop. Then, the plant of the outer loop is only an integrator that transforms velocity to position. As for the inner loop, the controller of the outer loop is a proportional controller. \\
+The translational position loop is then designed with the same method, three times less bandwidth than the inner velocity loop. The plant of the outer loop is considered only as an integrator that transforms velocity to position. As for the inner loop, the controller of the outer loop is a proportional controller. \\
 
-To be able to design the inner loop for the z translational controller, the model equation derived previously, see \eqref{eq:AccelerationEqInertial3}, is Laplace transformed and written on the form of a transfer function, see
+To be able to design the velocity loop for the z translational controller, the model equation derived previously, see \eqref{eq:TransLinearEquations3}, is Laplace transformed and written on the form of a transfer function, as
 %
 \vspace{-.1cm}
 \begin{align}
-G_{\dot{z}}=\frac{\dot{z}_{\mathrm{I}}}{\omega_{\mathrm{sum}}} &= \frac{ \frac{1}{4}\ (-2 k_{\mathrm{th}})\ \overline{\omega}_{\mathrm{sum}} }{ m s }\label{eq:linearTransferFunctionZ}
+G_{\dot{z}}=\frac{\dot{z}_{\mathrm{I}}}{\omega_{\mathrm{sum}}} &= \frac{ \frac{1}{4}(-2 k_{\mathrm{th}})\overline{\omega}_{\mathrm{sum}} }{ m s }\label{eq:linearTransferFunctionZ}
 \end{align}
 
-\noindent where $\dot{z}$ is the velocity in the $z_{\mathrm{I}}$ direction, $\omega_{\mathrm{sum}}$ is the sum of the rotational speeds of the motors and $\overline{\omega}_{\mathrm{sum}}$ is the sum of the rotational speeds in equilibrium.
+\noindent where $\dot{z}_\mathrm{I}$ is the velocity in the $z_{\mathrm{I}}$ direction, $\omega_{\mathrm{sum}}$ is the sum of the rotational speeds of the motors and $\overline{\omega}_{\mathrm{sum}}$ is the sum of the rotational speeds in equilibrium.
 
-Due to an integrator and a negative gain the system's root locus moves into the right half plane as the gain increases. A proportional controller with negative gain ensures the system to be stable. 
+Due to an integrator and a negative gain, the system's root locus moves into the right half plane as the gain increases. A proportional controller with negative gain ensures the system to be stable. 
 
-As there is not any inner control loop, input disturbances may occur such that a steady state error appears, which is not eliminated by the integrator in the plant. To remove this potential error an integrator term is added, leading to a PI-controller. 
+As there is not an inner control loop, input disturbances may occur such that a steady state error appears, which is not eliminated by the integrator in the plant. To remove this potential error an integrator term is added, leading to a PI-controller. 
 
-The plant for the z position controller is just an integrator and a proportional controller is utilized. This is as well designed so that the bandwidth frequency is three times lower than the inner one.
+The plant for the z position controller is just an integrator and a proportional controller is utilized. This is as well designed so that the bandwidth is three times lower than the inner one.

@@ -95,7 +95,7 @@ being\\
 	\end{flalign}
 \end{minipage}
 
-The resulting feedback law can be design as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_e=[\vec{F} \ \vec{F}_{Int}]$ matrix such that the eigenvalues of $\vec{A}_e+\vec{B}_e\vec{F}_e$ are the new poles that the system needs to have in order to achieve the desired dynamics. The poles are chosen such that the system is as fast as possible taking into account also the network induced effects described in \autoref{ch:Network}. The poles are placed in $[-3, -3.2, -3.3, -3.4, -3.5, -3.6, -3.7, -3.8, -3.9]$.
+The resulting feedback law can be design as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_e=[\vec{F} \ \vec{F}_{Int}]$ matrix such that the eigenvalues of $\vec{A}_e+\vec{B}_e\vec{F}_e$ are the new poles that the system needs to have in order to achieve the desired dynamics. The poles are chosen such that the system is as fast as possible taking into account also the network induced effects described in \autoref{ch:Network}.
 
 Once $\vec{F}_e$ is obtained, it can be split into $\vec{F}$ and $\vec{F}_{Int}$ by taking the first 6 columns for the state feedback and the last 3 for the integral control. These matrices can be sen in \autoref{app:matricesSS}. In this way, the controller can be implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.
 
