@@ -149,7 +149,7 @@ The feedback law for this design approach is given by \eqref{eq:ssControllerActi
 \end{flalign}
 
 Once $\vec{F}_\mathrm{e}$ is obtained, it is split into $F$ and $F_{\mathrm{int}}$. In this way, the controller is implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.\\
-
+\fxnote{Add LQR}
 %--------------------- Reduced-Order Observer ----------------------------
 
 Since certain states in the system are not measured, an observer estimates the remaining states by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$. \fxnote{inconsistency between L and Lobs}

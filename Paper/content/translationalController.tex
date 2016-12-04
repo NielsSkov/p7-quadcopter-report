@@ -4,7 +4,7 @@ The translational controllers are structured as cascade loops, where the velocit
 \begin{figure}[H]
 	\hspace{-.37cm}
 	\includegraphics[width=.54\textwidth]{figures/TranslationalControlDiagram.pdf}
-	\caption{Overview of translational controllers structure. \fxnote{Include also the yaw angle}}
+	\caption{Overview of translational controllers structure.}
 	\label{fig:cascade}
 \end{figure}
 
@@ -31,10 +31,10 @@ To be able to design the velocity loop for the z translational controller, the m
 G_{\dot{z}}=\frac{\dot{z}_{\mathrm{I}}}{\omega_{\mathrm{sum}}} &= \frac{ \frac{1}{4}(-2 k_{\mathrm{th}})\overline{\omega}_{\mathrm{sum}} }{ m s }\label{eq:linearTransferFunctionZ}
 \end{align}
 
-\noindent where $\dot{z}$ is the velocity in the $z_{\mathrm{I}}$ direction, $\omega_{\mathrm{sum}}$ is the sum of the rotational speeds of the motors and $\overline{\omega}_{\mathrm{sum}}$ is the sum of the rotational speeds in equilibrium.
+\noindent where $\dot{z}_\mathrm{I}$ is the velocity in the $z_{\mathrm{I}}$ direction, $\omega_{\mathrm{sum}}$ is the sum of the rotational speeds of the motors and $\overline{\omega}_{\mathrm{sum}}$ is the sum of the rotational speeds in equilibrium.
 
 Due to an integrator and a negative gain, the system's root locus moves into the right half plane as the gain increases. A proportional controller with negative gain ensures the system to be stable. 
 
-As there is not any inner control loop, input disturbances may occur such that a steady state error appears, which is not eliminated by the integrator in the plant. To remove this potential error an integrator term is added, leading to a PI-controller. 
+As there is not an inner control loop, input disturbances may occur such that a steady state error appears, which is not eliminated by the integrator in the plant. To remove this potential error an integrator term is added, leading to a PI-controller. 
 
 The plant for the z position controller is just an integrator and a proportional controller is utilized. This is as well designed so that the bandwidth is three times lower than the inner one.

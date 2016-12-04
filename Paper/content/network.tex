@@ -1,6 +1,6 @@
-\section{Network}
+\section{Network}\label{sec:network}
 \fxnote{Explain more}
-\fxnote{More details on network, protocol, more description}
+\fxnote{More details on network, protocol, more description?}
 The wireless network between the sensor and the quadcopter can influence the performance of the controller. This influence can be divided into two categories: the delay, from when the sensor receives data until the data is actually used by the controller, and the loss of packages in the communication channel.
 
 %The effects on the control performance of the usage of the wireless network to get the sensor data can be divided in two. These are the delay and the packet loss.
@@ -11,6 +11,8 @@ An alternative to account for these effects in the control system is to utilize 
 
 TrueTime provides the option to simulate the network and the controller together. It is thereby possible to check the effect of the delay and the package loss in the behavior and, thus, ensure that the control system is still stable.
 
-The delay is modeled as constant in the simulation. Its value is obtained by measuring the time needed for the transmission of the data and adding the maximum time elapsed since the data is available for the controller until it utilizes the information. In this way, the worst case scenario is considered. The packet loss, defined as a constant probability of loosing a packet, is found experimentally by sending a large amount of packages and examining how many of these are available for the controller. \fxnote{Elaborate on why zero probability is chosen}
+The delay is modeled as constant in the simulation. Its value is obtained by measuring the time needed for the transmission of the data and adding the maximum time elapsed since the data is available for the controller until it utilizes the information. In this way, the worst case scenario is considered
+
+The packet loss, defined as a constant probability of loosing a packet, is found experimentally by sending a large amount of packages and examining how many of these are available for the controller. In the experiment, it has been found that more packages are received than control loops are executed. This implies that there is always the most recent information available in the processor and thus the package loss probability can be considered to be zero.
 %
 %This probability is also obtained experimentally by \fxnote{HOW TO FINISH THIS}.

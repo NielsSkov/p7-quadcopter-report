@@ -1,10 +1,10 @@
-\section{Model}
+\section{Model}\label{sec:model}
 %Model - Drawing, equations, linear equations.
 The quadcopter free body diagram is shown in \autoref{droneDiagram}. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.4\textwidth]{figures/droneDiagram}
-	\caption{Forces and torques acting on the quadcopter and the positive references chosen for rotations and translations in both inertial and body coordinate frames.\fxnote{Explain symbols? Change the blue colors?}}
+	\caption{Forces ($\vec{F}_i$) and torques ($\vec{\tau}_i$) acting on the quadcopter and the positive references chosen for rotations and translations in both inertial and body coordinate frames.}
 	\label{droneDiagram}
 \end{figure}
 %
@@ -17,9 +17,9 @@ The dynamic model of the quadcopter is given by three sets of equations. The fir
 \fxnote{In the modeling section, what are your assumptions? What is the reason for not including model parts such as Gyroscopic torque, Air friction/drag on the quadcopter itself (even though you include it on the propellers), Aerodynamic lift, Mass placement and separation of masses, Coriolis acceleration?}
 
 \subsection{Motor and Propeller}
-The four motors in the quadcopter generate a rotation in the propellers that creates the force that lifts the quadcopter. The thrust force can be modeled as proportional to the square of the motor rotational speed. The thrust coefficient for one motor is found experimentally. 
+The four motors in the quadcopter generate a rotation in the propellers that creates the force that lifts the quadcopter. The thrust force can be modeled as proportional to the square of the motor rotational speed. The thrust coefficient for each motor is found experimentally. The units for this coefficient are \si{N s^2 rad^{-2}}
  
-The rotation also generates a torque on each motor due to the aerodynamic drag. Drag torque is compensated in the quadcopter by having two of the motors turning in one direction and the two others in the opposite direction. It is as well described as proportional to the square of the rotational speed in terms of a drag coefficient, which is also obtained experimentally.
+The rotation also generates a torque on each motor due to the aerodynamic drag. Drag torque is compensated in the quadcopter by having two of the motors turning in one direction and the two others in the opposite direction. It is as well described as proportional to the square of the rotational speed in terms of a drag coefficient, which is also obtained experimentally. Its units are \si{N m s^2  rad^{-2}}
 
 The expressions for the thrust force and drag torque caused by the rotation of each propeller are
 %
@@ -48,11 +48,11 @@ The attitude model equations, which are based on Newton's Second Law for rotatio
 	J_z\ddot{\psi}&=k_{\mathrm{d}} (\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)\label{eq:AngleEqVelocities3}
 \end{flalign}
 
-\noindent where $J_x$, $J_y$ and $J_z$ are the moments of inertia around the three axes of rotation, $\ddot{\phi}$, $\ddot{\theta}$ and $\ddot{\psi}$ are the accelerations in roll, pitch and yaw angles, respectively, $\omega_i$ is the rotational speed of each motor and $L$ is the distance between the center of the quadcopter and the position of the motors.
+\noindent where $J_x$, $J_y$ and $J_z$ are the moments of inertia around the three axes of rotation, $\ddot{\phi}$, $\ddot{\theta}$ and $\ddot{\psi}$ are the angular accelerations in roll, pitch and yaw, respectively, $\omega_i$ is the rotational speed of each motor and $L$ is the distance between the center of the quadcopter and the position of the motors.
 
 The expressions above state how the thrust forces and the drag torques generated on the propellers affect the attitude behavior of the quadcopter.  
 \subsection{Translational Model}
-The equations describing the response of the system along the inertial x, y and z axes are derived from Newton's Second Law. The forces that act on the system are those from the propellers and the gravitational force. These expressions are
+The equations describing the response of the system along the inertial x, y and z axes are derived from Newton's Second Law of Motion. The forces that act on the system are those from the propellers and the gravitational force. These expressions are
 %
 \begin{flalign}
      m\ddot{x}_{\mathrm{I}} = &-k_{\mathrm{th}} ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \label{eq:AccelerationEqInertial1}\\
