@@ -1,21 +1,18 @@
-\subsection{Reduced Order Observer Design}
+\subsection{Reduced Order Observer}
+It has been decided to implement a reduced order observer, to observer the angular velocities. In general an observer is utilized in a control system if either one of two specific cases occurs. If certain states in the system are not measured, an observer can estimate the unmeasured states by the means of some of the measured state-variables. However, it is also possible to use an observer if the measured data gathered from the sensors is affected a significant amount of noise. As the observer in addition to estimating unmeasured states, also filters measurements \fxnote{feedback control of dynamic systems page 515}. The latter is however not focus more on in the prototype.
 
-In general an observer is utilized in a control system if either one of two specific cases occurs. If certain states in the system are not measured, an observer can estimate the unmeasured states by means of the system output and input. However, it is also possible to use an observer if the measured data gathered from the sensors is affected by noise.  The observer can thereby use both the noisy measured states and the estimated states creating a filtered version. 
+As explained earlier, the attitude model has six states, the three angles of the quadcopter (roll, pitch and yaw) and the three angular velocities. By using the Vicon system, the three angles of the quadcopter are measured, making it possible to estimate the angular velocities. With this approach, the first three states (angles), $x_1$ will be equal to the outputs, $y$, whereas the other three states will be estimated (angular velocities), $\hat{x}_2$.
 
-In the attitude control an reduced order observer is used. As described before, the attitude model has six states, the three angles of the quadcopter (roll, pitch and yaw) and the three angular velocities. By using the Vicon system, the three angles of the quadcopter are measured, making it possible to estimate the angular velocities.
-
-With this approach, the first three states, $x_1$ with be equal to the outputs, $y$, whereas the other three states will be estimated, $\hat{x}_2$.
-
-In \autoref{fig:Observerdiagram1} a diagram illustrating the setup of the angular controller is shown. The colored lines highlights the observer and its corresponding inputs and output.
+In \autoref{fig:Observerdiagram1} a diagram illustrating the setup of the angular controller is shown. The highlighted lines is the reduced order observer and its corresponding inputs and output.
 %
 \begin{figure}[H]
     \includegraphics[scale=.4]{figures/ObserverColorDiagram}
     \centering			
-    \captionof{figure}{An overall block diagram of the angular controller highlighting the observer and its corresponding inputs and output.}
+    \captionof{figure}{An overall block diagram of the angular controller highlighting the reduced order observer and its corresponding inputs and output.}
     \label{fig:Observerdiagram1}
 \end{figure}
 %
-The matrices that define the system can be splitted into submatrices, that will be used in the design of the observer, as follows:\\
+The matrices which define the system can be separated into submatrices, which will be used in the design of the observer:\\
 %
 \begin{minipage}{0.45\linewidth}
     \begin{flalign}
@@ -45,21 +42,21 @@ The matrices that define the system can be splitted into submatrices, that will 
 %\end{minipage}
 
 
-As described before the system is observable, making it possible to find an observer gain, $L_{obs}$, which makes \autoref{eq:observerStable} stable.
+As described before the system is observable. It is thereby possible to utilize the reduced order observer theorem \fxnote{The reduced order observer theorem slide 6 course 4 control.}. This theorem states, that for an observable system there always exist an gain $L_{obs}$ which ensures that \autoref{eq:observerStable} is stable.
 %
 \begin{flalign}
-	\vec{A_{22}} + \vec{L_{obs}}\vec{A_{A12}}
+	\vec{A_{22}} + \vec{L_{obs}}\vec{A_{12}}
 		\label{eq:observerStable}
 \end{flalign}
 %
-With this observer gain, the observer in \autoref{eq:observerStable} ensures an estimate $\hat{x}_2$ which converges to $x_2$ at a rate given by the eigenvalues of \autoref{eq:eqobservertheorem} .
+The theorem also states that with this observer gain, the observer in \autoref{eq:eqobservertheorem} ensures that the estimate, $\hat{x}_2$, converges to $x_2$ with a rate yielded by the eigenvalues of \autoref{eq:eqobservertheorem}.
 %
 \begin{flalign}
 	\vec{\hat{\dot{x}}_2} &= \vec{A_{21}}\vec{y} + \vec{A_{22}}\vec{\hat{x}_2} + \vec{B_2u} + \vec{L_{obs}}\vec{(A_{12}\hat{x}_2} - \vec{A_{21}x_2})
 		\label{eq:eqobservertheorem}
 \end{flalign}
 %
-To calculate an appropriate observer gain, $L_{obs}$, it is necessary to  evaluate the reliability of the utilized sensor. If the gain is set very high, the estimation will rely more on the actual measurements of the outputs, whereas if it is very low, there will be more influence of the model in the final calcuations. The sensor utilized for the prototype is the Vicon system and, since it is highly reliable, it is possible to chose a high observer gain.
+To calculate an appropriate observer gain, $L_{obs}$, it is necessary to evaluate the reliability of the utilized sensor. If the gain is set very high, the estimation will rely more on the actual measurements of the outputs, whereas if it is very low, there will be more influence of the model in the final calculations \fxnote{christoffer slide 35 course 3}.
 
 %The matrix in \autoref{Matrix:Lobs} is the decided observer gains utilized in the reduced order observer.
 %
@@ -85,7 +82,7 @@ This estimation can also be seen in the form of a block diagram, \autoref{fig:ob
 	\includegraphics[scale=.35]{figures/observerDiagram}
 	\centering
 	\captionsetup{justification=centering}
-	\captionof{figure}{This diagram should be made so it looks a bit more similar to the previous on. But only the part with the observer.}
+	\captionof{figure}{A diagram showing the reduced order observer and how it is implemented.}
 	\label{fig:observerDiagram}
 \end{figure}
 
