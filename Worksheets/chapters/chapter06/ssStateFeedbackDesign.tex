@@ -1,16 +1,15 @@
 \subsection{State Feedback with Integral Control Design}
-The aim of the controller is to be able to track a reference in the three angles that define the attitude of the quadcopter.
+The aim of the attitude controller is to be able to track the references for roll, pitch and yaw. Given a state space representation as the one in \autoref{xDotLinear} and \ref{yLinear}, it is possible to design an attitude controller so that the final dynamics of the system can be chosen.
 
-Given a state space representation as the one in \autoref{xDotLinear} and \ref{yLinear}, it is possible to design a controller so that the final dynamics of the system can be chosen.
-
-In this approach a state feedback is used to allow the system to return to equilibrium position while an integral controller makes it possible to include a reference and track it, adding both control actions to get the one finally applied to the motors. The diagram in \autoref{fig:DetailedControllerColorDiagram} shows how these controllers are related.
+In this approach a state feedback is used to allow the system to return to equilibrium position while an integral controller makes it possible to include a new reference and track it. These two control actions are added together and four velocity values for the motors are transmitted to the Rotational Speed Calculator, seen in \autoref{fig:ControlHeadDiagram}. The diagram in \autoref{fig:ControllerColorDiagram} shows how the two controllers are related. The \autoref{fig:DetailedControllerColorDiagram} illustrates the highlighted part in \autoref{fig:ControllerColorDiagram} in more detail, with the actual variables used in the design process.
 %
+%In this approach a state feedback is used to allow the system to return to equilibrium position while an integral controller makes it possible to include a new reference and track it, adding both control actions to get the one finally applied to the motors.
 \begin{minipage}{\linewidth}
 	\begin{minipage}{0.6\linewidth}
 		\begin{figure}[H]
 			\includegraphics[scale=.35]{figures/ControllerColorDiagram}
 			\centering			
-			\captionof{figure}{Control structure with the state feedback and integral control parts highlighted.}
+			\captionof{figure}{Control structure highlighting the state feedback and integral control.}
 			\label{fig:ControllerColorDiagram}
 		\end{figure}
 	\end{minipage}
@@ -19,7 +18,7 @@ In this approach a state feedback is used to allow the system to return to equil
 		\begin{figure}[H]\vspace{20mm}
 			\includegraphics[scale=.35]{figures/DetailedControllerColorDiagram}
 			\centering \vspace{7mm}
-			\captionof{figure}{Detail of the left diagram, that includes all the variables used in the design of the controller.}
+			\captionof{figure}{The highlighted parts from the left diagram in detail, including all the variables used in the design of the controllers.}
 			\label{fig:DetailedControllerColorDiagram}
 		\end{figure}
 	\end{minipage}
@@ -34,17 +33,17 @@ From \autoref{fig:DetailedControllerColorDiagram}, the feedback law yields \auto
 \end{flalign}
 %
 \begin{where}
-	\va{\vec{F}}{is the 4x6 state feedback matrix}{}
-	\va{\vec{F}_{Int}}{is the 3x6 integral feedback matrix }{}
+	\va{\vec{F}}{is a 4x6 state feedback matrix}{}
+	\va{\vec{F}_{Int}}{is a 3x6 integral feedback matrix }{}
 \end{where}
 
-In this equation, \si{\vec{x}_{Int}(t)} is given by \autoref{eq:ssControllerAction1}, that is equivalent to \autoref{eq:ssControllerAction2}, see \autoref{fig:DetailedControllerColorDiagram}.
+In this equation, \si{\vec{x}_{Int}(t)} is given by \autoref{eq:ssControllerAction1}, which is equivalent to \autoref{eq:ssControllerAction2}, see \autoref{fig:DetailedControllerColorDiagram}.
 \begin{flalign}
     \vec{x}_{Int}(t) &= \int_{0}^{t} \vec{y}(\tau)-\vec{r}(\tau) d\tau	\label{eq:ssControllerAction1}\\
     \vec{\dot{x}}_{Int}(t) &= \vec{y}(t)-\vec{r}(t) \label{eq:ssControllerAction2}
 \end{flalign} 
 %
-This last equation can be introduced in the existing state space model, taking \si{\vec{x}_{Int}(t)} as new states, and giving the result shown in \autoref{xdotSSExtended} and \autoref{ySSExtended}.
+This last equation can be introduced in the existing state space model, having the system states and taking \si{\vec{x}_{Int}(t)} as new states, yielding the result shown in \autoref{xdotSSExtended} and \autoref{ySSExtended}.
 %
 \begin{flalign} 
     \dot{\vec{x}}_e(t) &= \vec{A}_e \  \vec{x}_e(t) + \vec{B}_e \  \vec{u}(t) + 
@@ -97,6 +96,6 @@ being\\
 
 The resulting feedback law can be design as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_e=[\vec{F} \ \vec{F}_{Int}]$ matrix such that the eigenvalues of $\vec{A}_e+\vec{B}_e\vec{F}_e$ are the new poles that the system needs to have in order to achieve the desired dynamics. The poles are chosen such that the system is as fast as possible taking into account also the network induced effects described in \autoref{ch:Network}.
 
-Once $\vec{F}_e$ is obtained, it can be split into $\vec{F}$ and $\vec{F}_{Int}$ by taking the first 6 columns for the state feedback and the last 3 for the integral control. These matrices can be sen in \autoref{app:matricesSS}. In this way, the controller can be implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.
+Once $\vec{F}_e$ is obtained, it can be split into $\vec{F}$ and $\vec{F}_{Int}$ as the first 6 columns are the state feedback and the last 3 are the integral control. These matrices can be seen in \autoref{app:matricesSS}. In this way, the controller can be implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.
 
 
