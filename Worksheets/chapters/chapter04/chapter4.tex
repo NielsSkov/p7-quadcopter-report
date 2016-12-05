@@ -56,7 +56,7 @@ Another consideration to be made before modeling the quadcopter is the usage of 
 
 The orientation of the quadcopter is obtained by knowing the body frame orientation with respect to the inertial frame, yielding the roll, pitch and yaw angles. 
 
-The transformation from the body frame to the inertial can be done through a rotation matrix, \autoref{eq:RotMatrix}, which describes a total rotation in terms of three consecutive rotations. In this case the rotation matrix is composed with a 1-2-3 convention, that is, first a rotation around $x_B$, then around $y_B$ and finally around $z_B$.\fxnote{source is needed on the 1-2-3 convention}
+The transformation from the body frame to the inertial can be done through a rotation matrix, \autoref{eq:RotMatrix}, which describes a total rotation in terms of three consecutive rotations. In this case the rotation matrix is composed with a 1-2-3 convention, that is, first a rotation around $x_{\mathrm{B}}$, then around $y_{\mathrm{B}}$ and finally around $z_{\mathrm{B}}$.\fxnote{source is needed on the 1-2-3 convention}
 \fxnote{Make an appendix for how the magic matrices of rotation appears.}
 
 \begin{minipage}{0.32\linewidth}
@@ -114,11 +114,11 @@ Note that due to the size of the matrix sine and cosine are denoted $s$ and $c$ 
 
 To describe a vector in the inertial frame given its description in the body frame, a matrix-vector multiplication can be done as follows:
 \begin{flalign}
-    v_I=Rv_\mathrm{B} 
+    v_{\mathrm{I}}=Rv_\mathrm{B} 
 \end{flalign}
 \begin{where}
-    \va{v_I}{is a column vector that contains the description with respect to the inertial frame}{}
-    \va{v_B}{is a column vector that contains the description with respect to the body frame}{}
+    \va{v_{\mathrm{I}}}{is a column vector that contains the description with respect to the inertial frame}{}
+    \va{v_{\mathrm{B}}}{is a column vector that contains the description with respect to the body frame}{}
 \end{where}
 
 Once these considerations have been taken into account, the two submodels can be derived.
