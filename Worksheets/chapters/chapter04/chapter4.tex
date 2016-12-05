@@ -1,7 +1,7 @@
 \chapter{Model}\label{chap:Model}
-A description of the physical behavior of the quadcopter is convenient in order to achieve a steady flight. From the obtained model, a control system can be designed such that the desired flying characteristics are obtained.
+A description of the physical behavior of the quadcopter is necessary in order to proceed with the controller design. From the obtained model, the control system can be designed such that the desired flying characteristics are obtained.\fxnote{make reference to the requirements.}
 
-In this chapter, an overview is first presented. Then, the model is derived and a linear approximation is performed. Finally, these two are compared in simulation. This ensures that the linear approximation yields acceptable results.
+In this chapter, an overview is first presented. Then, the model is derived and a linear approximation is performed. Finally, these two are compared in simulation to ensure that the linear approximation yields acceptable results.
 
 \section{Model Overview} \label{sec:ModelOverview}
 The model can be split into two submodels, one describing the angular behaviour and the other being a translational model.
@@ -12,7 +12,7 @@ The model can be split into two submodels, one describing the angular behaviour 
     \label{fig:modelOverview}
 \end{figure}
 %
-\autoref{fig:modelOverview} shows the relation between the two submodels. The attitude model, that the describes the angular behaviour, get the velocities of the four motors as input its output is the angles pitch, roll and yaw. These angles are input of the translational model. The translational model do also have the velocities of the motors as input, resulting in seven inputs in total. The output of the translational model is a position given in the x, y and z axes.
+\autoref{fig:modelOverview} shows the relation between the two submodels. The attitude model, which describes the angular behavior, takes the velocities of the four motors as input and provides the angles roll, pitch and yaw as output. The translational model takes the angles as input, which also takes the velocities of the motors as input, resulting in a total of seven inputs. The output of the translational model is a position given in x, y and z coordinates.
 
 When flying a quadcopter two different configurations are generally considered, the cross and the plus configurations, see \autoref{fig:plusConfiguration} and \ref{fig:crossConfiguration}. The angles of rotation, roll, pitch and yaw, are generally defined around the three coordinate axes attached to the quadcopter. \cite{HLChan}
 %
@@ -38,11 +38,12 @@ When flying a quadcopter two different configurations are generally considered, 
   }
 \end{figure}
 %
+\fxnote{remove subsidences in the diagrams, since the body frame is not yet introduced. Change the orientation of the coordinate systems to be the same. Make sure that the coordinate system has the correct symmetry. The quadcopter body should look the same in both figures, only rotated.}
 If the quadcopter is in plus configuration and i.e. the roll angle is increased, it will fly with one rotor in front. However if the same angle is applied to a quadcopter in cross configuration, it will fly with two rotors in front. \cite{HLChan}
 
 Cross configuration provides a more responsive flight since all four routers are engaged when changing an angle. Less actuation is also required from each motor since there are two to pull the quadcopter around. From a control perspective it is however more forthright to model and control a quadcopter in plus configuration, which is the choice for this prototype. \cite{HLChan}
 
-Another consideration to be made before modeling the quadcopter is the usage of two coordinate frames. A body frame, that is fixed to the flying object and an inertial frame, that is fixed to the Vicon room. 
+Another consideration to be made before modeling the quadcopter is the usage of two coordinate frames. A body frame, which is fixed to the flying object, and an inertial frame, which is fixed to the Vicon room. 
 %
 \begin{figure}[H]
     \centering
@@ -51,11 +52,12 @@ Another consideration to be made before modeling the quadcopter is the usage of 
     \label{fig:framesDiagram}
 \end{figure}
 
-\autoref{fig:framesDiagram} shows the two frames, which are necessary to use, as it is desired to know where the quadcopter is within the inertial frame to determine its position. 
+\autoref{fig:framesDiagram} shows the two frames, which are necessary to use, as it is desired to know where the quadcopter is within the inertial frame to determine its position. The inertial frame is oriented in such a way that its z-axis is pointing downwards, this is due to a flight convention, where altitude is given in negative numbers and ground as zero. \fxnote{source}
 
 The orientation of the quadcopter is obtained by knowing the body frame orientation with respect to the inertial frame, yielding the roll, pitch and yaw angles. 
 
-The transformation from the body frame to the inertial one can be done through a rotation matrix, \autoref{eq:RotMatrix}, that describes a total rotation in terms of three consecutive rotations. In this case the rotation matrix is composed with a 1-2-3 convention, that is, first a rotation around $x_B$, then around $y_B$ and finally around $z_B$.
+The transformation from the body frame to the inertial can be done through a rotation matrix, \autoref{eq:RotMatrix}, which describes a total rotation in terms of three consecutive rotations. In this case the rotation matrix is composed with a 1-2-3 convention, that is, first a rotation around $x_B$, then around $y_B$ and finally around $z_B$.\fxnote{source is needed on the 1-2-3 convention}
+\fxnote{Make an appendix for how the magic matrices of rotation appears.}
 
 \begin{minipage}{0.32\linewidth}
     \begin{flalign}
@@ -69,7 +71,7 @@ The transformation from the body frame to the inertial one can be done through a
 \end{minipage}\hfill
 \begin{minipage}{0.32\linewidth}
     \begin{flalign}
-        \si{R_X} &=
+        \si{R_Y} &=
         \begin{bmatrix}
             c(\theta)  & 0  & s(\theta)  \\ 
             0          & 1  & 0          \\ 
@@ -79,7 +81,7 @@ The transformation from the body frame to the inertial one can be done through a
 \end{minipage}\hfill
 \begin{minipage}{0.32\linewidth}
     \begin{flalign}
-        \si{R_X} &=
+        \si{R_Z} &=
         \begin{bmatrix}
             c(\psi) & -s(\psi)  & 0  \\ 
             s(\psi) & c(\psi)   & 0  \\ 
@@ -99,28 +101,28 @@ The transformation from the body frame to the inertial one can be done through a
 \normalsize
 %
 \begin{where}
-\va{R_X}{is the matrix describing a rotation around the $x_B$ axis}{}
-\va{R_Y}{is the matrix describing a rotation around the $y_B$ axis}{}
-\va{R_Z}{is the matrix describing a rotation around the $z_B$ axis}{}
+\va{R_X}{is the matrix describing a rotation around the $x_\mathrm{B}$ axis}{}
+\va{R_Y}{is the matrix describing a rotation around the $y_\mathrm{B}$ axis}{}
+\va{R_Z}{is the matrix describing a rotation around the $z_\mathrm{B}$ axis}{}
 \va{R}{is the total rotation matrix}{}
-\va{\phi}{is the roll}{rad}
-\va{\theta}{is the pitch}{rad}
-\va{\psi}{is the yaw}{rad}
+\va{\phi}{is the roll angle}{rad}
+\va{\theta}{is the pitch angle}{rad}
+\va{\psi}{is the yaw angle}{rad}
 \end{where}
 
-It shall be noted, that due to the size of the matrix sine and cosine are referenced $s$ and $c$ respectively.
+Note that due to the size of the matrix sine and cosine are denoted $s$ and $c$ respectively.
 
 To describe a vector in the inertial frame given its description in the body frame, a matrix-vector multiplication can be done as follows:
 \begin{flalign}
-    v_I=Rv_B 
+    v_I=Rv_\mathrm{B} 
 \end{flalign}
 \begin{where}
     \va{v_I}{is a column vector that contains the description with respect to the inertial frame}{}
     \va{v_B}{is a column vector that contains the description with respect to the body frame}{}
 \end{where}
-%
+
 Once these considerations have been taken into account, the two submodels can be derived.
- 
+
 %Angle and Linear
 %Explain the two frames and include drawing showing them
 %Flow of the chapter
