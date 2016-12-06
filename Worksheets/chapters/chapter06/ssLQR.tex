@@ -1,44 +1,20 @@
 
-It is decided to implement a linear quadratic regulator (LQR) as it is necessary to priorities the different states and ensure that the control action does not exceed its limits. This can be done by minimizing \autoref{eq:costfunction}.
+It is decided to implement a linear quadratic regulator (LQR) as it is necessary to priorities the different states and ensure that the control action does not exceed its limits. The LQR method finds the necessary state feedback gains which minimizes the cost function in \autoref{eq:costfunction}. \cite{ssReference}
 
 \begin{flalign} 
-	J &= \int_{0}^{\infty} \vec{x}^T \vec{Q} \vec{x} + \vec{u}^T \vec{R} \vec{u} \ dt\\
+	J &= \int_{0}^{\infty} \vec{x}^T \vec{Q} \vec{x} + \vec{u}^T \vec{R} \vec{u} \ dt
      \label{eq:costfunction}
 \end{flalign}
 \begin{where}
 	\va{\vec{Q}}{is a positive semi-definite diagonal matrix}{}
 	\va{\vec{R}}{is a positive definite diagonal matrix}{}
-	\va{\vec{J}}{is a scalar}{}
 \end{where}
 
-This cost function contains weighting factors, the $\vec{Q}$ and $\vec{R}$ matrices. The weighting factors are used to either penalize or priorities different states and inputs. When weighting the states, it is possible to give the yaw more gain than the roll and pitch if necessary. By weighting the inputs, it is possible to ensure that they do not yield a control action which exceeds its limits. The $\vec{Q}$ matrix is semi-definite as the weighted states, $\vec{x}^T\vec{Q}\vec{x}$, has the possibility of becoming zero even though the states are above zero??? The $\vec{R}$ matrix is positive definite as an control action is always desired??? By minimize the cost function J, it is possible to regulate the $\vec{x}$ to zero as time goes to infinity??
+This cost function contains weighting factors, the $\vec{Q}$ and $\vec{R}$ matrices. The weighting factors are used to either penalize or priorities different states and inputs. Thus yield a trade-off between states and control inputs. When weighting the states, it is possible to give the yaw more gain than the roll and pitch if necessary. By weighting the inputs, it is possible to ensure that they do not yield a control action which exceeds its limits. \cite{ssReference} 
+%The $\vec{Q}$ matrix is semi-definite as the weighted states, $\vec{x}^T\vec{Q}\vec{x}$, has the possibility of becoming zero even though the states are above zero??? The $\vec{R}$ matrix is positive definite as an control action is always desired???
+%By minimize the cost function, it is possible to regulate the $\vec{x}$ to zero as time goes to infinity??
 
-To design a state feedback which minimize \autoref{eq:costfunction} the optimal state feedback law stated in \autoref{eq:optimalstatefeedbacklaw} is utilized.
-
-\begin{flalign} 
-	\vec{u} &= \vec{F}\vec{x}\\
-     \label{eq:optimalstatefeedbacklaw}
-\end{flalign}
-
-where $\vec{F}$ is:
-
-\begin{flalign} 
-	\vec{F} &= -\vec{R}^{-1}\vec{B}^T\vec{P}\\
-     \label{eq:optimalF}
-\end{flalign}
-\begin{where}
-	\va{\vec{P}}{is }{}
-\end{where}
-
-And $\vec{P}$ can be found from:
-
-\begin{flalign} 
-	\vec{A}^T\vec{P}+\vec{P}\vec{A}-\vec{P}\vec{B}\vec{R}^{-1}\vec{B}^T\vec{P}+\vec{Q} &= \vec{0}\\
-     \label{eq:optimalP}
-\end{flalign}
-
-To find the $\vec{Q}$ and $\vec{R}$ matrices Bryson's rule is utilized:
-Bryson's rule:
+The Bryson's rule is utilized to find the weighted matrices $\vec{Q}$ and $\vec{R}$. \cite{OptimalControlChristoffer}
 
 \begin{flalign} 
 	Q_{ii} &= \frac{1}{\text{maximum acceptable value of }[x^2_i]}\\
@@ -46,4 +22,24 @@ Bryson's rule:
      \label{eq:weightingmatrices}
 \end{flalign}
 
-The weighting matrices, $\vec{Q}$ and $\vec{R}$, can the be found through iterations, and a compromise between desired performance and control action can be found. 
+The weighting matrices, $\vec{Q}$ and $\vec{R}$, are then found through an iterations process, where a compromise between desired system performance and control input can be found. \cite{OptimalControlChristoffer} 
+
+The state feedback gain, $\vec{F}$, can be calculated \cite{OptimalControlChristoffer}:
+
+\begin{flalign} 
+	\vec{F} &= -\vec{R}^{-1}\vec{B}^T\vec{P}
+     \label{eq:optimalF}
+\end{flalign}
+\begin{where}
+	\va{\vec{P}}{is a symmetric positive definite matrix.}{}
+\end{where}
+
+Where $\vec{P}$ can be found from the Algebraic Riccati equation \cite{OptimalControlChristoffer}:
+
+\begin{flalign} 
+	\vec{A}^T\vec{P}+\vec{P}\vec{A}-\vec{P}\vec{B}\vec{R}^{-1}\vec{B}^T\vec{P}+\vec{Q} &= \vec{0}
+     \label{eq:optimalP}
+\end{flalign}
+
+The state feedback $\vec{F}$ is thereby found. \fxnote{Alejandro look at this :D and write some more ! :P}
+

@@ -136,6 +136,11 @@
 % Enable arithmetics with length. Useful when typesetting the layout.
 \usepackage{calc}
 
+%Speciel symbols, this is used to make checksigns
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -318,7 +323,7 @@
 
 \usepackage{float}
 \usepackage{siunitx}
-\sisetup{decimalsymbol=comma}
+\sisetup{decimalsymbol=period}
 \sisetup{detect-weight}
 
 \usepackage{enumitem}

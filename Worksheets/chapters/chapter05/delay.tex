@@ -1,7 +1,7 @@
 \section{Delay}
-The delay in the system constitutes one of the main network effects in the system. In order to consider the delay on the system, the TrueTime simulation toolbox for MATLAB is utilized. 
+The delay in the system constitutes one of the main network effects in the system. It forces the controller design to be more robust and that means in most cases to make them slower. In order to consider the delay in the controller design, the TrueTime simulation toolbox for MATLAB is utilized. This toolbox allows to simulate the control design, the derived model and the wireless network together in order to find a control design that is still stable.
 
-In the simulation, a model for the delay needs to be found in order to implement it in TrueTime. The chosen approach is to model the delay as as the maximum possible delay appearing in the system. This has been obtained by adding the time required to make the information available in the microcontroller and the maximum time elapsed since the data is available until it is used by the microcontroller. 
+In the simulation, a model for the delay needs to be found in order to implement it in TrueTime. The chosen approach is to model the delay as the maximum possible delay appearing in the system so the worst case scenario is considered. Its value has been obtained by adding the time required to make the information available in the microcontroller and the maximum time elapsed since the data is available until it is used by the microcontroller. 
 
 The time required to make the data available can be divided into three. The time required to send the data, the transmission delay and the time it takes to decode the information in the microcontroller. The first and the third of these, can be found exactly as it is code execution time, the values obtained are 15 and 7.64 ms respectively. The transmission time can be found using the transmission speed of the Xbee modules. According to the datasheet \fxnote{source datasheet}, this is  115,2 kbit/s. With this speed and taking into account 21 bytes are transmitted, the transmission delay is 1.46 ms.
 
@@ -11,11 +11,11 @@ Once the information is on the microcontroller, the maximum time elapsed until t
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.6\textwidth]{figures/maxDelay.pdf}
-	\caption{Delays in the packages transmitted to the microcontroller and maximum delay.\fxnote{Check times}}
+	\caption{Delays in the packages transmitted to the microcontroller and maximum delay.\fxnote{Check times when we have them all}}
 	\label{fig:delaycontrol}
 \end{figure}
 
-After all considerations, the value of the delay used in the simulation is 50.6 ms\fxnote{Check delay}.
+After all considerations, the value of the delay used in the simulation is 50.6 ms\fxnote{Check delay when we have them all}.
 
 %since the information is obtained until it is sent through the network, the transmission delay and the time needed to process the information in the microcontroller. being exponentially distributed. \autoref{eq:exponentialdist} shows the probability and cumulative density functions of the exponential distribution.
 %\begin{flalign}
