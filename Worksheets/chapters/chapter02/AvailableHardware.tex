@@ -22,7 +22,7 @@ The motor used is shown in \autoref{fig:Motor}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{figures/motor.png}
-	\caption{One of the four motors mounted on the quadcopter.}
+	\caption{One of the four motors mounted on the quadcopter.\cite{HkingPropeller}}
 	\label{fig:Motor}
 \end{figure} 
 
@@ -40,7 +40,7 @@ A picture of the utilized propellers can be seen in \autoref{fig:Propeller}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{figures/propeller.png}
-	\caption{Two of the four propellers mounted on the quadcopter's motors.}
+	\caption{Two of the four propellers mounted on the quadcopter's motors.\cite{HkingPropeller}}
 	\label{fig:Propeller}
 \end{figure}
 
@@ -100,23 +100,42 @@ The implementation of the controllers is done in a microprocessor from Atmel, AT
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.12]{figures/ARDUINO_MEGA}
-	\caption{AtMega2560 mounted in the ArduinoMEGA development board.}
+	\caption{AtMega2560 mounted in the ArduinoMEGA development board.\cite{ArduinoMegaImage}}
 	\label{fig:ATmega}
 \end{figure}
-
+%
 \subsection{Wireless Modules}
 The wireless modules used to communicate with the quadcopter are called XBee, see \autoref{fig:XBEE}. These modules need a supply voltage between \si{2.8} and \si{3.4}{V}, which fits well with the \SI{3.3}{V} supply provided by the Arduino board\cite{XBee}.
-
+%
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.25]{figures/XBEE}
-  \caption{XBee wireless modules.}
+  \caption{XBee wireless modules.\cite{XBeeImage}}
   \label{fig:XBEE}
 \end{figure}
-
+%
 The Xbee modules communicate at a frequency of \SI{2.4}{GHz} and has a range of up to \SI{30}{m} in indoor environments and a line-of-sight range of up to \SI{90}{m}. The modules transmit with an RF data rate of \SI{250}{Kbps} and are capable of communicating with a serial interface data rate of from SI{1200}{bps} up to \SI{250}{Kbps}. The Xbee modules take care of all communication layers except the transport layer protocol. The protocol used by the XBee modules is called ZigBee, which contains the IEEE $802.15.4$ standard.\cite{XBee}
-
-In order to use these modules, the packet has to be sent through the serial port when using the computer or through the USART module when using the microcontroller\fxnote{This is reffering to the explorer module used by the computer and the shield for the arduino I assume - we should write more clearly - present both pieces of hardware with an image (side by side) - also as far as I know both of these serves only as a direct wire connection between serial interface and Xbee module, we should be more specific - at time of writing I do not have access to the hardware, will look into it later - Niels.}.
-
-
-
+%
+\begin{figure}[H]
+  \centering
+  \captionbox
+  {
+    UartSBee v4.0 USB to serial adapter module.\cite{UartSBee}
+    \label{fig:UartSBee}
+  }
+  {
+    \includegraphics[width=.37\textwidth]{figures/UartSBee}
+  }
+  \hspace{5pt}
+  \captionbox
+  {
+    XBee Shield.\cite{XBeeShield}
+    \label{fig:XbeeShield}
+  }
+  {
+    \includegraphics[width=.37\textwidth]{figures/XbeeShield}
+    \vspace{.5cm}
+  }
+\end{figure}
+%
+In order to use these modules, the packet has to be sent through the serial port of the computer to the XBee, through RF to the other XBee and back through serial pins to the microcontroller. In order to interface with the XBee modules, serial connections are required on both ends, and the XBee modules must be powered. For the computer a USB to serial adapter board, called UartSBee v4.0, is used, this module also powers the XBee through the USB\cite{UartSBeeSch}. The microcontroller uses an XBee shield to connect the power and serial pins of the Arduino\cite{XbeeShieldSch}.
