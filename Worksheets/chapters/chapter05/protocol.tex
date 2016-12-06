@@ -3,8 +3,7 @@
 The transport layer protocol designed must ensure that transmitted packages can be detected and that erroneous packages are not utilized by the microcontroller, as complying with the functional requirements stated in \autoref{ch:functionalRequirements}.
 %
 %The Vicon system has a sampling rate of 100 Hz. A connectionless protocol can thereby be utilized, as it is sufficient to transmit the latest data to the micro controller instead of asking for a retransmission, e.g. if a package is lost or corrupt. Furthermore a retransmission will cause a delay in the system, this is not desired as this real time system is sensitive to delay.
-
-\fxnote{argumentation for use of UDP, sensitive to delay, Vicon has a fast sampling rate, always wanting the newest sample.}
+As real-time features are desired for the prototype, the protocol chosen is UDP based. This is convenient as the system is sensitive to delays. A connection oriented protocol implies a longer package and a higher computation time, thus increasing the delay. Furthermore, A connectionless protocol laves more processor resources available for the controllers.
 
 As the communication is only from the computer to the microcontroller, the protocol does not need a source port or destination addresses, as typically seen in a UDP protocol. Furthermore, it is decided not to change the length of the package relative to the gathered data. Making the length constant, only a start sequence is necessary and an end sequence is not included. As commonly in conenctionless protocols, package loss is not detected to avoid implementing a sequence number in the header of the package. A checksum, which constitutes the tail of the package, is considered enough for detecting corrupted information. 
 
