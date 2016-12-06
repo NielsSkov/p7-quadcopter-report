@@ -13,6 +13,8 @@ The provided quadcopter is seen in \autoref{fig:systemBase}.
   \label{fig:systemBase}
 \end{figure}
 
+The provided quadcopter framework has the dimensions 45 cm from rotor to rotor and is an X-shaped symmetric quadcopter and has a height of 7.5 cm. With the provided and selected hardware the total mass of the quadcopter is 0.996 kg.
+
 \subsection{Motors}
 The quadcopter is equipped with four brushless DC outrunner motors named Turnigy Multistar. Contrary to brushed DC motors these do not rely on a brush which is susceptible to mechanical wear. Outrunner motors have their magnets (rotor) in the outer shell. The rotor spins around the fixed coils that form the stator. Outrunner motors generally have more space for magnets compared to inrunner motors, which is why outrunner motors typically have more poles, and thus, are able to produce more torque for the same physical dimensions. 
 
@@ -27,8 +29,6 @@ The motor used is shown in \autoref{fig:Motor}.
 \end{figure} 
 
 \subsection{Propellers}
-\fxnote{More or less all of this section is information that we do not actually use in the project - is it relevant to include it in the worksheets?}
-\fxnote{A theoretical thrust chould be calculated using the length and pitch of the given propeller, in which case the information could be used for comparrison with the thrust coefficient found in test.}
 The propellers are sold with the motors, has a length of \SI{25.4}{cm} and a pitch of \SI{11.43}{cm}. The pitch is the distance traveled by a propeller after one complete rotation. For this to be true the propeller must turn inside a solid surface, the traveled distance is less if it rotates inside a liquid or gas \cite{EReyes}. A higher pitch creates more turbulence and make the quadcopter less steady when flying \cite{oscarliang}.
 
 The length of the propeller is proportional to the efficiency of the quadcopter. Hence, a longer propeller has an increase in maximum speed. The acceleration of a small propeller is greater than that of a larger propeller. Thus it is easier to change the inertia of moment if utilizing a small propeller compared to a larger one. \cite{oscarliang}
@@ -50,17 +50,24 @@ A picture of the utilized propellers can be seen in \autoref{fig:Propeller}.
 
 \subsection{Motor Controllers}
 The quadcopter comes with four electronic speed controllers, ESCs, one for each motor. The ESCs produce an \SI{8}{kHz} PWM, are rated for a 2-4 cell Li-Po battery and can handle a constant current of up to \SI{30}{A}. The ESCs also has a \SI{5.5}{V}, \SI{4}{A} output for powering e.g. a controller board.\cite{HKing}
-
+%
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{figures/ESC}
 	\caption{One of the four Electronic Speed Controllers mounted on the quadcopter.\cite{HKing}}
 	\label{fig:esc}
 \end{figure}
-
+%
 \subsection{Battery}
-The battery available for the prototype, is a Zippy Flightmax battery. It weighs \SI{141}{g}, has a capacity of \SI{1500}{mAh}, a voltage of \SI{11.1}{V} and a discharge current of \SI{20}{A}.\fxnote{source!}
-
+The battery available for the prototype, is a Zippy Flightmax battery. It weighs \SI{141}{g}, has a capacity of \SI{1500}{mAh}, a voltage of \SI{11.1}{V} and a discharge current of \SI{20}{A}.\cite{HKingBattery}
+%
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{figures/battery}
+	\caption{The battery mounted on the quadcopter.\cite{HKingBattery}}
+	\label{fig:battery}
+\end{figure}
+%
 The battery level drops over time, with a significance that can not be neglected as it may have great impact on the output of the motor and therefore on the lift of the propeller. It is possible to measure the battery level while operating the quadrotor. By taking into account the battery level in the test of the PWM signal to velocity, it is possible to obtain a quadcopter having constant lift force, if this is requested. With this information and knowledge of the relationship between voltage and RPM, see \autoref{app:VoltageLevelTest}, it is possible to account for the battery level in the control realization and thereby rectify the problem.
 
 \section{Selected hardware}
@@ -80,7 +87,7 @@ The Vicon system provides real-time position and attitude captured with nine inf
 %	\label{ViconRoom}
 %\end{figure}
 
-To use this system, reflective markers are attached to the tracked object. The Vicon system streams the position of the markers and the position and attitude of the object at 100 Hz for a computer to read them\fxnote{source!}. The data can be received by using an SDK (software development kit) plug-in for MATLAB. In this way, data can be received by MATLAB, making it possible to directly perform calculations, which makes it easier to obtain variable derivatives like velocities or accelerations.
+To use this system, reflective markers are attached to the tracked object. The Vicon system streams the position of the markers and the position and attitude of the object at 100 Hz for a computer to read them\cite{ViconDataSTream}. The data can be received by using an SDK (software development kit) plug-in for MATLAB. In this way, data can be received by MATLAB, making it possible to directly perform calculations, which makes it easier to obtain variable derivatives like velocities or accelerations.
 
 The user interface of the Vicon system is shown in \autoref{fig:ViconTracker}. 
 \begin{figure}[H]
@@ -94,7 +101,7 @@ The software is called Vicon Tracker and it allows the creation of objects by gr
 
 \subsection{Processor}
 As the computer on the ground only handles the Vicon sensor data and the communication of this data, the processor of the quadcopter must be capable of handling the processing of the control system while also receiving the position and attitude of the quadcopter.
-The implementation of the controllers is done in a microprocessor from Atmel, ATmega2560, mounted on the ArduinoMEGA development board, as seen in figure \autoref{fig:ATmega}. This processor has up to 16 PWM output channels, two 8-bit timers and four 16-bit timers, four USART modules, 8 kilobytes of internal memory and a processing speed of 16M IPS. These capabilities are presumed to be sufficient for the control implementation on the quadcopter.\fxnote{source!}
+The implementation of the controllers is done in a microprocessor from Atmel, ATmega2560, mounted on the ArduinoMEGA development board, as seen in figure \autoref{fig:ATmega}. This processor has up to 16 PWM output channels, two 8-bit timers and four 16-bit timers, four USART modules, 8 kilobytes of internal memory and a processing speed of 16M IPS. These capabilities are presumed to be sufficient for the control implementation on the quadcopter.\cite{ATmega2560}
 
 %The use of the development board makes the use of the wireless modules easier as an arduino shield can be directly plugged in. Furthermore, it allows a faster set up of the microcontroller as all required hardware (oscillatior, power supply, etc.) is already present in the board. 
 \begin{figure}[H]
@@ -120,7 +127,7 @@ The Xbee modules communicate at a frequency of \SI{2.4}{GHz} and has a range of 
   \centering
   \captionbox
   {
-    UartSBee v4.0 USB to serial adapter module.\cite{UartSBee}
+    UartSBee v4.0 USB to\\ serial adapter module.\cite{UartSBee}
     \label{fig:UartSBee}
   }
   {
@@ -134,7 +141,6 @@ The Xbee modules communicate at a frequency of \SI{2.4}{GHz} and has a range of 
   }
   {
     \includegraphics[width=.37\textwidth]{figures/XbeeShield}
-    \vspace{.5cm}
   }
 \end{figure}
 %
