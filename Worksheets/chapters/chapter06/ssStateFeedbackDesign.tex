@@ -25,7 +25,7 @@ In this approach a state feedback is used to allow the system to return to equil
 \end{minipage}
 
 
-From \autoref{fig:DetailedControllerColorDiagram}, the feedback law yields \autoref{eq:ssControllerAction}.
+From \autoref{fig:DetailedControllerColorDiagram}, the feedback law yields \autoref{eq:ssControllerAction} \cite{ssReference}.
 %
 \begin{flalign} 
 	\vec{u}(t) &=\vec{F} \  \vec{x}(t) + \ \vec{F}_{Int} \  \vec{x}_{Int}(t)
@@ -37,13 +37,13 @@ From \autoref{fig:DetailedControllerColorDiagram}, the feedback law yields \auto
 	\va{\vec{F}_{Int}}{is a 3x6 integral feedback matrix }{}
 \end{where}
 
-In this equation, \si{\vec{x}_{Int}(t)} is given by \autoref{eq:ssControllerAction1}, which is equivalent to \autoref{eq:ssControllerAction2}, see \autoref{fig:DetailedControllerColorDiagram}.
+In this equation, \si{\vec{x}_{Int}(t)} is given by \autoref{eq:ssControllerAction1}, which is equivalent to \autoref{eq:ssControllerAction2}, see \autoref{fig:DetailedControllerColorDiagram} \cite{ssReference}.
 \begin{flalign}
     \vec{x}_{Int}(t) &= \int_{0}^{t} \vec{y}(\tau)-\vec{r}(\tau) d\tau	\label{eq:ssControllerAction1}\\
     \vec{\dot{x}}_{Int}(t) &= \vec{y}(t)-\vec{r}(t) \label{eq:ssControllerAction2}
 \end{flalign} 
 %
-This last equation can be introduced in the existing state space model, having the system states and taking \si{\vec{x}_{Int}(t)} as new states, yielding the result shown in \autoref{xdotSSExtended} and \autoref{ySSExtended}.
+This last equation can be introduced in the existing state space model, having the system states and taking \si{\vec{x}_{Int}(t)} as new states, yielding the result shown in \autoref{xdotSSExtended} and \autoref{ySSExtended} \cite{ssReference}.
 %
 \begin{flalign} 
     \dot{\vec{x}}_e(t) &= \vec{A}_e \  \vec{x}_e(t) + \vec{B}_e \  \vec{u}(t) + 
@@ -94,8 +94,8 @@ being\\
 	\end{flalign}
 \end{minipage}
 
-The resulting feedback law can be design as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_e=[\vec{F} \ \vec{F}_{Int}]$ matrix such that the eigenvalues of $\vec{A}_e+\vec{B}_e\vec{F}_e$ are the new poles that the system needs to have in order to achieve the desired dynamics. The poles are chosen such that the system is as fast as possible taking into account also the network induced effects described in \autoref{ch:Network}.
+The resulting feedback law can be design as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_e=[\vec{F} \ \vec{F}_{Int}]$ matrix such that the eigenvalues of $\vec{A}_e+\vec{B}_e\vec{F}_e$ are the new poles that the system needs to have in order to achieve the desired dynamics. The poles are chosen such that the system is as fast as possible taking into account also the network induced effects described in \autoref{ch:Network}. \cite{ssReference}
 
-Once $\vec{F}_e$ is obtained, it can be split into $\vec{F}$ and $\vec{F}_{Int}$ as the first 6 columns are the state feedback and the last 3 are the integral control. These matrices can be seen in \autoref{app:matricesSS}. In this way, the controller can be implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.
+Once $\vec{F}_e$ is obtained, it can be split into $\vec{F}$ and $\vec{F}_{Int}$ as the first 6 columns are the state feedback and the last 3 are the integral control. These matrices can be seen in \autoref{app:matricesSS}. In this way, the controller can be implemented as shown in \autoref{fig:DetailedControllerColorDiagram}. \cite{ssReference}
 
 
