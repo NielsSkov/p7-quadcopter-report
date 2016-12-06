@@ -1,45 +1,44 @@
+In order to find the values of the feedback matrix, a Linear Quadratic Regulator (LQR) and Bryson's rule in order to find the optimal control and having the possibility of prioritizing the convergence of the different states while setting boundaries to the control action applied to the system. 
 
-It is decided to implement a linear quadratic regulator (LQR) as it is necessary to priorities the different states and ensure that the control action does not exceed its limits. The LQR method finds the necessary state feedback gains which minimizes the cost function in \autoref{eq:costfunction}. \cite{ssReference}
-
+LQR finds the state feedback that minimizes the cost function \autoref{eq:costfunction}. \cite{ssReference}. %seen in it is possible to find the necessary state feedback gains which minimizes the cost function in 
 \begin{flalign} 
 	J &= \int_{0}^{\infty} \vec{x}^T \vec{Q} \vec{x} + \vec{u}^T \vec{R} \vec{u} \ dt
      \label{eq:costfunction}
 \end{flalign}
 \begin{where}
-	\va{\vec{Q}}{is a positive semi-definite diagonal matrix}{}
-	\va{\vec{R}}{is a positive definite diagonal matrix}{}
+	\va{\vec{Q}}{is the state-cost matrix.}{}
+	\va{\vec{R}}{is the input-cost matrix.}{}
 \end{where}
+In the cost function, $\vec{Q}$ and $\vec{R}$ are positive semi-definite and positive definite matrices, respectively. $\vec{Q}$ defines the penalties for the error in the states making the cost function value higher for the prioritized states. $\vec{R}$ sets the weights for the inputs of the system such that the control action does not exceed its maximum limits. \fxnote{why positive definite}\cite{ssReference} 
 
-This cost function contains weighting factors, the $\vec{Q}$ and $\vec{R}$ matrices. The weighting factors are used to either penalize or priorities different states and inputs. Thus yield a trade-off between states and control inputs. When weighting the states, it is possible to give the yaw more gain than the roll and pitch if necessary. By weighting the inputs, it is possible to ensure that they do not yield a control action which exceeds its limits. \cite{ssReference} 
-%The $\vec{Q}$ matrix is semi-definite as the weighted states, $\vec{x}^T\vec{Q}\vec{x}$, has the possibility of becoming zero even though the states are above zero??? The $\vec{R}$ matrix is positive definite as an control action is always desired???
-%By minimize the cost function, it is possible to regulate the $\vec{x}$ to zero as time goes to infinity??
-
-The Bryson's rule is utilized to find the weighted matrices $\vec{Q}$ and $\vec{R}$. \cite{OptimalControlChristoffer}
-
+The value for these matrices is found using Bryson's rule as seen in \autoref{eq:weightingmatrices}. This rule sets the value for the \vec{Q} and \vec{R} matrices as diagonal matrices whose elements are a function of the maximum acceptable value for the error in the states and for the control action in each o the inputs. \cite{OptimalControlChristoffer}.
 \begin{flalign} 
 	Q_{ii} &= \frac{1}{\text{maximum acceptable value of }[x^2_i]}\\
 	R_{ii} &= \frac{1}{\text{maximum acceptable value of }[u^2_i]}
-     \label{eq:weightingmatrices}
+	\label{eq:weightingmatrices}
 \end{flalign}
+The maximum state error and maximum control action are strict limits not to be surpassed but they work as soft boundaries that give intuitive priorities to the different states and control actions and can be used in the design of the feedback matrices. Its final value is found as a compromise between a controller that reduces the errors fast and uses the least amount of control action as possible.
 
-The weighting matrices, $\vec{Q}$ and $\vec{R}$, are then found through an iterations process, where a compromise between desired system performance and control input can be found. \cite{OptimalControlChristoffer} 
-
-The state feedback gain, $\vec{F}$, can be calculated \cite{OptimalControlChristoffer}:
-
+The state feedback gain, $\vec{F}_e$, can be calculated using the expression seen in \autoref{eq:optimalF}. \cite{OptimalControlChristoffer}
 \begin{flalign} 
-	\vec{F} &= -\vec{R}^{-1}\vec{B}^T\vec{P}
-     \label{eq:optimalF}
+	\vec{F}_e &= -\vec{R}^{-1}\vec{B}^T\vec{P}
+	\label{eq:optimalF}
 \end{flalign}
 \begin{where}
-	\va{\vec{P}}{is a symmetric positive definite matrix.}{}
+	\va{\vec{P}}{is the state-transfer matrix.}{}
 \end{where}
-
-Where $\vec{P}$ can be found from the Algebraic Riccati equation \cite{OptimalControlChristoffer}:
-
+The matrix $\vec{P}$ is positive definite and can be found from the Algebraic Riccatti equation \cite{OptimalControlChristoffer}:
 \begin{flalign} 
 	\vec{A}^T\vec{P}+\vec{P}\vec{A}-\vec{P}\vec{B}\vec{R}^{-1}\vec{B}^T\vec{P}+\vec{Q} &= \vec{0}
-     \label{eq:optimalP}
+	\label{eq:optimalP}
 \end{flalign}
 
-The state feedback $\vec{F}$ is thereby found. \fxnote{Alejandro look at this :D and write some more ! :P}
+Once $\vec{F}_e$ is obtained, it can be split into $\vec{F}$ and $\vec{F}_{Int}$ as the first 6 columns are the state feedback and the last 3 are the integral control. These matrices can be seen in \autoref{app:matricesSS}. In this way, the controller can be implemented as shown in \autoref{fig:DetailedControllerColorDiagram}. \cite{ssReference}
+
+
+%This cost function contains weighting factors, the $\vec{Q}$ and $\vec{R}$ matrices. The weighting factors are used to either penalize or priorities different states and inputs. Thus yield a trade-off between states and control inputs. When weighting the states, it is possible to give the yaw more gain than the roll and pitch if necessary. By weighting the inputs, it is possible to ensure that they do not yield a control action which exceeds its limits. \cite{ssReference} 
+%The $\vec{Q}$ matrix is semi-definite as the weighted states, $\vec{x}^T\vec{Q}\vec{x}$, has the possibility of becoming zero even though the states are above zero??? The $\vec{R}$ matrix is positive definite as an control action is always desired???
+%By minimize the cost function, it is possible to regulate the $\vec{x}$ to zero as time goes to infinity??
+
+%The weighting matrices, $\vec{Q}$ and $\vec{R}$, are then found through an iterations process, where a compromise between desired system performance and control input can be found. \cite{OptimalControlChristoffer} 
 
