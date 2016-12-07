@@ -1,14 +1,235 @@
-\chapter{Acceptance Test}
-This chapter deals with the needed tests that the system with the state space must overcome in order to fulfill the requirements as well as an analysis of the other capabilities, described in \chapref{chap:specifications}.
+\chapter{Acceptance test}
 
-\section{Requirements Test}
+It must be tested if the designed radio complies with the requirements mentioned in \autoref{ch:technicalRequirements}, which this is done in in the following. %Before the test can be performed pass/fail criteria and procedures needs to be formulated. 
 
-- \textbf{The Cubli should be able to balance starting from an unstable equilibrium position and null velocity.}
+There are three assessment degrees on how well the developed prototype satisfies the requirements. The degrees are \ding{51} for a pass, (\ding{51}) for a partial pass and \ding{55} for a fail. 
 
-- \textbf{The prototype should be able to balance around \si{0\ \rad}, even though the angle of inclination of the baseplate is changed within a reasonable range, using internally mounted sensors.}
+\subsection*{Requirements Overview}
+For repetition, the requirement that needs to be met are:
+\begin{enumerate}[label=\textbf{\arabic*})]
+\item {The quadcopter should be able to receive its own position and attitude wirelessly from the Vicon system each control loop, through a computer at the ground station.}
+\item {The prototype should be able to disregard incorrect packets received from the computer.}
+\item {The quadcopter should be able to land if the battery voltage is below 10 volts.}
+\item {It shall be possible to control the quadcopters attitude.}
+\item {It shall be possible to make the quadcopter hover and control the height of the hovering.}
+\item {It shall be possible to change the position of the quadcopter in the x, y and z axis.}
+\end{enumerate}
+
+\newpage
+\subsection*{Equipment}
+To perform the tests, the following test equipment is used:
+\begin{table}[H] \centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|l|l|} 
+\hline 
+\textbf{Equipment} &  \textbf{AAU-no.} & \textbf{Type/notes} \\ 
+\hline 
+2x USRP & 100784 \& 100785 & N210\\ 
+\hline 
+0.5 m SMA cable & - &- \\ 
+\hline 
+Attenuators & - &  1x20 dB and 2x10 dB \\ 
+\hline 
+MIMO cable & - &-\\\hline 
+Ethernet cable & - & Must support gigabit ethernet \\ 
+\hline 
+LabVIEW compatible with USRP N210 & - & 2015\\ 
+\hline 
+A computer with gigabit ethernet &- & MSI GP60 2PE Leopard Pro\\ \hline 
+2x power supplies for USRPs &- & 6V DC \\
+\hline 
+Bi-directional coupler & Label: 1469-01 & ZGDC35-93HP+\\ \hline 
+\end{tabular} 
+}
+\caption{Test equipment used for the acceptance test.}
+\label{tab:test_equipment}
+\end{table}
+
+\subsection*{General Setup}\label{sec:General_setup}
+For all tests, the general setup of the systems is explained in the following: 
 
 
-\section{Capabilities Analysis}
-- \textbf{Maximum recovery angle}
+\section{Receive position and attitude from the computer}
+\textbf{Requirement:}
+\textit{The quadcopter should be able to receive its own position and attitude wirelessly from the Vicon system, through a computer.}
 
-- \textbf{Maximum catching angle with no initial velocity of the wheel}
+\textbf{Pass/fail criteria:}
+	\begin{description}
+	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
+	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
+	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
+	\end{description}
+
+		
+\textbf{Procedure:}\\
+
+
+\begin{enumerate}
+	\item ..
+	\item ..
+	\item ..
+\end{enumerate} 
+
+\textbf{Results:}
+
+\newpage
+
+\section{Disregard incorrect packages received from the computer}
+\textbf{Requirement:}
+\textit{The prototype should be able to disregard incorrect packets received from the computer.}
+
+\textbf{Pass/fail criteria:}
+	\begin{description}
+	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
+	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
+	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
+	\end{description}
+
+		
+\textbf{Procedure:}\\
+
+
+\begin{enumerate}
+	\item ..
+	\item ..
+	\item ..
+\end{enumerate} 
+
+
+\textbf{Results:}
+
+
+\newpage
+
+\section{Land if battery is below 10 volts}
+\textbf{Requirement:}
+\textit{The quadcopter should be able to land if the battery voltage is below 10 volts.}
+
+\textbf{Pass/fail criteria:}
+	\begin{description}
+	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
+	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
+	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
+	\end{description}
+
+		
+\textbf{Procedure:}\\
+
+
+\begin{enumerate}
+	\item ..
+	\item ..
+	\item ..
+\end{enumerate} 
+
+
+\textbf{Results:}
+
+
+\newpage
+
+\section{Control the quadcopters attitude}
+\textbf{Requirement:}
+\textit{It shall be possible to control the quadcopters attitude.}
+
+\textbf{Pass/fail criteria:}
+	\begin{description}
+	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
+	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
+	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
+	\end{description}
+		
+\textbf{Procedure:}\\
+
+
+\begin{enumerate}
+	\item ..
+	\item ..
+	\item ..
+\end{enumerate} 
+
+
+\textbf{Results:}
+
+
+\newpage
+
+\section{Control the height in which the quadcopter is flying}
+\textbf{Requirement:}
+\textit{It shall be possible to make the quadcopter hover and control the height of the hovering.}
+
+\textbf{Pass/fail criteria:}
+	\begin{description}
+	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
+	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
+	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
+	\end{description}
+
+		
+\textbf{Procedure:}\\
+
+
+\begin{enumerate}
+	\item ..
+	\item ..
+	\item ..
+\end{enumerate} 
+
+
+\textbf{Results:}
+
+
+\newpage
+
+\section{Control the position in the x, y and z axis}
+\textbf{Requirement:}
+\textit{It shall be possible to change the position of the quadcopter in the x, y and z axis.}
+
+\textbf{Pass/fail criteria:}
+	\begin{description}
+	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
+	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
+	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
+	\end{description}
+
+		
+\textbf{Procedure:}\\
+
+
+\begin{enumerate}
+	\item ..
+	\item ..
+	\item ..
+\end{enumerate} 
+
+
+\textbf{Results:}
+
+\newpage
+\section{Summary of Results}
+The results of the tests are summed up in \autoref{tab:acceptance_test_results}.
+\begin{table}[H] \centering
+\begin{tabular}{|c|p{11cm}|c|}
+\hline 
+\textbf{Req. nr.} & \textbf{Requirement} & \textbf{Result} \\ 
+\hline 
+1 & The quadcopter should be able to receive its own position and attitude wirelessly from the Vicon system, through a computer. & \ding{51}\\ 
+\hline
+2 & The prototype should be able to disregard incorrect packets received from the computer. & \ding{51} \\ 
+\hline 
+3 & The quadcopter should be able to land if the battery voltage is below 10 volts. & \ding{51} \\ 
+\hline 
+4 & It shall be possible to control the quadcopters attitude. & \ding{51} \\ 
+\hline 
+5 & It shall be possible to make the quadcopter hover and control the height of the hovering. & \ding{51}  \\ 
+\hline  
+6 & It shall be possible to change the position of the quadcopter in the x, y and z axis. & \ding{51} \\ 
+\hline  
+\end{tabular} 
+\caption{Summary of acceptance test results.}
+\label{tab:acceptance_test_results}
+\end{table}
+
+As can be seen, the prototype fulfils 8/8 of the set requirements. 
+
+

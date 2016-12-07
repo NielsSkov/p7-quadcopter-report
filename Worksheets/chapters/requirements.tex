@@ -1,36 +1,81 @@
 \chapter{Functional Requirements}
 \label{ch:functionalRequirements}
-Based on the preanalysis, functional requirements can be put up for the prototype:
+Before designing the system of the prototype, functional requirements are put up, as these set the frame for the design.  
 
+%be possible to send a new position reference for the prototype wirelessly.
 \begin{enumerate}[label=\textbf{\arabic*})]
-\item \textbf{The quadcopter should be able to receive its own position and attitude wirelessly from the Vicon system, through a computer.}
+
+
+%\begin{enumerate}[label=\textbf{\arabic*})]
+\item \textbf{The quadcopter should be able to receive its own position and attitude wirelessly from the Vicon system each control loop, through a computer at the ground station.}
 \begin{itemize}
-\item[] It is necessary for the quadcopter to receive it own position and attitude. This is essential for controlling and navigating the quadcopter. Additionally, it should be possible for the quadcopter to receive the information wirelessly, so it can fly without cables attached, and thereby be able to move freely.
+\item[] It is necessary for the quadcopter to receive it own position and attitude. This is essential for controlling and navigating the quadcopter. Additionally, it should be possible for the quadcopter to receive the information wirelessly, such that it can fly without cables attached, and thereby be able to fly freely.
 \end{itemize}
 
-\item \textbf{The prototype should be able to disregard incorrect packets received from the computer.}
+
+\item \textbf{The prototype should be able to disregard incorrect packets received from the ground computer.}
 \begin{itemize}
-\item[] To ensure that invalid data is not utilized, it shall be possible for the processor on the quadcopter to detect corrupt packets received from the computer.
+\item[] To ensure that invalid data is not utilized, it shall be possible for the processor on the quadcopter to detect corrupt packets received from the ground station.
 \end{itemize}
 
-\item \textbf{The quadcopter should be able to land if the battery voltage is below 10 volts.}
+
+\item \textbf{It shall able to wireless recieve commands send from the  computer at the ground station.}
 \begin{itemize}
-\item[] This is to ensure that it is possible for the quadcopter to land safely on ground before the battery is below 10 volts. The quadcopter will thereby only operate when the battery can deliver the required power for the four motors. This is to avoid damaging the quadcopter.
+\item[] It must be possible to demand that the quadcopter either takes off or lands. It must also be possible to send a new position for the quadcopter to fly to.  
 \end{itemize}
 
-\item \textbf{It shall be possible to control the quadcopters attitude.}
+
+\item \textbf{It shall be possible to control the quadcopter's attitude.}
 \begin{itemize}
-\item[] To be able to stabilize the quadcopter, it is essential that it is possible to control the attitude. This is essential both when the quadcopter is changing position in either the z, x, or y axis or when it needs to keep its position.
+\item[] To be able to stabilize the quadcopter, it is essential that it is possible to control the attitude. This is essential both when the quadcopter is changing position in either the z, x, or y axis and when it needs to maintain its position.
 \end{itemize}
 
-\item \textbf{It shall be possible to make the quadcopter hover and control the hight of hovering.}
+
+\item \textbf{It shall be possible to make the quadcopter hover by controlling the height, z.}
 \begin{itemize}
 \item[] It should be possible for the quadcopter to keep itself in a hovering position. Furthermore, it shall be possible to change the position in the z axis in which the quadcopter is hovering.
 \end{itemize}
 
-\item \textbf{It shall be possible to change the position of the quadcopter in the x, y and z axis.}
+
+\item \textbf{It must be able to take off.}
+\begin{itemize}
+\item[]The quadcopter must be able to take off without flipping or crashing in order to make the quadcopter fly and fulfil the other requirements.
+\end{itemize}
+\newpage
+\item \textbf{It must be able to land.}
+\begin{itemize}
+\item[]The quadcopter must be able to land without flipping or crashing. It must be able to touch down without overshoot, as this may damage the quadcopter if the impact with the ground is too great.
+\end{itemize}
+
+
+\item \textbf{It must be able to land automatically, when the battery level is below 10 volt.}
+\begin{itemize}
+\item[] This is necessary in order to avoid crashing due to engine failure. The quadcopter will thereby only operate when the battery delivers the required power for the four motors. This is to avoid damaging the quadcopter and the battery.
+\end{itemize}
+
 \end{enumerate}
-%
+%\item \textbf{It shall be possible to change the position of the quadcopter in the y axis.}
+%\end{itemize}
+
+%\item \textbf{It shall be possible to change the position of the quadcopter in the y axis.}
+%\begin{itemize}
+%\item[] .
+%\end{itemize}
+
+%\item \textbf{It shall be possible to change the position of the %quadcopter in the y axis.}
+%\end{itemize}
+
+%\item \textbf{It shall be possible for the quadcopter to land.}
+%\end{itemize}
+
+%\item \textbf{The quadcopter should be able to land if the battery voltage is below 10 volts.}
+%\begin{itemize}
+%\item[] This is to ensure that it is possible for the quadcopter to land safely on ground before the battery is below 10 volts. The quadcopter will thereby only operate when the battery can deliver the required power for the four motors. This is to avoid damaging the quadcopter.
+%\end{itemize}
+
+%\item \textbf{It shall be possible for the quadcopter to take of.}
+%\end{itemize}
+
 %The purpose of this chapter is to consider requirements for the system, that will function as guideline when the control system is to be designed at a later point.
 %
 %The quadcopter has to be able to fly and hover stabalily. It must be able to withstand a disturbance of a certain size.\fxfatal{This is to be settled by choice} 
@@ -49,5 +94,3 @@ Based on the preanalysis, functional requirements can be put up for the prototyp
 %
 %Frequency domain\\
 %Phase margin and gain margin - how robust is the controller. How far is the system from instability? 
-
-
