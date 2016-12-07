@@ -2,13 +2,13 @@
 \label{ch:functionalRequirements}
 Based on the preanalysis, functional requirements can be put up for the prototype:
 
-%\begin{enumerate}[label=\textbf{\arabic*})]
-%\item \textbf{It shall be possible for the operator to send a new position reference for the prototype wirelessly.}
-%\begin{itemize}
-%\item[] .
-%\end{itemize}
-
 \begin{enumerate}[label=\textbf{\arabic*})]
+\item \textbf{It shall be possible to send a new position reference for the prototype wirelessly.}
+\begin{itemize}
+\item[] .
+\end{itemize}
+
+%\begin{enumerate}[label=\textbf{\arabic*})]
 \item \textbf{The quadcopter should be able to receive its own position and attitude wirelessly from the Vicon system, through a computer.}
 \begin{itemize}
 \item[] It is necessary for the quadcopter to receive it own position and attitude. This is essential for controlling and navigating the quadcopter. Additionally, it should be possible for the quadcopter to receive the information wirelessly, so it can fly without cables attached, and thereby be able to move freely.
@@ -17,11 +17,6 @@ Based on the preanalysis, functional requirements can be put up for the prototyp
 \item \textbf{The prototype should be able to disregard incorrect packets received from the computer.}
 \begin{itemize}
 \item[] To ensure that invalid data is not utilized, it shall be possible for the processor on the quadcopter to detect corrupt packets received from the computer.
-\end{itemize}
-
-\item \textbf{The quadcopter should be able to land if the battery voltage is below 10 volts.}
-\begin{itemize}
-\item[] This is to ensure that it is possible for the quadcopter to land safely on ground before the battery is below 10 volts. The quadcopter will thereby only operate when the battery can deliver the required power for the four motors. This is to avoid damaging the quadcopter.
 \end{itemize}
 
 \item \textbf{It shall be possible to control the quadcopters attitude.}
@@ -34,20 +29,47 @@ Based on the preanalysis, functional requirements can be put up for the prototyp
 \item[] It should be possible for the quadcopter to keep itself in a hovering position. Furthermore, it shall be possible to change the position in the z axis in which the quadcopter is hovering.
 \end{itemize}
 
-%\item \textbf{It shall be possible to change the position of the %quadcopter in the x axis.}
-%\end{enumerate}
+%\item \textbf{It shall be possible to change the position of the quadcopter in the x axis.}
+%\end{itemize}
+
+\item \textbf{It shall be possible to change the position of the quadcopter in the x axis.}
+\begin{itemize}
+\item[] .
+\end{itemize}
+
+%\item \textbf{It shall be possible to change the position of the quadcopter in the y axis.}
+%\end{itemize}
+
+\item \textbf{It shall be possible to change the position of the quadcopter in the y axis.}
+\begin{itemize}
+\item[] .
+\end{itemize}
 
 %\item \textbf{It shall be possible to change the position of the %quadcopter in the y axis.}
-%\end{enumerate}
-
-%\item \textbf{It shall be possible to change the position of the %quadcopter in the y axis.}
-%\end{enumerate}
+%\end{itemize}
 
 %\item \textbf{It shall be possible for the quadcopter to land.}
-%\end{enumerate}
+%\end{itemize}
+
+
+\item \textbf{It shall be possible for the quadcopter to land.}
+\begin{itemize}
+\item[] .
+\end{itemize}
+
+\item \textbf{The quadcopter should be able to land if the battery voltage is below 10 volts.}
+\begin{itemize}
+\item[] This is to ensure that it is possible for the quadcopter to land safely on ground before the battery is below 10 volts. The quadcopter will thereby only operate when the battery can deliver the required power for the four motors. This is to avoid damaging the quadcopter.
+\end{itemize}
 
 %\item \textbf{It shall be possible for the quadcopter to take of.}
-%\end{enumerate}
+%\end{itemize}
+
+\item \textbf{It shall be possible for the quadcopter to take of.}
+\begin{itemize}
+\item[] .
+\end{itemize}
+\end{enumerate}
 
 %
 %The purpose of this chapter is to consider requirements for the system, that will function as guideline when the control system is to be designed at a later point.
