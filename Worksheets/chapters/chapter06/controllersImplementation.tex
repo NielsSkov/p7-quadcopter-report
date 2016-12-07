@@ -13,9 +13,9 @@ In order to discretize the controllers in the system, they need to be expressed 
 \end{where}
 The Tustin approximation maps the Laplace stable region into the discrete stable region, that is, the unit circle, as seen in \autoref{fig:tustinmap}. For these reason, is one of the most used discretization methods.
 \begin{figure}[H]
-	\includegraphics[scale=.7]{figures/tustinmapping}
+	\includegraphics[scale=.3]{figures/SplaneVsZplane.pdf}
 	\centering			
-	\captionof{figure}{Attitude control loop Bode diagram.} 
+	\captionof{figure}{The s-domain and the z-domain \cite{AVOppenheim}.} 
 	\label{fig:tustinmap}
 \end{figure} 
 The discrete transfer function is then transformed into a difference equation to obtain the expression to be applied in the microcontroller. This is done taking into account that a $z^{-1}$ term implies taking the previous sample of the data. 
