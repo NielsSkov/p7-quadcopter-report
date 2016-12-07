@@ -11,7 +11,7 @@ LQR finds the state feedback that minimizes the cost function \autoref{eq:costfu
 \end{where}
 In the cost function, $\vec{Q}$ and $\vec{R}$ are positive semi-definite and positive definite matrices, respectively. $\vec{Q}$ defines the penalties for the error in the states making the cost function value higher for the prioritized states. $\vec{R}$ sets the weights for the inputs of the system such that the control action does not exceed its maximum limits. \fxnote{why positive definite}\cite{ssReference} 
 
-The value for these matrices is found using Bryson's rule as seen in \autoref{eq:weightingmatrices}. This rule sets the value for the \vec{Q} and \vec{R} matrices as diagonal matrices whose elements are a function of the maximum acceptable value for the error in the states and for the control action in each o the inputs. \cite{OptimalControlChristoffer}.
+The value for these matrices is found using Bryson's rule as seen in \autoref{eq:weightingmatrices}. This rule sets the value for the $\vec{Q}$ and $\vec{R}$ matrices as diagonal matrices whose elements are a function of the maximum acceptable value for the error in the states and for the control action in each o the inputs. \cite{OptimalControlChristoffer}.
 \begin{flalign} 
 	Q_{ii} &= \frac{1}{\text{maximum acceptable value of }[x^2_i]}\\
 	R_{ii} &= \frac{1}{\text{maximum acceptable value of }[u^2_i]}
@@ -19,21 +19,22 @@ The value for these matrices is found using Bryson's rule as seen in \autoref{eq
 \end{flalign}
 The maximum state error and maximum control action are strict limits not to be surpassed but they work as soft boundaries that give intuitive priorities to the different states and control actions and can be used in the design of the feedback matrices. Its final value is found as a compromise between a controller that reduces the errors fast and uses the least amount of control action as possible.
 
-The state feedback gain, $\vec{F}_e$, can be calculated using the expression seen in \autoref{eq:optimalF}. \cite{OptimalControlChristoffer}
+The state feedback gain, $\vec{F}_{\mathrm{e}}$, can be calculated using the expression seen in \autoref{eq:optimalF}.
 \begin{flalign} 
-	\vec{F}_e &= -\vec{R}^{-1}\vec{B}^T\vec{P}
+	\vec{F}_{\mathrm{e}} &= -\vec{R}^{-1}{\vec{B}_{\mathrm{e}}}^T\vec{P}
 	\label{eq:optimalF}
 \end{flalign}
 \begin{where}
 	\va{\vec{P}}{is the state-transfer matrix.}{}
 \end{where}
-The matrix $\vec{P}$ is positive definite and can be found from the Algebraic Riccatti equation \cite{OptimalControlChristoffer}:
+The positive definite matrix $\vec{P}$ that minimizes the cost function in \autoref{eq:costfunction} can be found from the Algebraic Riccatti equation \autoref{eq:optimaPl}  \cite{OptimalControlChristoffer}
+
 \begin{flalign} 
-	\vec{A}^T\vec{P}+\vec{P}\vec{A}-\vec{P}\vec{B}\vec{R}^{-1}\vec{B}^T\vec{P}+\vec{Q} &= \vec{0}
+	{\vec{A}{\mathrm{e}}}^T\vec{P}+\vec{P}\vec{A}_{\mathrm{e}}-\vec{P}\vec{B_{\mathrm{e}}}\vec{R}^{-1}\vec{B}_{\mathrm{e}}^T\vec{P}+\vec{Q} &= \vec{0}
 	\label{eq:optimalP}
 \end{flalign}
 
-Once $\vec{F}_e$ is obtained, it can be split into $\vec{F}$ and $\vec{F}_{Int}$ as the first 6 columns are the state feedback and the last 3 are the integral control. These matrices can be seen in \autoref{app:matricesSS}. In this way, the controller can be implemented as shown in \autoref{fig:DetailedControllerColorDiagram}. \cite{ssReference}
+Once $\vec{F}_{\mathrm{e}}$ is obtained, it can be split into $\vec{F}$ and $\vec{F}_{\mathrm{Int}}$ as the first 6 columns are the state feedback and the last 3 are the integral control. These matrices can be seen in \autoref{app:matricesSS}. In this way, the controller can be implemented as shown in \autoref{fig:DetailedControllerColorDiagram}. \cite{ssReference}
 
 
 %This cost function contains weighting factors, the $\vec{Q}$ and $\vec{R}$ matrices. The weighting factors are used to either penalize or priorities different states and inputs. Thus yield a trade-off between states and control inputs. When weighting the states, it is possible to give the yaw more gain than the roll and pitch if necessary. By weighting the inputs, it is possible to ensure that they do not yield a control action which exceeds its limits. \cite{ssReference} 
