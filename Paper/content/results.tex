@@ -1,7 +1,7 @@
 \section{Results}\label{sec:results}
 The controllers have been simulated in MATLAB Simulink in order to generate results presented in this section. \fxnote{split in different subsections??} \fxnote{More details on how to obtain simulations if we put them in the paper.}
 
-The model parameters can be seen in \autoref{ParametersQuadcopter} . All of them have been obtained through tests except for the moments of inertia, which were calculated by following an analytical procedure. \fxnote{More details on how the parmeters were obtained and a comparison of how good is the model??}
+The model parameters can be seen in \autoref{ParametersQuadcopter} . All of them have been obtained through tests except for the moments of inertia, which were calculated by following an analytical procedure. \fxnote{More details on how the parameters were obtained and a comparison of how good is the model??}
 
 \begin{table}[H]
     \centering
@@ -26,11 +26,29 @@ The model parameters can be seen in \autoref{ParametersQuadcopter} . All of them
         $\overline{\omega}_i$& 429      & \si{rad \ s^{-1}}\\
         
     \end{tabular}
-    \caption{Parameters used though the analysis and design.\fxnote{Is this a result?Should we move it up}}
+    \caption{Parameters used though the analysis and design.\fxnote{Is this a result?Should we move it up?}}
     \label{ParametersQuadcopter}
 \end{table}
-The attitude controller is defined by the chosen feedback and integral poles, \\$[-6.0, -6.2, -6.4, -6.6, -6.8, -7.0, -7.2, -7.4, -7.6]$, and  the observer poles, $[-20, -25, -30]$.
-
+The attitude controller is defined by the designed $\vec{F}$ and $\vec{F}_{\mathrm{int}}$ matrices shown below and the chosen observer poles, which are $[-11, -12, -13]$.
+\footnotesize{
+\begin{flalign}   \label{Amatrix}
+	\vec{F}&=
+	\begin{bmatrix}
+		 0.00    & -165.15 & -223.35  &  0.00   &-44.04 & -68.52  \ \ \ \\
+		 165.15  &  0.00   & 223.35   &  44.04  & 0.00  &  68.52  \ \ \ \\
+		 0.00    & 165.15  & -223.35  &  0.00   &44.04  & -68.52  \ \ \ \\
+		 -165.15 & 0.00    & 223.35   & -44.04  & 0.00  &  68.52  \ \ \ 
+	\end{bmatrix}\nonumber\\
+		\vec{F}_{\mathrm{int}}&=
+		\begin{bmatrix}
+		   0.00   & -220.97 & -250.00  \ \ \ \\
+		   220.97 &   0.00  & 250.00   \ \ \ \\
+		   0.00   & 220.97  & -250.00  \ \ \ \\
+		  -220.97 &  0.00   &  250.00  \ \ \ 
+		\end{bmatrix}\nonumber
+\end{flalign}}
+\normalsize
+\fxnote{should we have these matrices??}
 The translation velocity controllers for x and y are $C_{\dot{x}}(s)= -0.1$, $C_{\dot{y}}(s)= 0.1$ and the position ones are $C_x(s)= 0.5$, $C_y(s)= 0.5$. The PI-controller for the z translational velocity is $C_{\dot{z}}(s)=-201\frac{s+0.8}{s}$ and the outer loop P-controller is $C_z=0.9$. \fxnote{Split this into normal equations??}
 
 These controllers are discretized using the Tustin method with a sampling period of 35 ms, as this is the fastest available frequency in which data can be acquired from the motion tracking system and transmitted to the quadcopter.

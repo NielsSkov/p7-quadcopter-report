@@ -1,74 +1,74 @@
 \subsection{Attitude Controller}
 The attitude controller for the quadcopter is designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter. The chosen states for the system are the three angular positions and the three angular velocities. The input vector of the attitude system consists of the four motor rotational speeds and the output vector consists of the three angles, roll, pitch and yaw. The state, input and output vectors are
 %
-\begin{flalign}
-	\vec{x}(t)&= 
-	\begin{bmatrix}
-		\phi & \theta & \psi & \dot{\phi} &	\dot{\theta} & \dot{\psi} 
-	\end{bmatrix}	\nonumber
-	^T\\
-	\vec{y}(t)&= 
-	\begin{bmatrix}
-		\phi &	\theta & \psi 
-	\end{bmatrix}	\nonumber
-	^T\\
-	\vec{u}(t)&= 
-	\begin{bmatrix}
-		\omega_1 & \omega_2 &	\omega_3 &	\omega_4 
-	\end{bmatrix}\nonumber	
-	^T \ .
-\end{flalign}
-
-The vectors above are then used in construction of the state space matrix representation as
-\begin{flalign}
-	\vec{\dot{x}}(t)&=\vec{A} \vec{x}(t) + \vec{B} \vec{u}(t)
-	\label{xDotSS} 
-\end{flalign}
-\vspace{-0.9 cm}
-\begin{flalign}
-	\vec{y}(t)&=\vec{C} \vec{x}(t) + \vec{D} \vec{u}(t)\label{ySS} 
-\end{flalign}
+%\begin{flalign}
+%	\vec{x}(t)&= 
+%	\begin{bmatrix}
+%		\phi & \theta & \psi & \dot{\phi} &	\dot{\theta} & \dot{\psi} 
+%	\end{bmatrix}	\nonumber
+%	^T\\
+%	\vec{y}(t)&= 
+%	\begin{bmatrix}
+%		\phi &	\theta & \psi 
+%	\end{bmatrix}	\nonumber
+%	^T\\
+%	\vec{u}(t)&= 
+%	\begin{bmatrix}
+%		\omega_1 & \omega_2 &	\omega_3 &	\omega_4 
+%	\end{bmatrix}\nonumber	
+%	^T \ .
+%\end{flalign}
 %
-where $\vec{A}$ is the system matrix, $\vec{B}$ is the input matrix, $\vec{C}$ is the output matrix and $\vec{D}$ is the feedforward matrix.
+%The vectors above are then used in construction of the state space matrix representation as
+%\begin{flalign}
+%	\vec{\dot{x}}(t)&=\vec{A} \vec{x}(t) + \vec{B} \vec{u}(t)
+%	\label{xDotSS} 
+%\end{flalign}
+%\vspace{-0.9 cm}
+%\begin{flalign}
+%	\vec{y}(t)&=\vec{C} \vec{x}(t) + \vec{D} \vec{u}(t)\label{ySS} 
+%\end{flalign}
+%%
+%where $\vec{A}$ is the system matrix, $\vec{B}$ is the input matrix, $\vec{C}$ is the output matrix and $\vec{D}$ is the feedforward matrix.
+%
+%The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are obtained from the linearized attitude equations \eqref{eqAngleLin1}, \eqref{eqAngleLin2} and \eqref{eqAngleLin3}. %, yielding the matrices shown below. As $\vec{D}$ is a zero matrix, only $\vec{A}$, $\vec{B}$ and $\vec{C}$ are shown.
+%
+%\vspace{-.5cm}\footnotesize{
+%\begin{flalign}   \label{Amatrix}
+%	\vec{A}=
+%	\begin{bmatrix}
+%		\ 0 & 0 & 0 & 1 & 0 & 0     \ \ \ \\ 
+%		\ 0 & 0 & 0 & 0 & 1 & 0     \ \ \ \\ 
+%		\ 0 & 0 & 0 & 0 & 0 & 1     \ \ \ \\
+%		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
+%		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
+%		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \  
+%	\end{bmatrix}\nonumber
+%\end{flalign} \label{Bmatrix}
+%\vspace{-0.3 cm}
+%\begin{flalign}
+%    \vec{B} =
+%	\begin{bmatrix}
+%		\ 0 & 0 & 0 & 0      \ \ \ \\ 
+%		\ 0 & 0 & 0 & 0      \ \ \ \\ 
+%		\ 0 & 0 & 0 & 0      \ \ \ \\
+%		\ 0 & \si{-\frac{2  k_{\mathrm{th}} L \overline{\omega}_2}{J_x}} & 0 & \si{\frac{2 k_{\mathrm{th}}  L \overline{\omega}_4}{J_x}}      \ \ \ \\ 
+%		\ \si{\frac{2 k_{\mathrm{th}} L  \overline{\omega}_1}{J_y}} & 0 & \si{-\frac{2  k_{\mathrm{th}} L \overline{\omega}_3}{J_y}} & 0      \ \ \ \\ 
+%		\ \frac{2 k_{\mathrm{d}} {\overline{\omega}_1}}{J_z} & - \frac{2 k_{\mathrm{d}} {\overline{\omega}_2}}{J_z} & \frac{2 k_{\mathrm{d}}  {\overline{\omega}_3}}{J_z} & - \frac{2 k_{\mathrm{d}} {\overline{\omega}_4}}{J_z}      \ \ \ 		
+%	\end{bmatrix}\nonumber
+%\end{flalign}
+%\vspace{-0.3 cm}
+%\begin{flalign} \label{Cmatrix}
+%	\vec{C} =	 
+%	\begin{bmatrix}
+%		\ 1 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
+%		\ 0 & 1 & 0 & 0 & 0 & 0     \ \ \ \\ 
+%		\ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 
+%	\end{bmatrix}\nonumber
+%\end{flalign} }
+%\normalsize
 
-The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices are obtained from the linearized attitude equations, yielding the matrices shown below. As $\vec{D}$ is a zero matrix, only $\vec{A}$, $\vec{B}$ and $\vec{C}$ are shown.
-
-\vspace{-.5cm}\footnotesize{
-\begin{flalign}   \label{Amatrix}
-	\vec{A}=
-	\begin{bmatrix}
-		\ 0 & 0 & 0 & 1 & 0 & 0     \ \ \ \\ 
-		\ 0 & 0 & 0 & 0 & 1 & 0     \ \ \ \\ 
-		\ 0 & 0 & 0 & 0 & 0 & 1     \ \ \ \\
-		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
-		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
-		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \  
-	\end{bmatrix}\nonumber
-\end{flalign} \label{Bmatrix}
-\vspace{-0.3 cm}
-\begin{flalign}
-    \vec{B} =
-	\begin{bmatrix}
-		\ 0 & 0 & 0 & 0      \ \ \ \\ 
-		\ 0 & 0 & 0 & 0      \ \ \ \\ 
-		\ 0 & 0 & 0 & 0      \ \ \ \\
-		\ 0 & \si{-\frac{2  k_{\mathrm{th}} L \overline{\omega}_2}{J_x}} & 0 & \si{\frac{2 k_{\mathrm{th}}  L \overline{\omega}_4}{J_x}}      \ \ \ \\ 
-		\ \si{\frac{2 k_{\mathrm{th}} L  \overline{\omega}_1}{J_y}} & 0 & \si{-\frac{2  k_{\mathrm{th}} L \overline{\omega}_3}{J_y}} & 0      \ \ \ \\ 
-		\ \frac{2 k_{\mathrm{d}} {\overline{\omega}_1}}{J_z} & - \frac{2 k_{\mathrm{d}} {\overline{\omega}_2}}{J_z} & \frac{2 k_{\mathrm{d}}  {\overline{\omega}_3}}{J_z} & - \frac{2 k_{\mathrm{d}} {\overline{\omega}_4}}{J_z}      \ \ \ 		
-	\end{bmatrix}\nonumber
-\end{flalign}
-\vspace{-0.3 cm}
-\begin{flalign} \label{Cmatrix}
-	\vec{C} =	 
-	\begin{bmatrix}
-		\ 1 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
-		\ 0 & 1 & 0 & 0 & 0 & 0     \ \ \ \\ 
-		\ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 
-	\end{bmatrix}\nonumber
-\end{flalign} }
-\normalsize
-
-The attitude control is based on a state feedback and an integral term in order to be able to track a given reference. As not all states are measured a reduced order observer is implemented to estimate the angular velocities of the quadcopter. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
+The attitude control is based on a state feedback and an integral term in order to be able to track a given reference and reject input disturbances. As not all states are measured a reduced order observer is implemented to estimate the angular velocities of the quadcopter. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
 \\
 \\
 \noindent\autoref{AttitudeControlDiagram} shows how these designs are related.
@@ -87,7 +87,7 @@ The design of the state feedback and integral control is shown in \autoref{fig:D
     \captionof{figure}{State feedback and integral controller in the attitude control structure.}
     \label{fig:DetailedControllerColorDiagram}
 \end{figure}
-As there are three outputs to track, three states, $\vec{x}_{\mathrm{int}}(t)$, are added to the already existing state vector. This leads to the extended system
+Three states, $\vec{x}_{\mathrm{int}}(t)$, are added to the already existing state vector to track the two references for $\phi$ and $\theta$ angles and reject input disturbances in the three angles. This leads to the extended system
 %
 \vspace{-.2cm}
 \begin{flalign} 
@@ -140,19 +140,43 @@ where\\
     \end{flalign}
 \end{minipage}
 \\ 
-
-The feedback law for this design approach is given by \eqref{eq:ssControllerAction}. Its design is done as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_\mathrm{e}=[\vec{F} \ \vec{F}_{\mathrm{int}}]$ matrix, such that the eigenvalues of $\vec{A}_\mathrm{e}+\vec{B}_\mathrm{e}\vec{F}_\mathrm{e}$ are the closed loop poles giving the desired dynamics.
-%
+The feedback law for this design approach is given by 
 \begin{flalign} 
-    \vec{u}(t) &=\vec{F} \vec{x}(t) + \vec{F}_{\mathrm{int}} \vec{x}_{\mathrm{int}}(t)
-    \label{eq:ssControllerAction}
+	\vec{u}(t) &=\vec{F} \vec{x}(t) + \vec{F}_{\mathrm{int}} \vec{x}_{\mathrm{int}}(t)\ .
+	\label{eq:ssControllerAction}
+\end{flalign}
+The feedback matrix, $\vec{F_{\mathrm{e}}}$ is obtained using a Linear Quadratic Regulator (LQR) approach together with Bryson's rule. This makes it possible to find the optimal feedback gains while being able to prioritize the different states and set boundaries to the control action required.
+%
+LQR is based on minimizing the cost function 
+\begin{flalign} 
+	J &= \int_{0}^{\infty} \vec{x}^T \vec{Q} \vec{x} + \vec{u}^T \vec{R} \vec{u} dt \ .
+	\label{eq:costfunction}
 \end{flalign}
 
-Once $\vec{F}_\mathrm{e}$ is obtained, it is split into $F$ and $F_{\mathrm{int}}$. In this way, the controller is implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.\\
-\fxnote{Add LQR}
+In this equation, the matrices $\vec{Q}$ and $\vec{R}$ must be selected as positive semi-definite and positive definite matrices that penalize, in the cost function, the error of the different states and inputs of the system. 
+
+The selection of these matrices is done using Bryson's rule, which defines $\vec{Q}$ and $\vec{R}$ as diagonal matrices whose elements are
+\begin{flalign} 
+	Q_{ii} &= \frac{1}{\text{maximum acceptable value of }[x^2_i]}\\
+	R_{ii} &= \frac{1}{\text{maximum acceptable value of }[u^2_i]}\ .
+	\label{eq:weightingmatrices}
+\end{flalign}
+The values are selected so the controller is stable and the states converge to the equilibrium point and the references are tracked as fast as possible. This  gain selection process is done using the simulation of the model, which also considers the network effects such as delay and packet loss. 
+The values of $\vec{Q}$ and $\vec{R}$ are then used to find the optimal feedback matrices that minimize the cost function \eqref{eq:costfunction} as 
+\begin{flalign} 
+	\vec{F}_{\mathrm{e}} &= -\vec{R}^{-1}{\vec{B}_{\mathrm{e}}}^T\vec{P} \ .
+	\label{eq:optimalF}
+\end{flalign}
+Where the matrix $\vec{P}$ positive definite and its value is found using the Algebraic Riccatti Equation, 
+\begin{flalign} 
+	\vec{A}_{\mathrm{e}}^T\vec{P}+\vec{P}\vec{A}_{\mathrm{e}}-\vec{P}\vec{B_{\mathrm{e}}}\vec{R}^{-1}\vec{B}_{\mathrm{e}}^T\vec{P}+\vec{Q} &= \vec{0}\ .
+	\label{eq:optimalP}
+\end{flalign}
+
+Once $\vec{F}_\mathrm{e}$ is obtained, it is split into $\vec{F}$ and $\vec{F}_{\mathrm{int}}$. In this way, the controller is implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.\\
 %--------------------- Reduced-Order Observer ----------------------------
 
-Since certain states in the system are not measured, an observer estimates the remaining states by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$. \fxnote{inconsistency between L and Lobs}
+Since certain states in the system are not measured, an observer estimates the remaining states by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$. 
 
 The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\vec{A}_{12}$ give the desired dynamics for the estimation \cite{ssReference}. This is done splitting the original system matrices into the submatrices\\
 %
