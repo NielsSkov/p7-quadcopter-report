@@ -102,11 +102,10 @@
 %----------------------------------------------------------------------------------------
 
 \begin{block}{Introduction}
-In the last years, the interest for quadcopters has increased due to the great possibilities they offer. Among these, the most well-known ones are surveillance, inspection of big structures and search and rescue missions in difficult environments.
-
+%In the last years, the interest for quadcopters has increased due to the great possibilities they offer. Among these, the most well-known ones are surveillance, inspection of big structures and search and rescue missions in difficult environments.
 A design that is able to make the quadcopter hover and move to a desired position is designed. The system’s coupled behavior and instability raises a challenging control task.
 
-This task is solved by implementing a controller design, this is linearized since it is desired to use linear controllers. The system is split into an attitude and translational model. These are controlled individually by state space and classical controllers respectively. The prototype gets its attitude and position from a motion tracking system based on infrared cameras, keeping the control in a micro processor on the quadcopter. This layout constitutes a distributed system, where network issues, such as delays and packet losses, are taken into account.
+This task is solved by implementing a linear control design. The system is split into an attitude and translational model. These are controlled individually by state space and classical controllers respectively. The prototype gets its attitude and position from a motion tracking system based on infrared cameras, keeping the control in a micro processor on the quadcopter. This layout constitutes a distributed system, where network issues, such as delays and packet losses, are taken into account.
 \end{block}
 
 %----------------------------------------------------------------------------------------
@@ -115,18 +114,22 @@ This task is solved by implementing a controller design, this is linearized sinc
 
 \begin{block}{Methods}
 
-Lorem ipsum dolor \textbf{sit amet}, consectetur adipiscing elit. Sed commodo molestie porta. Sed ultrices scelerisque sapien ac commodo. Donec ut volutpat elit. Sed laoreet accumsan mattis. Integer sapien tellus, auctor ac blandit eget, sollicitudin vitae lorem. Praesent dictum tempor pulvinar. Suspendisse potenti. Sed tincidunt varius ipsum, et porta nulla suscipit et. Etiam congue bibendum felis, ac dictum augue cursus a. \textbf{Donec} magna eros, iaculis sit amet placerat quis, laoreet id est. In ut orci purus, interdum ornare nibh. Pellentesque pulvinar, nibh ac malesuada accumsan, urna nunc convallis tortor, ac vehicula nulla tellus eget nulla. Nullam lectus tortor, \textit{consequat tempor hendrerit} quis, vestibulum in diam. Maecenas sed diam augue.
 
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{figures/droneDiagram.pdf}
+\caption{Free body diagram of the quadcopter along with the inertial and body coordinate systems.}
+\end{figure}
+The system is modeled by using two coordinate frames. The inertial frame is utilized to describe the translational movement while the body frame is attached to the quadcopter and used to characterize its attitude behavior.
 This statement requires citation \cite{Smith:2012qr}.
 
 \end{block}
 
 %------------------------------------------------
 
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{figures/placeholder.jpg}
-\caption{Figure caption}
-\end{figure}
+%\begin{figure}
+%\includegraphics[width=0.8\linewidth]{figures/droneDiagram.pdf}
+%\caption{Figure caption}
+%\end{figure}
 
 %----------------------------------------------------------------------------------------
 
@@ -140,9 +143,14 @@ This statement requires citation \cite{Smith:2012qr}.
 
 \begin{column}{\onecolwid}\vspace{-.6in} % The first column within column 2 (column 2.1)
 
+
 %----------------------------------------------------------------------------------------
 %	RESULTS
 %----------------------------------------------------------------------------------------
+\begin{column}
+In the figure, also the positive references for rotational and translational movements are depicted, as well as the main forces and torques acting on the quadcopter. The positive rotations follow a right-hand fashion
+
+
 
 \begin{block}{Results}
 

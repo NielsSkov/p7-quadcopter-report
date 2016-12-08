@@ -1931,13 +1931,3 @@
     <bcf:datasource type="file" datatype="bibtex">setup/bibliography.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">Smith:2012qr</bcf:citekey>
-  </bcf:section>
-  <bcf:sortlist section="0" type="entry" label="none">
-  <bcf:sorting>
-    <bcf:sort order="1">
-      <bcf:sortitem order="1">citeorder</bcf:sortitem>
-    </bcf:sort>
-  </bcf:sorting>
-  </bcf:sortlist>
-</bcf:controlfile>
