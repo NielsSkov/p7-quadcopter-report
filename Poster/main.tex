@@ -67,7 +67,7 @@
 %	TITLE SECTION 
 %----------------------------------------------------------------------------------------
 
-\title{Attitude and position control of a quadcopter in a networked \\	distributed system} % Poster title
+\title{Attitude and Position Control of a Quadcopter in a Networked \\	Distributed System} % Poster title
 
 \author{Alejandro Alonso García, Amalie V. Petersen, Andrea Victoria Tram Løvemærke,\\ Niels Skov Vestergaard, Noelia Villarmarzo Arruñada} % Author(s)
 
@@ -102,15 +102,11 @@
 %----------------------------------------------------------------------------------------
 
 \begin{block}{Introduction}
+In the last years, the interest for quadcopters has increased due to the great possibilities they offer. Among these, the most well-known ones are surveillance, inspection of big structures and search and rescue missions in difficult environments.
 
-Lorem ipsum dolor sit amet, consectetur, nunc tellus pulvinar tortor, commodo eleifend risus arcu sed odio:
-\begin{itemize}
-\item Mollis dignissim, magna augue tincidunt dolor, interdum vestibulum urna
-\item Sed aliquet luctus lectus, eget aliquet leo ullamcorper consequat. Vivamus eros sem, iaculis ut euismod non, sollicitudin vel orci.
-\item Nascetur ridiculus mus.  
-\item Euismod non erat. Nam ultricies pellentesque nunc, ultrices volutpat nisl ultrices a.
-\end{itemize}
+A design that is able to make the quadcopter hover and move to a desired position is designed. The system’s coupled behavior and instability raises a challenging control task.
 
+This task is solved by implementing a controller design, this is linearized since it is desired to use linear controllers. The system is split into an attitude and translational model. These are controlled individually by state space and classical controllers respectively. The prototype gets its attitude and position from a motion tracking system based on infrared cameras, keeping the control in a micro processor on the quadcopter. This layout constitutes a distributed system, where network issues, such as delays and packet losses, are taken into account.
 \end{block}
 
 %----------------------------------------------------------------------------------------
