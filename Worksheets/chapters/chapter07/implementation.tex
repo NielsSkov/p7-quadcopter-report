@@ -1,0 +1,90 @@
+\chapter{Implementation}
+
+
+
+
+\section{Scheduler}
+\begin{lstlisting}[style=customcpp,
+                    caption={Code for initialization, creation of the different tasks, start sequence for the motors and call to the scheduler.}, 
+                    label=lst:scheduler]
+int main()
+{
+    // Initialization
+    PWM_init(0);
+    USART_Init(MYUBRR);
+    ADC_Init();
+    
+    // Task Creation
+    xTaskCreate(Controllers, "Control", 1000, NULL, configMAX_PRIORITIES - 1, NULL );
+    xTaskCreate(Comunication, "Com", 1000, NULL, configMAX_PRIORITIES - 2, &xHandle);
+    
+    // Star sequence for the motor controllers
+    _delay_ms(1000);
+    int duty = 128;
+    Set_PWM_duty(duty, duty, duty, duty);
+    _delay_ms(10000);
+ 
+    // Scheduler Start
+    vTaskStartScheduler();
+    return 0;
+}                    
+\end{lstlisting}
+
+
+\section{Communication}
+\begin{lstlisting}[style=customcpp,
+                caption={Code for the comunication task.}, 
+                label=lst:scheduler]
+void Comunication(void *pvParameters)
+{
+    while (1)
+    {
+        int pack = 0;
+        pack = CheckPackageArrival();
+        if (pack)
+            GetPackage();
+    }
+    vTaskDelete(NULL);
+}
+\end{lstlisting}
+
+
+\section{Controllers}
+\begin{lstlisting}[style=customcpp,
+caption={Code for the controller task.}, 
+label=lst:scheduler]
+void Controllers(void *pvParameters)
+{
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
+    
+    while (1)
+    {
+        Controller();
+        count++;
+        ApplyVelocities();
+        if (reading)
+        {
+            vTaskDelete(xHandle);
+            xTaskCreate(Comunication, "Com", 1000, NULL, configMAX_PRIORITIES - 2, &xHandle);
+            reading = 0;
+        }
+        vTaskDelayUntil(&xLastWakeTime, 35);
+    }
+    vTaskDelete(NULL);
+}
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=customcpp,
+caption={Code for the controllers.}, 
+label=lst:scheduler]
+    ...
+    vel_ref_k[i] = -208.8*pos_e_k[i] + 198.2*pos_e_k1[i] + vel_ref_k1[i];
+    ...
+    xint_k[i] = T / 2 * (e_k[i] + e_k1[i]) + xint_k1[i];
+    ...
+    oint_k[i] = T / 2 * (o_k[i] + o_k1[i]) + oint_k1[i];
+    ...
+
+\end{lstlisting}

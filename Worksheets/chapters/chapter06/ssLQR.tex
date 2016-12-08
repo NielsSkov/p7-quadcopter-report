@@ -1,4 +1,4 @@
-In order to find the values of the feedback matrix, a Linear Quadratic Regulator (LQR) and Bryson's rule in order to find the optimal control and having the possibility of prioritizing the convergence of the different states while setting boundaries to the control action applied to the system. 
+In order to find the values of the feedback matrix, a Linear Quadratic Regulator (LQR) is utilized. and Bryson's rule in order to find the optimal control and having the possibility of prioritizing the convergence of the different states while setting boundaries to the control action applied to the system. 
 
 LQR finds the state feedback that minimizes the cost function \autoref{eq:costfunction}. \cite{ssReference}. %seen in it is possible to find the necessary state feedback gains which minimizes the cost function in 
 \begin{flalign} 
@@ -27,7 +27,7 @@ The state feedback gain, $\vec{F}_{\mathrm{e}}$, can be calculated using the exp
 \begin{where}
 	\va{\vec{P}}{is the state-transfer matrix.}{}
 \end{where}
-The positive definite matrix $\vec{P}$ that minimizes the cost function in \autoref{eq:costfunction} can be found from the Algebraic Riccatti equation \autoref{eq:optimaPl}  \cite{OptimalControlChristoffer}
+The positive definite matrix $\vec{P}$ that provides the feedback matrix that minimizes the cost function in \autoref{eq:costfunction} can be found using the Algebraic Riccatti equation \autoref{eq:optimaPl}  \cite{OptimalControlChristoffer}
 
 \begin{flalign} 
 	{\vec{A}{\mathrm{e}}}^T\vec{P}+\vec{P}\vec{A}_{\mathrm{e}}-\vec{P}\vec{B_{\mathrm{e}}}\vec{R}^{-1}\vec{B}_{\mathrm{e}}^T\vec{P}+\vec{Q} &= \vec{0}
