@@ -1,12 +1,27 @@
 \subsubsection{Attitude Controller Simulation}
-Final Response:
+In the following section the final design of the attitude controller is given. Hence the final pole locations from the state feedback and the observer are provided. The final response, step response and observer estimation of the attitude controller can therefore be analysed and discussed. To be able to discussed the final result and illustrate the iteration process which has been used to find the final pole locations, the state feedback and observer are changed. Thus it is possible to yield reasoning for why the final design of the attitude controller is as it is.
+
+A short description for the following three figures, \autoref{fig:ssFinalEq}, \autoref{fig:ssObsFinal} and \autoref{fig:ssFinalStep}, which is the final system response, step response and the estimation is given. The weighted matrices, $\vec{Q}$ and $\vec{R}$, utilized for the final attitude controller can be seen in \autoref{app:matricesSS}.
+
+In \autoref{fig:ssFinalEq} a simulated system response of the final attitude controller is shown. Initial conditions at time zero are given to the three angles. These are set to $0.2$ radians for the pitch, $-0.3$ for the roll and $-0.2$ for the yaw. The reference which the three angles is set to converge to is zero. \\ It can be seen from the figure that it approximately takes $2.5$ seconds for the pitch and roll to settle at zero, where it only takes approximately $1.4$-$1.5$ for the yaw.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{figures/ssFinalEq.pdf}
-	\caption{ \autoref{app:matricesSS}.}
+	\caption{System response of the attitude controller, with initial conditions of $0.2$ radians for the pitch, $-0.3$ radians for the roll and $-0.2$ radians for the yaw. The weighted matrices, $\vec{Q}$ and $\vec{R}$, which are utilized for the final design can be seen in \autoref{app:matricesSS}.}
 	\label{fig:ssFinalEq}
 \end{figure}
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{figures/ssObsFinal.pdf}
+	\caption{\autoref{app:matricesSS}.}
+	\label{fig:ssObsFinal}
+\end{figure}
+
+why are there spikes / delay. Sampling frequency 35 ms.
 
 Final step response:
 
@@ -19,12 +34,16 @@ Final step response:
 
 Final Observer Estimator:
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.8]{figures/ssObsFinal.pdf}
-	\caption{\autoref{app:matricesSS}.}
-	\label{fig:TranslationalControlDiagram}
-\end{figure}
+steady state margin 5 percent
+
+rise time
+
+setling time
+
+overshoot
+
+The yaw because the reference is always zero, as we do not want to track the yaw.
+
 
 Higher F gain:
 
