@@ -10,12 +10,34 @@ Multicopters constitutes a class of drones with fixed-pitch propellers. This mea
   \label{fig:multicopters}
 \end{figure}
 
-The aim of the project is to investigate the capabilities of a specific design strategy when controlling the attitude of a quadcopter as part of a distributed system.
+The aim of the project is to investigate the capabilities of a specific design strategy when controlling a quadcopter as part of a distributed system.
 
-The quadcopter obtains its attitude over a network from a motion tracking system. This introduces delay and packet loss as a limiting factor to the control system situated on the quadcopter. The controlling code is implemented in C on a microcontroller using a real time operating system (RTOS), called FreeRTOS.
+The quadcopter obtains its attitude and position over a network from an external motion tracking system. This introduces delay and packet loss as a limiting factor to the control system situated on the quadcopter. The controlling code is implemented in C on a microcontroller using a real time operating system (RTOS), called FreeRTOS.
 
-The system's coupled behavior and instability raises a challenging control task. This task is solved by implementing a controller design, which is based upon a model that is derived by first principle modeling. This is later linearized since it is desired to use linear controllers.\\
-The system is divided into an attitude controller and translational controllers. The attitude controller is in focus in this project. The translational controllers are cascaded around the attitude controller.
+The system's coupled behavior and instability raises a challenging control task. This task is solved by implementing a controller design, which is based on a model derived by first principle modeling. This is later linearized since it is desired to use linear controllers.\\
+The system is divided into an attitude controller and translational controllers, where the translational controllers are cascaded around the attitude controller.
 
 The attitude control strategy is based in state space design, and makes use of state feedback, a linear quadratic regulator (LQR) and an integral controller.\\
-The translational controllers are designed as classical proportional and integral controllers around the inner state space design.
+The translational controllers are designed as classical linear proportional and integral controllers around the inner state space design.
+
+This project provides design and realization of the described system. It results in evaluation of performance tests revealing the capabilities of the system.\\
+Some interesting subjects in focus are the performance achievable using the chosen linear attitude control strategy, the influence of remote sensing on the attitude control, the influence of the attitude control bandwidth on the translational controllers and the performance of a cascaded control structure with classical linear translational controllers.
+
+
+%Papers on relevant subjects:
+%The performance achievable using the chosen linear attitude control strategy
+
+
+%The influence of remote sensing on the attitude control
+
+
+%The influence of the attitude control bandwidth on the translational controllers
+
+
+%The performance of a cascaded control structure with classical linear translational controllers.
+
+
+
+
+
+
