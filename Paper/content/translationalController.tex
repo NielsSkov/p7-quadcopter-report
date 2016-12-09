@@ -1,5 +1,5 @@
 \subsection{Translational Controller}
-The translational controllers are structured as cascade loops, where the velocity and position are controlled in the inner and outer loop, respectively. The relation between the controllers is presented in \autoref{fig:cascade}.
+The translational controllers are structured as cascade loops, where the velocity and position are controlled in the inner and outer loop, respectively. The relation between the controllers is presented in \autoref{fig:cascade}.\fxnote{Clarify a bit more the design, use figure 5}
 %
 \begin{figure}[H]
 	\hspace{-.37cm}
@@ -7,7 +7,7 @@ The translational controllers are structured as cascade loops, where the velocit
 	\caption{Overview of translational controllers structure.}
 	\label{fig:cascade}
 \end{figure}
-
+\fxnote{say that we keep the yaw to 0}
 The x and y controllers share similar properties as both their outputs are angle references, $\theta_{\mathrm{ref}}$ and $\phi_{\mathrm{ref}}$. This is true as long as the system is close to the linearization point. This implies that $\psi_{\mathrm{ref}}$ is set to zero all the time. The output of the z controller is the required sum of motor rotational speeds.\\
 
 To design the inner controllers for the velocities $\dot{x}$ and $\dot{y}$, the model equations derived previously, see \eqref{eq:AccelerationEqInertial1} and \eqref{eq:AccelerationEqInertial2}, are Laplace transformed. These are used to create a transfer function between the angles and the velocities, yielding
@@ -20,7 +20,7 @@ To design the inner controllers for the velocities $\dot{x}$ and $\dot{y}$, the 
 
 Since the plants are the same but with different signs, the controller design is carried out for $\dot{x}$ and applied to $\dot{y}$ afterwards with opposite sign.
 
-A proportional controller is chosen as the plant already has an integrator, which eliminates steady state tracking error and the effect of output disturbances. The gain is designed such that the system has a bandwidth that is three times lower than the attitude control loop to ensure that its dynamics do not affect the designed controller.\fxnote{Change to PI controllers??} %\cite{bandwidthReference}.
+A proportional controller is chosen as the plant already has an integrator, which eliminates steady state tracking error and the effect of output disturbances. The gain is designed such that the system has a bandwidth that is three times lower than the attitude control loop to ensure that its dynamics do not affect the designed controller.\fxnote{3 to 5 times source} \fxnote{why 3 instead of 5}\fxnote{Change to PI controllers??} \fxnote{put numbers when we talk about bandwidth??} %\cite{bandwidthReference}.
 
 The translational position loop is then designed with the same method, three times less bandwidth than the inner velocity loop. The plant of the outer loop is considered only as an integrator that transforms velocity to position. As for the inner loop, the controller of the outer loop is a proportional controller. \\
 
