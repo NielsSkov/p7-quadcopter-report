@@ -7,8 +7,7 @@ The translational controllers are structured as cascade loops, where the velocit
 	\caption{Overview of translational controllers structure.}
 	\label{fig:cascade}
 \end{figure}
-\fxnote{say that we keep the yaw to 0}
-The x and y controllers share similar properties as both their outputs are angle references, $\theta_{\mathrm{ref}}$ and $\phi_{\mathrm{ref}}$. This is true as long as the system is close to the linearization point. This implies that $\psi_{\mathrm{ref}}$ is set to zero all the time. The output of the z controller is the required sum of motor rotational speeds.\\
+The x and y controllers share similar properties as both their outputs are angle references, $\theta_{\mathrm{ref}}$ and $\phi_{\mathrm{ref}}$. This is true as long as the system is close to the linearization point. This implies that $\psi_{\mathrm{ref}}$ is set to zero all the time, as it is desired to have zero yaw. This is done, as the translational movement can then be obtained by only rotating one axis. The output of the z controller is the required sum of motor rotational speeds.\\
 
 To design the inner controllers for the velocities $\dot{x}$ and $\dot{y}$, the model equations derived previously, see \eqref{eq:AccelerationEqInertial1} and \eqref{eq:AccelerationEqInertial2}, are Laplace transformed. These are used to create a transfer function between the angles and the velocities, yielding
 \begin{flalign}
@@ -20,7 +19,8 @@ To design the inner controllers for the velocities $\dot{x}$ and $\dot{y}$, the 
 
 Since the plants are the same but with different signs, the controller design is carried out for $\dot{x}$ and applied to $\dot{y}$ afterwards with opposite sign.
 
-A proportional controller is chosen as the plant already has an integrator, which eliminates steady state tracking error and the effect of output disturbances. The gain is designed such that the system has a bandwidth that is three times lower than the attitude control loop to ensure that its dynamics do not affect the designed controller.\fxnote{3 to 5 times source} \fxnote{why 3 instead of 5}\fxnote{Change to PI controllers??} \fxnote{put numbers when we talk about bandwidth??} %\cite{bandwidthReference}.
+A proportional controller is chosen as the plant already has an integrator, which eliminates steady state tracking error and the effect of output disturbances. Based upon a rule of thumb, which suggest a 3-5 times slower outerloop, the gain is designed such that the system has a bandwidth that is three times lower than the attitude control loop to ensure that its dynamics do not affect the designed controller \fxnote{insert source, Noelia, dropbox}. This yields a bandwidth of 2 rad/s for the attitude control and a bandwidth of 0.7 rad/s for the velocity control of the translational cascade control. Due to the sampling rate of the Vicon system, it is desired to have as large bandwidths as possible, as the quadcopter otherwise will be very slow to react.  \fxnote{Change to PI controllers, Noelia??} 
+ %\cite{bandwidthReference}.
 
 The translational position loop is then designed with the same method, three times less bandwidth than the inner velocity loop. The plant of the outer loop is considered only as an integrator that transforms velocity to position. As for the inner loop, the controller of the outer loop is a proportional controller. \\
 
