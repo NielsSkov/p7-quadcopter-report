@@ -33,6 +33,7 @@ The mass and the length have been measured, $k_{\mathrm{th}}$ and $k_{\mathrm{d}
 The value of delay used in the simulation \fxnote{WRITE NUMBER} milliseconds and the packet loss probability is set to zero.
 
 The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diagonal matrices shown below and the chosen observer poles, which are $[-11, -12, -13]$.
+
 %\footnotesize{
 %\begin{flalign}   \label{Fematrix}
 %	\vec{F}&=
@@ -51,12 +52,10 @@ The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diago
 %		\end{bmatrix}\nonumber
 %\end{flalign}}
 %\normalsize
-\small{
-\begin{flalign}   \label{Fematrix}
-	\vec{Q}&=diag(\frac{1}{111^2},\frac{1}{222^2},\frac{1}{333^2},\frac{1}{444^2},\frac{1}{555^2},\frac{1}{666^2},\frac{1}{777^2},\frac{1}{999^2},\frac{1}{888^2}) \nonumber\\
-	\vec{R}&=diag(\frac{1}{111^2},\frac{1}{222^2},\frac{1}{333^2},\frac{1}{444^2})\nonumber
-\end{flalign}}
-\normalsize
+\noindent$\vec{Q}=diag\left(\frac{1}{111^2},\frac{1}{222^2},\frac{1}{333^2},\frac{1}{444^2},\frac{1}{555^2},\frac{1}{666^2},\frac{1}{777^2},\frac{1}{999^2},\frac{1}{888^2}\right)$
+
+\noindent$\vec{R}=diag\left(\frac{1}{111^2},\frac{1}{222^2},\frac{1}{333^2},\frac{1}{444^2}\right) $
+
 \fxnote{check values in matrices}
 The translation velocity controllers for x, y and z are
 \begin{minipage}{0.45\linewidth}
