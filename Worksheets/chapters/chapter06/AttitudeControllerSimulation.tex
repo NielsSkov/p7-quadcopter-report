@@ -1,5 +1,5 @@
 \subsubsection{Attitude Controller Simulation}
-In the following section the final design of the attitude controller is given. Hence the final pole locations from the state feedback and the observer are provided. The final angle response, step response of the angles and observer estimation of the attitude controller can therefore be analysed and discussed. To be able to discussed the final result and illustrate the iteration process which has been used to find the final pole locations, the state feedback and observer are changed. Thus it is possible to yield reasoning for why the final design of the attitude controller is as it is.
+In the following section the final design of the attitude controller is given. Hence the final pole locations from the state feedback and the observer are provided. The final angle response, step response of the angles and observer estimation can therefore be analysed and discussed. To be able to discussed the final result and illustrate the iteration process which has been used to find the final pole locations, the state feedback and observer are changed. Thus it is possible to yield reasoning for why the final design of the attitude controller is as it is.
 
 A short description for the following three figures, \autoref{fig:ssFinalEq}, \autoref{fig:ssObsFinal} and \autoref{fig:ssFinalStep}, which is the final angle response, step response and the estimation of the angular velocities, is given. The weighted matrices, $\vec{Q_{final}}$ and $\vec{R_{final}}$, and the observer gain, $\vec{L_{obs}}$, which is utilized for the final attitude controller can be seen in \autoref{app:matricesSS}.
 
@@ -21,7 +21,7 @@ In \autoref{fig:ssObsFinal} the observer estimation for the angular velocity in 
 	\label{fig:ssObsFinal}
 \end{figure}
 %
-A step response of the roll and pitch, with a reference set to one, is shown in \autoref{fig:ssFinalStep}. The yaw is not illustrated as the reference is consistently set to zero, see \autoref{chap:Control}. It is therefore only desired to discover how the roll and pitch responds to a reference shift. It can be seen that the step response of the two angles is similar, this is expected as the implementation of the two is identical. \\ With an error band of 5 percent, the settling time is approximately $1.5$ \si{s} and the overshoot is less than 5 percent. 
+A step response of the roll and pitch, with a reference set to one, is shown in \autoref{fig:ssFinalStep}. The yaw is not illustrated as the reference is consistently set to zero, see \autoref{chap:Control}. It is therefore only desired to discover how the roll and pitch responds to a reference shift. It can be seen that the step response of the two angles is similar, this is expected as the implementation of the two is identical. \\ With an error band of 5 percent, the settling time is approximately $1.5$ \si{s} and the overshoot is less than 5 percent. \fxnote{write something about why 1.5 is okay?}
 %
 \begin{figure}[H]
 	\centering
