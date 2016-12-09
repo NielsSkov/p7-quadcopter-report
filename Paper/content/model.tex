@@ -1,6 +1,6 @@
 \section{Model}\label{sec:model}
 %Model - Drawing, equations, linear equations.
-The quadcopter free body diagram is shown in \autoref{droneDiagram}. 
+A free body diagram of the quadcopter is seen in \autoref{droneDiagram}. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.4\textwidth]{figures/droneDiagram}
@@ -17,9 +17,10 @@ The dynamic model of the quadcopter is given by three sets of equations. The fir
 \fxnote{In the modeling section, what are your assumptions? What is the reason for not including model parts such as Gyroscopic torque, Air friction/drag on the quadcopter itself (even though you include it on the propellers), Aerodynamic lift, Mass placement and separation of masses, Coriolis acceleration?}
 
 \subsection{Motor and Propeller}
-The four motors in the quadcopter generate a rotation in the propellers that creates the force that lifts the quadcopter. The thrust force can be modeled as proportional to the square of the motor rotational speed. The thrust coefficient for each motor is found experimentally. The units for this coefficient are \si{N s^2 rad^{-2}}
+The four motors in the quadcopter generate a rotation in the propellers that creates the force that lifts the quadcopter. The thrust force can be modeled as proportional to the square of the motor rotational speed. The thrust coefficient for each motor is found experimentally.
+ \fxnote{source on why the thrust and drag torque can be modelled like that.}
  
-The rotation also generates a torque on each motor due to the aerodynamic drag. Drag torque is compensated in the quadcopter by having two of the motors turning in one direction and the two others in the opposite direction. It is as well described as proportional to the square of the rotational speed in terms of a drag coefficient, which is also obtained experimentally. Its units are \si{N m s^2  rad^{-2}}
+The rotation also generates a torque on each motor due to the aerodynamic drag. Drag torque is compensated in the quadcopter by having two of the motors turning in one direction and the two others in the opposite direction. It is also described as proportional to the square of the rotational speed in terms of a drag coefficient, which is also obtained experimentally.
 
 The expressions for the thrust force and drag torque caused by the rotation of each propeller are
 %
@@ -28,7 +29,7 @@ The expressions for the thrust force and drag torque caused by the rotation of e
 	\tau&=k_{\mathrm{d}}\omega^2\label{eq:dragTorque}
 \end{flalign}
 %
-\noindent where $F$ is the thrust force, $k_{th}$ is the thrust coefficient, $\omega$ is the angular speed of the motor, $\tau$ is the drag torque and $k_d$ is the drag coefficient.
+\noindent where $F$ is the thrust force, $k_{\mathrm{th}}$ [\si{N s^2  rad^{-2}}] is the thrust coefficient, $\omega$ is the angular speed of the motor, $\tau$ is the drag torque and $k_{\mathrm{d}}$ [\si{N m s^2  rad^{-2}}] is the drag coefficient.
 %\begin{where}
 %  \va{F}{is the thrust force}{N}
 %  \va{k_{th}}{is the thrust coefficient}{N\  s^2 \  rad^{-2}}
@@ -48,7 +49,7 @@ The attitude model equations, which are based on Newton's Second Law for rotatio
 	J_z\ddot{\psi}&=k_{\mathrm{d}} (\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)\label{eq:AngleEqVelocities3}
 \end{flalign}
 
-\noindent where $J_x$, $J_y$ and $J_z$ are the moments of inertia around the three axes of rotation, $\ddot{\phi}$, $\ddot{\theta}$ and $\ddot{\psi}$ are the angular accelerations in roll, pitch and yaw, respectively, $\omega_i$ is the rotational speed of each motor and $L$ is the distance between the center of the quadcopter and the position of the motors.
+\noindent where $J_x$, $J_y$ and $J_z$ are the moments of inertia around the three axes of rotation, $\ddot{\phi}$, $\ddot{\theta}$ and $\ddot{\psi}$ are the angular accelerations in roll, pitch and yaw, respectively, $\omega_i$ is the rotational speed of each motor and $L$ is the distance between the center of the quadcopter and the position of the motors. The parameters of the model are found in \autoref{sec:results}.
 
 The expressions above state how the thrust forces and the drag torques generated on the propellers affect the attitude behavior of the quadcopter.  
 \subsection{Translational Model}
@@ -62,16 +63,15 @@ The equations describing the response of the system along the inertial x, y and 
      m\ddot{z}_{\mathrm{I}} = &F_g-k_{\mathrm{th}}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \label{eq:AccelerationEqInertial3}\\
      & \ \times \cos\phi\cos\theta  \nonumber
 \end{flalign}
-\noindent where $m$ is the mass of the quadcopter, $\ddot{x}_I$, $\ddot{y}_I$ and $\ddot{z}_I$ are the accelerations along the inertial reference frame directions, $\phi$, $\theta$ and $\psi$ are the roll, pitch and yaw angles respectively and $F_g$ is the gravitational force acting on the quadcopter.
+\noindent where $m$ is the mass of the quadcopter, $\ddot{x}_{\mathrm{I}}$, $\ddot{y}_{\mathrm{I}}$ and $\ddot{z}_{\mathrm{I}}$ are the accelerations along the inertial reference frame directions, $\phi$, $\theta$ and $\psi$ are the roll, pitch and yaw angles respectively and $F_g$ is the gravitational force acting on the quadcopter. The parameters of the model are found in \autoref{sec:results}.
 
-It is worth mentioning that, as the thrust forces always point in the negative ${z}_B$ direction, the accelerations along ${x}_{\mathrm{I}}$ and ${y}_{\mathrm{I}}$ directions are zero when pitch and roll angles are zero.
-
+It is worth mentioning that, as the thrust forces always point in the negative ${z}_{\mathrm{B}}$ direction, the accelerations along ${x}_{\mathrm{I}}$ and ${y}_{\mathrm{I}}$ directions are zero when pitch and roll angles are zero. 
 \subsection{Linearization}
-The model equations are linearized using the first order Taylor approximation around an equilibrium point of the system. The chosen point is the hovering position, which implies that the attitude and translational accelerations and velocities are zero. The angular position of the quadcopter is also part of the point around which the linearization is made, and it is also set to zero in the three angles.
+The model equations are linearized using the first order Taylor approximation around an equilibrium point of the system. This point is the hovering position, which implies that the attitude and translational accelerations and velocities are zero. The angular position of the quadcopter is also set to zero in the three angles.
 
-Choosing a zero acceleration linearization point along the ${z}_{\mathrm{I}}$ axis yields an equilibrium rotational speed so that the necessary thrust is generated to compensate for the gravitational force. The relation is expressed as\fxnote{Should we use the same $\overline{\omega}$?}
+Choosing a zero acceleration linearization point along the ${z}_{\mathrm{I}}$ axis yields an equilibrium rotational speed so that the necessary thrust is generated to compensate for the gravitational force. The relation is expressed as
 \begin{flalign}
-    \overline{\omega}_i=\sqrt{\frac{mg}{4k_{th}}}
+    \overline{\omega}_i=\sqrt{\frac{mg}{4k_{\mathrm{th}}}} \ \ \ .
     \label{eq:equilibriumomegas}
 \end{flalign}
 The resulting equations for the attitude model after the linearization are 
