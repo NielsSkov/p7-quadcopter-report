@@ -31,10 +31,10 @@ The attitude controller for the quadcopter is designed using a state space repre
 %%
 %where $\vec{A}$ is the system matrix, $\vec{B}$ is the input matrix, $\vec{C}$ is the output matrix and $\vec{D}$ is the feedforward matrix.
 %
-The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices in the state space model are obtained from the linearized attitude equations \eqref{eqAngleLin1}, \eqref{eqAngleLin2} and \eqref{eqAngleLin3}, yielding the matrices shown below. As $\vec{D}$ is a zero matrix, only $\vec{A}$, $\vec{B}$ and $\vec{C}$ are shown. \fxnote{remove this matrices???}
-
-\vspace{-.5cm}\footnotesize{
-\begin{flalign}   \label{Amatrix}
+The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices in the state space model are obtained from the linearized attitude equations \eqref{eqAngleLin1}, \eqref{eqAngleLin2} and \eqref{eqAngleLin3}, yielding  \fxnote{remove this matrices???}
+\vspace{0cm}
+\footnotesize{
+\begin{align}   
 	\vec{A}=
 	\begin{bmatrix}
 		\ 0 & 0 & 0 & 1 & 0 & 0     \ \ \ \\ 
@@ -43,8 +43,13 @@ The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices in the
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \  
-	\end{bmatrix}\nonumber
-\end{flalign} \label{Bmatrix}
+	\end{bmatrix} , \vec{C} =	 
+	\begin{bmatrix}
+		\ 1 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
+		\ 0 & 1 & 0 & 0 & 0 & 0     \ \ \ \\ 
+		\ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 
+	\end{bmatrix} ,\nonumber
+\end{align} 
 \vspace{-0.3 cm}
 \begin{flalign}
     \vec{B} =
@@ -54,21 +59,15 @@ The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices in the
 		\ 0 & 0 & 0 & 0      \ \ \ \\
 		\ 0 & \si{-\frac{2  k_{\mathrm{th}} L \overline{\omega}_2}{J_x}} & 0 & \si{\frac{2 k_{\mathrm{th}}  L \overline{\omega}_4}{J_x}}      \ \ \ \\ 
 		\ \si{\frac{2 k_{\mathrm{th}} L  \overline{\omega}_1}{J_y}} & 0 & \si{-\frac{2  k_{\mathrm{th}} L \overline{\omega}_3}{J_y}} & 0      \ \ \ \\ 
-		\ \frac{2 k_{\mathrm{d}} {\overline{\omega}_1}}{J_z} & - \frac{2 k_{\mathrm{d}} {\overline{\omega}_2}}{J_z} & \frac{2 k_{\mathrm{d}}  {\overline{\omega}_3}}{J_z} & - \frac{2 k_{\mathrm{d}} {\overline{\omega}_4}}{J_z}      \ \ \ 		
-	\end{bmatrix}\nonumber
+		\ \frac{2 k_{\mathrm{d}} {\overline{\omega}_1}}{J_z} & - \frac{2 k_{\mathrm{d}} {\overline{\omega}_2}}{J_z} & \frac{2 k_{\mathrm{d}}  {\overline{\omega}_3}}{J_z} & - \frac{2 k_{\mathrm{d}} {\overline{\omega}_4}}{J_z}      		
+	\end{bmatrix} \ \ .\nonumber
 \end{flalign}
-\vspace{-0.3 cm}
-\begin{flalign} \label{Cmatrix}
-	\vec{C} =	 
-	\begin{bmatrix}
-		\ 1 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
-		\ 0 & 1 & 0 & 0 & 0 & 0     \ \ \ \\ 
-		\ 0 & 0 & 1 & 0 & 0 & 0     \ \ \ 
-	\end{bmatrix}\nonumber
-\end{flalign} }
+\vspace{0.0 cm}
+ }
 \normalsize
 
-The attitude control is based on a state feedback and an integral term in order to be able to track a given reference and reject input disturbances. As not all states are measured a reduced order observer is implemented to estimate the angular velocities of the quadcopter. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
+\noindent Note, that the $\vec{D}$ matrix is a zero matix.\\
+\indent The attitude control is based on a state feedback and an integral term in order to be able to track a given reference and reject input disturbances. As not all states are measured a reduced order observer is implemented to estimate the angular velocities of the quadcopter. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
 \\
 \\
 \noindent\autoref{AttitudeControlDiagram} shows how these designs are related.
@@ -109,7 +108,7 @@ where\\
     \begin{bmatrix}
     \ \dot{\vec{x}}(t)      \ \  \\ 
     \ \dot{\vec{x}}_{\mathrm{int}}(t)      \ \   		
-    \end{bmatrix} \nonumber
+    \end{bmatrix} , \nonumber
     \end{flalign}
 \end{minipage}\hfill
 \begin{minipage}{0.45\linewidth}
@@ -118,7 +117,7 @@ where\\
     \begin{bmatrix}
     \ \vec{A}  & \vec{0}    \ \  \\ 
     \ \vec{C}  & \vec{0}    \ \   		
-    \end{bmatrix} \nonumber
+    \end{bmatrix} , \nonumber
     \end{flalign}
 \end{minipage}   \hfill 
 
@@ -128,7 +127,7 @@ where\\
         \begin{bmatrix}
             \ \vec{B}    \ \  \\ 
             \ \vec{0}     \ \   		
-        \end{bmatrix} \nonumber
+        \end{bmatrix} ,\nonumber
     \end{flalign}
 \end{minipage}\hfill
 \begin{minipage}{0.45\linewidth}
@@ -136,7 +135,7 @@ where\\
         \vec{C}_\mathrm{e}=
         \begin{bmatrix}
             \ \vec{C}  & \vec{0}  \ \   		
-        \end{bmatrix} \nonumber
+        \end{bmatrix} .\nonumber
     \end{flalign}
 \end{minipage}
 \\ 
@@ -178,7 +177,7 @@ Once $\vec{F}_\mathrm{e}$ is obtained, it is split into $\vec{F}$ and $\vec{F}_{
 
 Since certain states in the system are not measured, an observer estimates the remaining states by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$. 
 
-The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\vec{A}_{12}$ give the desired dynamics for the estimation \cite{ssReference}. This is done splitting the original system matrices into the submatrices\\ \fxnote{Formulate desired dynamics in another}
+The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\vec{A}_{12}$ give the desired dynamics for the estimation \cite{ssReference}. This is done splitting the original system matrices into the submatrices.\\ \fxnote{Formulate desired dynamics in another}
 %
 \begin{minipage}{0.45\linewidth}
     \begin{flalign}
