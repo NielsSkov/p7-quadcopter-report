@@ -1,8 +1,7 @@
 \section{Results}\label{sec:results}
-The controllers have been simulated in MATLAB Simulink in order to generate results presented in this section. \fxnote{split in different subsections??} \fxnote{More details on how to obtain simulations if we put them in the paper.}
+The controllers, the network and the model have been simulated in MATLAB Simulink in order to generate results presented in this section. These results are also compared with real tests performed in the quadcopter. \fxnote{split in different subsections??} \fxnote{More details on how to obtain simulations if we put them in the paper.}
 
-The model parameters can be seen in \autoref{ParametersQuadcopter} . All of them have been obtained through tests except for the moments of inertia, which were calculated by following an analytical procedure. \fxnote{More details on how the parameters were obtained and a comparison of how good is the model??}
-
+The model parameters can be seen in \autoref{ParametersQuadcopter}. 
 \begin{table}[H]
     \centering
     \begin{tabular}{c|c|c}
@@ -29,31 +28,61 @@ The model parameters can be seen in \autoref{ParametersQuadcopter} . All of them
     \caption{Parameters used though the analysis and design.\fxnote{Is this a result?Should we move it up?}}
     \label{ParametersQuadcopter}
 \end{table}
-The attitude controller is defined by the designed $\vec{F}$ and $\vec{F}_{\mathrm{int}}$ matrices shown below and the chosen observer poles, which are $[-11, -12, -13]$.
-\footnotesize{
-\begin{flalign}   \label{Amatrix}
-	\vec{F}&=
-	\begin{bmatrix}
-		 0.00    & -165.15 & -223.35  &  0.00   &-44.04 & -68.52  \ \ \ \\
-		 165.15  &  0.00   & 223.35   &  44.04  & 0.00  &  68.52  \ \ \ \\
-		 0.00    & 165.15  & -223.35  &  0.00   &44.04  & -68.52  \ \ \ \\
-		 -165.15 & 0.00    & 223.35   & -44.04  & 0.00  &  68.52  \ \ \ 
-	\end{bmatrix}\nonumber\\
-		\vec{F}_{\mathrm{int}}&=
-		\begin{bmatrix}
-		   0.00   & -220.97 & -250.00  \ \ \ \\
-		   220.97 &   0.00  & 250.00   \ \ \ \\
-		   0.00   & 220.97  & -250.00  \ \ \ \\
-		  -220.97 &  0.00   &  250.00  \ \ \ 
-		\end{bmatrix}\nonumber
+The mass and the length have been measured, $k_{\mathrm{th}}$ and $k_{\mathrm{d}}$ have been obtained through testing the propellers when rotating at different speeds and the moments of inertia have been calculated analytically considering the quadcopter as a combination of different masses with known moment of inertia.
+
+The value of delay used in the simulation \fxnote{WRITE NUMBER} milliseconds and the packet loss probability is set to zero.
+
+The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diagonal matrices shown below and the chosen observer poles, which are $[-11, -12, -13]$.
+%\footnotesize{
+%\begin{flalign}   \label{Fematrix}
+%	\vec{F}&=
+%	\begin{bmatrix}
+%		 0.00    & -165.15 & -223.35  &  0.00   &-44.04 & -68.52  \ \ \ \\
+%		 165.15  &  0.00   & 223.35   &  44.04  & 0.00  &  68.52  \ \ \ \\
+%		 0.00    & 165.15  & -223.35  &  0.00   &44.04  & -68.52  \ \ \ \\
+%		 -165.15 & 0.00    & 223.35   & -44.04  & 0.00  &  68.52  \ \ \ 
+%	\end{bmatrix}\nonumber\\
+%		\vec{F}_{\mathrm{int}}&=
+%		\begin{bmatrix}
+%		   0.00   & -220.97 & -250.00  \ \ \ \\
+%		   220.97 &   0.00  & 250.00   \ \ \ \\
+%		   0.00   & 220.97  & -250.00  \ \ \ \\
+%		  -220.97 &  0.00   &  250.00  \ \ \ 
+%		\end{bmatrix}\nonumber
+%\end{flalign}}
+%\normalsize
+\small{
+\begin{flalign}   \label{Fematrix}
+	\vec{Q}&=diag(\frac{1}{111^2},\frac{1}{222^2},\frac{1}{333^2},\frac{1}{444^2},\frac{1}{555^2},\frac{1}{666^2},\frac{1}{777^2},\frac{1}{999^2},\frac{1}{888^2}) \nonumber\\
+	\vec{R}&=diag(\frac{1}{111^2},\frac{1}{222^2},\frac{1}{333^2},\frac{1}{444^2})\nonumber
 \end{flalign}}
 \normalsize
-\fxnote{should we have these matrices??}
-The translation velocity controllers for x and y are $C_{\dot{x}}(s)= -0.1$, $C_{\dot{y}}(s)= 0.1$ and the position ones are $C_x(s)= 0.5$, $C_y(s)= 0.5$. The PI-controller for the z translational velocity is $C_{\dot{z}}(s)=-201\frac{s+0.8}{s}$ and the outer loop P-controller is $C_z=0.9$. \fxnote{Split this into normal equations??}
+\fxnote{check values in matrices}
+The translation velocity controllers for x, y and z are
+\begin{minipage}{0.45\linewidth}
+	\begin{flalign}
+		C_{\dot{x}_{\mathrm{I}}}=-C_{\dot{y}_{\mathrm{I}}}=TO WRITE\nonumber
+	\end{flalign}
+\end{minipage}   \hfill 
+\begin{minipage}{0.45\linewidth}
+	\begin{flalign}
+		C_{\dot{z}_{\mathrm{I}}}=-201.8\frac{s+0.8}{s}\ ,\nonumber
+	\end{flalign}
+\end{minipage}\\
+while the position controllers are \\
+\begin{minipage}{0.45\linewidth}
+	\begin{flalign}
+		C_{x_{\mathrm{I}}}=-C_{y_{\mathrm{I}}}=TO WRITE\nonumber
+	\end{flalign}
+\end{minipage}   \hfill 
+\begin{minipage}{0.45\linewidth}
+	\begin{flalign}
+		C_{z_{\mathrm{I}}}=-201.8\frac{s+0.8}{s}\ .\nonumber
+	\end{flalign}
+\end{minipage}\\
 
-These controllers are discretized using the Tustin method with a sampling period of 35 ms, as this is the fastest available frequency in which data can be acquired from the motion tracking system and transmitted to the quadcopter.
+These controllers are discretized using the Tustin method with a sampling frequency of 28 Hz. This is the fastest available frequency in which data can be acquired from the motion tracking system and transmitted to the quadcopter.
 
-Regarding the network, the delay is 40 ms and the package loss probability is set to zero due to the low transmission frequency used in the system.
 The simulation results obtained with these parameters and controllers are shown in \autoref{PositionControl}.
 \begin{figure}[H]
 	\centering
@@ -69,5 +98,3 @@ The inner attitude controller results are also included and shown in \autoref{At
 	\caption{Attitude control results in the three angles. The references given to the attitude control system are shown with dashed lines.}
 	\label{AttitudeControl}
 \end{figure}
-
-
