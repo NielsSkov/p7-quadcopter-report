@@ -20,8 +20,8 @@ The quadcopter obtains its attitude and position over a network from an external
 The system's coupled behavior and instability raises a challenging control task. This task is solved by implementing a controller design, which is based on a model derived by first principle modeling. This is later linearized since it is desired to use linear controllers.\\
 The system is divided into an attitude controller and translational controllers, where the translational controllers are cascaded around the attitude controller.
 
-The attitude control strategy is based in state space design, and makes use of state feedback, a linear quadratic regulator (LQR) and an integral controller.\\
+The attitude control strategy is based in state space design, and makes use of state feedback and an integral controller.\\
 The translational controllers are designed as classical linear proportional and integral controllers around the inner state space design.
 
 This project provides design and realization of the described system. It results in evaluation of performance tests revealing the capabilities of the system.\\
-Some interesting subjects in focus are the performance achievable using the chosen linear attitude control strategy, the influence of remote sensing on the attitude control, the influence of the attitude control bandwidth on the translational controllers and the performance of a cascaded control structure with classical linear translational controllers.
+Subjects in focus are the performance achievable using the chosen linear attitude control strategy, the influence of remote sensing on the attitude control, the influence of the attitude control bandwidth on the translational controllers and the performance of a cascaded control structure with classical linear translational controllers.

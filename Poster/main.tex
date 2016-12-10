@@ -52,10 +52,11 @@
 \setlength{\paperwidth}{48in} % A0 width: 46.8in
 \setlength{\paperheight}{36in} % A0 height: 33.1in
 \setlength{\sepwid}{0.024\paperwidth} % Separation width (white space) between columns
-\setlength{\onecolwid}{0.22\paperwidth} % Width of one column
-\setlength{\twocolwid}{0.464\paperwidth} % Width of two columns
+\setlength{\onecolwid}{0.23\paperwidth} % Width of one column
+\setlength{\twocolwid}{0.42\paperwidth} % Width of two columns
 \setlength{\threecolwid}{0.708\paperwidth} % Width of three columns
 \setlength{\topmargin}{-0.5in} % Reduce the top margin size
+
 %-----------------------------------------------------------
 
 \usepackage{graphicx}  % Required for including images
@@ -67,9 +68,9 @@
 %	TITLE SECTION 
 %----------------------------------------------------------------------------------------
 
-\title{Attitude and Position Control of a Quadcopter in a Networked \\	Distributed System} % Poster title
+\title{Attitude and position control of a quadcopter in a networked \\	distributed system} % Poster title
 
-\author{Alejandro Alonso García, Amalie V. Petersen, Andrea Victoria Tram Løvemærke,\\ Niels Skov Vestergaard, Noelia Villarmarzo Arruñada} % Author(s)
+\author{\textit{Alejandro Alonso García, Amalie V. Petersen, Andrea Victoria Tram Løvemærke,\\ Niels Skov Vestergaard, Noelia Villarmarzo Arruñada} - Group 733} % Author(s)
 
 \institute{	Email: [aalons16] [apet13] [alavem13] [nveste12] [nvilla16] @student.aau.dk} % Institution(s)
 
@@ -83,11 +84,11 @@
 
 \begin{document}
 
-\addtobeamertemplate{block end}{}{\vspace*{2ex}} % White space under blocks
-\addtobeamertemplate{block alerted end}{}{\vspace*{2ex}} % White space under highlighted (alert) blocks
+\addtobeamertemplate{block end}{}{\vspace*{1ex}} % White space under blocks
+\addtobeamertemplate{block alerted end}{}{\vspace*{1ex}} % White space under highlighted (alert) blocks
 
-\setlength{\belowcaptionskip}{2ex} % White space under figures
-\setlength\belowdisplayshortskip{2ex} % White space under equations
+\setlength{\belowcaptionskip}{1ex} % White space under figures
+\setlength\belowdisplayshortskip{1ex} % White space under equations
 
 \begin{frame}[t] % The whole poster is enclosed in one beamer frame
 
@@ -100,36 +101,16 @@
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
-
 \begin{block}{Introduction}
-%In the last years, the interest for quadcopters has increased due to the great possibilities they offer. Among these, the most well-known ones are surveillance, inspection of big structures and search and rescue missions in difficult environments.
-A design that is able to make the quadcopter hover and move to a desired position is designed. The system’s coupled behavior and instability raises a challenging control task.
-
-This task is solved by implementing a linear control design. The system is split into an attitude and translational model. These are controlled individually by state space and classical controllers respectively. The prototype gets its attitude and position from a motion tracking system based on infrared cameras, keeping the control in a micro processor on the quadcopter. This layout constitutes a distributed system, where network issues, such as delays and packet losses, are taken into account.
+\input{content/introduction.tex}
 \end{block}
 
 %----------------------------------------------------------------------------------------
-%	METHODS
+%	MODEL
 %----------------------------------------------------------------------------------------
-
-\begin{block}{Methods}
-
-
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{figures/droneDiagram.pdf}
-\caption{Free body diagram of the quadcopter along with the inertial and body coordinate systems.}
-\end{figure}
-The system is modeled by using two coordinate frames. The inertial frame is utilized to describe the translational movement while the body frame is attached to the quadcopter and used to characterize its attitude behavior.
-This statement requires citation \cite{Smith:2012qr}.
-
+\begin{block}{Model}
+\input{content/model.tex}
 \end{block}
-
-%------------------------------------------------
-
-%\begin{figure}
-%\includegraphics[width=0.8\linewidth]{figures/droneDiagram.pdf}
-%\caption{Figure caption}
-%\end{figure}
 
 %----------------------------------------------------------------------------------------
 
@@ -139,147 +120,24 @@ This statement requires citation \cite{Smith:2012qr}.
 
 \begin{column}{\twocolwid} % Begin a column which is two columns wide (column 2)
 
-\begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column
-
-\begin{column}{\onecolwid}\vspace{-.6in} % The first column within column 2 (column 2.1)
 
 %----------------------------------------------------------------------------------------
-%	RESULTS
+%	CONTROL SOLUTION
 %----------------------------------------------------------------------------------------
-\begin{block}{Method}
-The attitude model equations for rotational movement is as follows 
-\begin{flalign}
-	J_x\ddot{\phi}&=k_{\mathrm{th}} (\omega^2_4-\omega^2_2)  L \label{eq:AngleEqVelocities1}\\
-	J_y\ddot{\theta}&=k_{\mathrm{th}} (\omega^2_1-\omega^2_3)  L \label{eq:AngleEqVelocities2} \\
-	J_z\ddot{\psi}&=k_{\mathrm{d}} (\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)\label{eq:AngleEqVelocities3}
-\end{flalign}
-The response of the system along the inertial x, y and z axes are derived from Newton's Second Law of Motion, as follows
-\begin{flalign}
-     m\ddot{x}_{\mathrm{I}} = &-k_{\mathrm{th}} ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \label{eq:AccelerationEqInertial1}\\
-     & \ \times (\cos\phi \sin\theta \cos\psi + \sin\phi\sin\psi)   \nonumber\\
-     m \ddot{y}_{\mathrm{I}} = &-k_{\mathrm{th}}({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \label{eq:AccelerationEqInertial2}\\
-     & \ \times(\cos\phi \sin\theta \sin\psi - \sin\phi \cos\psi)  \nonumber\\
-     m\ddot{z}_{\mathrm{I}} = &F_g-k_{\mathrm{th}}\ ({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2) \label{eq:AccelerationEqInertial3}\\
-     & \ \times \cos\phi\cos\theta  \nonumber
-\end{flalign}
-
-%
-%\begin{figure}
-%\includegraphics[width=0.8\linewidth]{figures/AttitudeControl.pdf}
-%\caption{Figure caption}
-%\end{figure}
-%The materials were prepared according to the steps outlined below:
-%\begin{enumerate}
-%\item Template
-%\item Template
-%\end{enumerate}
-
+\begin{block}{Control Solution}
+\input{content/control.tex}
 \end{block}
 
 %----------------------------------------------------------------------------------------
 
-\end{column} % End of column 2.1
-
-\begin{column}{\onecolwid}\vspace{-.6in} % The second column within column 2 (column 2.2)
-
 %----------------------------------------------------------------------------------------
 %	RESULTS
 %----------------------------------------------------------------------------------------
-
-\begin{block}{Results}
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{figures/AttitudeControl.pdf}
-\caption{Figure caption}
-\end{figure}
-\end{block}
-
-%----------------------------------------------------------------------------------------
-
-\end{column} % End of column 2.2
-
-\end{columns} % End of the split of column 2 - any content after this will now take up 2 columns width
-
-%----------------------------------------------------------------------------------------
-%	IMPORTANT RESULT
-%----------------------------------------------------------------------------------------
-
-\begin{alertblock}{Important Result}
-
-This is for bringing the final controller graph with some text saying, it hopefully works well.
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{figures/PositionControl.pdf}
-\caption{Figure caption}
-\end{figure}
-
-
+\begin{alertblock}{Results}
+	\input{content/results.tex}
+	The attitude controller is defined by the chosen feedback and integral poles, \\$[-6.0, -6.2, -6.4, -6.6, -6.8, -7.0, -7.2, -7.4, -7.6]$, and  the observer poles, $[-20, -25, -30]$.
+	The translation velocity controllers for x and y are $C_{\dot{x}}(s)= -0.1$, $C_{\dot{y}}(s)= 0.1$ and the position ones are $C_x(s)= 0.5$, $C_y(s)= 0.5$. The PI-controller for the z translational velocity is $C_{\dot{z}}(s)=-201\frac{s+0.8}{s}$ and the outer loop P-controller is $C_z=0.9$.
 \end{alertblock} 
-
-%----------------------------------------------------------------------------------------
-
-\begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column again
-
-\begin{column}{\onecolwid} % The first column within column 2 (column 2.1)
-
-%----------------------------------------------------------------------------------------
-%	MATHEMATICAL SECTION
-%----------------------------------------------------------------------------------------
-
-%\begin{block}{Mathematical Section}
-
-%MATH
-  
-%\begin{equation}
-%E = mc^{2}
-%\label{eqn:Einstein}
-%\end{equation}
-
-
-
-%\begin{equation}
-%\cos^3 \theta =\frac{1}{4}\cos\theta+\frac{3}{4}\cos 3\theta
-%\label{eq:refname}
-%\end{equation}
-
-%
-%\begin{equation}
-%\kappa =\frac{\xi}{E_{\mathrm{max}}} %\mathbb{ZNR}
-%\end{equation}
-%
-%\end{block}
-
-%----------------------------------------------------------------------------------------
-
-\end{column} % End of column 2.1
-
-\begin{column}{\onecolwid} % The second column within column 2 (column 2.2)
-
-%----------------------------------------------------------------------------------------
-%	RESULTS
-%----------------------------------------------------------------------------------------
-
-%\begin{block}{Results}
-%
-%\begin{table}
-%\vspace{2ex}
-%\begin{tabular}{l l l}
-%\toprule
-%\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-%\midrule
-%Treatment 1 & 0.0003262 & 0.562 \\
-%Treatment 2 & 0.0015681 & 0.910 \\
-%Treatment 3 & 0.0009271 & 0.296 \\
-%\bottomrule
-%\end{tabular}
-%\caption{Table caption}
-%\end{table}
-%
-%\end{block}
-
-%----------------------------------------------------------------------------------------
-
-\end{column} % End of column 2.2
-
-\end{columns} % End of the split of column 2
 
 \end{column} % End of the second column
 
@@ -291,31 +149,25 @@ This is for bringing the final controller graph with some text saying, it hopefu
 %	Results
 %----------------------------------------------------------------------------------------
 
-\begin{block}{ }
-The attitude controller is defined by the chosen feedback and integral poles, \\$[-6.0, -6.2, -6.4, -6.6, -6.8, -7.0, -7.2, -7.4, -7.6]$, and  the observer poles, $[-20, -25, -30]$.
-The translation velocity controllers for x and y are $C_{\dot{x}}(s)= -0.1$, $C_{\dot{y}}(s)= 0.1$ and the position ones are $C_x(s)= 0.5$, $C_y(s)= 0.5$. The PI-controller for the z translational velocity is $C_{\dot{z}}(s)=-201\frac{s+0.8}{s}$ and the outer loop P-controller is $C_z=0.9$.
-\end{block}
+%----------------------------------------------------------------------------------------
+
 %----------------------------------------------------------------------------------------
 %	DISCUSSION
 %----------------------------------------------------------------------------------------
-
 \begin{block}{Discussion}
-It is seen that the controllers achieve the desired reference even though the network delay and the sampling rate affect the performance. The main network effect is the designed bandwidth of the controllers. This occurs due to the limited frequency in which the sensor data is obtained from the motion tracking system through the wireless connection.
+\input{content/discussion.tex}   
 \end{block}
 
 %----------------------------------------------------------------------------------------
 %	Conclusion
 %----------------------------------------------------------------------------------------
-
 \begin{block}{Conclusion}
-The control system has been split into an attitude and a translational controller. The former has been designed using a state space approach, including state feedback with integral control and a reduced order observer. The translational control system has been designed with a classical control approach and result in three cascade loops, including proportional and PI controllers.
-The results obtained from the design show that both the attitude and the translational behavior of the quadcopter has been successfully controlled.
+\input{content/conclusion.tex} 
 \end{block}
 
 %----------------------------------------------------------------------------------------
 %	References
 %----------------------------------------------------------------------------------------
-
 \begin{block}{References}
 
 \small{\rmfamily{CONTROL BOOK.}} \\
@@ -330,31 +182,9 @@ The results obtained from the design show that both the attitude and the transla
 %----------------------------
 \begin{block}{Acknowledgements}
 
-\small{\rmfamily{Henrik Shøiler, Assosiated Proffesor, Aalborg University.\\
-Christoffer Sloth, Assosiated Professor, Aalborg University.}} \\
+\small{\rmfamily{Henrik Shøiler, Associated Professor, Aalborg University.\\
+Christoffer Sloth, Associated Professor, Aalborg University.}} \\
 \end{block}
-%----------------------------------------------------------------------------------------
-%	CONTACT INFORMATION
-%----------------------------------------------------------------------------------------
-
-%\setbeamercolor{block alerted title}{fg=black,bg=norange} % Change the alert block title colors
-%\setbeamercolor{block alerted body}{fg=black,bg=white} % Change the alert block body colors
-%
-%\begin{alertblock}{Contact Information}
-%
-%\begin{itemize}
-%\item Web: \href{http://www.university.edu/smithlab}{http://www.university.edu/smithlab}
-%\item Email: \href{mailto:john@smith.com}{john@smith.com}
-%\item Phone: +1 (000) 111 1111
-%\end{itemize}
-%
-%\end{alertblock}
-%
-%\begin{center}
-%\begin{tabular}{ccc}
-%\includegraphics[width=0.4\linewidth]{logo.png} & \hfill & \includegraphics[width=0.4\linewidth]{logo.png}
-%\end{tabular}
-%\end{center}
 
 %----------------------------------------------------------------------------------------
 
