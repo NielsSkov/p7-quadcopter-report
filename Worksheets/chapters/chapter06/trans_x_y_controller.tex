@@ -14,7 +14,7 @@ Laplace transforming \autoref{eq:model_x_transl} and \ref{eq:model_y_transl} yie
     m\ \dot{y}_I(s)\ s&= k_{th}\ (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)\ \phi(s)
 \end{flalign}
 %
-The inner velocity controller design requires a transfer function from each of the angles to each of the velocities, that can be written as:
+The inner velocity controller design requires a transfer function from each of the angles to each of the translational velocities. This can be written as:
 %
 \begin{flalign}
     G_{\dot{x}_I}(s)&=\frac{\dot{x}_I (s)}{\theta (s)}=\frac{-k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s}=\frac{K_{\dot{x}_{\mathrm{I}}}}{s} \label{eq:Gxdot} \\
@@ -26,16 +26,16 @@ The inner velocity controller design requires a transfer function from each of t
     \va{G_{y_I}}{is the plant for the translational velocity in $y_I$ direction}{}
 \end{where}
 
-From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants are similar but with different sign. The controller design is carried out for the x translational velocity and applied to both afterwards.
+From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants are similar but with different sign. The controller design is carried out for the x translational velocity and applied to both afterwards, as the design is identical.
 
-The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open-loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed-loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate that of the plant.
+The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open-loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed-loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate for the plant.
 
-It is noticeable that, for this design, the variable changed by the controller is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. This is not accounted in the transfer functions. In order to start the design, the closed loop bandwidth of the control loop should be 3 to 5 times lower.\fxnote{SOURCE 3 TO 5 TIMES} 
+It is noticeable that, for this design, the variable changed by the controller is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. This is not accounted in the transfer functions. In order to start the design, the closed loop bandwidth of the control loop should be three to five times lower.\fxnote{SOURCE 3 TO 5 TIMES} 
 
-The bandwidth of the inner angular control is obtained by making a Bode plot approximation from the pitch angle reference to the real pitch angle in the quadcopter. The obtained Bode diagram is shown in \autoref{fig:bodePitch}. It can be seen that the frequency of the inner loop is 5 rad/s and this defines the bandwidth of the velocity control loop to be 1.67 rad/s.
+The bandwidth of the inner attitude control is obtained by making a Bode plot approximation from the pitch angle reference to the real pitch angle in the quadcopter. The obtained Bode diagram is shown in \autoref{fig:bodePitch}. From the bode diagram the frequency of the inner loop is obtained to be 2 rad/s. It has been chosen to set the closed loop bandwidth three times lower than the inner loop, as it is desired to have the fastest system possible. Thus yielding the bandwidth for the velocity control loop to be 0.7 rad/s.
 %
 \begin{figure}[H]
-    \includegraphics[scale=.7]{figures/bodePitch}
+    \includegraphics[scale=.8]{figures/bodePitch}
     \centering			
     \captionof{figure}{Attitude control loop Bode diagram.} 
     \label{fig:bodePitch}
@@ -53,7 +53,7 @@ The bandwidth of the inner angular control is obtained by making a Bode plot app
 %    \captionof{figure}{Root locus of the plant for the velocity controller, that includes as well the dynamics of the attitude controller in pitch.} \label{fig:rLocusVelocity}
 %\end{figure} 
 %
-The plant is a type 1 system since it contains one integrator and the steady state error is handled by the naturally occurring integrator within the plant. However, due to input disturbances a steady state error is present in the output of the closed loop. 
+The plant is a type 1 system, since it contains one naturally occurring integrator in the system. There will therefore not be any closed loop steady state error, if no disturbance occur. However, due to input disturbances a steady state error is present in the output of the closed loop. Some causes for input disturbances, is wind, different velocities in the paired motors and defect in propellers.
 
 A diagram of a closed loop system with input disturbance can be seen in \autoref{fig:Feedbackloopswithdisturbance}.
 
@@ -75,34 +75,34 @@ The DC gain can be expressed as
  \lim_{s \to 0} H(s)=\lim_{s \to 0} \frac{K_{\dot{x}_{\mathrm{I}}}}{C(s) K_{\dot{x}_{\mathrm{I}}}} = \frac{K_{\dot{x}_{\mathrm{I}}}}{C(s) K_{\dot{x}_{\mathrm{I}}}}\label{eq:dc_gain}
 \end{flalign}
 
-Adding an integrator to the controller, the DC gain is given as:
+As an steady state error is present an integrator is added to the controller, the DC gain can thereby be given as:
 \begin{flalign}
     \lim_{s \to 0} H(s)=\lim_{s \to 0} \frac{K_{\dot{x}_{\mathrm{I}}}}{C(s) K_{\dot{x}_{\mathrm{I}}}} =\lim_{s \to 0} \frac{K_{\dot{x}_{\mathrm{I}}}s}{K_{\dot{x}_{\mathrm{I}}}}=0\label{eq:dc_gain_integrator}
 \end{flalign}
 
-From \autoref{eq:dc_gain_integrator} it is revealed that the steady state error is eliminated. 
+It is thereby revealed from \autoref{eq:dc_gain_integrator} that the steady state error is eliminated. 
 
-An integrator is therefore included in the control design. Since there already exists an integral term in the plant, the closed loop system becomes marginally unstable since the branches in the root locus are located in the imaginary axis.
+An integrator is therefore included in the control design. Since there already exists an integral term in the plant, the closed loop system becomes marginally unstable since the branches in the root locus are located on the imaginary axis.
 
-In order to avoid that behavior, a zero is added to the controller to attract the branches to the stable region and the gain is adjusted to reduce the oscillations. The final root locus can be seen in \autoref{fig:rl_xdot}.
+In order to avoid that behavior, a zero at $-0.05$ is added to the controller to attract the branches to the stable region and the gain is adjusted to reduce the oscillations. The final root locus can be seen in \autoref{fig:rl_xdot}.
 %
 \begin{figure}[H]
-	\includegraphics[scale=.5]{figures/rl_xdot}
+	\includegraphics[scale=.7]{figures/rl_xdot}
 	\centering			
 	\captionof{figure}{Root locus including the plant and the controller for the $x_{\mathrm{I}}$ translational velocity.} 
 	\label{fig:rl_xdot}
 \end{figure}
 %
-The bode plot in \autoref{bodeVelocity} shows that the final bandwidth of the closed loop system is 0.7 rad s$^-1$.
+The bode plot in \autoref{fig:bodeVelocity} shows that the final bandwidth of the closed loop system is at the desired 0.7 rad s$^-1$.
 %
 \begin{figure}[H]
-	\includegraphics[scale=.7]{figures/bodeVelocity}
+	\includegraphics[scale=.8]{figures/bodeVelocity}
 	\centering			
 	\captionof{figure}{Closed loop bode of the plant and the controller for the $x_{\mathrm{I}}$ translational velocity.} 
 	\label{fig:bodeVelocity}
 \end{figure}
 
-The final expression for the controllers for x and y translational velocity control is written as \autoref{eq:Cxdot} and \ref{eq:Cydot}, respectively. The plant for the y controller has already a positive gain and this makes it unnecessary to include a negative sign in the controller.
+The final expression for the controllers for x and y translational velocity control is written as \autoref{eq:Cxdot} and \ref{eq:Cydot}, respectively. Note, that the plant for the y controller has already a positive gain and this makes it unnecessary to include a negative sign in its controller.
 %
 \begin{flalign}
 C_{\dot{x}_I}(s)&= -0.0038\frac{1+20 s}{s} \label{eq:Cxdot} \\
@@ -149,6 +149,7 @@ The final expression for the translational position controllers can be written a
     \va{C_{y_I}}{is the controller for the translational position in $y_I$ direction}{}
 \end{where}
 
+The translational controllers for the inertial positioning in $x_I$ and $y_I$ has been designed.
 
 %To determine how large the absolute gain can be without making the system unstable due to saturation issues, it is necessary to consider the bandwidth. \\ \\
 %The data from the Vicon room is transmitted with 100 Hz. This means the attitude controller must run with 50 Hz as maximum to ensure the controller is slower than the sensor data. A rule of thumb states that the bandwidth of the system shall be 25 times smaller than the attitude controller. The desired bandwidth of the translational roll controller is calculated as follows:
