@@ -84,7 +84,7 @@ It is thereby revealed from \autoref{eq:dc_gain_integrator} that the steady stat
 
 An integrator is therefore included in the control design. Since there already exists an integral term in the plant, the closed loop system becomes marginally unstable since the branches in the root locus are located on the imaginary axis.
 
-In order to avoid that behavior, a zero at $-0.05$ is added to the controller to attract the branches to the stable region and the gain is adjusted to reduce the oscillations. The final root locus can be seen in \autoref{fig:rl_xdot}.
+In order to avoid that behavior, a zero at $-0.05$ is added to the controller to attract the branches to the stable region and the gain is adjusted to reduce the oscillations. The zero placement is to keep the required bandwidth and to yield a possible none oscillating behavior. The final root locus can be seen in \autoref{fig:rl_xdot}.
 %
 \begin{figure}[H]
 	\includegraphics[scale=.7]{figures/rl_xdot}
