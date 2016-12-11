@@ -33,9 +33,11 @@ int main()
 
 
 \section{Communication}
+The communication task is used to receive the data in the microcontroller from the computer. Part of the code used can be seen in \autoref{lst:communication}.
+
 \begin{lstlisting}[style=customcpp,
                 caption={Code for the comunication task.}, 
-                label=lst:scheduler]
+                label=lst:communication]
 void Comunication(void *pvParameters)
 {
     while (1)
@@ -49,43 +51,8 @@ void Comunication(void *pvParameters)
 }
 \end{lstlisting}
 
+It consist of a while loop that is running all the time and checks if a package has arrived using the function CheckPackageArrival(). This function read the bytes coming to the serial port and checks if the header is correct, returning a 0 if that is not the case. If the header was wrong, the if condition is not fulfilled and the loop starts again until it gets a correct header.
 
-\section{Controllers}
-\begin{lstlisting}[style=customcpp,
-caption={Code for the controller task.}, 
-label=lst:scheduler]
-void Controllers(void *pvParameters)
-{
-    portTickType xLastWakeTime;
-    xLastWakeTime = xTaskGetTickCount();
-    
-    while (1)
-    {
-        Controller();
-        count++;
-        ApplyVelocities();
-        if (reading)
-        {
-            vTaskDelete(xHandle);
-            xTaskCreate(Comunication, "Com", 1000, NULL, configMAX_PRIORITIES - 2, &xHandle);
-            reading = 0;
-        }
-        vTaskDelayUntil(&xLastWakeTime, 35);
-    }
-    vTaskDelete(NULL);
-}
-\end{lstlisting}
+Then, the function GetPackage() reads the remaining bytes and uses the checksum to verify that the data has been sent correctly. When the summation of the parts and the checksum gives the correct value, the stored bytes are decoded and the global variables are rewritten with their new values
 
 
-\begin{lstlisting}[style=customcpp,
-caption={Code for the controllers.}, 
-label=lst:scheduler]
-    ...
-    vel_ref_k[i] = -208.8*pos_e_k[i] + 198.2*pos_e_k1[i] + vel_ref_k1[i];
-    ...
-    xint_k[i] = T / 2 * (e_k[i] + e_k1[i]) + xint_k1[i];
-    ...
-    oint_k[i] = T / 2 * (o_k[i] + o_k1[i]) + oint_k1[i];
-    ...
-
-\end{lstlisting}

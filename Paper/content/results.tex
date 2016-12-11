@@ -52,15 +52,16 @@ The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diago
 %		\end{bmatrix}\nonumber
 %\end{flalign}}
 %\normalsize
-\noindent$\vec{Q}=diag\left(\frac{1}{111^2},\frac{1}{222^2},\frac{1}{333^2},\frac{1}{444^2},\frac{1}{555^2},\frac{1}{666^2},\frac{1}{777^2},\frac{1}{999^2},\frac{1}{888^2}\right)$
+\begin{center}
+\noindent$\vec{Q}=diag\left(\frac{1}{0.2^2},\frac{1}{0.2^2},\frac{1}{0.1^2},\frac{1}{0.5^2},\frac{1}{0.5^2},\frac{1}{0.3^2},\frac{1}{0.08^2},\frac{1}{0.08^2},\frac{1}{0.05^2}\right)$
 
-\noindent$\vec{R}=diag\left(\frac{1}{111^2},\frac{1}{222^2},\frac{1}{333^2},\frac{1}{444^2}\right) $
+\noindent$\vec{R}=diag\left(\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2}\right) $}
+\end{center}
 
-\fxnote{check values in matrices}
-The translation velocity controllers for x, y and z are
+The  controllers for $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$, $\dot{z}_{\mathrm{I}}$, $x_{\mathrm{I}}$ $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$ are
 \begin{minipage}{0.45\linewidth}
 	\begin{flalign}
-		C_{\dot{x}_{\mathrm{I}}}=-C_{\dot{y}_{\mathrm{I}}}=TO WRITE\nonumber
+		C_{\dot{x}_{\mathrm{I}}}=-C_{\dot{y}_{\mathrm{I}}}=-0.0038\frac{1+20s}{s},\nonumber
 	\end{flalign}
 \end{minipage}   \hfill 
 \begin{minipage}{0.45\linewidth}
@@ -68,24 +69,24 @@ The translation velocity controllers for x, y and z are
 		C_{\dot{z}_{\mathrm{I}}}=-201.8\frac{s+0.8}{s}\ ,\nonumber
 	\end{flalign}
 \end{minipage}\\
-while the position controllers are \\
+
 \begin{minipage}{0.45\linewidth}
 	\begin{flalign}
-		C_{x_{\mathrm{I}}}=-C_{y_{\mathrm{I}}}=TO WRITE\nonumber
+		C_{x_{\mathrm{I}}}=C_{y_{\mathrm{I}}}=0.3,\nonumber
 	\end{flalign}
 \end{minipage}   \hfill 
 \begin{minipage}{0.45\linewidth}
 	\begin{flalign}
-		C_{z_{\mathrm{I}}}=-201.8\frac{s+0.8}{s}\ .\nonumber
+		C_{z_{\mathrm{I}}}=1\ .\nonumber
 	\end{flalign}
 \end{minipage}\\
 
-These controllers are discretized using the Tustin method with a sampling frequency of 28 Hz. This is the fastest available frequency in which data can be acquired from the motion tracking system and transmitted to the quadcopter.
+These controllers are discretized using the Tustin method with a sampling frequency of 28 Hz. This is the fastest available frequency in which data can be acquired from the motion tracking system, transmitted to the quadcopter and read by the microcontroller.
 
 The simulation results obtained with these parameters and controllers are shown in \autoref{PositionControl}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.45\textwidth]{figures/PositionControl}
+	\includegraphics[width=.4\textwidth]{figures/PositionControl}
 	\caption{Position control results in the three inertial axes directions. The references given to the control system are shown with dashed lines.}
 	\label{PositionControl}
 \end{figure}
@@ -93,7 +94,7 @@ The simulation results obtained with these parameters and controllers are shown 
 The inner attitude controller results are also included and shown in \autoref{AttitudeControl} so the performance of the attitude control can be evaluated. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.45\textwidth]{figures/AttitudeControl}
+	\includegraphics[width=.4\textwidth]{figures/AttitudeControl}
 	\caption{Attitude control results in the three angles. The references given to the attitude control system are shown with dashed lines.}
 	\label{AttitudeControl}
 \end{figure}
