@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  10 DEC 2016 17:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  11 DEC 2016 12:58
 entering extended mode
 **./main.tex
 (main.tex
@@ -2067,16 +2067,12 @@ Package biblatex Info: Automatic encoding selection.
 \openout6 = `main.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'main.bbl' not found.
 
-
-Package biblatex Warning: File 'main.bbl' is wrong format version - expected 2.
-8.
-
-Package biblatex Info: ... file 'main.bbl' found.
-(main.bbl)
+No file main.bbl.
 Package biblatex Info: Reference section=0 on input line 85.
 Package biblatex Info: Reference segment=0 on input line 85.
- (D:\MikTex\tex\latex\siunitx\siunitx-abbreviations.cfg
+(D:\MikTex\tex\latex\siunitx\siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2016/09/02 v2.6s siunitx: Abbreviated units
 )
 ABD: EverySelectfont initializing macros
@@ -2260,8 +2256,8 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 198.
  ) 
 Here is how much of TeX's memory you used:
- 40085 strings out of 493634
- 785382 string characters out of 3151048
+ 40083 strings out of 493634
+ 785366 string characters out of 3151048
  1314616 words of memory out of 3000000
  42720 multiletter control sequences out of 15000+200000
  91880 words of font info for 79 fonts, out of 3000000 for 9000
