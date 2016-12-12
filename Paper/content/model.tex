@@ -4,13 +4,13 @@ A free body diagram of the quadcopter is seen in \autoref{droneDiagram}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.4\textwidth]{figures/droneDiagram}
-	\caption{Forces ($\vec{F}_i$) and torques ($\vec{\tau}_i$) acting on the quadcopter and the positive references chosen for rotations and translations in both inertial and body coordinate frames.}
+	\caption{Forces ($\vec{F}_i$) and torques ($\vec{\tau}_i$) acting on the quadcopter, positive references for rotations and positive references for translations in both the inertial and body coordinate frames.}
 	\label{droneDiagram}
 \end{figure}
 %
-As it is seen, the system is modeled by using two coordinate frames. The inertial frame is utilized to describe the translational movement while the body frame is attached to the quadcopter and used to characterize its attitude behavior. In the figure, also the positive references for rotational and translational movements are depicted, as well as the main forces and torques acting on the quadcopter. The positive rotations follow a right-hand fashion.
+As it is seen in the figure, the system is modeled by using two coordinate frames. The inertial frame is utilized to describe the translational movement while the body frame is attached to the quadcopter and used to characterize its attitude behavior. Furthermore, the positive references for rotational and translational movements are depicted, as well as the main forces and torques acting on the quadcopter. The positive rotations follow a right-hand fashion.
 
-The forces generated in the propeller are readily obtained in the body coordinate frame. In order to represent them in the inertial frame a rotation matrix is used. It is built considering a 123 rotation sequence \cite{rotationmatrix}. This means that any rotation is described as three rotations around the $x_\mathrm{B}$ axis first, then around the $y_\mathrm{B}$ axis and lastly around the $z_\mathrm{B}$ axis. 
+The forces generated in the propeller are readily obtained in the body coordinate frame. In order to represent them in the inertial frame a rotation matrix is used. It is built considering a 123 rotation sequence \cite{rotationmatrix}. This means that any rotation is described as three rotations around the $x_\mathrm{B}$ axis, then around the $y_\mathrm{B}$ axis and lastly around the $z_\mathrm{B}$ axis. 
  
 The dynamic model of the quadcopter is given by three sets of equations. The first describes the motor and the propeller, the second presents the attitude response of the quadcopter and the third explains how the translational variables of the system evolve.
 
