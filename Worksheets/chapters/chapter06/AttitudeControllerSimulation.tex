@@ -21,12 +21,12 @@ In \autoref{fig:ssObsFinal} the observer estimation for the angular velocity in 
 	\label{fig:ssObsFinal}
 \end{figure}
 %
-A step response of the roll and pitch, with a reference set to one, is shown in \autoref{fig:ssFinalStep}. The yaw is not illustrated as the reference is consistently set to zero, see \autoref{chap:Control}. It is therefore only desired to discover how the roll and pitch responds to a reference shift. It can be seen that the step response of the two angles is similar, this is expected as the implementation of the two is identical. \\ With an error band of 5 percent, the settling time is approximately $1.5$ \si{s} and the overshoot is less than 5 percent. \fxnote{write something about why 1.5 is okay?}
+A step response of the roll is shown in \autoref{fig:ssFinalStep}. As the roll and the pitch is implemented identical the step response of the two will be similar. Additionally, the yaw is not illustrated as the reference is consistently set to zero, see \autoref{chap:Control}. It is therefore only desired to discover how the roll and pitch responds to a reference shift. \\ The system is subjected to a step input reference of \SI{1}{m s^{-1}} in the roll. With an error band of 5 percent, the settling time is approximately $1.5$ \si{s} and the overshoot is less than 5 percent. \fxnote{write something about why 1.5 is okay?}
 %
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{figures/ssFinalStep.pdf}
-	\caption{An step response of the final system. This illustrates only the behavior of the roll and the pitch, as the yaw is always set to zero. The utilized weighted matrices, $\vec{Q_{final}}$ and $\vec{R_{final}}$, and the observer gain, $\vec{L_{obs}}$, can be found in \autoref{app:matricesSS}.}
+	\caption{An step response of the final system. This illustrates only the behavior of the roll, as the yaw is always set to zero and the pitch would be identical to the roll. The utilized weighted matrices, $\vec{Q_{final}}$ and $\vec{R_{final}}$, and the observer gain, $\vec{L_{obs}}$, can be found in \autoref{app:matricesSS}.}
 	\label{fig:ssFinalStep}
 \end{figure}
 %
