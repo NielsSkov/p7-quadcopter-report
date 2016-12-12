@@ -44,6 +44,7 @@
 \definecolor{dgreen} {RGB}{78,138,21}
 \definecolor{nblue}  {RGB}{28,130,185}
 \definecolor{jblue}  {RGB}{20,50,100}
+\definecolor{aaublue}  {RGB}{33,26,82}
 
 
 %----------------------------------------------------------------------------
@@ -128,25 +129,25 @@
 % set the basic colors
 \setbeamercolor{palette primary}   {fg=black,bg=white}
 \setbeamercolor{palette secondary} {fg=black,bg=white}
-\setbeamercolor{palette tertiary}  {bg=jblue,fg=white}
+\setbeamercolor{palette tertiary}  {bg=ddblue,fg=white}
 \setbeamercolor{palette quaternary}{fg=black,bg=white}
-\setbeamercolor{structure}{fg=jblue}
-\setbeamercolor{titlelike}         {bg=jblue,fg=white}
-\setbeamercolor{frametitle}        {bg=jblue!10,fg=jblue}
-\setbeamercolor{cboxb}{fg=black,bg=jblue}
+\setbeamercolor{structure}{fg=ddblue}
+\setbeamercolor{titlelike}         {bg=aaublue,fg=white}
+\setbeamercolor{frametitle}        {bg=aaublue!10,fg=aaublue}
+\setbeamercolor{cboxb}{fg=black,bg=aaublue}
 \setbeamercolor{cboxr}{fg=black,bg=red}
 
 % set colors for itemize/enumerate
-\setbeamercolor{item}{fg=jblue}
-\setbeamercolor{item projected}{fg=white,bg=jblue}
+\setbeamercolor{item}{fg=aaublue}
+\setbeamercolor{item projected}{fg=white,bg=aaublue}
 
 % set colors for blocks
-\setbeamercolor{block title}{fg=jblue,bg=white}
+\setbeamercolor{block title}{fg=aaublue,bg=white}
 \setbeamercolor{block body}{fg=black,bg=white}
 
 % set colors for alerted blocks (blocks with frame)
-\setbeamercolor{block alerted title}{fg=white,bg=jblue}
-\setbeamercolor{block alerted body}{fg=black,bg=jblue}
+\setbeamercolor{block alerted title}{fg=white,bg=aaublue}
+\setbeamercolor{block alerted body}{fg=black,bg=white}
 
 % set the fonts
 \setbeamerfont{section in head/foot}{series=\bfseries}
@@ -185,7 +186,7 @@
    \begin{column}{\linewidth}
     \vskip1cm
     \centering
-    \usebeamercolor{title in headline}{\color{jblue}\Huge{\textbf{\inserttitle}}\\[0.5ex]}
+    \usebeamercolor{title in headline}{\color{aaublue}\Huge{\textbf{\inserttitle}}\\[0.5ex]}
     \usebeamercolor{author in headline}{\color{fg}\Large{\insertauthor}\\[1ex]}
     \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}
     \vskip1cm
@@ -193,8 +194,8 @@
    \vspace{1cm}
   \end{columns}
  \vspace{0.5in}
- \hspace{0.5in}\begin{beamercolorbox}[wd=47in,colsep=0.15cm]{cboxb}\end{beamercolorbox}
- \vspace{0.1in}
+ \hspace{0.2in}\begin{beamercolorbox}[wd=47in,colsep=0.15cm]{cboxb}\end{beamercolorbox}
+ \vspace{-0.3in}
 }
 
 % Block definition
@@ -232,7 +233,7 @@
 \setbeamertemplate{block alerted begin}
 {
   \par\vskip\medskipamount
-  \begin{beamercolorbox}[sep=0ex,rounded=true,center,dp={2ex}]{block alerted title}
+  \begin{beamercolorbox}[sep=0ex,rounded=true,center,dp={1ex}]{block alerted title}
     \vskip0.01cm
     \usebeamerfont{block title}\large\insertblocktitle
   \end{beamercolorbox}
