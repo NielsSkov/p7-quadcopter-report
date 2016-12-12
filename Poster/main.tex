@@ -51,9 +51,9 @@
 \newlength{\threecolwid}
 \setlength{\paperwidth}{48in} % A0 width: 46.8in
 \setlength{\paperheight}{36in} % A0 height: 33.1in
-\setlength{\sepwid}{0.024\paperwidth} % Separation width (white space) between columns
-\setlength{\onecolwid}{0.23\paperwidth} % Width of one column
-\setlength{\twocolwid}{0.42\paperwidth} % Width of two columns
+\setlength{\sepwid}{0.02\paperwidth} % Separation width (white space) between columns
+\setlength{\onecolwid}{0.2\paperwidth} % Width of one column
+\setlength{\twocolwid}{0.52\paperwidth} % Width of two columns
 \setlength{\threecolwid}{0.708\paperwidth} % Width of three columns
 \setlength{\topmargin}{-0.5in} % Reduce the top margin size
 
@@ -68,16 +68,20 @@
 %	TITLE SECTION 
 %----------------------------------------------------------------------------------------
 
-\title{Attitude and position control of a quadcopter in a networked \\	distributed system} % Poster title
+\title{Attitude and position control of a quadcopter in a \\ networked distributed system} % Poster title
 
-\author{\textit{Alejandro Alonso García, Amalie V. Petersen, Andrea Victoria Tram Løvemærke,\\ Niels Skov Vestergaard, Noelia Villarmarzo Arruñada} - Group 733} % Author(s)
+\author{\textit{Group 733 - Alejandro Alonso García, Amalie V. Petersen, Andrea Victoria Tram Løvemærke,\\ Niels Skov Vestergaard, Noelia Villarmarzo Arruñada}} % Author(s)
 
-\institute{	Email: [aalons16] [apet13] [alavem13] [nveste12] [nvilla16] @student.aau.dk} % Institution(s)
+\institute{	School of Comunication and Information Technology - Department of Control and Automation\\
+	Email: [aalons16] [apet13] [alavem13] [nveste12] [nvilla16] @student.aau.dk} % Institution(s)
 
 \addtobeamertemplate{headline}{} 
 {
 	\begin{tikzpicture}[remember picture,overlay] 
-	\node [shift={(-15 cm,-11cm)}] at (current page.north east) {\includegraphics[height=9cm]{figures/aau_logo_cropped}}; 
+	\node [shift={(-15 cm,-9cm)}] at (current page.north east) {\includegraphics[height=11cm]{figures/aau_logo_cropped}}; 
+	\end{tikzpicture} 
+	\begin{tikzpicture}[remember picture,overlay] 
+	\node [shift={(15 cm,-9cm)}] at (current page.north west) {\includegraphics[height=11cm]{figures/aau_logo_cropped}}; 
 	\end{tikzpicture} 
 }
 %----------------------------------------------------------------------------------------
@@ -101,16 +105,16 @@
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
-\begin{block}{Introduction}
+\begin{alertblock}{Introduction}
 \input{content/introduction.tex}
-\end{block}
+\end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	MODEL
 %----------------------------------------------------------------------------------------
-\begin{block}{Model}
+\begin{alertblock}{Model}
 \input{content/model.tex}
-\end{block}
+\end{alertblock}
 
 %----------------------------------------------------------------------------------------
 
@@ -124,10 +128,9 @@
 %----------------------------------------------------------------------------------------
 %	CONTROL SOLUTION
 %----------------------------------------------------------------------------------------
-\begin{block}{Control Solution}
+\begin{alertblock}{Control Solution}
 \input{content/control.tex}
-\end{block}
-
+\end{alertblock}
 %----------------------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
@@ -135,8 +138,6 @@
 %----------------------------------------------------------------------------------------
 \begin{alertblock}{Results}
 	\input{content/results.tex}
-	The attitude controller is defined by the chosen feedback and integral poles, \\$[-6.0, -6.2, -6.4, -6.6, -6.8, -7.0, -7.2, -7.4, -7.6]$, and  the observer poles, $[-20, -25, -30]$.
-	The translation velocity controllers for x and y are $C_{\dot{x}}(s)= -0.1$, $C_{\dot{y}}(s)= 0.1$ and the position ones are $C_x(s)= 0.5$, $C_y(s)= 0.5$. The PI-controller for the z translational velocity is $C_{\dot{z}}(s)=-201\frac{s+0.8}{s}$ and the outer loop P-controller is $C_z=0.9$.
 \end{alertblock} 
 
 \end{column} % End of the second column
@@ -154,45 +155,47 @@
 %----------------------------------------------------------------------------------------
 %	DISCUSSION
 %----------------------------------------------------------------------------------------
-\begin{block}{Discussion}
+\begin{alertblock}{Discussion}
 \input{content/discussion.tex}   
-\end{block}
+\end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	Conclusion
 %----------------------------------------------------------------------------------------
-\begin{block}{Conclusion}
+\begin{alertblock}{Conclusion}
 \input{content/conclusion.tex} 
-\end{block}
+\end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	References
 %----------------------------------------------------------------------------------------
-\begin{block}{References}
+\begin{alertblock}{References}
 
 \small{\rmfamily{CONTROL BOOK.}} \\
 %\nocite{*} % Insert publications even if they are not cited in the poster
 %\small{\bibliographystyle{unsrt}
 %\bibliography{sample}\vspace{0.75in}}
 \printbibliography
-\end{block}
+\end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	Acknowledgements
 %----------------------------
-\begin{block}{Acknowledgements}
+\begin{alertblock}{Acknowledgements}
 
-\small{\rmfamily{Henrik Shøiler, Associated Professor, Aalborg University.\\
-Christoffer Sloth, Associated Professor, Aalborg University.}} \\
-\end{block}
+\small{\rmfamily{Henrik Shøiler, Associated Professor, Aalborg University.
+% \\ Christoffer Sloth, Associated Professor, Aalborg University.
+}} \\
+\end{alertblock}
 
 %----------------------------------------------------------------------------------------
 
 \end{column} % End of the third column
 
 \end{columns} % End of all the columns in the poster
-\tikz[remember picture,overlay] \node[opacity=0.7,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{figures/drawing}};
-\clearpage
+
+%\tikz[remember picture,overlay] \node[opacity=0.7,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{figures/drawing}};
+%\clearpage
 \end{frame} % End of the enclosing frame
 
 \end{document}
