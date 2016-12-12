@@ -69,9 +69,8 @@ For all tests, the general setup of the systems is explained in the following:
 	\item In every control loop the data which is utilized should be compared to the data utilized in the loop before. If the data is not identical a counter should be incremented. 
 	\item The comparison should only take place if the communication task register a packet containing data which is less or equal to than 999.
 	\item The first packet consisting of zeros should not be compared to an old packets (as there is none) but is instead compared to the number 1001. 
-	\item The counter, which is incremented each time the data utilized in the control loop is not identical to the previous, should be transmitted back to the computer when the computer is done transmitting plus an additional \SI{10}{s}.
-	\item Each control loop running while packets are received should be transmitted back.
-	\item This number is then subtracted from a 1000 yielding the amount of control loops not utilizing new data.
+	\item The counter, which is incremented each time the data utilized in the control loop is not identical to the previous, should be transmitted back to the computer when the computer is done transmitting.
+	\item A counter incremented each control loop while packets are received should also be transmitted back.
 \end{enumerate} 
 
 \textbf{Results:}
