@@ -1,8 +1,7 @@
 \chapter{Implementation}
+The delay in the network has been analysed. An protocol has been created to be utilized between the vicon and the quadcopter. Controllers for the attitude, translational velocity and position have been designed and the needed hardware, e.g. the microcontroller, have been chosen. It should thereby be possible to set up the scheduler. The scheduler should mainly handle the receiving and decoding of packets and the running of the controllers. \\ To implement the designed controllers in the scheduler, on the micro controller, a conversion from the controllers continuous expression to a discrete expression is required.
 
-The design of the controllers,  
-
-
+In the following section the scheduling is described, this is followed by a section on the discretization of continuous controllers and a final section describing the implementation of the controllers on the micro processor.
 
 \section{Scheduler}
 Only two tasks are running on the microcontroller, the control algorithm and the communication. The handling of these tasks is however critical. The network introduces delays which sets a limit for the rate at which the control algorithms can be executed. It is also desirable for the control task to be executed periodically, and at any other time, the microcontroller should listen for new data on the network.\\
