@@ -94,6 +94,7 @@ Email: [aalons16] [apet13] [alavem13] [nveste12] [nvilla16] @student.aau.dk}}
 %-----ABSTRACT------------------------------------------------------
 \input{content/abstract.tex}
 %
+<<<<<<< Updated upstream
 %-----INTRODUCTION------------------------------------------------------
 \input{content/introduction.tex}
 %
@@ -104,6 +105,164 @@ Email: [aalons16] [apet13] [alavem13] [nveste12] [nvilla16] @student.aau.dk}}
 \input{content/control.tex}                 %<--subsection
 \input{content/attitudeController.tex}      %<--subsubsection
 \input{content/translationalController.tex} %<--subsubsection
+=======
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+\section{Introduction}
+% no \IEEEPARstart 
+\cite{Pepe}
+    \begin{itemize}
+\item Present topic - uses of drones in reality context, chosen because it is a control challenge, rather than revolutionary.\\
+In the last years, the interest for quadcopters has increased due to the great possibilities they offer. Among these possibilities, the most well-known ones are surveillance, inspection of big structures and search and rescue missions in difficult environments \textbf{SOURCE WEB}.
+
+The quadcopter constitutes a control challenge due to its naturally unstable and coupled behavior. The system has 6 degrees of freedom, the three position coordinates and the 3 orientations, and there are only four actuation variables which are the motor velocities. The dimension of the problem is explained by McKerrow in  \textbf{SOURCE}.
+
+\item Previous Approaches - examples of what others have done to obtain similar goals of stabilization like we pursue. What have others done differently than we plan to do to obtain the same end result. \\ 
+The control of a quadcopter has been addressed many times in the recent years. In Mian et al. \textbf{SOURCE} the quadcopter is controlled using a back-stepping technique and non-linear controllers. Other way of solving the issue is presented in Tayebi et al. \textbf{SOURCE} in which the quadcopter attitude is modeled using quaternions and controlled with a PD based controller. In \textbf{SOURCE}, Mian and Yang model the system using its dynamic equations and use non linear controllers to achieve a steady flight while in Mokhtari et al. \textbf{SOURCE} the system is controlled by a mixture of a robust feedback linearization and a linear GH$_{\infty}$ is utilized.
+
+\item Describe our approach shortly.\\
+The approach presented models the quadcopter by a first principles method. This approach yields a non linear model that describes the attitude and translational behavior of the quadcopter. The model is then linearized around an equilibrium point, which is chosen to be in hovering position. With the linearized equations, controllers for attitude and translational behaviors are designed. The angular controller is obtained by means of a State Space representation while the translational controller is designed using classical control techniques. In the control system, the translational constitutes an outer loop  and sets the reference for the attitude controller.
+\item Describe our approach shortly.\\
+First, the modeling and controlled approaches are described in more detail. Then, the results are displayed and discussed to finally state the conclusion. \textbf{notveryhappywiththissentence}
+\end{itemize}
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=0.3]{harrypotter}
+%	\caption{Test of figure.}
+%	\label{centerOfMassDiagram}
+%\end{figure}
+
+
+%\begin{table}[H]
+%	\centering
+%	\begin{tabular}{|p{4.8cm}|p{2cm}|}
+%		\hline%------------------------------------------------------------------------------------
+%		\textbf{Characteristics}                 &  \textbf{Value} \unitWh{Unit}  \\
+%		\hline%------------------------------------------------------------------------------------
+%		Nominal output current                   &  5 \unitWh{A}  	\\
+%		\hline%------------------------------------------------------------------------------------
+%		Peak current (<20 s)                     &  15 \unitWh{A}	\\
+%		\hline%------------------------------------------------------------------------------------
+%		Current control PWM frequency 				   &  53,6 \unitWh{kHz}  \\
+%		\hline%------------------------------------------------------------------------------------
+%		Sample Rate of PI current controller     &  53,6 \unitWh{kHz}  \\
+%		\hline%------------------------------------------------------------------------------------
+%	\end{tabular}
+%	\caption{Important parameters of the motor control board.}
+%	\label{MotorControlBoardTable}
+%\end{table}
+
+%\begin{flalign}
+%\eq{J_F \vec{\ddot{\theta}_F}} { -B_F \vec{\dot{\theta}_F} + \vec{l_F} \times (m_F\cdot \vec{g}) + \vec{l_w} \times \vec{F} - \vec{\tau_m} + B_w \vec{\dot{\theta}_w}} \unit{N\cdot m}
+%\label{frameModelEq}
+%\end{flalign}
+
+%\begin{flalign}
+%\eqOne{\tau_{m}[n]}{\num{-8,314} \cdot e_{\theta}[n]+ \num{7,422} \cdot e_{\theta}[n-1] + \num{8,3023} \cdot e_{\theta}[n-2] }
+%\eqTwo{ - \num{7,434} \cdot e_{\theta}[n-3] + \num{1,382} \cdot \tau_{m}[n-1] - \num{0,3415} \cdot \tau_{m}[n-2] }
+%\eqThree{- \num{0,001638} \cdot \tau_{m}[n-3]} \unit{N \cdot m} 
+%\label{eq:discControllerDiffEq}
+%\end{flalign}
+
+\section{Method}
+INTRO FOR MODEL
+\subsection{Model}
+\begin{itemize}
+\item Model - Drawing, equations, linear equations.
+The quadcopter system is shown in Figure \ref{droneDiagram}. As it can bee seen, the system is modeled by using two coordinate frames. The inertial frame is used to describe the translational movement while the body frame is attached to the quadcopter and applied to characterize its attitude behavior. In the figure, also the positive references for rotational and translational movements are depicted, as well as the main forces and torques acting on the quadcopter. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{droneDiagram}
+	\caption{Quadcopter diagram showing the forces acting on the system and the positive references chosen for rotations and translations in both Inertial and Body coordinate frames.}
+	\label{droneDiagram}
+\end{figure}
+In order to represent the different forces generated in the drone in the Inertial frame a rotation matrix is used. It is built considering a 321 or 123 rotation sequence. \textbf{SOURCE ROTATION  MATRIX} 
+\subsubsection{Motor and Propeller}
+The four motors in the quadcopter generate the rotation required so the propeller creates the force that lifts the quadcopter. This force is called thrust force and can be modeled as proportional to the square of the motor rotational velocity. MAYBE SOURCE. The coefficient for this equation is called thrust coefficient and has been found by experiments.  
+The rotation of the propellers also generates a torque on each motor due to drag between air and propeller. Drag torque is compensated in the quadcopter by having two of the motors turning in one direction and the two others in the opposite. It can also be described as proportional to the square of the velocity by terms of a drag coefficient that has also been obtained through tests.
+Equation \ref{eq:thrustForce} and \ref{eq:dragTorque} show the expression for the thrust force and drag torque caused by the rotation of the propeller.
+\begin{align}
+	F&=k_{th}\omega^2\label{eq:thrustForce}\\
+	\tau&=k_{d}\omega^2\label{eq:dragTorque}
+\end{align}
+INCLUDE WHERE
+\subsubsection{Attitude Model}
+The attitude model equations are based on Newton Second Law for rotational movement and are represented in Equation \ref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}. 
+\begin{align}
+	J_x\cdot\ddot{\phi}&=k_{th} \cdot(\omega^2_4-\omega^2_2) \cdot L \label{eq:AngleEqVelocities1}\\
+	J_y \cdot\ddot{\theta}&=k_{th} \cdot(\omega^2_1-\omega^2_3) \cdot L \label{eq:AngleEqVelocities2} \\
+	J_z\cdot\ddot{\psi}&=k_d \cdot(\omega^2_1-\omega^2_2+\omega^2_3-\omega^2_4)
+	\label{eq:AngleEqVelocities3}
+\end{align}
+INCLUDE WHERE
+%\begin{where}
+%	\va{k_{th}}{is the thrust coefficients}{N\cdot s^2 \cdot rad^{-2}}
+%	\va{k_d}{is the drag coefficients}{N \cdot m\cdot s^2 \cdot rad^{-2}}
+%\end{where}
+The expressions above state how the thrust force difference between motors 1 and 3 affects the roll angular acceleration, how that between motors 4 and 2 affects the pitch angle and how the yaw acceleration depends on the four motors by means of the drag torque generated on the propeller.  
+\subsubsection{Translational Model}
+The equations describing the response of the system along the x, y and z axes is derived from Newton's Second Law. The forces that act on the system are those from the propellers and the gravitational. These expressions are shown in Equation \ref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2} and \ref{eq:AccelerationEqInertial3}. FIX EQUATIONS
+\begin{flalign}
+ 	\eq{m\cdot\ddot{x}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\sin(\theta)} \label{eq:AccelerationEqInertial1}\\
+ 	\eq{m\cdot\ddot{y}_I}{-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot(-\sin(\phi))\cdot\cos(\theta)} \label{eq:AccelerationEqInertial2}\\
+ 	\eq{m\cdot\ddot{z}_I}{F_g-k_{th}\cdot({\omega_1}^2+{\omega_2}^2+{\omega_3}^2+{\omega_4}^2)\cdot\cos(\phi)\cdot\cos(\theta)}
+ 	\label{eq:AccelerationEqInertial3}
+\end{flalign}
+It is worth mentioning that the forces 
+\subsection{Control}
+\item Controller - Diagram of controller.
+	\item Angle controller - include observer, linear controller.
+\item Network effect on the system - Analysis of delay in the system.
+\end{itemize}
+\section{Results}
+Simulation vs. reality. \\
+%Design a setup that allows a nice measurement of reality - yet to be done\\
+Comment on the results and how that correlates with reality, without discussing possible issues or improvements.
+
+\section{Discussion}
+Discussing possible issues or improvements of the above results.
+
+\section{Conclusion}
+Summary - what we want the reader to remember.
+\section*{Acknowledgment}
+Henrik XXXXX, associated professor at Aalborg University \\
+Christoffer Sloth, associated professor at Aalborg University
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+
+\printbibliography
+	%\begin{thebibliography}{}	
+	%%\bibitem{IEEEhowto:kopka}
+	%%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+	%%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+	%
+	%\end{thebibliography}
+>>>>>>> Stashed changes
 
 %
 %-----RESULTS-----------------------------------------------------------
