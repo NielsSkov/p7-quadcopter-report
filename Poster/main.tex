@@ -51,18 +51,17 @@
 \newlength{\threecolwid}
 \setlength{\paperwidth}{48in} % A0 width: 46.8in
 \setlength{\paperheight}{36in} % A0 height: 33.1in
-\setlength{\sepwid}{0.02\paperwidth} % Separation width (white space) between columns
-\setlength{\onecolwid}{0.2\paperwidth} % Width of one column
+\setlength{\sepwid}{0.01\paperwidth} % Separation width (white space) between columns
+\setlength{\onecolwid}{0.22\paperwidth} % Width of one column
 \setlength{\twocolwid}{0.52\paperwidth} % Width of two columns
-\setlength{\threecolwid}{0.708\paperwidth} % Width of three columns
-\setlength{\topmargin}{-0.5in} % Reduce the top margin size
+\setlength{\threecolwid}{0.708\paperwidth} % Width of three columns (not used in this poster)
+\setlength{\topmargin}{-1in} % Reduce the top margin size
 
 %-----------------------------------------------------------
 
 \usepackage{graphicx}  % Required for including images
 
 \usepackage{booktabs} % Top and bottom rules for tables
-
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION 
@@ -105,15 +104,23 @@
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
-\begin{alertblock}{Introduction}
+\begin{alertblock}{Introduction\vspace{2pt}}
+\centering
+\vspace{.5cm}
+\parbox{.95\textwidth}{
 \input{content/introduction.tex}
+}\vspace{.5cm}
 \end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	MODEL
 %----------------------------------------------------------------------------------------
-\begin{alertblock}{Model}
+\begin{alertblock}{Model\vspace{2pt}}
+\centering
+\vspace{.5cm}
+\parbox{.95\textwidth}{
 \input{content/model.tex}
+}\vspace{.5cm}
 \end{alertblock}
 
 %----------------------------------------------------------------------------------------
@@ -128,7 +135,7 @@
 %----------------------------------------------------------------------------------------
 %	CONTROL SOLUTION
 %----------------------------------------------------------------------------------------
-\begin{alertblock}{Control Solution}
+\begin{alertblock}{Control Solution\vspace{2pt}}
 \input{content/control.tex}
 \end{alertblock}
 %----------------------------------------------------------------------------------------
@@ -136,7 +143,7 @@
 %----------------------------------------------------------------------------------------
 %	RESULTS
 %----------------------------------------------------------------------------------------
-\begin{alertblock}{Results}
+\begin{alertblock}{Results\vspace{2pt}}
 	\input{content/results.tex}
 \end{alertblock} 
 
@@ -155,37 +162,51 @@
 %----------------------------------------------------------------------------------------
 %	DISCUSSION
 %----------------------------------------------------------------------------------------
-\begin{alertblock}{Discussion}
-\input{content/discussion.tex}   
+\begin{alertblock}{Discussion\vspace{2pt}}
+\centering
+\vspace{.5cm}
+\parbox{.95\textwidth}{
+\input{content/discussion.tex}
+}\vspace{.5cm}
 \end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	Conclusion
 %----------------------------------------------------------------------------------------
-\begin{alertblock}{Conclusion}
-\input{content/conclusion.tex} 
+\begin{alertblock}{Conclusion\vspace{2pt}}
+\centering
+\vspace{.5cm}
+\parbox{.95\textwidth}{
+\input{content/conclusion.tex}
+}\vspace{.5cm}
 \end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	References
 %----------------------------------------------------------------------------------------
-\begin{alertblock}{References}
-
-\small{\rmfamily{CONTROL BOOK.}} \\
+\begin{alertblock}{References\vspace{2pt}}
+\centering
+\vspace{.5cm}
+\parbox{.95\textwidth}{
+\small{\rmfamily{CONTROL BOOK.}}
 %\nocite{*} % Insert publications even if they are not cited in the poster
 %\small{\bibliographystyle{unsrt}
 %\bibliography{sample}\vspace{0.75in}}
 \printbibliography
+}\vspace{.5cm}
 \end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	Acknowledgements
 %----------------------------
-\begin{alertblock}{Acknowledgements}
-
+\begin{alertblock}{Acknowledgements\vspace{2pt}}
+\centering
+\vspace{.5cm}
+\parbox{.95\textwidth}{
 \small{\rmfamily{Henrik Shøiler, Associated Professor, Aalborg University.
 % \\ Christoffer Sloth, Associated Professor, Aalborg University.
-}} \\
+}}
+}\vspace{.5cm}
 \end{alertblock}
 
 %----------------------------------------------------------------------------------------
