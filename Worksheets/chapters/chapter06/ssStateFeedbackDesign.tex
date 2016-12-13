@@ -1,7 +1,7 @@
-\subsection{State Feedback with Integral Control Design}
-The aim of the attitude controller is to be able to track the references for roll, pitch and yaw. Given a state space representation as the one in \autoref{xDotLinear} and \ref{yLinear}, it is possible to design an attitude controller so that the final dynamics of the system can be chosen.
+\subsection{State Feedback with Integral Control}
+The aim of the attitude controller is to be able to track the references for roll, pitch and yaw. Given a state space representation as the one in \autoref{xDotLinear} and \ref{yLinear}, it is possible to design an attitude controller so that this aim is achieved. %the dynamics of the system can be chosen.
 
-In this approach a state feedback is used to allow the system to return to equilibrium position while an integral controller makes it possible to include a new reference and track it. These two control actions are added together and four velocity values for the motors are transmitted to the Rotational Speed Calculator, seen in \autoref{fig:ControlHeadDiagram}. The diagram in \autoref{fig:ControllerColorDiagram} shows how the two controllers are related. The \autoref{fig:DetailedControllerColorDiagram} illustrates the highlighted part in \autoref{fig:ControllerColorDiagram} in more detail, with the actual variables used in the design process.
+In this approach, a state feedback is used to make the system return to the equilibrium position while an integral controller makes it possible to include a new reference and track it while rejecting input disturbances. These two control actions are added together and four velocity values for the motors are transmitted to the Rotational Speed Calculator seen in \autoref{fig:ControlHeadDiagram}. The diagram in \autoref{fig:ControllerColorDiagram} shows how the two controllers are related. The \autoref{fig:DetailedControllerColorDiagram} illustrates the highlighted part in \autoref{fig:ControllerColorDiagram} in more detail, with the actual variables used in the design process.
 %
 %In this approach a state feedback is used to allow the system to return to equilibrium position while an integral controller makes it possible to include a new reference and track it, adding both control actions to get the one finally applied to the motors.
 \begin{minipage}{\linewidth}
@@ -18,58 +18,58 @@ In this approach a state feedback is used to allow the system to return to equil
 		\begin{figure}[H]\vspace{20mm}
 			\includegraphics[scale=.35]{figures/DetailedControllerColorDiagram}
 			\centering \vspace{7mm}
-			\captionof{figure}{The highlighted parts from the left diagram in detail, including all the variables used in the design of the controllers.}
+			\captionof{figure}{The highlighted parts from the left diagram in detail, including all the variables used in the design of the controller.}
 			\label{fig:DetailedControllerColorDiagram}
 		\end{figure}
 	\end{minipage}
 \end{minipage}
 
 
-From \autoref{fig:DetailedControllerColorDiagram}, the feedback law yields \autoref{eq:ssControllerAction} \cite{ssReference}.
+From \autoref{fig:DetailedControllerColorDiagram}, the feedback law yields \autoref{eq:ssControllerAction}.
 %
 \begin{flalign} 
-	\vec{u}(t) &=\vec{F} \  \vec{x}(t) + \ \vec{F}_{Int} \  \vec{x}_{Int}(t)
+	\vec{u}(t) &=\vec{F} \  \vec{x}(t) + \ \vec{F}_{\mathrm{Int}} \  \vec{x}_{\mathrm{Int}}(t)
      \label{eq:ssControllerAction}
 \end{flalign}
 %
 \begin{where}
 	\va{\vec{F}}{is a 4x6 state feedback matrix}{}
-	\va{\vec{F}_{Int}}{is a 3x6 integral feedback matrix }{}
+	\va{\vec{F}_{\mathrm{Int}}}{is a 3x6 integral feedback matrix }{}
 \end{where}
 
-In this equation, \si{\vec{x}_{Int}(t)} is given by \autoref{eq:ssControllerAction1}, which is equivalent to \autoref{eq:ssControllerAction2}, see \autoref{fig:DetailedControllerColorDiagram} \cite{ssReference}.
+In this equation, \si{\vec{x}_{\mathrm{Int}}(t)} is given by \autoref{eq:ssControllerAction1}, which is equivalent to \autoref{eq:ssControllerAction2}, see \autoref{fig:DetailedControllerColorDiagram}.
 \begin{flalign}
-    \vec{x}_{Int}(t) &= \int_{0}^{t} \vec{y}(\tau)-\vec{r}(\tau) d\tau	\label{eq:ssControllerAction1}\\
-    \vec{\dot{x}}_{Int}(t) &= \vec{y}(t)-\vec{r}(t) \label{eq:ssControllerAction2}
+    \vec{x}_{\mathrm{Int}}(t) &= \int_{0}^{t} \vec{y}(\tau)-\vec{r}(\tau) d\tau	\label{eq:ssControllerAction1}\\
+    \vec{\dot{x}}_{\mathrm{Int}}(t) &= \vec{y}(t)-\vec{r}(t) \label{eq:ssControllerAction2}
 \end{flalign} 
 %
-This last equation can be introduced in the existing state space model, having the system states and taking \si{\vec{x}_{Int}(t)} as new states, yielding the result shown in \autoref{xdotSSExtended} and \autoref{ySSExtended} \cite{ssReference}.
+This last equation is included in the existing state space model, having the system states, $\vec{x}$, and taking \si{\vec{x}_{\mathrm{Int}}(t)} as new states, yielding the expression shown in \autoref{xdotSSExtended} and \autoref{ySSExtended} \cite{ssReference}.
 %
 \begin{flalign} 
-    \dot{\vec{x}}_e(t) &= \vec{A}_e \  \vec{x}_e(t) + \vec{B}_e \  \vec{u}(t) + 
+    \dot{\vec{x}}_{\mathrm{e}}(t) &= \vec{A}_{\mathrm{e}} \  \vec{x}_{\mathrm{e}}(t) + \vec{B}_{\mathrm{e}} \  \vec{u}(t) + 
     \begin{bmatrix}
        \ \vec{0}     \ \ \ \\ 
        \ \vec{-I}     \ \ \  		
    \end{bmatrix}
    \vec{r}(t) 
    \label{xdotSSExtended}\\ 
-    \vec{y}(t) &= \vec{C}_e \  \vec{x}_e 
+    \vec{y}(t) &= \vec{C}_{\mathrm{e}} \  \vec{x}_{\mathrm{e}} 
        \label{ySSExtended}
 \end{flalign} 
 %
-being\\
+where\\
 \begin{minipage}{0.24\linewidth}
 	\begin{flalign}
-		\dot{\vec{x}}_e(t)= 
+		\dot{\vec{x}}_{\mathrm{e}}(t)= 
 		\begin{bmatrix}
 			\ \dot{\vec{x}}(t)      \ \ \ \\ 
-			\ \dot{\vec{x}}_{Int}(t)      \ \ \  		
+			\ \dot{\vec{x}}_{\mathrm{Int}}(t)      \ \ \  		
 		\end{bmatrix} \nonumber
 	\end{flalign}
 \end{minipage}\hfill
 \begin{minipage}{0.24\linewidth}
 	\begin{flalign}
-	    \vec{A}_e=
+	    \vec{A}_{\mathrm{e}}=
 	    \begin{bmatrix}
 	        \ \vec{A}  & \vec{0}    \ \ \ \\ 
 	        \ \vec{C}  & \vec{0}    \ \ \  		
@@ -78,7 +78,7 @@ being\\
 \end{minipage}   \hfill 
 \begin{minipage}{0.24\linewidth}
 	\begin{flalign}
-		\vec{B}_e=
+		\vec{B}_{\mathrm{e}}=
 		\begin{bmatrix}
 			\ \vec{B}    \ \ \ \\ 
 			\ \vec{0}     \ \ \  		
@@ -87,14 +87,14 @@ being\\
 \end{minipage}\hfill
 \begin{minipage}{0.24\linewidth}
 	\begin{flalign}
-		\vec{C}_e=
+		\vec{C}_{\mathrm{e}}=
 		\begin{bmatrix}
 			\ \vec{C}  & \vec{0}  \ \ \  		
 		\end{bmatrix} \nonumber
 	\end{flalign}
 \end{minipage}
 
-The resulting feedback law can be design as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_e=[\vec{F} \ \vec{F}_{Int}]$ matrix such that the eigenvalues of $\vec{A}_e+\vec{B}_e\vec{F}_e$ are the new poles of the system.
+The resulting feedback law can be design as a conventional state feedback, where the goal is to choose an appropriate $\vec{F}_{\mathrm{e}}=[\vec{F} \ \vec{F}_{\mathrm{Int}}]$ matrix such that the eigenvalues of $\vec{A}_{\mathrm{e}}+\vec{B}_{\mathrm{e}}\vec{F}_{\mathrm{e}}$ are the new poles of the system.
 
 
 

@@ -1,9 +1,9 @@
 \subsection{Reduced Order Observer}
-It has been decided to implement a reduced order observer, to observer the angular velocities. In general an observer is utilized in a control system if either one of two specific cases occurs. If certain states in the system are not measured, an observer can estimate the unmeasured states by the means of some of the measured state-variables. However, it is also possible to use an observer if the measured data gathered from the sensors is affected a significant amount of noise. As the observer in addition to estimating unmeasured states, also filters measurements \cite{observerfilter}. The latter is however not focus more on in the prototype.
+A reduced order observer is designed for estimating the angular velocities. In general, an observer is utilized in a control system if either one of two specific cases occur. If certain states in the system are not measured, an observer can estimate the unmeasured states by the means of some of the measured states. However, it is also possible to use an observer if the measured data gathered from the sensors is affected a significant amount of noise. As the observer in addition to estimating unmeasured states, also filters measurements \cite{observerfilter}. The former is the reason for using an observer in the control system.
 
-As explained earlier, the attitude model has six states, the three angles of the quadcopter (roll, pitch and yaw) and the three angular velocities. By using the Vicon system, the three angles of the quadcopter are measured, making it possible to estimate the angular velocities. With this approach, the first three states (angles), $x_1$ will be equal to the outputs, $y$, whereas the other three states will be estimated (angular velocities), $\hat{x}_2$.
+As described earlier, the attitude model has six states. With the use of the observer, the first three states, $\vec{x}_{1:3}$ are equal to the outputs, $\vec{y}$, whereas the other three states are estimated, $\vec{\hat{x}}_{4:6}$.
 
-In \autoref{fig:Observerdiagram1} a diagram illustrating the setup of the angular controller is shown. The highlighted lines is the reduced order observer and its corresponding inputs and output.
+In \autoref{fig:Observerdiagram1}, a diagram illustrating the setup of the attitude controller is shown. The highlighted lines is the reduced order observer are its corresponding inputs and output.
 %
 \begin{figure}[H]
     \includegraphics[scale=.4]{figures/ObserverColorDiagram}
@@ -12,14 +12,14 @@ In \autoref{fig:Observerdiagram1} a diagram illustrating the setup of the angula
     \label{fig:Observerdiagram1}
 \end{figure}
 %
-The matrices which define the system can be separated into submatrices, which will be used in the design of the observer \cite{ReducedOrderObserverChristoffer}:\\
+The matrices that define the system can be separated into submatrices, which are used in the design of the observer \cite{ReducedOrderObserverChristoffer}.\\
 %
 \begin{minipage}{0.45\linewidth}
     \begin{flalign}
         \vec{A}=
         \begin{bmatrix}
-            \ \vec{A11}_{3 \times 3}  & \vec{A12}_{3 \times 3}    \ \ \ \\ 
-            \ \vec{A21}_{3 \times 3}  & \vec{A22}_{3 \times 3}    \ \ \  		
+            \ \vec{A_{11}}  & \vec{A_{12}}    \ \ \ \\ 
+            \ \vec{A_{21}}  & \vec{A_{22}}    \ \ \  		
         \end{bmatrix} \nonumber
     \end{flalign}
 \end{minipage}   \hfill 
@@ -27,8 +27,8 @@ The matrices which define the system can be separated into submatrices, which wi
     \begin{flalign}
         \vec{B}=
         \begin{bmatrix}
-            \ \vec{B1}_{3 \times 4}    \ \ \ \\ 
-            \ \vec{B2}_{3 \times 4}     \ \ \  		
+            \ \vec{B_1}    \ \ \ \\ 
+            \ \vec{B_2}     \ \ \  		
         \end{bmatrix} \nonumber
     \end{flalign}
 \end{minipage}\hfill
@@ -41,22 +41,23 @@ The matrices which define the system can be separated into submatrices, which wi
 %    \end{flalign}
 %\end{minipage}
 
-
-As described before the system is observable. It is thereby possible to utilize the reduced order observer theorem \fxnote{The reduced order observer theorem slide 6 course 4 control.}. This theorem states, that for an observable system there always exist an gain $L_{obs}$ which ensures that \autoref{eq:observerStable} is stable \cite{ReducedOrderObserverChristoffer}.
+%It is thereby possible to utilize the reduced order observer theorem \fxnote{The reduced order observer theorem slide 6 course 4 control.}. This theorem states, that for an observable system there always exist an gain $L_{obs}$ which ensures that \autoref{eq:observerStable} is stable \cite{ReducedOrderObserverChristoffer}.
+As the system is observable, there exists a matrix $\vec{L}_{obs}$ such that \autoref{eq:observerStable} is stable.
 %
 \begin{flalign}
 	\vec{A_{22}} + \vec{L_{obs}}\vec{A_{12}}
 		\label{eq:observerStable}
 \end{flalign}
 %
-The theorem also states that with this observer gain, the observer in \autoref{eq:eqobservertheorem} ensures that the estimate, $\hat{x}_2$, converges to $x_2$ with a rate yielded by the eigenvalues of \autoref{eq:eqobservertheorem} \cite{ReducedOrderObserverChristoffer}.
+The observer ensures that the estimate, $\hat{x}_{4:6}$, converges to $x_{4:6}$ with a rate yielded by the eigenvalues of \autoref{eq:observerStable} \cite{ReducedOrderObserverChristoffer}.
 %
 \begin{flalign}
-	\vec{\hat{\dot{x}}_2} &= \vec{A_{21}}\vec{y} + \vec{A_{22}}\vec{\hat{x}_2} + \vec{B_2u} + \vec{L_{obs}}\vec{(A_{12}\hat{x}_2} - \vec{A_{21}x_2})
+	%\vec{\dot{\hat{x}}_{4:6}} &= \vec{A}_{21}\vec{y} + \vec{A}_{22}\vec{\hat{x}_{4:6}} + \vec{B_2u} + \vec{L_{obs}}\vec{(A_{12}\hat{x}_2} - \vec{A_{21}x_2})
+	\vec{\dot{\hat{x}}_{4:6}} + \vec{L}_{\mathrm{obs}}\dot{y} &= (\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\vec{A}_{12})\vec{\hat{x}}_{4:6}+(\vec{A}_{21}+\vec{L}_{\mathrm{obs}}\vec{A}_{11})\vec{y}+(\vec{B}_2+\vec{L}_{\mathrm{obs}}\vec{B}_1)\vec{u}
 		\label{eq:eqobservertheorem}
 \end{flalign}
 %
-To calculate an appropriate observer gain, $L_{obs}$, it is necessary to evaluate the reliability of the utilized sensor. If the gain is set very high, the estimation will rely more on the actual measurements of the outputs, whereas if it is very low, there will be more influence of the model in the final calculations \cite{ObserverChristoffer}.
+To calculate an appropriate observer gain, $L_{obs}$, it is necessary to evaluate the reliability of the utilized sensor and the model, while also taking into account the sampling rate and system delay. This is done through the different simulations shown in \autoref{sec:AttSim}.
 
 %The matrix in \autoref{Matrix:Lobs} is the decided observer gains utilized in the reduced order observer.
 %
@@ -69,15 +70,8 @@ To calculate an appropriate observer gain, $L_{obs}$, it is necessary to evaluat
 %	\end{bmatrix}
 %	\label{Matrix:Lobs}
 %\end{flalign}
-
-With the final design, \autoref{eq:eqobserverderived} shows how to estimate $\hat{x}_2$ \cite{ObserverChristoffer}.
 %
-\begin{flalign}
-    \vec{\hat{\dot{x}}_2} + \vec{L\dot{y}} &= \vec{(A_{22}} + \vec{LA_{12})\hat{x}_2} + \vec{(A_{21}} + \vec{LA_{11})y} + (\vec{B_2} + \vec{LB_1})\vec{u}
-    \label{eq:eqobserverderived}
-\end{flalign}
-%
-This estimation can also be seen in the form of a block diagram, \autoref{fig:observerDiagram}.
+This estimation is also shown in the form of a block diagram, \autoref{fig:observerDiagram}.
 \begin{figure}[H]
 	\includegraphics[scale=.35]{figures/observerDiagram}
 	\centering
@@ -86,7 +80,6 @@ This estimation can also be seen in the form of a block diagram, \autoref{fig:ob
 	\label{fig:observerDiagram}
 \end{figure}
 %
-The attitude controller has been designed, it is now possible to simulate the controller and find the final pole locations.
 
 %\begin{minipage}{0.15\linewidth}
 %	\begin{flalign}

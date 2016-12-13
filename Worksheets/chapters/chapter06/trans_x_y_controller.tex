@@ -1,5 +1,5 @@
 \subsection{Controllers for x$_{\mathrm{I}}$ and y$_{\mathrm{I}}$ Directions}
-The design of the controllers for the translational movement in $x_I$ and $y_I$ directions is done using the transfer functions of the system.
+The design of the controllers for the translational movement in $\vec{x}_{\mathrm{I}}$ and $\vec{y}_{\mathrm{I}}$ directions is done using the transfer functions of the system.
 
 The linear equations for the translational model relate these movements with the roll and the pitch that the quadcopter has at each moment.
 %
@@ -26,13 +26,13 @@ The inner velocity controller design requires a transfer function from each of t
     \va{G_{y_I}}{is the plant for the translational velocity in $y_I$ direction}{}
 \end{where}
 
-From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants are similar but with different sign. The controller design is carried out for the x translational velocity and applied to both afterwards, as the design is identical.
+From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants are similar but with different sign. The controller design is carried out for the $x_I$ translational velocity and applied to both afterwards, as the design is identical.
 
-The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open-loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed-loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate for the plant.
+The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate for the plant.
 
-It is noticeable that, for this design, the variable changed by the controller is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. This is not accounted in the transfer functions. In order to start the design, the closed loop bandwidth of the control loop should be three to five times lower.\fxnote{SOURCE 3 TO 5 TIMES} 
+It is noticeable that, for this design, the variable changed by the controller is the pitch angle reference for the attitude controller. The inner loop effect is not accounted in the transfer functions. In order to start the design, the closed loop bandwidth of the control loop should be three to five times lower.\fxnote{SOURCE 3 TO 5 TIMES}. \fxnote{REVISE FROM HERE}
 
-The bandwidth of the inner attitude control is obtained by making a Bode plot approximation from the pitch angle reference to the real pitch angle in the quadcopter. The obtained Bode diagram is shown in \autoref{fig:bodePitch}. From the bode diagram the frequency of the inner loop is obtained to be 2 rad/s. It has been chosen to set the closed loop bandwidth three times lower than the inner loop, as it is desired to have the fastest system possible. Thus yielding the bandwidth for the velocity control loop to be 0.7 rad/s.
+The bandwidth of the inner attitude control is obtained by making a Bode plot approximation from the pitch angle reference to the real pitch angle in the quadcopter. The obtained Bode diagram is shown in \autoref{fig:bodePitch}. From the Bode diagram the frequency of the inner loop is obtained to be 2 rad/s. It has been chosen to set the closed loop bandwidth three times lower than the inner loop, as it is desired to have the fastest system possible. Thus yielding the bandwidth for the velocity control loop to be 0.7 rad/s.
 %
 \begin{figure}[H]
     \includegraphics[scale=.8]{figures/bodePitch}
