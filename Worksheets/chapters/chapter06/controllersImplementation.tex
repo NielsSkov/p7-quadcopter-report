@@ -1,4 +1,4 @@
-\section{Controllers}
+\section{Controllers}\label{sec:ContDiscrete}
 The implementation of the controllers can not be done having them as a continuous expression due to the discrete operation of the microcontroller. 
 
 In order to discretize the controllers in the system, they need to be expressed in terms of the $z$ operator, the equivalent to the Laplace operator in the discrete domain. This transformation is done through the Tustin (bilinear) approximation in which the $s$ term in the transfer function is substituted as seen in \autoref{tustin} \cite{tustin}.
