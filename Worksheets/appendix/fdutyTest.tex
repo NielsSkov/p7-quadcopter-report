@@ -3,15 +3,7 @@
 \textbf{Date: 5/12 - 2016}
 
 \subsubsection{Purpose}
-Finding the relation between the duty cycle sent to the motor controller and the rotational speed of the motors.
-
-\subsubsection{Setup}
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[scale=0.05,angle =-90]{figures/ThrustTestSetup}
-%	\caption{The setup for the thrust test.}
-%	\label{ThrustTest}
-%\end{figure}
+Finding the relation between the duty cycle sent to the motor controller and the rotational speed of the motors, to be able to select the appropriate duty once the control actions are calculated.
 
 \subsubsection{List of Equipment}
 \begin{table}[H]
@@ -37,7 +29,7 @@ Finding the relation between the duty cycle sent to the motor controller and the
 \subsubsection{Procedure}
 \begin{enumerate}
 	\item Connect the power supply to the motor controller and the Arduino Mega to the computer though the programmer. One PWM pin and GND pin from the board must be connected to the driver signal cables yellow and brown respectively. 
-	\item Run the program with a fixed PWM duty for each test.
+	\item Run the program with a fixed PWM duty for each test. The duty can be set from from 0 to 255.
 	\item Wait for the speed to stabilize and measure it with the tachometer. 
 	\item Repeat with a different duty cycle.
 \end{enumerate}
@@ -47,28 +39,40 @@ Finding the relation between the duty cycle sent to the motor controller and the
 	\centering
 	\begin{tabular}{|l|l|l|l|p{4.3cm}|}
 		\hline%------------------------------------------------------------------------------------------------------------
-		\textbf{Duty Cycle}    & \textbf{Motor Speed [rpm]} & \textbf{Motor Speed [rad/s]} \\ 
+		\textbf{Duty}    & \textbf{Motor Speed [rpm]} & \textbf{Motor Speed [rad/s]} \\ 
 		\hline%------------------------------------------------------------------------------------------------------------
-		9.4                & 1393         	   &  145.87                                       \\
+		160                & 2210         	   &  231.43                                       \\
 		\hline%------------------------------------------------------------------------------------------------------------
-		 9.5      &  2111 						       &  221.06				                \\
+		 165      &  2554 						       &  267.45				                \\
 		\hline%------------------------------------------------------------------------------------------------------------
-		 9.6       &  2335                               &  244.52   			                  \\
+         170      &  2820 						       &  295.31				                \\
+         \hline%------------------------------------------------------------------------------------------------------------
+         175       &  3107                               &  325.36   			                  \\
+        \hline%------------------------------------------------------------------------------------------------------------
+		 180       &  3381                               &  354.05   			                  \\
 		\hline%------------------------------------------------------------------------------------------------------------
-		9.7    & 2774                               &  290.49  			                       \\
+		185    & 3740                               &  391.65  			                       \\
 		\hline%------------------------------------------------------------------------------------------------------------
-		10   &    2868                               &  300.34                                 \\
+		190   &    4035                               &  422.54                                \\
 		\hline%------------------------------------------------------------------------------------------------------------
-		10.2   &  2930 						       &  306.83				                   \\
+		195   &  4345 						       &  455.01				                   \\
 		\hline%------------------------------------------------------------------------------------------------------------
-		10.5 &  3303                               &  317.62    			                    \\
+		200 &  4620                               &  483.81    			                    \\
 		\hline%------------------------------------------------------------------------------------------------------------
-		 10.8   &    3105                               &  325.15                               \\
-		\hline%------------------------------------------------------------------------------------------------------------
-		11.1     &  3185 						       &  333.53				                \\
+		 205   &    4882                               &  511.24                               \\
 		\hline%------------------------------------------------------------------------------------------------------------
 	\end{tabular}
-	\caption{Results obtained when applying a duty cycle of 170 to 256 in the motor speed reference.}
+	\caption{Results obtained when applying a duty cycle from 160 to 205 to the motor controllers.}
 \end{table}
 
-\fxnote{Put final numbers}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{figures/dutyGraph}
+	\caption{.}
+	\label{fig:dutyGraph}
+\end{figure}
+
+The final equation to be able to set the needed duty depending on the required rotational speed of the motor, blue line in \autoref{fig:dutyGraph}, is given by
+\begin{flalign}
+    \mathrm{duty_i}= 0.1598 \omega_{\mathrm{i}} +122.79
+\end{flalign}
