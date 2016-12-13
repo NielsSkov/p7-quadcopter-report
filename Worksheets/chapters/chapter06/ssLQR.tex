@@ -1,5 +1,5 @@
 
-The Linear Quadratic Regulator (LQR) approach is utilized to design an optimal state feedback for the controller. This approach is utilized together with Bryson's rule. Bryson's rule yields the possibility to prioritize the convergences of the states in the system. Furthermore it does this while being able to set boundaries for the control action applied to the system.
+The Linear Quadratic Regulator (LQR) approach is utilized to design an optimal state feedback for the controller. This approach is utilized together with Bryson's rule, which yields the possibility to prioritize the convergences of the states in the system. Furthermore it does this while being able to set boundaries for the control action applied to the system.
 %In order to find the values of the feedback matrix, a Linear Quadratic Regulator (LQR) and Bryson's rule in order to find the optimal control and having the possibility of prioritizing the convergence of the different states while setting boundaries to the control action applied to the system. 
 
 The LQR finds the state feedback that minimizes the cost function \autoref{eq:costfunction}. \cite{ssReference}. %seen in it is possible to find the necessary state feedback gains which minimizes the cost function in 
@@ -14,13 +14,13 @@ The LQR finds the state feedback that minimizes the cost function \autoref{eq:co
 
 In the cost function, $\vec{Q}$ and $\vec{R}$ are positive semi-definite and positive definite matrices, respectively. $\vec{Q}$ defines the penalties for the error in the states making the cost function value higher for the prioritized states. $\vec{R}$ sets the weights for the inputs of the system such that the control action does not exceed its maximum limits. \fxnote{why positive definite}\cite{ssReference} 
 
-For the LQR to minimize the cost function, the matrices $\vec{Q}$ and $\vec{R}$ has to be found. The value for these matrices can be found using Bryson's rule, which can be seen in \autoref{eq:weightingmatrices}. The $\vec{Q}$ and $\vec{R}$ matrices are diagonal matrices. The $\vec{Q}$ matrix diagonal elements are a function of the maximum acceptable value for the error in the states. The $\vec{R}$ diagonal elements sets the control action in each of the inputs. \cite{OptimalControlChristoffer}.
+For the LQR to minimize the cost function, the matrices $\vec{Q}$ and $\vec{R}$ need to be found. This is done using Bryson's rule as seen in \autoref{eq:weightingmatrices}. The $\vec{Q}$ and $\vec{R}$ matrices are diagonal matrices. The $\vec{Q}$ matrix elements are a function of the maximum acceptable value for the error in the states. The $\vec{R}$ elements set limits for the control action in each of the inputs. \cite{OptimalControlChristoffer}.
 \begin{flalign} 
 	Q_{ii} &= \frac{1}{\text{maximum acceptable value of }[x^2_i]}\\
 	R_{ii} &= \frac{1}{\text{maximum acceptable value of }[u^2_i]}
 	\label{eq:weightingmatrices}
 \end{flalign}
-The maximum state error and maximum control action work as soft boundaries that give priorities to the different states and control actions. The final values are found by solving the cost function, here a compromise between a controller that reduces the errors fast and uses the least amount of control action is found.
+The maximum state error and maximum control action work as soft boundaries that give priorities to the different states and control actions.% The final values are found by solving the cost function, here a compromise between a controller that reduces the errors fast and uses the least amount of control action is found.
 
 The state feedback gain, $\vec{F}_{\mathrm{e}}$, can be calculated using the expression seen in \autoref{eq:optimalF}.
 \begin{flalign} 
@@ -31,8 +31,7 @@ The state feedback gain, $\vec{F}_{\mathrm{e}}$, can be calculated using the exp
 	\va{\vec{P}}{is the state-transfer matrix.}{}
 \end{where}
 
-The positive definite matrix $\vec{P}$, provides the feedback matrix which minimizes the cost function in \autoref{eq:costfunction}. This can be found using the Algebraic Riccatti equation \autoref{eq:optimalP}. \cite{OptimalControlChristoffer}
-
+The positive definite matrix $\vec{P}$, provides, through \autoref{eq:optimalF}, the feedback matrix which minimizes the cost function in \autoref{eq:costfunction}. This can be found using the Algebraic Riccatti equation \autoref{eq:optimalP}. \cite{OptimalControlChristoffer}
 \begin{flalign} 
 	{\vec{A}{\mathrm{e}}}^T\vec{P}+\vec{P}\vec{A}_{\mathrm{e}}-\vec{P}\vec{B_{\mathrm{e}}}\vec{R}^{-1}\vec{B}_{\mathrm{e}}^T\vec{P}+\vec{Q} &= \vec{0}
 	\label{eq:optimalP}
