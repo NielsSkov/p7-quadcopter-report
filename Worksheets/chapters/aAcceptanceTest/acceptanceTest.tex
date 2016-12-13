@@ -8,11 +8,9 @@ There are three assessment degrees on how well the developed prototype satisfies
 For repetition, the requirements that need to be met are:
 \begin{enumerate}[label=\textbf{\arabic*})]
 \item {The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
-\item {The prototype should be able to disregard incorrect packets received from the computer.}
-\item {The quadcopter should be able to land if the battery voltage is below 10 volts.}
-\item {It shall be possible to control the quadcopters attitude.}
-\item {It shall be possible to make the quadcopter hover and control its height while hovering.}
-\item {It shall be possible to change the position of the quadcopter in the $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$ axis.}
+\item {It shall be possible to control the quadcopter's attitude.}
+\item {It shall be possible to make the quadcopter control its position in the z axis.}
+\item {It shall be possible to control the quadcopter in the x and y axis.}
 \end{enumerate}
 
 \newpage
@@ -51,7 +49,7 @@ For all tests, the general setup of the systems is explained in the following:
 
 \section{Utilize new sensor data in each control loop}
 \textbf{Requirement:}
-\textit{The quadcopter should be able to receive its own position and attitude wirelessly from the Vicon system each control loop, through a computer at the ground station.}
+\textit{The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
 
 \textbf{Pass/fail criteria:}
 	\begin{description}
@@ -77,60 +75,9 @@ For all tests, the general setup of the systems is explained in the following:
 
 \newpage
 
-\section{Disregard incorrect packages received from the computer}
+\section{Control the quadcopter's attitude}
 \textbf{Requirement:}
-\textit{The prototype should be able to disregard incorrect packets received from the computer.}
-
-\textbf{Pass/fail criteria:}
-	\begin{description}
-	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
-	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
-	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
-	\end{description}
-	
-\textbf{Procedure:}\\
-\begin{enumerate}
-	\item ..
-	\item ..
-	\item ..
-\end{enumerate} 
-
-
-\textbf{Results:}
-
-
-\newpage
-
-\section{Land if battery is below 10 volts}
-\textbf{Requirement:}
-\textit{The quadcopter should be able to land if the battery voltage is below 10 volts.}
-
-\textbf{Pass/fail criteria:}
-	\begin{description}
-	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
-	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
-	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
-	\end{description}
-
-		
-\textbf{Procedure:}\\
-
-
-\begin{enumerate}
-	\item ..
-	\item ..
-	\item ..
-\end{enumerate} 
-
-
-\textbf{Results:}
-
-
-\newpage
-
-\section{Control the quadcopters attitude}
-\textbf{Requirement:}
-\textit{It shall be possible to control the quadcopters attitude.}
+\textit{It shall be possible to control the quadcopter's attitude.}
 
 \textbf{Pass/fail criteria:}
 	\begin{description}
@@ -149,9 +96,9 @@ For all tests, the general setup of the systems is explained in the following:
 
 \newpage
 
-\section{Control the height in which the quadcopter is flying}
+\section{Control the position in the z axis}
 \textbf{Requirement:}
-\textit{It shall be possible to make the quadcopter hover and control the height of the hovering.}
+\textit{It shall be possible to make the quadcopter control its position in the z axis.}
 
 \textbf{Pass/fail criteria:}
 	\begin{description}
@@ -173,12 +120,11 @@ For all tests, the general setup of the systems is explained in the following:
 
 \textbf{Results:}
 
-
 \newpage
 
-\section{Control the position in the x, y and z axis}
+\section{Control the position in the x and y axis}
 \textbf{Requirement:}
-\textit{It shall be possible to change the position of the quadcopter in the x, y and z axis.}
+\textit{It shall be possible to control the quadcopter in the x and y axis}
 
 \textbf{Pass/fail criteria:}
 	\begin{description}
@@ -208,23 +154,19 @@ The results of the tests are summed up in \autoref{tab:acceptance_test_results}.
 \hline 
 \textbf{Req. nr.} & \textbf{Requirement} & \textbf{Result} \\ 
 \hline 
-1 & The quadcopter should be able to receive its own position and attitude wirelessly from the Vicon system, through a computer. & \ding{51}\\ 
+1 & The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station. & \ding{51}\\ 
 \hline
-2 & The prototype should be able to disregard incorrect packets received from the computer. & \ding{51} \\ 
+2 & It shall be possible to control the quadcopter's attitude. & \ding{51} \\ 
 \hline 
-3 & The quadcopter should be able to land if the battery voltage is below 10 volts. & \ding{51} \\ 
+3 & It shall be possible to make the quadcopter control its position in the z axis. & \ding{51} \\ 
 \hline 
-4 & It shall be possible to control the quadcopters attitude. & \ding{51} \\ 
-\hline 
-5 & It shall be possible to make the quadcopter hover and control the height of the hovering. & \ding{51}  \\ 
-\hline  
-6 & It shall be possible to change the position of the quadcopter in the x, y and z axis. & \ding{51} \\ 
+4 & It shall be possible to control the quadcopter in the x and y axis. & \ding{51} \\ 
 \hline  
 \end{tabular} 
 \caption{Summary of acceptance test results.}
 \label{tab:acceptance_test_results}
 \end{table}
 
-As can be seen, the prototype fulfils 8/8 of the set requirements. 
+As can be seen, the prototype fulfils 4/4 of the set requirements. 
 
 
