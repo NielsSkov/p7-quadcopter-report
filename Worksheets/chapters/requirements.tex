@@ -10,14 +10,15 @@ Before designing the system of the prototype, functional requirements are put up
 \item \textbf{The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
 \begin{itemize}
 \item[] %It is necessary for the quadcopter to receive it own position and attitude. 
-%This is essential for controlling and navigating the quadcopter. Additionally, it should be possible for the quadcopter to receive the information wirelessly, such that it can fly without cables attached.%, and thereby be able to fly freely.
-This is essential for controlling the quadcopter. Additionally, it should be possible for the quadcopter to receive the information through a wireless channel and discard corrupted packets
+This is essential for controlling and navigating the quadcopter. Additionally, it should be possible for the quadcopter to receive the information wirelessly, such that it can fly without cables attached.%, and thereby be able to fly freely.
+\fxnote{This is essential for controlling and navigating the quadcopter. Additionally, it should be possible for the quadcopter to receive the information through a wireless channel and discard corrupted packets}
 \end{itemize}
 
-%\item \textbf{The prototype should be able to disregard incorrect packets received from the ground computer.}
-%\begin{itemize}
-%\item[] To ensure that invalid data is not utilized, it shall be possible for the processor on the quadcopter to detect corrupt packets received from the ground station.
-%\end{itemize}
+\item \textbf{The prototype should be able to disregard incorrect packets received from the ground computer.}
+\begin{itemize}
+\item[] To ensure that invalid data is not utilized, it shall be possible for the processor on the quadcopter to detect corrupt packets received from the ground station.
+\end{itemize}
+
 
 \item \textbf{It shall be able to wireless receive commands sent from the computer at the ground station.}
 \begin{itemize}
@@ -37,15 +38,16 @@ This is essential for controlling the quadcopter. Additionally, it should be pos
 \end{itemize}
 
 
-%\item \textbf{It must be able to take off.\fxnote{Whis we can not test it}}
-%\begin{itemize}
-%\item[]The quadcopter must be able to take off without flipping or crashing in order to make the quadcopter fly and fulfil the other requirements.
-%\end{itemize}
-%\newpage
-%\item \textbf{It must be able to land.\fxnote{Whis we can not test it}}
-%\begin{itemize}
-%\item[]The quadcopter must be able to land without flipping or crashing. It must be able to touch down without overshoot, as this may damage the quadcopter if the impact with the ground is too great.
-%\end{itemize}
+\item \textbf{It must be able to take off.\fxnote{Whis we can not test it}}
+\begin{itemize}
+\item[]The quadcopter must be able to take off without flipping or crashing in order to make the quadcopter fly and fulfil the other requirements.
+\end{itemize}
+\newpage
+\item \textbf{It must be able to land.\fxnote{Whis we can not test it}}
+\begin{itemize}
+\item[]The quadcopter must be able to land without flipping or crashing. It must be able to touch down without overshoot, as this may damage the quadcopter if the impact with the ground is too great.
+\end{itemize}
+
 
 \item \textbf{It must be able to land automatically, when the battery level is below 10 V.\fxnote{Whis we can not test it}}
 \begin{itemize}
