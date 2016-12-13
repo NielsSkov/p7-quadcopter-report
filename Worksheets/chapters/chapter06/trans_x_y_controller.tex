@@ -1,5 +1,5 @@
 \subsection{Controllers for x$_{\mathrm{I}}$ and y$_{\mathrm{I}}$ Directions}
-The design of the controllers for the translational movement in $x_I$ and $y_I$ directions is done using the transfer functions of the system.
+The design of the controllers for the translational movement in $\vec{x}_{\mathrm{I}}$ and $\vec{y}_{\mathrm{I}}$ directions is done using the transfer functions of the system.
 
 The linear equations for the translational model relate these movements with the roll and the pitch that the quadcopter has at each moment.
 %
@@ -26,13 +26,13 @@ The inner velocity controller design requires a transfer function from each of t
     \va{G_{y_I}}{is the plant for the translational velocity in $y_I$ direction}{}
 \end{where}
 
-From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants are similar but with different sign. The controller design is carried out for the x translational velocity and applied to both afterwards, as the design is identical.
+From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants are similar but with different sign. The controller design is carried out for the $x_I$ translational velocity and applied to both afterwards, as the design is identical.
 
-The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open-loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed-loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate for the plant.
+The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open loop. $G_{x_I}$ has a negative gain, which means that it becomes unstable in closed loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate for the plant.
 
-It is noticeable that, for this design, the variable changed by the controller is the pitch angle, which means that there is an inner loop (the attitude control loop) that is able to produce the required angle in the system. This is not accounted in the transfer functions. In order to start the design, the closed loop bandwidth of the control loop should be three to five times lower.\fxnote{SOURCE 3 TO 5 TIMES} 
+It is noticeable that, for this design, the variable changed by the controller is the pitch angle reference for the attitude controller. In order to reduce the effect of the inner loop in the design, the closed loop bandwidth of the outer control loop should be three to five times lower \fxnote{SOURCE 3 TO 5 TIMES}.
 
-The bandwidth of the inner attitude control is obtained by making a Bode plot approximation from the pitch angle reference to the real pitch angle in the quadcopter. The obtained Bode diagram is shown in \autoref{fig:bodePitch}. From the bode diagram the frequency of the inner loop is obtained to be 2 rad/s. It has been chosen to set the closed loop bandwidth three times lower than the inner loop, as it is desired to have the fastest system possible. Thus yielding the bandwidth for the velocity control loop to be 0.7 rad/s.
+The bandwidth of the inner attitude control is obtained by making a Bode plot approximation from the pitch angle reference to the real pitch angle in the quadcopter. The obtained Bode diagram is shown in \autoref{fig:bodePitch}. From it, the bandwidth of the inner loop is obtained to be 2 rad/s. It has been chosen to set the closed loop bandwidth three times lower than the inner loop, as it is desired to have the fastest system possible. Thus yielding a bandwidth for the velocity control loop of 0.7 rad/s.
 %
 \begin{figure}[H]
     \includegraphics[scale=.8]{figures/bodePitch}
@@ -53,10 +53,9 @@ The bandwidth of the inner attitude control is obtained by making a Bode plot ap
 %    \captionof{figure}{Root locus of the plant for the velocity controller, that includes as well the dynamics of the attitude controller in pitch.} \label{fig:rLocusVelocity}
 %\end{figure} 
 %
-The plant is a type 1 system, since it contains one naturally occurring integrator in the system. There will therefore not be any closed loop steady state error, if no disturbance occur. However, due to input disturbances a steady state error is present in the output of the closed loop. Some causes for input disturbances, is wind, different velocities in the paired motors and defect in propellers.
+As the plant is a type 1 system, since it contains one integrator, there is no closed loop steady state error if no input disturbances occur. Possible causes for input disturbances are wind, different thrust forces generated in the propellers for the same rotational speed and different rotational speeds in the motors when given the same speed commands.
 
 A diagram of a closed loop system with input disturbance can be seen in \autoref{fig:Feedbackloopswithdisturbance}.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=.7\textwidth]{figures/Feedbackloopswithdisturbance.pdf}
@@ -75,16 +74,14 @@ The DC gain can be expressed as
  \lim_{s \to 0} H(s)=\lim_{s \to 0} \frac{K_{\dot{x}_{\mathrm{I}}}}{C(s) K_{\dot{x}_{\mathrm{I}}}} = \frac{K_{\dot{x}_{\mathrm{I}}}}{C(s) K_{\dot{x}_{\mathrm{I}}}}\label{eq:dc_gain}
 \end{flalign}
 
-As an steady state error is present an integrator is added to the controller, the DC gain can thereby be given as:
+As an steady state error is present, an integrator is added to the controller, the DC gain can thereby be given as:
 \begin{flalign}
     \lim_{s \to 0} H(s)=\lim_{s \to 0} \frac{K_{\dot{x}_{\mathrm{I}}}}{C(s) K_{\dot{x}_{\mathrm{I}}}} =\lim_{s \to 0} \frac{K_{\dot{x}_{\mathrm{I}}}s}{K_{\dot{x}_{\mathrm{I}}}}=0\label{eq:dc_gain_integrator}
 \end{flalign}
 
 It is thereby revealed from \autoref{eq:dc_gain_integrator} that the steady state error is eliminated. 
 
-An integrator is therefore included in the control design. Since there already exists an integral term in the plant, the closed loop system becomes marginally unstable since the branches in the root locus are located on the imaginary axis.
-
-In order to avoid that behavior, a zero at $-0.05$ is added to the controller to attract the branches to the stable region and the gain is adjusted to reduce the oscillations. The zero placement is to keep the required bandwidth and to yield a possible none oscillating behavior. The final root locus can be seen in \autoref{fig:rl_xdot}.
+An integrator is therefore included in the control design. Since there already exists an integral term in the plant, the closed loop system becomes marginally unstable since the branches in the root locus are located on the imaginary axis. In order to attract them into the left half plane, a zero at $-0.05$ is added to the controller. Then, the gain is adjusted to reduce the oscillations. The zero placement keeps the required bandwidth and yields a possible none oscillating behavior. The final root locus can be seen in \autoref{fig:rl_xdot}.
 %
 \begin{figure}[H]
 	\includegraphics[scale=.7]{figures/rl_xdot}

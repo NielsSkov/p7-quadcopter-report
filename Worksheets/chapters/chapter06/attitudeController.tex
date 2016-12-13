@@ -1,7 +1,8 @@
 \section{Attitude Controller}\label{sec:AttitudeControllerDesign}
-The attitude controller constitutes an inner loop which receives references for the roll and pitch, from the outer loop which is the $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ translational controller. As it is decided only to move the drone in one inertial axis at a time, the plus configuration explained in \autoref{chap:Model} \fxnote{Ensure that it matches what is written in the model section}, the yaw reference is always set to zero.\\ The angular response of the quadcopter constitutes a coupled behavior, as all the three Euler angles ($\phi$, $\theta$ and $\psi$) are affected by the same four motor velocities, see \autoref{fig:ControlHeadDiagram}. This makes it harder to utilize independent controllers for each angle. A state space approach is therefore utilized, as this method is less complicated when the system to be controlled has multiple input and multiple sensed outputs \cite{MultipleInputandoutput}.
+%The attitude controller constitutes an inner loop which receives references for the roll and pitch, from the outer loop which is the $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ translational controller. As it is decided only to move the drone in one inertial axis at a time, the plus configuration explained in \autoref{chap:Model} \fxnote{Ensure that it matches what is written in the model section}, the yaw reference is always set to zero.\\ 
+The attitude response of the quadcopter constitutes a coupled behavior, as all the three Euler angles, $\phi$, $\theta$ and $\psi$, are affected by the same four motor velocities, see \autoref{fig:ControlHeadDiagram}. A state space approach is therefore utilized, as this method is convenient when the system to be controlled has multiple input and multiple sensed outputs \cite{MultipleInputandoutput}.
 
-The system behavior is represented by means of the linearized model equations. These linearized equations can be represented in state variable form, shown in \autoref{xDotLinear} and \ref{yLinear}.
+The system behavior is represented by means of the linearized model equations. These linearized equations can be represented in state space form, shown in \autoref{xDotLinear} and \ref{yLinear}.
 %
 \begin{flalign}
 	\vec{\dot{x}}(t)&=\vec{A} \  \vec{x}(t) + \vec{B} \  \vec{u}(t)
@@ -29,8 +30,11 @@ A block diagram of the state space description can be seen in \autoref{SSBlocks}
 	\label{SSBlocks}
 \end{figure}\vspace{-18pt}
 %
-For an nth-order system the states of the system, $\vec{x}$, is a vector containing n elements. Thus the $\vec{x}$ vector contains six elements, as there are three attitude equations each with an order of two. The equations are found in \autoref{sec:CombinedModel}. Typically for a mechanical system the states are the velocities and the position of the system, as Newton's law is utilized \cite{Stateschosen}. This corresponds with the three attitude equations, as Newton's law is utilized yielding an equation with angular acceleration included. The states are therefore the three angular velocities and the three angles. \\
-The size of the input vector, $\vec{u}$, is $m \times 1$ vector, where m is the number of inputs. The inputs are the four motor velocities. The output, $\vec{y}$, contains the three angles, $\phi$, $\theta$ and $\psi$. From now on, the variables in the equations are represented without the symbol $\Delta$, as to avoid excessive symbol notation, even though they refer to changes around the linearization point. The generated vectors can be seen in \autoref{uVector}.\\
+The state vector, $\vec{x}$, contains six elements, as there are three attitude second order differential equations, see \autoref{eq:AngleLincombined}. As for mechanical systems, the states are the angular velocities and positions of the system \cite{Stateschosen}.%, as Newton's Second Law is utilized .
+
+The size of the input vector, $\vec{u}$, corresponds to the number of inputs, which are the four motor velocities. The output, $\vec{y}$, contains the three angles, $\phi$, $\theta$ and $\psi$. 
+
+From now on, the variables in the equations are represented without the symbol $\Delta$, to avoid excessive notation, even though they refer to changes around the linearization point. The generated vectors can be seen in \autoref{uVector}.\\
 \begin{minipage}{0.32\linewidth}
 	\begin{flalign}
 		\vec{x}(t) = 
@@ -71,7 +75,7 @@ The size of the input vector, $\vec{u}$, is $m \times 1$ vector, where m is the 
 	\end{flalign}
 \end{minipage}\hfill
 \\
-The specific matrices for the description of the angular behavior are obtained from the linearized equations of the system (\autoref{eqAngleLin1} and \ref{eqAngleLin2}). The size of the input matrix, $\vec{B}$, is $n \times m$, where n is the order of the system and m is the number of inputs. The size of the system matrix, $\vec{A}$, is an $n \times n$ and the output matrix, $\vec{C}$, is an $1 \times n$ matrix. The $\vec{C}$ matrix contains the states which are measured, this is decided to be the three angles. As the Vicon system measures the attitude of the quadcopter, and it is desired to have the reference for the attitude controller to be roll and pitch, see \autoref{fig:ControlHeadDiagram}. The matrices generated from the linear attitude equations are showed embedded in the state space representation in \autoref{xDotSS} and \autoref{ySS}.
+The specific matrices for the description of the angular behavior are obtained from the linearized equations of the system (\autoref{eq:AngleLincombined}). The size of the input matrix, $\vec{B}$, is $n \times m$, where n is the order of the system and m is the number of inputs. The size of the system matrix, $\vec{A}$, is an $n \times n$ and the output matrix, $\vec{C}$, is an $1 \times n$ matrix. The matrices generated from the linear attitude equations are showed embedded in the state space representation in \autoref{xDotSS} and \autoref{ySS}.
 %
 \begin{flalign}   \label{xDotSS}
 	\vec{\dot{x}}(t) &=
@@ -104,7 +108,7 @@ The specific matrices for the description of the angular behavior are obtained f
 	\vec{x}(t)
 \end{flalign}
 
-Before deciding on controllers and if an observer should be utilized, it is advisable to check the controllability and observability of the system. For doing so, the matrices shown in \autoref{controlabilityandobservability} are used. \\
+Before designing the controller, it is advisable to check the controllability and observability of the system. For doing so, the controllability and observability matrices shown in \autoref{controlabilityandobservability} are used. \\
 \begin{minipage}{0.45\linewidth}
 \begin{flalign}
 \vec{{\mathcal C}} = 
@@ -128,15 +132,14 @@ Before deciding on controllers and if an observer should be utilized, it is advi
 \end{flalign}
 \end{minipage}\hfill
 
-The rank of these matrices are six, that is, the number of states. This makes the system both controllable and observable. The precise value of the matrices can be seen in \autoref{app:matricesSS}. Note, if the measured states was the angular velocities and not the angles, the system would not have been observable, as the matrix would have a rank of three.
+The rank of these matrices is six, that is, the number of states. This makes the system both controllable and observable. The precise value of the matrices can be seen in \autoref{app:matricesSS}. % Note that if the measured states have been the angular velocities and not the angles, the system would not have been observable, as the matrix would have a rank of three.
 
-The dynamics of the system can be analyzed by looking at the system matrix $\vec{A}$. The eigenvalues of this matrix represent the location of the systems open loop poles. In this case, the system has six poles located in zero, which means that the system is marginally stable. In order to place those poles at a better location a state feedback is use. This is combined with an integral controller to be able to set a desired reference, different from zero, for the roll and pitch. 
+The dynamics of the system can be analyzed by looking at the system matrix $\vec{A}$. The eigenvalues of this matrix represent the location of the systems open loop poles. In this case, the system has six poles located in zero, which means that the system is marginally stable. In order to place those poles at a stable location, a state feedback is use. This is combined with an integral controller to be able to set a desired reference, different from zero, for the roll and pitch and reject input disturbances in the three angles. 
 
 %As the output is formed by the three angles, these are the only measured states in the system.
-For doing the state feedback, the angular velocities are also needed even though they are not measured. The way of obtaining these is done by utilizing a reduced order observer. This is done even though the angular velocities could be estimated with a numerical differentiation procedure. The observer is more convenient in case of using on board sensors and by using it, that possibility is kept open. Furthermore from an learning perspective it is valuable.
+For doing the state feedback, the angular velocities are also needed even though they are not measured. The way of obtaining them is using a reduced order observer. This is done even though the angular velocities could be estimated with a numerical differentiation procedure. The observer is more convenient in case of using on board sensors and by using it, that possibility is kept open. %Furthermore from an learning perspective it is valuable.
 
-This way of approaching the control of the system is simplified by the possibility of designing the state feedback, integral controller and the reduced order observer independently. This holds due to the separation principle.
-The separation principle theorem states, an observer with gain $\vec{L}$ and a feedback with gain $\vec{F}$ results in 2n closed loop poles \cite{ObserverChristoffer}, where n is the number of states in the system. As a reduced order observer is utilized for estimating the angular velocities, only nine poles are created. 
+This approach has the possibility of designing the state feedback, integral controller and the reduced order observer independently. This holds due to the separation principle \cite{ObserverChristoffer}, which states that the closed loop poles of the system are the combination of the state feedback with integral control poles and the observer poles. This implies that the system has 12 closed loop poles.% which states that an observer with gain $\vec{L}$ and a feedback with gain $\vec{F}$ results in 2n closed loop poles \cite{ObserverChristoffer}, where n is the number of states in the system. As a reduced order observer is utilized for estimating the angular velocities, only nine poles are created. 
 
 A block diagram showing the system overview of the attitude controller is shown in \autoref{attitudecontrollerdiagram}. Here the state feedback, the integral control and the reduced order observer can be seen.
 \begin{figure}[H]
