@@ -9,9 +9,10 @@ Before designing the system of the prototype, functional requirements are put up
 %\begin{enumerate}[label=\textbf{\arabic*})]
 \item \textbf{The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
 \begin{itemize}
-\item[] It is necessary for the quadcopter to receive it own position and attitude. This is essential for controlling and navigating the quadcopter. Additionally, it should be possible for the quadcopter to receive the information wirelessly, such that it can fly without cables attached, and thereby be able to fly freely.
+\item[] %It is necessary for the quadcopter to receive it own position and attitude. 
+This is essential for controlling and navigating the quadcopter. Additionally, it should be possible for the quadcopter to receive the information wirelessly, such that it can fly without cables attached.%, and thereby be able to fly freely.
+\fxnote{This is essential for controlling and navigating the quadcopter. Additionally, it should be possible for the quadcopter to receive the information through a wireless channel and discard corrupted packets}
 \end{itemize}
-
 
 \item \textbf{The prototype should be able to disregard incorrect packets received from the ground computer.}
 \begin{itemize}
@@ -19,7 +20,7 @@ Before designing the system of the prototype, functional requirements are put up
 \end{itemize}
 
 
-\item \textbf{It shall able to wireless recieve commands send from the  computer at the ground station.}
+\item \textbf{It shall be able to wireless receive commands sent from the computer at the ground station.}
 \begin{itemize}
 \item[] It must be possible to demand that the quadcopter either takes off or lands. It must also be possible to send a new position for the quadcopter to fly to.  
 \end{itemize}
@@ -27,30 +28,30 @@ Before designing the system of the prototype, functional requirements are put up
 
 \item \textbf{It shall be possible to control the quadcopter's attitude.}
 \begin{itemize}
-\item[] To be able to stabilize the quadcopter, it is essential that it is possible to control the attitude. This is essential both when the quadcopter is changing position in either the $x_{\mathrm{I}}$, $y_{\mathrm{I}}$, or $z_{\mathrm{I}}$ axis and when it needs to maintain its position.
+\item[] To be able to stabilize the quadcopter, it is essential that it is possible to control the attitude. This is essential both when the quadcopter is changing position in either the $x_{\mathrm{I}}$, $y_{\mathrm{I}}$, or $z_{\mathrm{I}}$ axis and when it needs to maintain its position.\fxnote{Should we mention $x_{\mathrm{I}}$ and so on? we don't define it until the model chapter}
 \end{itemize}
 
 
-\item \textbf{It shall be possible to make the quadcopter hover by controlling its height.}
+\item \textbf{It shall be possible to make the quadcopter hover by controlling its height.\fxnote{Maybe we should include all the position control in this requirement.}}
 \begin{itemize}
-\item[] It should be possible for the quadcopter to keep itself in a hovering position. Furthermore, it shall be possible to change the position in the $z_{\mathrm{I}}$ axis in which the quadcopter is hovering.
+\item[] It should be possible for the quadcopter to keep itself in a hovering position. Furthermore, it shall be possible to change the position in the $z_{\mathrm{I}}$ axis in which the quadcopter is hovering.\fxnote{$z_{\mathrm{I}}$}
 \end{itemize}
 
 
-\item \textbf{It must be able to take off.}
+\item \textbf{It must be able to take off.\fxnote{Whis we can not test it}}
 \begin{itemize}
 \item[]The quadcopter must be able to take off without flipping or crashing in order to make the quadcopter fly and fulfil the other requirements.
 \end{itemize}
 \newpage
-\item \textbf{It must be able to land.}
+\item \textbf{It must be able to land.\fxnote{Whis we can not test it}}
 \begin{itemize}
 \item[]The quadcopter must be able to land without flipping or crashing. It must be able to touch down without overshoot, as this may damage the quadcopter if the impact with the ground is too great.
 \end{itemize}
 
 
-\item \textbf{It must be able to land automatically, when the battery level is below 10 volt.}
+\item \textbf{It must be able to land automatically, when the battery level is below 10 V.\fxnote{Whis we can not test it}}
 \begin{itemize}
-\item[] This is necessary in order to avoid crashing due to engine failure. The quadcopter will thereby only operate when the battery delivers the required power for the four motors. This is to avoid damaging the quadcopter and the battery.
+\item[] This is necessary in order to avoid crashing due to engine failure\fxnote{engine failure?}. The quadcopter will thereby only operate when the battery delivers the required power for the four motors. This is to avoid damaging the quadcopter and the battery.
 \end{itemize}
 
 \end{enumerate}

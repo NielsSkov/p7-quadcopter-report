@@ -1,6 +1,6 @@
 \chapter{Acceptance test}
 
-It must be tested if the designed radio complies with the requirements mentioned in \autoref{ch:technicalRequirements}, which this is done in in the following. %Before the test can be performed pass/fail criteria and procedures needs to be formulated. 
+It must be tested if the designed networked control system complies with the requirements mentioned in \autoref{ch:technicalRequirements}. This is done in the following. %Before the test can be performed pass/fail criteria and procedures needs to be formulated. 
 
 There are three assessment degrees on how well the developed prototype satisfies the requirements. The degrees are \ding{51} for a pass, (\ding{51}) for a partial pass and \ding{55} for a fail. 
 
@@ -56,7 +56,7 @@ For all tests, the general setup of the systems is explained in the following:
 \textbf{Pass/fail criteria:}
 	\begin{description}
 	\item[ \ding{51} ] One new decoded packet is utilized in each control loop.
-	\item[(\ding{51})] 99 percent of the control loops runs with the recent received data from a new decoded packet. Indicating that 1 percent of the time a control loop runs with old data.
+	\item[(\ding{51})] 99 percent of the control loops runs with the recent received data from a new decoded packet. Indicating that 1 percent of the time a control loop runs with old data.\fxnote{should we come up with numbers?}
 	\item[ \ding{55} \phantom{)}] More than 1 percent of the control loops runs with old data.
 	\end{description}
 
@@ -69,9 +69,8 @@ For all tests, the general setup of the systems is explained in the following:
 	\item In every control loop the data which is utilized should be compared to the data utilized in the loop before. If the data is not identical a counter should be incremented. 
 	\item The comparison should only take place if the communication task register a packet containing data which is less or equal to than 999.
 	\item The first packet consisting of zeros should not be compared to an old packets (as there is none) but is instead compared to the number 1001. 
-	\item The counter, which is incremented each time the data utilized in the control loop is not identical to the previous, should be transmitted back to the computer when the computer is done transmitting plus an additional \SI{10}{s}.
-	\item Each control loop running while packets are received should be transmitted back.
-	\item This number is then subtracted from a 1000 yielding the amount of control loops not utilizing new data.
+	\item The counter, which is incremented each time the data utilized in the control loop is not identical to the previous, should be transmitted back to the computer when the computer is done transmitting.
+	\item A counter incremented each control loop while packets are received should also be transmitted back.
 \end{enumerate} 
 
 \textbf{Results:}
@@ -88,11 +87,8 @@ For all tests, the general setup of the systems is explained in the following:
 	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
 	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
 	\end{description}
-
-		
+	
 \textbf{Procedure:}\\
-
-
 \begin{enumerate}
 	\item ..
 	\item ..
@@ -138,21 +134,16 @@ For all tests, the general setup of the systems is explained in the following:
 
 \textbf{Pass/fail criteria:}
 	\begin{description}
-	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
-	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
-	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
+	\item[\ding{51}] The attitude of the quadcopter is stabilized around 0 rad.
+	\item[(\ding{51})] The attitude of the quadcopter is stabilized around 0 with oscillations and is not able to handle disturbances.
+	\item[\ding{55} \phantom{)}] The control system does not stabilize the attitude of the quadcopter or it is unstable.
 	\end{description}
-		
 \textbf{Procedure:}\\
-
-
 \begin{enumerate}
-	\item ..
-	\item ..
-	\item ..
+	\item Hang the quadcopter from the ceiling with a string and program the attitude controller on the microcontroller.
+	\item Start the transmission of attitude data from the Vicon system to the quadcopter.
+	\item Record the data given by the Vicon system during the test.
 \end{enumerate} 
-
-
 \textbf{Results:}
 
 
