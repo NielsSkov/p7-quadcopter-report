@@ -1,6 +1,7 @@
 \section{Discussion}\label{sec:discussion}\fxnote{why the controllers are slow?, the delay is high}
 The results obtained in the simulations show both the attitude and position response of the quadcopter. 
 
-It is seen that the controllers achieve the desired reference even though the network delay and the sampling rate affect the performance. The main network effect is the designed bandwidth of the controllers. This occurs due to the limited frequency in which the sensor data is obtained from the motion tracking system through the wireless connection. 
+It is seen that the controllers achieve the desired references even though the network delay and the sampling rate affects the performance by reducing stability. This effects limit the design bandwidth of the controllers. This occurs due to the limited frequency in which the sensor data is obtained from the motion tracking system through the wireless connection.
 
+%The attitude controller tracks the given references in roll and pitch. The network delay 
 It is also worth observing how the attitude controller shows a permanent error with respect to the reference. This is generated as a result of the integral controller design because it assumes a constant reference applied to it. This issue, though, does not affect the final position of the quadcopter.
