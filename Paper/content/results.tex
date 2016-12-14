@@ -1,5 +1,5 @@
 \section{Results}\label{sec:results}
-The controllers have been implemented and tested in the real quadcopter. The real results for the attitude controller are presented and simulation results with the network and the model simulated in MATLAB Simulink are depicted for the translational controllers. 
+The controllers have been implemented and tested in the real quadcopter. The real results for the attitude controller and simulation results with the network and the model simulated in MATLAB Simulink for the translational controllers are presented. 
 
 The obtained model parameters can be seen in \autoref{ParametersQuadcopter}. 
 \begin{table}[H]
@@ -82,18 +82,26 @@ The  controllers for $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$, $\dot{z}_{\
 
 These controllers are discretized using the Tustin method with a sampling frequency of 28 Hz. This is the fastest available frequency in which data can be acquired from the motion tracking system, transmitted to the quadcopter and read by the microcontroller.
 
-The results obtained with these parameters and controllers are shown in \autoref{PositionControl}.
+\autoref{fig:rollref} and \ref{fig:pitchref} show the attitude controller response when tracking a reference in pitch angle.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.4\textwidth]{figures/pitchRefAcceptAllAngles}
+	\caption{Real attitude control response when tracking a reference in pitch.}
+	\label{fig:pitchref}
+\end{figure}
+
+In \autoref{fig:positionControl}, the simulated step responses of the translational controllers along the three axes are depicted.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.4\textwidth]{figures/PositionControl}
 	\caption{Position control results in the three inertial axes directions. The references given to the control system are shown with dashed lines.}
-	\label{PositionControl}
+	\label{positionControl}
 \end{figure}
-
-The inner attitude controller results are also included and shown in \autoref{AttitudeControl} so the performance of the attitude control can be evaluated. 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.4\textwidth]{figures/AttitudeControl}
-	\caption{Attitude control results in the three angles. The references given to the attitude control system are shown with dashed lines.}
-	\label{AttitudeControl}
-\end{figure}
+%
+%The inner attitude controller results are also included and shown in \autoref{AttitudeControl} so the performance of the attitude control can be evaluated. 
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=.4\textwidth]{figures/AttitudeControl}
+%	\caption{Attitude control results in the three angles. The references given to the attitude control system are shown with dashed lines.}
+%	\label{AttitudeControl}
+%\end{figure}
