@@ -1,17 +1,17 @@
-\subsection{Attitude Controller} \fxnote{Explain more on why this design process is carried out}
-The attitude controller for the quadcopter is designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter. The chosen states for the system are the three angular positions and the three angular velocities. The input vector of the attitude system consists of the four motor rotational speeds and the output vector consists of the three angles, roll, pitch and yaw. The state, input and output vectors are
+\subsection{Attitude Controller}
+The attitude controller is designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter. The chosen states for the system are the three angular positions and the three angular velocities. The input vector consists of the four motor rotational speeds and the output vector consists of the three angles, roll, pitch and yaw. The state, input and output vectors are
 %
 \begin{flalign}
 	\vec{x}(t)&= 
 	\begin{bmatrix}
 		\phi & \theta & \psi & \dot{\phi} &	\dot{\theta} & \dot{\psi} 
 	\end{bmatrix}	\nonumber
-	^T\\
+	^T,\\
 	\vec{y}(t)&= 
 	\begin{bmatrix}
 		\phi &	\theta & \psi 
 	\end{bmatrix}	\nonumber
-	^T\\
+	^T,\\
 	\vec{u}(t)&= 
 	\begin{bmatrix}
 		\omega_1 & \omega_2 &	\omega_3 &	\omega_4 
@@ -66,24 +66,24 @@ The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices in the
  }
 \normalsize
 
-\noindent Note, that the $\vec{D}$ matrix is a zero matix.\\
-\indent The attitude control is based on a state feedback and an integral term in order to be able to track a given reference and reject input disturbances. As not all states are measured a reduced order observer is implemented to estimate the angular velocities of the quadcopter. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
+\noindent Note, that the $\vec{D}$ matrix is a zero matrix.\\
+\indent The attitude control is based on a state feedback and an integral term in order to be able to track a given reference and reject input disturbances. As not all states are measured a reduced order observer is implemented to estimate the angular velocities. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
 \\
 \\
 \noindent\autoref{AttitudeControlDiagram} shows how these designs are related.
 \begin{figure}[H]
     \centering
     \includegraphics[width=.4\textwidth]{figures/AttitudeControlDiagram}
-    \caption{ Control structure for the system, including the state feedback, the integral controller and the reduced order observer.}
+    \caption{ Control structure for the system, including the state feedback with integral action and the reduced order observer.}
     \label{AttitudeControlDiagram}
 \end{figure}
 
 %--------------------- StateFeedback with Integral Control ----------------------------
-The design of the state feedback and integral control is shown in \autoref{fig:DetailedControllerColorDiagram}.
+The design of the state feedback with the integral action is shown in \autoref{fig:DetailedControllerColorDiagram}.
 \begin{figure}[H]
     \includegraphics[width=.35\textwidth]{figures/DetailedControllerColorDiagram}
     \centering
-    \captionof{figure}{State feedback and integral controller in the attitude control structure.\fxnote{Explain what the variables are}}
+    \captionof{figure}{State feedback with integral action in the attitude control structure. $\vec{r}$ is the angular reference vector and $\vec{x}_{\mathrm{int}}$ is the integral states.}
     \label{fig:DetailedControllerColorDiagram}
 \end{figure}
 Three states, $\vec{x}_{\mathrm{int}}(t)$, are added to the already existing state vector to track the two references for $\phi$ and $\theta$ angles and reject input disturbances in the three angles. This leads to the extended system
