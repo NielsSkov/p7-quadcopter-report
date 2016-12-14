@@ -77,10 +77,10 @@
 \addtobeamertemplate{headline}{} 
 {
 	\begin{tikzpicture}[remember picture,overlay] 
-	\node [shift={(-15 cm,-9cm)}] at (current page.north east) {\includegraphics[height=11cm]{figures/aau_logo_cropped}}; 
+	\node [shift={(-15 cm,-8cm)}] at (current page.north east) {\includegraphics[height=11cm]{figures/aau_logo}}; 
 	\end{tikzpicture} 
 	\begin{tikzpicture}[remember picture,overlay] 
-	\node [shift={(15 cm,-9cm)}] at (current page.north west) {\includegraphics[height=11cm]{figures/aau_logo_cropped}}; 
+	\node [shift={(15 cm,-8cm)}] at (current page.north west) {\includegraphics[height=11cm]{figures/aau_logo}}; 
 	\end{tikzpicture} 
 }
 %----------------------------------------------------------------------------------------
@@ -186,14 +186,12 @@
 %----------------------------------------------------------------------------------------
 \begin{alertblock}{References\vspace{2pt}}
 \centering
-\vspace{.5cm}
-\parbox{.95\textwidth}{
-\small{\rmfamily{CONTROL BOOK.}}
-%\nocite{*} % Insert publications even if they are not cited in the poster
-%\small{\bibliographystyle{unsrt}
-%\bibliography{sample}\vspace{0.75in}}
+\vspace{.2cm}
+\parbox{.98\textwidth}{
+\nocite{FeedbackControl} % Insert publications even if they are not cited in the poster
+\nocite{TrueTimeNew}
 \printbibliography
-}\vspace{.5cm}
+}\vspace{.2cm}
 \end{alertblock}
 
 %----------------------------------------------------------------------------------------
@@ -201,12 +199,10 @@
 %----------------------------
 \begin{alertblock}{Acknowledgements\vspace{2pt}}
 \centering
-\vspace{.5cm}
-\parbox{.95\textwidth}{
-\small{\rmfamily{Henrik Shøiler, Associated Professor, Aalborg University.
-% \\ Christoffer Sloth, Associated Professor, Aalborg University.
-}}
-}\vspace{.5cm}
+\vspace{.2cm}
+\parbox{.98\textwidth}{
+Henrik Shøiler, Associated Professor, Aalborg University.
+}\vspace{.2cm}
 \end{alertblock}
 
 %----------------------------------------------------------------------------------------
