@@ -1,7 +1,7 @@
 \section{Results}\label{sec:results}
-The controllers have been implemented and tested in the real quadcopter. The obtained results are also compared with the network and the model have been simulated in MATLAB Simulink in order to generate results presented in this section. 
+The controllers have been implemented and tested in the real quadcopter. The real results for the attitude controller are presented and simulation results with the network and the model simulated in MATLAB Simulink are depicted for the translational controllers. 
 
-The model parameters can be seen in \autoref{ParametersQuadcopter}. 
+The obtained model parameters can be seen in \autoref{ParametersQuadcopter}. 
 \begin{table}[H]
     \centering
     \begin{tabular}{c|c|c}
@@ -33,7 +33,6 @@ The mass and the length have been measured, $k_{\mathrm{th}}$ and $k_{\mathrm{d}
 The value of delay used in the simulation \fxnote{WRITE NUMBER} milliseconds and the packet loss probability is set to zero.
 
 The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diagonal matrices shown below and the chosen observer poles, which are $[-11, -12, -13]$.
-
 %\footnotesize{
 %\begin{flalign}   \label{Fematrix}
 %	\vec{F}&=
@@ -58,7 +57,7 @@ The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diago
 \noindent$\vec{R}=diag\left(\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2}\right) $
 \end{center}
 
-The  controllers for $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$, $\dot{z}_{\mathrm{I}}$, $x_{\mathrm{I}}$ $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$ are
+The  controllers for $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$, $\dot{z}_{\mathrm{I}}$, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$ are
 \begin{minipage}{0.45\linewidth}
 	\begin{flalign}
 		C_{\dot{x}_{\mathrm{I}}}=-C_{\dot{y}_{\mathrm{I}}}=-0.0038\frac{1+20s}{s},\nonumber
@@ -83,7 +82,7 @@ The  controllers for $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$, $\dot{z}_{\
 
 These controllers are discretized using the Tustin method with a sampling frequency of 28 Hz. This is the fastest available frequency in which data can be acquired from the motion tracking system, transmitted to the quadcopter and read by the microcontroller.
 
-The simulation results obtained with these parameters and controllers are shown in \autoref{PositionControl}.
+The results obtained with these parameters and controllers are shown in \autoref{PositionControl}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.4\textwidth]{figures/PositionControl}

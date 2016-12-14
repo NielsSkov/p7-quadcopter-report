@@ -30,7 +30,7 @@ From \autoref{eq:Gxdot} and \ref{eq:Gydot} it can be noticed that the two plants
 
 The transfer functions are formed by an integrator and a gain. This means the systems are marginally stable in open loop. $G_{x_{\mathrm{I}}}$ has a negative gain, which means that it becomes unstable in closed loop if a controller with positive gain is placed. This feature requires a negative controller gain to compensate for the plant.
 
-It is noticeable that, for this design, the variable changed by the controller is the pitch angle reference for the attitude controller. In order to reduce the effect of the inner loop in the design, the closed loop bandwidth of the outer control loop should be three to five times lower \fxnote{SOURCE 3 TO 5 TIMES}.
+It is noticeable that, for this design, the variable changed by the controller is the pitch angle reference for the attitude controller. In order to reduce the effect of the dynamics of the inner loop in the design, the closed loop bandwidth of the outer control loop should be lower.
 
 The bandwidth of the inner attitude control is obtained by making a Bode plot approximation from the pitch angle reference to the real pitch angle in the quadcopter. The obtained Bode diagram is shown in \autoref{fig:bodePitch}. it shows that the bandwith of the inner loop of 2 rad/s. It has been chosen to set the closed loop bandwidth three times lower than the inner loop, as it is desired to have the fastest system possible. Thus yielding a bandwidth for the velocity control loop of 0.7 rad/s.
 %
