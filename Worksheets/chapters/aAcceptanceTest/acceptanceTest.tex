@@ -81,15 +81,46 @@ For all tests, the general setup of the systems is explained in the following:
 
 \textbf{Pass/fail criteria:}
 	\begin{description}
-	\item[\ding{51}] The attitude of the quadcopter is stabilized around 0 rad.
-	\item[(\ding{51})] The attitude of the quadcopter is stabilized around 0 with oscillations and is not able to handle disturbances.
-	\item[\ding{55} \phantom{)}] The control system does not stabilize the attitude of the quadcopter or it is unstable.
+	\item[\ding{51}] The attitude of the quadcopter is stabilized around zero radians and the it is possible to track a reference.
+	\item[(\ding{51})] It is possible to stabilized around zero radians.
+	\item[\ding{55} \phantom{)}] It is not possible to either stabilize the quadcopter around zero or track a reference.
 	\end{description}
-\textbf{Procedure:}\\
+
+\textbf{List of equipment:}	
+
+\begin{table}[H]
+	\begin{tabular}{|l|l|p{4.3cm}|}
+		\hline%------------------------------------------------------------------------------------------------------------
+		\textbf{Instrument}   &  \textbf{AAU-no.}  &  \textbf{Type}                       \\
+		\hline%------------------------------------------------------------------------------------------------------------
+		Quadcopter    	&  N/A 						&  (see \autoref{cha:Systemdescription}) 		      	 \\
+		\hline%------------------------------------------------------------------------------------------------------------
+	    Vicon 			& 75459                 &  (see \autoref{cha:Systemdescription})                  \\
+		\hline%------------------------------------------------------------------------------------------------------------
+		A string            &  N/A               & N/A     \\
+		\hline%------------------------------------------------------------------------------------------------------------
+		Computer with Matlab       &  A6703		 & N/A     \\
+		\hline%------------------------------------------------------------------------------------------------------------
+		Attitude quadcopter holder      &  N/A		 & N/A     \\
+		\hline%------------------------------------------------------------------------------------------------------------
+		Attitude quadcopter connector holder   &  N/A		 & N/A     \\
+		\hline%------------------------------------------------------------------------------------------------------------
+		Two XBees      &  N/A		 & Version S1 (see \autoref{cha:Systemdescription})   \\
+		\hline%------------------------------------------------------------------------------------------------------------
+
+	\end{tabular}
+\end{table}
+	
+\textbf{Procedure:}
+
 \begin{enumerate}
-	\item Hang the quadcopter from the ceiling with a string and program the attitude controller on the microcontroller.
+	\item Hang the quadcopter from the ceiling with a string.
+	\item Attach the attitude connector holder to the quadcopter, and the connector to the attitude quadcopter holder.
+	\item Ensure Vicon is connected to the computer using Matlab.
+	\item Ensure communication between the computer and the quadcopter is set up and working.
 	\item Start the transmission of attitude data from the Vicon system to the quadcopter.
-	\item Record the data given by the Vicon system during the test.
+	\item Switch on the battery for the quadcopter
+	\item Record the data given by the Vicon system during the test on the computer.
 \end{enumerate} 
 \textbf{Results:}
 

@@ -4,18 +4,18 @@ The final design for the $x_I$ and $y_I$ translational controllers have been don
 In \autoref{fig:velocityControllersXY} the translational velocity controller, $\dot{x}_I$, is subjected to a step input reference signal of \SI{1}{m s^{-1}} at time \SI{0}{s}. This yields a settling time of \SI{6}{s}, with an error band of 5 percent, and an overshoot of 15 percent. In \autoref{fig:velocityControllersXYAction} the corresponding control action is shown.
 
 \begin{minipage}{\linewidth}
-    \begin{minipage}{0.5\linewidth}
+    \begin{minipage}{0.46\linewidth}
         \begin{figure}[H]
-            \includegraphics[scale=.5]{figures/velocityControllersXY}
+            \includegraphics[scale=.6]{figures/velocityControllersXY}
             \centering			
             \captionof{figure}{A step response of the translational velocity controller, where the system is subjected to a step input reference signal of \SI{1}{m s^{-1}} in the $x_I$ direction at time \SI{0}{s}.}
             \label{fig:velocityControllersXY}
         \end{figure}
     \end{minipage}
     \hspace{0.03\linewidth}
-    \begin{minipage}{0.5\linewidth}
+    \begin{minipage}{0.46\linewidth}
         \begin{figure}[H]
-            \includegraphics[scale=.5]{figures/velocityControllersXYAction}
+            \includegraphics[scale=.6]{figures/velocityControllersXYAction}
             \centering
             \captionof{figure}{The performed control action to achieve the velocity response in \autoref{fig:velocityControllersXY}, together with the control action set by the controller.}
             \label{fig:velocityControllersXYAction}
