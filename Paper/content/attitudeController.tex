@@ -86,28 +86,28 @@ The design of the state feedback with the integral action is shown in \autoref{f
     \captionof{figure}{State feedback with integral action in the attitude control structure. $\vec{r}$ is the angular reference vector and $\vec{x}_{\mathrm{int}}$ is the integral states.}
     \label{fig:DetailedControllerColorDiagram}
 \end{figure}
-Three states, $\vec{x}_{\mathrm{int}}(t)$, are added to the already existing state vector to track the two references for $\phi$ and $\theta$ angles and reject input disturbances in the three angles. This leads to the extended system
+Three states, $\vec{x}_{\mathrm{int}}$, are added to the already existing state vector in order to track the two references for $\phi$ and $\theta$ and reject input disturbances in the three angles. This leads to the extended system
 %
 \vspace{-.2cm}
 \begin{flalign} 
-\dot{\vec{x}}_\mathrm{e}(t) &= \vec{A}_\mathrm{e} \vec{x}_\mathrm{e}(t) + \vec{B}_\mathrm{e} \vec{u}(t) + 
+\dot{\vec{x}}_\mathrm{e} &= \vec{A}_\mathrm{e} \vec{x}_\mathrm{e} + \vec{B}_\mathrm{e} \vec{u} + 
 \begin{bmatrix}
 \ \vec{0}     \ \ \ \\ 
 \ \vec{-I}     \ \ \  		
 \end{bmatrix}
-\vec{r}(t) 
+\vec{r}, 
 \label{xdotSSExtended}\\ 
-\vec{y}(t) &= \vec{C}_\mathrm{e} \vec{x}_\mathrm{e} 
+\vec{y} &= \vec{C}_\mathrm{e} \vec{x}_\mathrm{e}, 
 \label{ySSExtended}
 \end{flalign} 
 %
 where\\
 \begin{minipage}{0.45\linewidth}
     \begin{flalign}
-    \dot{\vec{x}}_\mathrm{e}(t)= 
+    \dot{\vec{x}}_\mathrm{e}= 
     \begin{bmatrix}
-    \ \dot{\vec{x}}(t)      \ \  \\ 
-    \ \dot{\vec{x}}_{\mathrm{int}}(t)      \ \   		
+    \ \dot{\vec{x}}      \ \  \\ 
+    \ \dot{\vec{x}}_{\mathrm{int}}      \ \   		
     \end{bmatrix} , \nonumber
     \end{flalign}
 \end{minipage}\hfill
@@ -139,29 +139,29 @@ where\\
     \end{flalign}
 \end{minipage}
 \\ 
-The feedback law for this design approach is given by 
+The feedback law is given by 
 \begin{flalign} 
-	\vec{u}(t) &=\vec{F} \vec{x}(t) + \vec{F}_{\mathrm{int}} \vec{x}_{\mathrm{int}}(t)\ .
+	\vec{u} &=\vec{F} \vec{x} + \vec{F}_{\mathrm{int}} \vec{x}_{\mathrm{int}}\ .
 	\label{eq:ssControllerAction}
 \end{flalign}
-The feedback matrix, $\vec{F_{\mathrm{e}}}$ is obtained using a Linear Quadratic Regulator (LQR) approach together with Bryson's rule. This makes it possible to find the optimal feedback gains while being able to prioritize the different states and set boundaries to the control action required.
+The feedback matrix, $\vec{F_{\mathrm{e}}}$ is obtained by using a Linear Quadratic Regulator (LQR) approach together with Bryson's rule. This makes it possible to find the optimal feedback gains while being able to prioritize the different states and set boundaries to the control action.
 %
-LQR is based on minimizing the cost function 
+LQR is based on minimizing the following cost function, 
 \begin{flalign} 
 	J &= \int_{0}^{\infty} \vec{x}^T \vec{Q} \vec{x} + \vec{u}^T \vec{R} \vec{u} dt \ .
 	\label{eq:costfunction}
 \end{flalign}
 
-In this equation, the matrices $\vec{Q}$ and $\vec{R}$ must be selected as positive semi-definite and positive definite matrices that penalize, in the cost function, the error of the different states and inputs of the system. 
+The matrices $\vec{Q}$ and $\vec{R}$ must be selected as positive semi-definite and positive definite matrices, respectively. These penalize the error of the different states and inputs of the system. 
 
-The selection of these matrices is done using Bryson's rule, which defines $\vec{Q}$ and $\vec{R}$ as diagonal matrices whose elements are
+These matrices are selected by using Bryson's rule, which defines $\vec{Q}$ and $\vec{R}$ as diagonal matrices whose elements are
 \begin{flalign} 
-	Q_{ii} &= \frac{1}{\text{maximum acceptable value of }[x^2_i]}\\
+	Q_{ii} &= \frac{1}{\text{maximum acceptable value of }[x^2_i]},\\
 	R_{ii} &= \frac{1}{\text{maximum acceptable value of }[u^2_i]}\ .
 	\label{eq:weightingmatrices}
 \end{flalign}
-The values are selected so the controller is stable and the states converge to the equilibrium point and the references are tracked as fast as possible. This  gain selection process is done using the simulation of the model, which also considers the network effects such as delay and packet loss. 
-The values of $\vec{Q}$ and $\vec{R}$ are then used to find the optimal feedback matrices that minimize the cost function \eqref{eq:costfunction} as 
+The values are chosen to ensure stability of the controller while the states converge to the equilibrium point and the references are tracked as fast as possible. This process is performed using the simulation of the model including network effects. 
+These values are then used to find the optimal feedback matrices, which minimize the cost function \eqref{eq:costfunction} as 
 \begin{flalign} 
 	\vec{F}_{\mathrm{e}} &= -\vec{R}^{-1}{\vec{B}_{\mathrm{e}}}^T\vec{P} \ .
 	\label{eq:optimalF}
