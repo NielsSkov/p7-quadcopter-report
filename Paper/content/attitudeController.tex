@@ -163,10 +163,10 @@ These matrices are selected by using Bryson's rule, which defines $\vec{Q}$ and 
 The values are chosen to ensure stability of the controller while the states converge to the equilibrium point and the references are tracked as fast as possible. This process is performed using the simulation of the model including network effects. 
 These values are then used to find the optimal feedback matrices, which minimize the cost function \eqref{eq:costfunction} as 
 \begin{flalign} 
-	\vec{F}_{\mathrm{e}} &= -\vec{R}^{-1}{\vec{B}_{\mathrm{e}}}^T\vec{P} \ .
+	\vec{F}_{\mathrm{e}} &= -\vec{R}^{-1}{\vec{B}_{\mathrm{e}}}^T\vec{P} \ ,
 	\label{eq:optimalF}
 \end{flalign}
-Where the matrix $\vec{P}$ positive definite and its value is found using the Algebraic Riccatti Equation, 
+where the matrix $\vec{P}$ is positive definite and its value is found using the Algebraic Riccatti Equation, 
 \begin{flalign} 
 	\vec{A}_{\mathrm{e}}^T\vec{P}+\vec{P}\vec{A}_{\mathrm{e}}-\vec{P}\vec{B_{\mathrm{e}}}\vec{R}^{-1}\vec{B}_{\mathrm{e}}^T\vec{P}+\vec{Q} &= \vec{0}\ .
 	\label{eq:optimalP}
@@ -175,9 +175,9 @@ Where the matrix $\vec{P}$ positive definite and its value is found using the Al
 Once $\vec{F}_\mathrm{e}$ is obtained, it is split into $\vec{F}$ and $\vec{F}_{\mathrm{int}}$. In this way, the controller is implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.\\
 %--------------------- Reduced-Order Observer ----------------------------
 
-Since certain states in the system are not measured, an observer estimates the remaining states by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$. 
+The reduced observer estimates the angular velocities by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$. 
 
-The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\vec{A}_{12}$ give the desired dynamics for the estimation \cite{ssReference}. This is done splitting the original system matrices into the submatrices.\\ \fxnote{Formulate desired dynamics in another}
+The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\vec{A}_{12}$ have negative real part. This makes the estimate converge to the true angular velocity \cite{ssReference}. This is performed by splitting the original system matrices into the submatrices\\
 %
 \begin{minipage}{0.45\linewidth}
     \begin{flalign}
@@ -185,7 +185,7 @@ The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such tha
     \begin{bmatrix}
     \ \vec{A}_{11}  & \vec{A}_{12}    \ \ \ \\ 
     \ \vec{A}_{21}  & \vec{A}_{22}    \ \ \  		
-    \end{bmatrix} \nonumber
+    \end{bmatrix}, \nonumber
     \end{flalign}
 \end{minipage}   \hfill 
 \begin{minipage}{0.45\linewidth}
@@ -202,14 +202,15 @@ The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such tha
 With the observer matrix, the observer equation is derived, see \eqref{eq:eqobservertheorem}. This ensures an estimate $\hat{\vec{x}}_{4:6}$ which converges to $\vec{x}_{4:6}$ at a rate given by the chosen observer poles.
 \small{
 \begin{flalign}
-    \vec{\hat{\dot{x}}}_{4:6} &= \vec{A}_{21}\vec{y} + \vec{A}_{22}\vec{\hat{x}}_{4:6} + \vec{B_2}\vec{u} + \vec{L}_{\mathrm{obs}}\vec{(A}_{12}\vec{\hat{x}}_{4:6} - \vec{A}_{21}\vec{x}_{4:6}) \label{eq:eqobservertheorem}
+\vec{\dot{\hat{x}}_{4:6}} + \vec{L}_{\mathrm{obs}}\dot{y} &= (\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\vec{A}_{12})\vec{\hat{x}}_{4:6}\label{eq:eqobservertheorem} \\&+(\vec{A}_{21}+\vec{L}_{\mathrm{obs}}\vec{A}_{11})\vec{y}+(\vec{B}_2+\vec{L}_{\mathrm{obs}}\vec{B}_1)\vec{u}\nonumber
+%    \vec{\hat{\dot{x}}}_{4:6} &= \vec{A}_{21}\vec{y} + \vec{A}_{22}\vec{\hat{x}}_{4:6} + \vec{B_2}\vec{u} + \vec{L}_{\mathrm{obs}}\vec{(A}_{12}\vec{\hat{x}}_{4:6} - \vec{A}_{21}\vec{x}_{4:6})
 \end{flalign}
 \normalsize
-\\\fxnote{put proper equation and think if the picture is needed}
-This estimation of $\vec{x}_{4:6}$ is implemented as shown in \autoref{fig:observerDiagram}.
+
+The estimation of $\vec{x}_{4:6}$ is implemented as shown in \autoref{fig:observerDiagram}.
 
 \begin{figure}[H]
-    \includegraphics[width=.38\textwidth]{figures/observerDiagram}
+    \includegraphics[width=.45\textwidth]{figures/observerDiagram}
     \centering
     \captionsetup{justification=centering}
     \captionof{figure}{Detailed diagram of the reduced order observer that shows its implementation.}
