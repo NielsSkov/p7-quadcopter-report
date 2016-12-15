@@ -1,10 +1,11 @@
 \section{Results}\label{sec:results}
-The controllers have been implemented and tested in the real quadcopter. The real results for the attitude controller and simulation results with the network and the model simulated in MATLAB Simulink for the translational controllers are presented. 
+The controllers have been implemented and tested on the quadcopter. Experimental results are shown for the attitude controller and simulation results are presented for the translational controllers. The latter includes the network and the non-linear system models simulated in MATLAB Simulink.
 
 The obtained model parameters can be seen in \autoref{ParametersQuadcopter}. 
 \begin{table}[H]
     \centering
-    \begin{tabular}{c|c|c}
+    \begin{tabular}{|c|c|c|}
+    \hline
         %------------------------------------------------------------------------------------------
         \textbf{Symbol} &\textbf{Value} &\textbf{Units}\\
         \hline %-----------------------------------------------------------------------------------
@@ -23,16 +24,16 @@ The obtained model parameters can be seen in \autoref{ParametersQuadcopter}.
         $k_{\mathrm{d}}$  & $9.39741 \cdot10^{-7}$       & \si{N m s^2  rad^{-2}}\\
         \hline %-----------------------------------------------------------------------------------
         $\overline{\omega}_i$& 429      & \si{rad \ s^{-1}}\\
-        
+        \hline
     \end{tabular}
-    \caption{Parameters used though the analysis and design.}
+    \caption{Parameters used through the analysis and design.}
     \label{ParametersQuadcopter}
 \end{table}
-The mass and the length have been measured, $k_{\mathrm{th}}$ and $k_{\mathrm{d}}$ have been obtained through testing the propellers when rotating at different speeds and the moments of inertia have been calculated analytically considering the quadcopter as a combination of different masses with known moment of inertia.
+The mass and the length have been measured. $k_{\mathrm{th}}$ and $k_{\mathrm{d}}$ have been obtained by testing the propellers at different speeds. The moments of inertia have been calculated analytically by considering the quadcopter as a combination of different masses with known moments of inertia.
 
-The value of delay used in the simulation \fxnote{WRITE NUMBER} milliseconds and the packet loss probability is set to zero.
+The value of delay used in the simulation is \fxnote{WRITE NUMBER} milliseconds and the missed packets probability is set to zero.
 
-The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diagonal matrices shown below and the chosen observer poles, which are $[-11, -12, -13]$.
+The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diagonal matrices, shown below, and the chosen observer poles, which are $[-11, -12, -13]$.
 %\footnotesize{
 %\begin{flalign}   \label{Fematrix}
 %	\vec{F}&=
@@ -54,29 +55,29 @@ The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diago
 \begin{center}
 \noindent$\vec{Q}=diag\left(\frac{1}{0.2^2},\frac{1}{0.2^2},\frac{1}{0.1^2},\frac{1}{0.5^2},\frac{1}{0.5^2},\frac{1}{0.3^2},\frac{1}{0.08^2},\frac{1}{0.08^2},\frac{1}{0.05^2}\right)$
 
-\noindent$\vec{R}=diag\left(\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2}\right) $
+\noindent$\vec{R}=diag\left(\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2}\right).$
 \end{center}
 
-The  controllers for $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$, $\dot{z}_{\mathrm{I}}$, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$ are
+The controllers for $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$, $\dot{z}_{\mathrm{I}}$, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$ are
 \begin{minipage}{0.45\linewidth}
 	\begin{flalign}
-		C_{\dot{x}_{\mathrm{I}}}=-C_{\dot{y}_{\mathrm{I}}}=-0.0038\frac{1+20s}{s},\nonumber
+		C_{\dot{x}_{\mathrm{I}}}=-C_{\dot{y}_{\mathrm{I}}}=-0.0038\left(\frac{1+20s}{s}\right),\nonumber
 	\end{flalign}
 \end{minipage}   \hfill 
 \begin{minipage}{0.45\linewidth}
-	\begin{flalign}
-		C_{\dot{z}_{\mathrm{I}}}=-201.8\frac{s+0.8}{s}\ ,\nonumber
+		\begin{flalign}
+		C_{x_{\mathrm{I}}}=C_{y_{\mathrm{I}}}=0.3,	\nonumber
 	\end{flalign}
 \end{minipage}\\
 
 \begin{minipage}{0.45\linewidth}
-	\begin{flalign}
-		C_{x_{\mathrm{I}}}=C_{y_{\mathrm{I}}}=0.3,\nonumber
+		\begin{flalign}
+		C_{\dot{z}_{\mathrm{I}}}=-201.8\left(\frac{s+0.8}{s}\right),\nonumber
 	\end{flalign}
 \end{minipage}   \hfill 
 \begin{minipage}{0.45\linewidth}
 	\begin{flalign}
-		C_{z_{\mathrm{I}}}=1\ .\nonumber
+		C_{z_{\mathrm{I}}}=1 .\nonumber
 	\end{flalign}
 \end{minipage}\\
 
