@@ -1,4 +1,4 @@
-\chapter{Acceptance test}
+\chapter{Functional Tests}
 
 It must be tested if the designed networked control system complies with the requirements mentioned in \autoref{ch:technicalRequirements}. This is done in the following. %Before the test can be performed pass/fail criteria and procedures needs to be formulated. 
 
@@ -13,52 +13,17 @@ For repetition, the requirements that need to be met are:
 \item {It shall be possible to control the quadcopter in the x and y axis.}
 \end{enumerate}
 
-\newpage
-\subsection*{Equipment}
-To perform the tests, the following test equipment is used:
-\begin{table}[H] \centering
-\resizebox{\textwidth}{!}{
-\begin{tabular}{|l|l|l|} 
-\hline 
-\textbf{Equipment} &  \textbf{AAU-no.} & \textbf{Type/notes} \\ 
-\hline 
-2x USRP & 100784 \& 100785 & N210\\ 
-\hline 
-0.5 m SMA cable & - &- \\ 
-\hline 
-Attenuators & - &  1x20 dB and 2x10 dB \\ 
-\hline 
-MIMO cable & - &-\\\hline 
-Ethernet cable & - & Must support gigabit ethernet \\ 
-\hline 
-LabVIEW compatible with USRP N210 & - & 2015\\ 
-\hline 
-A computer with gigabit ethernet &- & MSI GP60 2PE Leopard Pro\\ \hline 
-2x power supplies for USRPs &- & 6V DC \\
-\hline 
-Bi-directional coupler & Label: 1469-01 & ZGDC35-93HP+\\ \hline 
-\end{tabular} 
-}
-\caption{Test equipment used for the acceptance test.}
-\label{tab:test_equipment}
-\end{table}
-
-\subsection*{General Setup}\label{sec:General_setup}
-For all tests, the general setup of the systems is explained in the following: 
-
-
-\section{Utilize new sensor data in each control loop}
+\section{Utilize New Sensor Data in Each Control Loop}
 \textbf{Requirement:}
 \textit{The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
 
-\textbf{Pass/fail criteria:}
-	\begin{description}
-	\item[ \ding{51} ] One new decoded packet is utilized in each control loop.
-	\item[(\ding{51})] 99 percent of the control loops runs with the recent received data from a new decoded packet. Indicating that 1 percent of the time a control loop runs with old data.\fxnote{should we come up with numbers?}
-	\item[ \ding{55} \phantom{)}] More than 1 percent of the control loops runs with old data.
-	\end{description}
+%\textbf{Pass/fail criteria:}
+%	\begin{description}
+%	\item[ \ding{51} ] One new decoded packet is utilized in each control loop.
+%	\item[(\ding{51})] 99 percent of the control loops runs with the recent received data from a new decoded packet. Indicating that 1 percent of the time a control loop runs with old data.\fxnote{should we come up with numbers?}
+%	\item[ \ding{55} \phantom{)}] More than 1 percent of the control loops runs with old data.
+%	\end{description}
 
-		
 \textbf{Procedure:}\\
 
 \begin{enumerate}
@@ -79,12 +44,12 @@ For all tests, the general setup of the systems is explained in the following:
 \textbf{Requirement:}
 \textit{It shall be possible to control the quadcopter's attitude.}
 
-\textbf{Pass/fail criteria:}
-	\begin{description}
-	\item[\ding{51}] The attitude of the quadcopter is stabilized around zero radians and the it is possible to track a reference.
-	\item[(\ding{51})] It is possible to stabilized around zero radians.
-	\item[\ding{55} \phantom{)}] It is not possible to either stabilize the quadcopter around zero or track a reference.
-	\end{description}
+%\textbf{Pass/fail criteria:}
+%	\begin{description}
+%	\item[\ding{51}] The attitude of the quadcopter is stabilized around zero radians and the it is possible to track a reference.
+%	\item[(\ding{51})] It is possible to stabilized around zero radians.
+%	\item[\ding{55} \phantom{)}] It is not possible to either stabilize the quadcopter around zero or track a reference.
+%	\end{description}
 
 \textbf{List of equipment:}	
 
@@ -95,67 +60,47 @@ For all tests, the general setup of the systems is explained in the following:
 		\hline%------------------------------------------------------------------------------------------------------------
 		Quadcopter    	&  N/A 						&  (see \autoref{cha:Systemdescription}) 		      	 \\
 		\hline%------------------------------------------------------------------------------------------------------------
-	    Vicon 			& 75459                 &  (see \autoref{cha:Systemdescription})                  \\
+	    Vicon System			& 75459                 &  (see \autoref{cha:Systemdescription})                  \\
 		\hline%------------------------------------------------------------------------------------------------------------
-		A string            &  N/A               & N/A     \\
-		\hline%------------------------------------------------------------------------------------------------------------
-		Computer with Matlab       &  A6703		 & N/A     \\
+		Computer with MATLAB       &  A6703		 & N/A     \\
 		\hline%------------------------------------------------------------------------------------------------------------
 		Attitude quadcopter holder      &  N/A		 & N/A     \\
 		\hline%------------------------------------------------------------------------------------------------------------
 		Attitude quadcopter connector holder   &  N/A		 & N/A     \\
 		\hline%------------------------------------------------------------------------------------------------------------
-		Two XBees      &  N/A		 & Version S1 (see \autoref{cha:Systemdescription})   \\
-		\hline%------------------------------------------------------------------------------------------------------------
-
 	\end{tabular}
 \end{table}
 	
 \textbf{Procedure:}
 
 \begin{enumerate}
-	\item Hang the quadcopter from the ceiling with a string.
 	\item Attach the attitude connector holder to the quadcopter, and the connector to the attitude quadcopter holder.
-	\item Ensure Vicon is connected to the computer using Matlab.
-	\item Ensure communication between the computer and the quadcopter is set up and working.
+    \item Program the code for each of the test in the microcontroller (stabilize at equilibrium and track references).
 	\item Start the transmission of attitude data from the Vicon system to the quadcopter.
-	\item Switch on the battery for the quadcopter
+	\item Switch on the battery for the quadcopter.
 	\item Record the data given by the Vicon system during the test on the computer.
-\end{enumerate} 
+    \item Repeat for the rest of the tests.
+\end{enumerate}
+ 
 \textbf{Results:}
 
+Three test have carried out to test the capabilities of the attitude controller. The first one shows how the controller can stabilize the attitude around equilibrium when starting with some initial conditions. The second and the third one are done to test the reference tracking in roll and pitch, respectively.
+
+The results of the first test can be seen in\autoref{fig:attitudeAccept}.
+%
 \begin{figure}[H]
 	\includegraphics[scale=.8]{figures/attitudeAccept.pdf}
 	\centering			
-	\captionof{figure}{.} 
+	\captionof{figure}{Functional test to check stabilization around equilibrium.} 
 	\label{fig:attitudeAccept}
 \end{figure} 
+%
+The three angles start with an initial condition different from zero. Then, the reference is put to 0 rad. 
 
 \begin{minipage}{\linewidth}
     \begin{minipage}{0.46\linewidth}
         \begin{figure}[H]
-            \includegraphics[scale=.6]{figures/pitchRefAccept.pdf}
-            \centering			
-            \captionof{figure}{.}
-            \label{fig:pitchRefAccept}
-        \end{figure}
-    \end{minipage}
-    \hspace{0.03\linewidth}
-    \begin{minipage}{0.46\linewidth}
-        \begin{figure}[H]
-            \includegraphics[scale=.6]{figures/pitchRefAcceptRollYaw.pdf}
-            \centering
-            \captionof{figure}{.}
-            \label{fig:pitchRefAcceptRollYaw}
-        \end{figure}
-    \end{minipage}
-\end{minipage}
-
-
-\begin{minipage}{\linewidth}
-    \begin{minipage}{0.46\linewidth}
-        \begin{figure}[H]
-            \includegraphics[scale=.6]{figures/rollRefAccept.pdf}
+            \includegraphics[scale=.5]{figures/rollRefAccept.pdf}
             \centering			
             \captionof{figure}{.}
             \label{fig:rollRefAccept}
@@ -164,7 +109,7 @@ For all tests, the general setup of the systems is explained in the following:
     \hspace{0.03\linewidth}
     \begin{minipage}{0.46\linewidth}
         \begin{figure}[H]
-            \includegraphics[scale=.6]{figures/rollRefAcceptPitchYaw.pdf}
+            \includegraphics[scale=.5]{figures/rollRefAcceptPitchYaw.pdf}
             \centering
             \captionof{figure}{.}
             \label{fig:rollRefAcceptPitchYaw}
@@ -172,7 +117,25 @@ For all tests, the general setup of the systems is explained in the following:
     \end{minipage}
 \end{minipage}
 
-
+\begin{minipage}{\linewidth}
+    \begin{minipage}{0.46\linewidth}
+        \begin{figure}[H]
+            \includegraphics[scale=.5]{figures/pitchRefAccept.pdf}
+            \centering			
+            \captionof{figure}{.}
+            \label{fig:pitchRefAccept}
+        \end{figure}
+    \end{minipage}
+    \hspace{0.03\linewidth}
+    \begin{minipage}{0.46\linewidth}
+        \begin{figure}[H]
+            \includegraphics[scale=.5]{figures/pitchRefAcceptRollYaw.pdf}
+            \centering
+            \captionof{figure}{.}
+            \label{fig:pitchRefAcceptRollYaw}
+        \end{figure}
+    \end{minipage}
+\end{minipage}
 
 
 \newpage

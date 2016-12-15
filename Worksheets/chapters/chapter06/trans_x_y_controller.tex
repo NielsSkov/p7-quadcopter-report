@@ -4,21 +4,23 @@ The design of the controllers for the translational movement in $x_{\mathrm{I}}$
 The linear equations for the translational model relate these movements with the roll and the pitch that the quadcopter has at each moment.
 %
 \begin{flalign}
-    m\ \Delta\ddot{x}_{\mathrm{I}} &= -k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \Delta\theta \label{eq:model_x_transl} \\
-    m\ \Delta\ddot{y}_{\mathrm{I}} &=  k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \Delta\phi \label{eq:model_y_transl} 
+    m \Delta\ddot{x}_{\mathrm{I}} &= -k_{th} ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2) \Delta\theta \label{eq:model_x_transl} \\
+    m \Delta\ddot{y}_{\mathrm{I}} &=  k_{th} ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2) \Delta\phi \label{eq:model_y_transl} 
 \end{flalign} 
 Laplace transforming \autoref{eq:model_x_transl} and \ref{eq:model_y_transl} yields:
 %
 \begin{flalign}
-    m\ \dot{x}_{\mathrm{I}}(s)\ s&=-k_{th}\  (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)\ \theta(s) \\
-    m\ \dot{y}_{\mathrm{I}}(s)\ s&= k_{th}\ (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)\ \phi(s)
+    m \dot{x}_{\mathrm{I}}(s) s&=-k_{th}  ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2) \theta(s) \\
+    m \dot{y}_{\mathrm{I}}(s) s&= k_{th} ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2) \phi(s)
 \end{flalign}
 %
+Notice that the notation $\Delta$, which correspond to the change from the linearization point, is removed from these equation to avoid excessive notation
+
 The inner velocity controller design requires a transfer function from each of the angles to each of the translational velocities. This can be written as:
 %
 \begin{flalign}
-    G_{\dot{x}_{\mathrm{I}}}(s)&=\frac{\dot{x}_{\mathrm{I}} (s)}{\theta (s)}=\frac{-k_{th} (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s}=\frac{K_{\dot{x}_{\mathrm{I}}}}{s} \label{eq:Gxdot} \\
-    G_{\dot{y}_{\mathrm{I}}}(s)&=\frac{\dot{y}_{\mathrm{I}} (s)}{\phi (s)}=\frac{k_{th}(\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\ s}=\frac{K_{\dot{y}_{\mathrm{I}}}}{s}  \label{eq:Gydot}
+    G_{\dot{x}_{\mathrm{I}}}(s)&=\frac{\dot{x}_{\mathrm{I}} (s)}{\theta (s)}=\frac{-k_{th} ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)}{m s}=\frac{K_{\dot{x}_{\mathrm{I}}}}{s} \label{eq:Gxdot} \\
+    G_{\dot{y}_{\mathrm{I}}}(s)&=\frac{\dot{y}_{\mathrm{I}} (s)}{\phi (s)}=\frac{k_{th}({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)}{m s}=\frac{K_{\dot{y}_{\mathrm{I}}}}{s}  \label{eq:Gydot}
 \end{flalign}
 %
 \begin{where}
@@ -42,7 +44,7 @@ The bandwidth of the inner attitude control is obtained by making a Bode plot ap
 \end{figure} 
 %
 %\begin{flalign}
-%        G_{pitch}(s)=\frac{\theta (s)}{\theta_{ref} (s)}=\frac{\omega^2_n}{s^2+\xi \ \omega_n \ s+\omega^2_n}=\frac{86.05}{s^2+16.14 \ s+86.05}
+%        G_{pitch}(s)=\frac{\theta (s)}{\theta_{ref} (s)}=\frac{\omega^2_n}{s^2+\xi  \omega_n  s+\omega^2_n}=\frac{86.05}{s^2+16.14  s+86.05}
 %\end{flalign}
 %
 %With this new dynamics added to the system, the design of the controller can be done. The final rot locus of the plant can be seen in \autoref{fig:rLocusVelocity}.
@@ -148,10 +150,10 @@ The final expression for the translational position controllers can be seen in \
 
 The translational controllers for the inertial positioning in $x_{\mathrm{I}}$ and $x_{\mathrm{I}}$ have designed. It is thereby possible to simulate the controllers.
 
-%To determine how large the absolute gain can be without making the system unstable due to saturation issues, it is necessary to consider the bandwidth. \\ \\
+%To determine how large the absolute gain can be without making the system unstable due to saturation issues, it is necessary to consider the bandwidth. \ \\
 %The data from the Vicon room is transmitted with 100 Hz. This means the attitude controller must run with 50 Hz as maximum to ensure the controller is slower than the sensor data. A rule of thumb states that the bandwidth of the system shall be 25 times smaller than the attitude controller. The desired bandwidth of the translational roll controller is calculated as follows:
 %\begin{align}
-%BW=2\  \pi\  \frac{f_s}{25}=2\  \pi \frac{50}{25}=12.57\label{eq:bw_X}
+%BW=2  \pi  \frac{f_s}{25}=2  \pi \frac{50}{25}=12.57\label{eq:bw_X}
 %\end{align}
 %\begin{where}
 %\va{BW}{is the bandwidth of the plant}{rad \cdot s^{-1}}
@@ -181,7 +183,7 @@ The translational controllers for the inertial positioning in $x_{\mathrm{I}}$ a
 %\\
 %\\
 %Before it can be implemented and tested on the quadcopter, it needs to be discretized. As it is P-controllers, it simply means to encounter the sampling rate. The discretized controllers are presented along with the continuous controller in \fxnote{make graph}.
-%\\ \\
+%\ \\
   
 %\subsubsection*{Pitch translational controller}
 %The roll and pitch translational models are very similar and will therefore be designed similarly. The design procedure will be the same as for the translational roll controller.\\
@@ -228,11 +230,11 @@ The translational controllers for the inertial positioning in $x_{\mathrm{I}}$ a
 %\end{align}
 %Laplace transforming \autoref{eq:model_y_transl_y} yields:
 %\begin{align}
-%m\  y_1(s)\  s^2= k_{th}\  (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)\  \phi
+%m  y_1(s)  s^2= k_{th}  (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)  \phi
 %\end{align}
 %The transfer function for the pitch is as follows:
 %\begin{align}
-%H_{y1}(s)=\frac{y_1(s)\  s}{\phi}=\frac{k_{th}\  (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\cdot s}
+%H_{y1}(s)=\frac{y_1(s)  s}{\phi}=\frac{k_{th}  (\omega_1 ^2 + \omega_2 ^2 + \omega_3 ^2 + \omega_4 ^2)}{m\cdot s}
 %\end{align}
 %\begin{where}
 %\va{H_{y1}}{is the plant for the translational pitch}{1}
