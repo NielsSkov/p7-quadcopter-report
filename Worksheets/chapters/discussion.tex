@@ -1,0 +1,20 @@
+\chapter{Discussion}
+\begin{itemize}
+\item Network delay\\
+The Vicon data tracking system samples with 100 Hz, which limits the control loops' bandwidth. This results in a rather slow position control, as it is the outer most loop.\\
+By implementing attitude on board sensors, the network delay introduced by using the Vicon system, the bandwidth of the control loops can be increased and thereby obtaining more agile control.\\
+The bandwidth of the controllers can also be increased by implementing a faster microprocessor, that will minimize the processing time.
+
+\item Translational controllers does not work in reality but only simulation, why?:\\
+It may be due to an implementation error, that has yet to be found and eliminated.\\
+An error may be, that the controllers are feeded with amounts of old data that makes it impossible for the controllers to stabalize the quadcopter due to too large delays in the feeded data.\\
+Another suggestion is too much packet loss. \fxnote{we does not know the amount of packet loss yet - tbd}
+
+\item scheduling, faster than the cycle of the control algorithm 
+
+\item ground effect (turbulens), issue experinced
+
+\item battery level issue: implement function
+  
+
+\end{itemize}
