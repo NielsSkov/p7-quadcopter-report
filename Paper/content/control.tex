@@ -1,2 +1,2 @@
 \section{Control}\label{sec:control}
-The control of the system is divided into two control systems. One handles the attitude and the other controls the translational behavior of the quadcopter. These two are related such that the translational controller sets the references for the angles handled by the inner controller. When designing the controllers, the network is considered to account for the delays the distributed system introduces. 
+The design is divided into two control systems. One handles the attitude and the other manages the translational behavior. These two are related such that the translational controller sets the references for the angles handled by the attitude controller. When designing them, the influences of the network are taken into account.
