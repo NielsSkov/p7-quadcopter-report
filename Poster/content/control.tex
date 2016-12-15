@@ -6,13 +6,13 @@
 
 \begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column
 
-	\begin{column}{0.49\twocolwid} % The first column within column 2 (column 2.1)
+	\begin{column}{0.43\twocolwid} % The first column within column 2 (column 2.1)
   	 \centering
   	 \hspace{-2cm}
   	 \parbox{.88\textwidth}{
     	 \begin{itemize}
   	 			\item[]\textbf{Attitude controller}\\
-  	 			\item State feedback with integral controller designed with LQR is used for tracking references and handling disturbances.
+  	 			\item State feedback with integral control designed with LQR is used for tracking references and handling disturbances.
   	 			\item A reduced order observer is used to estimate the angular velocities.
   	 			\item[]\vspace{5pt}
   	 			%\vspace{39pt}
@@ -22,14 +22,14 @@
   	 }
 	\end{column} % End of column 2.1
 	\hspace{-4cm}
-	\begin{column}{0.5\twocolwid} % The second column within column 2 (column 2.2)
+	\begin{column}{0.57\twocolwid} % The second column within column 2 (column 2.2)
   	 \centering
    	 \parbox{1\textwidth}{
        	 \begin{itemize}
     	 			\item[]\textbf{Translational controllers}\\
-     	 			\item PI controllers are used to control the translational velocities
-     	 			\item The outer loops are P controllers used to control the translational position.
-     	 			\item The bandwidth of the cascaded controllers is taken into account to reduce the effect of the dynamics of the inner loop in the outer loop.
+     	 			\item PI controllers are used to control the translational velocities in order to handle input disturbances.
+     	 			\item The outer loops are P controllers used to control the translational positions.
+     	 			\item The bandwidth of the cascaded controllers are taken into account to reduce the effect of the dynamics of the inner loop in the outer loop.
        	 \end{itemize}		
    	 }
 	\end{column} % End of column 2.2
