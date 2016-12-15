@@ -49,7 +49,6 @@
 	%---------- Chapter 1 ---------------------------------------- 
 	\input{chapters/chapter01/chapter1.tex}
 	
-
 	%---------- Chapter 2 ---------------------------------------- 
 	\input{chapters/chapter02/chapter2.tex}
 	\input{chapters/chapter02/AvailableHardware.tex}		
@@ -64,42 +63,37 @@
 	\input{chapters/chapter04/linearization.tex}
 	\input{chapters/chapter04/combinedModel.tex}
 	
+	%%% Part 2 %%%
 	\part{Design}
 	%---------- Chapter 5 -----------------------------------------------------------
 	\input{chapters/chapter05/chapter5.tex}
 	\input{chapters/chapter05/protocol.tex}
 	\input{chapters/chapter05/delay.tex}
-	%\input{chapters/chapter05/packetloss.tex}
-	%\input{chapters/chapter05/networksimulation.tex}	
-		
+	
 	%---------- Chapter 6 ----------------------------------------------------------- 	
 	\input{chapters/chapter06/chapter6.tex}	
 	\input{chapters/chapter06/attitudeController.tex}
-	\input{chapters/chapter06/ssStateFeedbackDesign.tex} 			%----- Subsection
+	\input{chapters/chapter06/ssStateFeedbackDesign.tex} 			  %----- Subsection
 	\input{chapters/chapter06/ssLQR.tex} 
-	\input{chapters/chapter06/ssObserverDesign.tex} 				%----- Subsection
+	\input{chapters/chapter06/ssObserverDesign.tex} 				    %----- Subsection
 	\input{chapters/chapter06/AttitudeControllerSimulation.tex}	
-	
-	%\input{chapters/chapter06/simAttitudeController.tex}
-	%\input{chapters/chapter06/ssReference.tex}						%----- Subsection
 	\input{chapters/chapter06/translationalController.tex}
-    \input{chapters/chapter06/trans_x_y_controller.tex}            %----- Subsection
+  \input{chapters/chapter06/trans_x_y_controller.tex}         %----- Subsection
 	\input{chapters/chapter06/XYControllerSimulation.tex}    
-    \input{chapters/chapter06/trans_z_controller.tex}              %----- Subsection
-	\input{chapters/chapter06/ZControllerSimulation.tex}	
-	%\input{chapters/chapter06/simTranslationalController.tex}    	
-%	
-    \input{chapters/chapter07/implementation.tex}
-    \input{chapters/chapter06/controllersImplementation.tex}
-		%%% Part 2 %%%
+  \input{chapters/chapter06/trans_z_controller.tex}           %----- Subsection
+	\input{chapters/chapter06/ZControllerSimulation.tex}
+	
+  %---------- Chapter 7 ----------------------------------------------------------- 
+  \input{chapters/chapter07/implementation.tex}
+  \input{chapters/chapter07/controllersImplementation.tex}
+	
 	%%% Part 3 %%%
 	\part{Test \& Conclusion}
 	
 	%%% Setup for Appendix and Bibliography %%%
-	
 	\input{chapters/aAcceptanceTest/acceptanceTest.tex}
-	%\input{chapters/aAcceptanceTest/Requirement1.tex}
 	
+\input{chapters/conclusion.tex}
 	
 	\bookmarksetup{startatroot}
 	\addtocontents{toc}{\bigskip}
@@ -122,17 +116,15 @@
 	\part*{Appendix} \addcontentsline{toc}{chapter}{Appendix}
 	\cleardoublepage\makeatletter\@openrightfalse\makeatother
 	
-
 	%---------- Appendix A ----------------------------------------
 	\input{appendix/aThrustTest.tex}
-    \input{appendix/bTorqueTest.tex}	
+  \input{appendix/bTorqueTest.tex}	
 	%\input{appendix/cVoltageLevelTest.tex}
 	\input{appendix/fdutyTest.tex}
 	\input{appendix/dInertia.tex}
-    \input{appendix/mMatrixAppendix.tex}
-    \input{appendix/eAttitudeControllerTest.tex}
-  	\input{appendix/gPacketLoss.tex}
-%	\end{appendices}
+  \input{appendix/mMatrixAppendix.tex}
+  \input{appendix/eAttitudeControllerTest.tex}
+  input{appendix/gPacketLoss.tex}
 		
 	%%% Bibliography %%%
 	\printbibliography
