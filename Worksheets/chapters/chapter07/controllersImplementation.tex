@@ -1,7 +1,8 @@
 \section{Controllers}\label{sec:ContDiscrete}
-The implementation of the controllers can not be done having them as a continuous expression due to the discrete operation of the microcontroller. 
-
-In order to discretize the controllers in the system, they need to be expressed in terms of the $z$ operator, the equivalent to the Laplace operator in the discrete domain. This transformation is done through the Tustin (bilinear) approximation in which the $s$ term in the transfer function is substituted as seen in \autoref{tustin} \cite{tustin}.
+To implement the controllers, which are designed in the continuous time domain, on the microcontroller they must first be transformed into the discrete time domain.
+%The implementation of the controllers can not be done having them as a continuous expression due to the discrete operation of the microcontroller.
+%The controllers are expressed in terms of the $z$ operator, the discrete equivalent to the Laplace operator, $s$, from the frequency domain.
+This transformation is done through the Tustin (bilinear) approximation in which the $s$ term in the transfer function is substituted as seen in \autoref{tustin} \cite{tustin}.
 \begin{flalign}
 	s\approx\frac{2}{T}\frac{z-1}{z+1}
 	\label{tustin}
@@ -11,7 +12,8 @@ In order to discretize the controllers in the system, they need to be expressed 
 	\va{z}{is the discrete operator}{}
 	\va{T}{is the sampling time}{}
 \end{where}
-The Tustin approximation maps the Laplace stable region into the discrete stable region, that is, the unit circle, as seen in \autoref{fig:tustinmap}. For these reason, is one of the most used discretization methods.
+
+The Tustin method maps the Laplace stable region into the discrete stable region, that is, the unit circle, as seen in \autoref{fig:tustinmap}.
 \begin{figure}[H]
 	\includegraphics[scale=.3]{figures/SplaneVsZplane.pdf}
 	\centering			

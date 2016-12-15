@@ -1,0 +1,22 @@
+\section{Communication}
+The communication task is used to receive the data in the microcontroller from the computer. Part of the code used is seen in \autoref{lst:communication}.
+
+\begin{lstlisting}[style=customcpp,
+                caption={Code for the comunication task.}, 
+                label=lst:communication]
+void Communication(void *pvParameters)
+{
+    while (1)
+    {
+        int pack = 0;
+        pack = CheckPackageArrival();
+        if (pack)
+            GetPackage();
+    }
+    vTaskDelete(NULL);
+}
+\end{lstlisting}
+
+It consist of a while loop that is running all the time and checking if a package has arrived using the function CheckPackageArrival(). This function read the bytes coming to the serial port and checks if the header is correct, returning a 0 if that is not the case. If the header was wrong, the if-condition is not fulfilled and the loop starts again until it gets a correct header.
+
+Then, the function GetPackage() reads the remaining bytes and uses the checksum to verify that the data has been sent correctly. When the summation of the parts and the checksum gives the correct value, the stored bytes are decoded and the global variables are rewritten with their new values.
