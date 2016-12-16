@@ -1,7 +1,7 @@
 \section{Results}\label{sec:results}
 The controllers have been implemented and tested on the quadcopter. Experimental results are shown for the attitude controller and simulation results are presented for the translational controllers. The latter includes the network and the non-linear system models simulated in MATLAB Simulink.
 
-The obtained model parameters can be seen in \autoref{ParametersQuadcopter}. 
+The obtained model parameters are seen in \autoref{ParametersQuadcopter}. 
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|}
@@ -29,9 +29,11 @@ The obtained model parameters can be seen in \autoref{ParametersQuadcopter}.
     \caption{Parameters used through the analysis and design.}
     \label{ParametersQuadcopter}
 \end{table}
-The mass and the length have been measured. $k_{\mathrm{th}}$ and $k_{\mathrm{d}}$ have been obtained by testing the propellers at different speeds. The moments of inertia have been calculated analytically by considering the quadcopter as a combination of different masses with known moments of inertia.\\
-The value of delay used in the simulation is \fxnote{WRITE NUMBER} milliseconds and the missed packets probability is set to zero.\\
-The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diagonal matrices, shown below, and the chosen observer poles, which are $[-11, -12, -13]$.
+The mass and the length have been measured. The coefficients $k_{\mathrm{th}}$ and $k_{\mathrm{d}}$ have been obtained by testing the propellers at different speeds. The moments of inertia have been calculated analytically by considering the quadcopter as a combination of different masses with known moments of inertia.
+
+The delay used in the simulation is \fxnote{WRITE NUMBER} ms and the probability of missed packets is set to zero.
+
+The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diagonal matrices, shown below, and the chosen observer poles, which are $-11$, $-12$ and $-13$.
 %\footnotesize{
 %\begin{flalign}   \label{Fematrix}
 %	\vec{F}&=
@@ -50,46 +52,30 @@ The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diago
 %		\end{bmatrix}\nonumber
 %\end{flalign}}
 %\normalsize
-\begin{center}
-\noindent$\vec{Q}=diag\left(\frac{1}{0.2^2},\frac{1}{0.2^2},\frac{1}{0.1^2},\frac{1}{0.5^2},\frac{1}{0.5^2},\frac{1}{0.3^2},\frac{1}{0.08^2},\frac{1}{0.08^2},\frac{1}{0.05^2}\right)$ 
 
-$\vec{R}=diag\left(\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2}\right).$
-\end{center}
+\noindent$\vec{Q}=diag\left(\frac{1}{0.2^2},\frac{1}{0.2^2},\frac{1}{0.1^2},\frac{1}{0.5^2},\frac{1}{0.5^2},\frac{1}{0.3^2},\frac{1}{0.08^2},\frac{1}{0.08^2},\frac{1}{0.05^2}\right)$
+
+\noindent$\vec{R}=diag\left(\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2}\right).$
 
 The controllers for $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$, $\dot{z}_{\mathrm{I}}$, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$ are
-\begin{minipage}{0.45\linewidth}
 	\begin{flalign}
-		C_{\dot{x}_{\mathrm{I}}}=-C_{\dot{y}_{\mathrm{I}}}=-0.0038\left(\frac{1+20s}{s}\right),\nonumber
+		C_{\dot{x}_{\mathrm{I}}}&=-C_{\dot{y}_{\mathrm{I}}}=-0.0038\left(\frac{1+20s}{s}\right)\ ,\nonumber \\
+	C_{\dot{z}_{\mathrm{I}}}&=-201.8\left(\frac{s+0.8}{s}\right)\ ,\nonumber \\
+		C_{x_{\mathrm{I}}}&=C_{y_{\mathrm{I}}}=0.3\ ,	\nonumber\\
+		C_{z_{\mathrm{I}}}&=1 \ .\nonumber
 	\end{flalign}
-\end{minipage}   \hfill 
-\begin{minipage}{0.45\linewidth}
-		\begin{flalign}
-		C_{x_{\mathrm{I}}}=C_{y_{\mathrm{I}}}=0.3,	\nonumber
-	\end{flalign}
-\end{minipage}\\
 
-\begin{minipage}{0.45\linewidth}
-		\begin{flalign}
-		C_{\dot{z}_{\mathrm{I}}}=-201.8\left(\frac{s+0.8}{s}\right),\nonumber
-	\end{flalign}
-\end{minipage}   \hfill 
-\begin{minipage}{0.45\linewidth}
-	\begin{flalign}
-		C_{z_{\mathrm{I}}}=1 .\nonumber
-	\end{flalign}
-\end{minipage}\\
+These controllers are discretized using the Tustin method with a sampling time of 35 ms. This is the minimum time in which data can be acquired from the motion tracking system, transmitted to and read by the microcontroller.
 
-These controllers are discretized using the Tustin method with a sampling time of \SI{35}{ms}. This is the minimum time in which data can be acquired from the motion tracking system, transmitted to and read by the microcontroller.
+\autoref{fig:pitchref} shows the attitude controller response when tracking a reference in the roll angle.
 
-Figure \autoref{fig:pitchref} shows the attitude controller response when tracking a reference in the pitch angle.
-\vspace{-1cm}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.4\textwidth]{figures/rollRefAcceptAllAngles}
-	\caption{Attitude control response when tracking a reference in pitch.}
+	\caption{Attitude control response when tracking a reference in roll. The reference for pitch and yaw are kept to zero.}
 	\label{fig:pitchref}
 \end{figure}
-\vspace{-1.1cm}
+
 In \autoref{fig:positionControl}, the simulated step responses of the translational controllers along the three axes are depicted.
 \begin{figure}[H]
 	\centering
