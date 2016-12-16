@@ -49,7 +49,8 @@ A picture of the utilized propellers can be seen in \autoref{fig:Propeller}.
 %It has been observed during tests, that the motor runs faster as it's temperature increases. This is not expected due to the increased resistance, that occurs when the coils within the motor are heated. Therefore the relationship between PWM signal and velocity is not representative for all cases. It is however deemed reasonable to neglect this variance and presume a relationship as it is derived in the measurement report, see Appendix YY.
 
 \subsection{Motor Controllers}
-The quadcopter comes with four electronic speed controllers, ESCs, one for each motor. The ESCs produce an \SI{8}{kHz} PWM, are rated for a 2-4 cell Li-Po battery and can handle a constant current of up to \SI{30}{A}. The ESCs also has a \SI{5.5}{V}, \SI{4}{A} output for powering e.g. a controller board.\cite{HKing}
+The quadcopter comes with four electronic speed controllers, ESCs, one for each motor. The ESCs produce an \SI{8}{kHz} PWM, are rated for a 2-4 cell Li-Po battery and can handle a constant current of up to \SI{30}{A}. The ESCs also has a \SI{5.5}{V}, \SI{4}{A} output for powering e.g. a controller board. The battery level is only measured at start up, which can be problematic, as the provided power will decrease as the battery level drops over time.\cite{HKing} \\
+The focus of the project is not a fully functional quadcopter with all its aspects, but only the stabilization and position control. Therefore the measuring of the battery level will not be taken into account.
 %
 \begin{figure}[H]
 	\centering
