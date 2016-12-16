@@ -15,14 +15,14 @@ This transformation is done through the Tustin (bilinear) approximation in which
 
 The Tustin method maps the Laplace stable region into the discrete stable region, that is, the unit circle, as seen in \autoref{fig:tustinmap}.
 \begin{figure}[H]
-	\includegraphics[scale=.3]{figures/SplaneVsZplane.pdf}
+	\includegraphics[scale=.3]{figures/S-planeVsZ-plane.pdf}
 	\centering			
 	\captionof{figure}{The s-domain and the z-domain \cite{AVOppenheim}.} 
 	\label{fig:tustinmap}
 \end{figure} 
 The discrete transfer function is then transformed into a difference equation to obtain the expression to be applied in the microcontroller. This is done taking into account that a $z^{-1}$ term implies taking the previous sample of the data. 
 
-When discretizing the controller, the sampling time must also be considered. In the system at hand, the sampling frequency is limited by the sensor data (Vicon System) to be 100 Hz as a maximum. The lower limit comes from the bandwidth of the controllers as for the discretization not to affect the controller response, the sampling frequency should from 10 to 20 times higher than the bandwidth of the control loop. The fastest control loop in the system is the attitude controller and has a bandwidth of 5 rad/s, that is, 0.8 Hz. This implies a minimum sampling frequency of 20 Hz.\fxnote{CHECK NUMBERS}
+When discretizing the controller, the sampling time must also be considered. In the system at hand, the sampling frequency is limited by the sensor data (Vicon System) to be 100 Hz as a maximum. The lower limit comes from the bandwidth of the controllers such that the discretization does not affect the controller response, the sampling frequency should from 10 to 20 times higher than the bandwidth of the control loop. The fastest control loop in the system is the attitude controller and has a bandwidth of 5 rad/s, that is, 0.8 Hz. This implies a minimum sampling frequency of 20 Hz.\fxnote{CHECK NUMBERS}
 
 The chosen sampling frequency in the system is 28 Hz in order to keep the controllers with a good performance an far from the 100 Hz that Vicon provides in order to have time for processing the communication and the control tasks.\fxnote{CHECK NUMBERS}
 
