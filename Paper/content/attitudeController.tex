@@ -1,6 +1,6 @@
 \subsection{Attitude Controller}
 The attitude controller is designed using a state space representation of the system. This helps handling the coupled angular response of the quadcopter. The chosen states for the system are the three angular positions and the three angular velocities. The input vector consists of the four motor rotational speeds and the output vector consists of the three angles, roll, pitch and yaw. The state, input and output vectors are
-%
+
 \begin{flalign}
 	\vec{x}(t)&= 
 	\begin{bmatrix}
@@ -18,7 +18,7 @@ The attitude controller is designed using a state space representation of the sy
 	\end{bmatrix}\nonumber	
 	^T \ .
 \end{flalign}
-%
+
 %The vectors above are then used in construction of the state space matrix representation as
 %\begin{flalign}
 %	\vec{\dot{x}}(t)&=\vec{A} \vec{x}(t) + \vec{B} \vec{u}(t)
@@ -30,8 +30,8 @@ The attitude controller is designed using a state space representation of the sy
 %\end{flalign}
 %%
 %where $\vec{A}$ is the system matrix, $\vec{B}$ is the input matrix, $\vec{C}$ is the output matrix and $\vec{D}$ is the feedforward matrix.
-%
 The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices in the state space model are obtained from the linearized attitude equations \eqref{eqAngleLin1}, \eqref{eqAngleLin2} and \eqref{eqAngleLin3}, yielding
+
 \vspace{0cm}
 \footnotesize{
 \begin{align}   
@@ -43,7 +43,7 @@ The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices in the
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 0 & 0 & 0 & 0 & 0     \ \ \  
-	\end{bmatrix} , \vec{C} =	 
+	\end{bmatrix} , \ \ \vec{C} =	 
 	\begin{bmatrix}
 		\ 1 & 0 & 0 & 0 & 0 & 0     \ \ \ \\ 
 		\ 0 & 1 & 0 & 0 & 0 & 0     \ \ \ \\ 
@@ -67,7 +67,7 @@ The values for the $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$ matrices in the
 \normalsize
 
 \noindent Note, that the $\vec{D}$ matrix is a zero matrix.\\
-\indent The attitude control is based on a state feedback and an integral term in order to be able to track a given reference and reject input disturbances. As not all states are measured a reduced order observer is implemented to estimate the angular velocities. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
+\indent The attitude control is based on a state feedback and an integral term in order to track a given reference and reject input disturbances. As not all states are measured a reduced order observer is implemented to estimate the angular velocities. Due to the separation principle, both subsystems can be designed independently. \cite{ssReference}
 \\
 \\
 \noindent\autoref{AttitudeControlDiagram} shows how these designs are related.
@@ -83,7 +83,7 @@ The design of the state feedback with the integral action is shown in \autoref{f
 \begin{figure}[H]
     \includegraphics[width=.35\textwidth]{figures/DetailedControllerColorDiagram}
     \centering
-    \captionof{figure}{State feedback with integral action in the attitude control structure. $\vec{r}$ is the angular reference vector and $\vec{x}_{\mathrm{int}}$ is the integral states.}
+    \captionof{figure}{State feedback with integral action in the attitude control structure, where $\vec{r}$ is the angular reference vector and $\vec{x}_{\mathrm{int}}$ contains the integral states.}
     \label{fig:DetailedControllerColorDiagram}
 \end{figure}
 Three states, $\vec{x}_{\mathrm{int}}$, are added to the already existing state vector in order to track the two references for $\phi$ and $\theta$ and reject input disturbances in the three angles. This leads to the extended system
@@ -138,17 +138,19 @@ where\\
         \end{bmatrix} .\nonumber
     \end{flalign}
 \end{minipage}
-\\ 
+\\
+
 The feedback law is given by 
 \begin{flalign} 
-	\vec{u} &=\vec{F} \vec{x} + \vec{F}_{\mathrm{int}} \vec{x}_{\mathrm{int}}\ .
+	\vec{u} &=\vec{F}_{\mathrm{e}}\vec{x}_{\mathrm{e}}=\vec{F} \vec{x} + \vec{F}_{\mathrm{int}} \vec{x}_{\mathrm{int}}\ .
 	\label{eq:ssControllerAction}
 \end{flalign}
-The feedback matrix, $\vec{F_{\mathrm{e}}}$ is obtained by using a Linear Quadratic Regulator (LQR) approach together with Bryson's rule. This makes it possible to find the optimal feedback gains while being able to prioritize the different states and set boundaries to the control action.
+
+The feedback matrix, $\vec{F_{\mathrm{e}}}$, is obtained by using a Linear Quadratic Regulator (LQR) approach together with Bryson's rule, \cite{ssReference}. This makes it possible to find the optimal feedback gains while being able to prioritize the different states and set boundaries for the control action.
 %
-LQR is based on minimizing the following cost function, 
+LQR design is based on minimizing the following cost function, 
 \begin{flalign} 
-	J &= \int_{0}^{\infty} \vec{x}^T \vec{Q} \vec{x} + \vec{u}^T \vec{R} \vec{u} dt \ .
+	J &= \int_{0}^{\infty} \vec{x}^T \vec{Q} \vec{x} + \vec{u}^T \vec{R} \vec{u} \ dt \ .
 	\label{eq:costfunction}
 \end{flalign}
 
@@ -175,7 +177,7 @@ where the matrix $\vec{P}$ is positive definite and its value is found using the
 Once $\vec{F}_\mathrm{e}$ is obtained, it is split into $\vec{F}$ and $\vec{F}_{\mathrm{int}}$. In this way, the controller is implemented as shown in \autoref{fig:DetailedControllerColorDiagram}.\\
 %--------------------- Reduced-Order Observer ----------------------------
 
-The reduced observer estimates the angular velocities by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$. 
+The reduced order observer estimates the angular velocities by means of the system input and output. With this approach, the first three states, $\vec{x}_{1:3}$, are equal to the outputs, $\vec{y}$, whereas the other three states, $\vec{x}_{4:6}$, are estimated as $\hat{\vec{x}}_{4:6}$. 
 
 The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such that the eigenvalues of the matrix $\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\vec{A}_{12}$ have negative real part. This makes the estimate converge to the true angular velocity \cite{ssReference}. This is performed by splitting the original system matrices into the submatrices\\
 %
@@ -200,19 +202,19 @@ The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such tha
 \normalsize
 
 With the observer matrix, the observer equation is derived, see \eqref{eq:eqobservertheorem}. This ensures an estimate $\hat{\vec{x}}_{4:6}$ which converges to $\vec{x}_{4:6}$ at a rate given by the chosen observer poles.
+
+\vspace{-0.1 cm}
 \small{
 \begin{flalign}
 \vec{\dot{\hat{x}}_{4:6}} + \vec{L}_{\mathrm{obs}}\dot{y} &= (\vec{A}_{22}+\vec{L}_{\mathrm{obs}}\vec{A}_{12})\vec{\hat{x}}_{4:6}\label{eq:eqobservertheorem} \\&+(\vec{A}_{21}+\vec{L}_{\mathrm{obs}}\vec{A}_{11})\vec{y}+(\vec{B}_2+\vec{L}_{\mathrm{obs}}\vec{B}_1)\vec{u}\nonumber
 %    \vec{\hat{\dot{x}}}_{4:6} &= \vec{A}_{21}\vec{y} + \vec{A}_{22}\vec{\hat{x}}_{4:6} + \vec{B_2}\vec{u} + \vec{L}_{\mathrm{obs}}\vec{(A}_{12}\vec{\hat{x}}_{4:6} - \vec{A}_{21}\vec{x}_{4:6})
 \end{flalign}
 \normalsize
-
 The estimation of $\vec{x}_{4:6}$ is implemented as shown in \autoref{fig:observerDiagram}.
 
 \begin{figure}[H]
-    \includegraphics[width=.45\textwidth]{figures/observerDiagram}
     \centering
-    \captionsetup{justification=centering}
+    \includegraphics[width=.45\textwidth]{figures/observerDiagram}
     \captionof{figure}{Detailed diagram of the reduced order observer illustrating its implementation.}
     \label{fig:observerDiagram}
 \end{figure}
