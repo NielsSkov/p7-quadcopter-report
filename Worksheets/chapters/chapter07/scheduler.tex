@@ -1,4 +1,4 @@
-\section{Scheduler}
+\section{Scheduler}\label{sec:Scheduler}
 Only two tasks are running on the microcontroller, the control algorithm and the communication. The handling of these tasks is however critical. The network introduces delays which sets a limit for the rate at which the control algorithms can be executed. It is also desirable for the control task to be executed periodically, and at any other time, the microcontroller should listen for new data on the network.\\
 A scheduler can handle priorities and timing of tasks, for this purpose a real time operating system (RTOS) is used, called FreeRTOS \cite{freeRtos}.\\
 The capabilities of this RTOS ranges beyond the needs in this project, but provides the necessary tools, and constitutes a flexible base with room for future development.\\

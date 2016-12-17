@@ -1,7 +1,7 @@
 \section{Results}\label{sec:results}
 The controllers have been implemented and tested on the quadcopter. Experimental results are shown for the attitude controller and simulation results are presented for the translational controllers. The latter includes the network and the non-linear system models simulated in MATLAB Simulink.
 
-The obtained model parameters are seen in \autoref{ParametersQuadcopter}. 
+The obtained model parameters are seen in \autoref{ParametersQuadcopter}. The mass and the length have been measured. The coefficients $k_{\mathrm{th}}$ and $k_{\mathrm{d}}$ have been obtained by testing the propellers at different speeds. The moments of inertia have been calculated analytically by considering the quadcopter as a combination of different masses with known moments of inertia.
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|}
@@ -29,38 +29,22 @@ The obtained model parameters are seen in \autoref{ParametersQuadcopter}.
     \caption{Parameters used through the analysis and design.}
     \label{ParametersQuadcopter}
 \end{table}
-The mass and the length have been measured. The coefficients $k_{\mathrm{th}}$ and $k_{\mathrm{d}}$ have been obtained by testing the propellers at different speeds. The moments of inertia have been calculated analytically by considering the quadcopter as a combination of different masses with known moments of inertia.
 
-The delay used in the simulation is \fxnote{WRITE NUMBER} ms and the probability of missed packets is set to zero.
+The delay used in the simulation is 30 ms\fxnote{WRITE NUMBER} and the probability of missed packets is set to zero.
 
 The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diagonal matrices, shown below, and the chosen observer poles, which are $-11$, $-12$ and $-13$.
-%\footnotesize{
-%\begin{flalign}   \label{Fematrix}
-%	\vec{F}&=
-%	\begin{bmatrix}
-%		 0.00    & -165.15 & -223.35  &  0.00   &-44.04 & -68.52  \ \ \ \\
-%		 165.15  &  0.00   & 223.35   &  44.04  & 0.00  &  68.52  \ \ \ \\
-%		 0.00    & 165.15  & -223.35  &  0.00   &44.04  & -68.52  \ \ \ \\
-%		 -165.15 & 0.00    & 223.35   & -44.04  & 0.00  &  68.52  \ \ \ 
-%	\end{bmatrix}\nonumber\\
-%		\vec{F}_{\mathrm{int}}&=
-%		\begin{bmatrix}
-%		   0.00   & -220.97 & -250.00  \ \ \ \\
-%		   220.97 &   0.00  & 250.00   \ \ \ \\
-%		   0.00   & 220.97  & -250.00  \ \ \ \\
-%		  -220.97 &  0.00   &  250.00  \ \ \ 
-%		\end{bmatrix}\nonumber
-%\end{flalign}}
-%\normalsize
 
+\vspace{0.2cm}
 \noindent$\vec{Q}=diag\left(\frac{1}{0.2^2},\frac{1}{0.2^2},\frac{1}{0.1^2},\frac{1}{0.5^2},\frac{1}{0.5^2},\frac{1}{0.3^2},\frac{1}{0.08^2},\frac{1}{0.08^2},\frac{1}{0.05^2}\right)$
 
+\vspace{0.2cm}
 \noindent$\vec{R}=diag\left(\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2},\frac{1}{25^2}\right).$
 
+\vspace{0.2cm}
 The controllers for $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$, $\dot{z}_{\mathrm{I}}$, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$ are
 	\begin{flalign}
 		C_{\dot{x}_{\mathrm{I}}}&=-C_{\dot{y}_{\mathrm{I}}}=-0.0038\left(\frac{1+20s}{s}\right)\ ,\nonumber \\
-	C_{\dot{z}_{\mathrm{I}}}&=-201.8\left(\frac{s+0.8}{s}\right)\ ,\nonumber \\
+    	C_{\dot{z}_{\mathrm{I}}}&=-201.8\left(\frac{s+0.8}{s}\right)\ ,\nonumber \\
 		C_{x_{\mathrm{I}}}&=C_{y_{\mathrm{I}}}=0.3\ ,	\nonumber\\
 		C_{z_{\mathrm{I}}}&=1 \ .\nonumber
 	\end{flalign}
