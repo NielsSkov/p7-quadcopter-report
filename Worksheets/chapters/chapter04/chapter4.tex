@@ -62,8 +62,8 @@ The transformation from the body frame to the inertial can be done through a rot
         \si{R_X} &=
         \begin{bmatrix}
             1 & 0        & 0         \\ 
-            0 & c(\phi)  & -s(\phi)  \\ 
-            0 & s(\phi)  & c(\phi)   \nonumber  
+            0 & c\phi  & -s\phi  \\ 
+            0 & s\phi  & c\phi   \nonumber  
         \end{bmatrix} 	\label{eq:RotMatrix1}
     \end{flalign}
 \end{minipage}\hfill
@@ -71,9 +71,9 @@ The transformation from the body frame to the inertial can be done through a rot
     \begin{flalign}
         \si{R_Y} &=
         \begin{bmatrix}
-            c(\theta)  & 0  & s(\theta)  \\ 
+            c\theta  & 0  & s\theta  \\ 
             0          & 1  & 0          \\ 
-            -s(\theta) & 0  & c(\theta)  \nonumber 
+            -s\theta & 0  & c\theta  \nonumber 
         \end{bmatrix} 	\label{eq:RotMatrix2}
     \end{flalign}
 \end{minipage}\hfill
@@ -81,8 +81,8 @@ The transformation from the body frame to the inertial can be done through a rot
     \begin{flalign}
         \si{R_Z} &=
         \begin{bmatrix}
-            c(\psi) & -s(\psi)  & 0  \\ 
-            s(\psi) & c(\psi)   & 0  \\ 
+            c\psi & -s\psi  & 0  \\ 
+            s\psi & c\psi   & 0  \\ 
             0       & 0         & 1  \nonumber 
         \end{bmatrix} 	\label{eq:RotMatrix3}
     \end{flalign}
@@ -91,9 +91,9 @@ The transformation from the body frame to the inertial can be done through a rot
 \begin{flalign}
 	R = R_Z R_Y R_X =
 	\begin{bmatrix}
-		c(\theta) c(\psi)  & s(\phi) s(\theta) c(\psi) -c(\phi) s(\psi)  & c(\phi) s(\theta) c(\psi) + s(\phi) s(\psi)  \\ 
-		s(\phi) c(\theta)  & s(\phi) s(\theta) s(\psi) + c(\phi) c(\psi) & c(\phi) s(\theta) s(\psi) - s(\phi) c(\psi)  \\ 
-		-s(\theta)         & s(\phi) c(\theta)                           & c(\phi) c(\theta)
+		c\theta c\psi  & s\phi s\theta c\psi -c\phi s\psi  & c\phi s\theta c\psi + s\phi s\psi  \\ 
+		s\phi c\theta  & s\phi s\theta s\psi + c\phi c\psi & c\phi s\theta s\psi - s\phi c\psi  \\ 
+		-s\theta         & s\phi c\theta                           & c\phi c\theta
 	\end{bmatrix} 	\label{eq:RotMatrix}
 \end{flalign}
 \normalsize
@@ -133,7 +133,7 @@ Once these considerations have been taken into account, the two submodels can be
 %			\includegraphics[scale=.27]{figures/drone_diagram}
 %			\centering
 %			\captionsetup{justification=centering}
-%			\captionof{figure}{Diagram of the quadcopter which includes inertial and body reference systems, as well as the references for the angles (roll, pitch and yaw) and the thrust forces produced by the propeller. }
+%			\captionof{figure}{Diagram of the quadcopter which includes inertial and body reference systems, as well as the references for the angles (roll, pitch and yaw and the thrust forces produced by the propeller. }
 %			\label{diagramQuad}
 %		\end{figure}
 %	\end{minipage}
