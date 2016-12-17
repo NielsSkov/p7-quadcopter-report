@@ -1,5 +1,8 @@
 \section{Conclusion}\label{sec:conclusion}
 
-The behavior of a quadcopter has been modeled with a first principle approach. A linear control system has been designed in order to stabilize the quadcopter and control its position.
-The control system has been split into attitude and a translational controllers and designed taking into account the main network effects resulting from using a external motion tracking system. The attitude controller has been designed using a state space approach, including state feedback with integral control, obtained with LQR, and a reduced order observer. The translational control system has been designed with a classical control approach and resulted in three cascade loops, including proportional and PI controllers. The results obtained show that both the attitude and the translational behavior of the quadcopter has been successfully controlled. 
+The behavior of a quadcopter has been modeled with a first principles approach. A linear control system has been designed in order to stabilize the quadcopter and control its position.
 
+The control system has been split into attitude and translational controllers. These have been designed considering the main network effects resulting from using an external motion tracking system. The attitude controller has been designed using a state space approach, including state feedback with integral control using LQR and a reduced order observer. The translational control system has been designed by means of classical control methods, which resulted in a cascaded structure including P and PI controllers. 
+
+The results show that the design for both the attitude and the translational behavior is able to control the quadcopter in simulation.
+Moreover, the implementation and test of the attitude controller have been carried out on the quadcopter successfully. 

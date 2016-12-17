@@ -2,9 +2,11 @@
 
 The results obtained show both the attitude and simulated position response of the quadcopter. 
 
-It is seen that the controllers achieve the desired references even though the network delay and the sampling rate affects their performance. The network limits the design bandwidth, especially for the attitude controller, due to the limited frequency in which the sensor data is obtained from the motion tracking system. A faster response is achievable if on board sensors for acquiring the attitude are utilized.
+It is seen that the controllers track the references even though the network delay and the sampling rate affects their performance. The network limits the designed bandwidths, especially for the attitude controller. This is due to the limited frequency in which the sensor data is obtained from the motion tracking system. A faster response is achievable if on board sensors for acquiring the attitude are utilized.
 
-Experimental results could not be presented for the translational controllers. As the attitude design has been validated with the same simulation and it works in reality, it can be suggested that it is not the design but the implementation of the translational controllers which prevents the realization of a flying quadcopter.
+Experimental results could not be presented for the translational controllers, as it has not been possible to successfully implement them in due time. The design is however deemed valid, as simulations show that the design should work in reality. The attitude controller is implemented and achieves the given references.
+
+%Experimental results could not be presented for the translational controllers. As the attitude design has been validated with the same simulation and it works in reality, it can be suggested that it is not the design but the implementation of the translational controllers which, at this point in the design process prevents the realization of a flying quadcopter.
 %
 %Simple model
 %Translational 

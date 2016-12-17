@@ -40,7 +40,7 @@ For repetition, the requirements that need to be met are:
 
 \newpage
 
-\section{Control the quadcopter's attitude}
+\section{Control the quadcopter's attitude} \label{sec:accepttestAttitude}
 \textbf{Requirement:}
 \textit{It shall be possible to control the quadcopter's attitude.}
 
@@ -87,32 +87,45 @@ For repetition, the requirements that need to be met are:
 Three test have carried out to test the capabilities of the attitude controller. The first one shows how the controller can stabilize the attitude around equilibrium when starting with some initial conditions. The second and the third one are done to test the reference tracking in roll and pitch, respectively.
 
 The results of the first test can be seen in\autoref{fig:attitudeAccept}.
-%
-\begin{figure}[H]
-	\includegraphics[scale=.8]{figures/attitudeAccept.pdf}
-	\centering			
-	\captionof{figure}{Functional test to check stabilization around equilibrium.} 
-	\label{fig:attitudeAccept}
-\end{figure} 
+
+\begin{minipage}{\linewidth}
+    \begin{minipage}{0.46\linewidth}
+        \begin{figure}[H]
+            \includegraphics[scale=.55]{figures/attitudeAccept.pdf}
+            \centering			
+            \captionof{figure}{Testing the quadcopters ability to stabilize around equilibrium.}
+            \label{fig:AccattitudeAccept}
+        \end{figure}
+    \end{minipage}
+    \hspace{0.03\linewidth}
+    \begin{minipage}{0.46\linewidth}
+        \begin{figure}[H]
+            \includegraphics[scale=.55]{figures/ssFinalEq.pdf}
+            \centering
+            \captionof{figure}{System response of the attitude controller, with initial conditions of $0.2$ radians for the pitch, $-0.3$ radians for the roll and $-0.2$ radians for the yaw. The weighted matrices, $\vec{Q_{final}}$ and $\vec{R_{final}}$, and the observer gain, $\vec{L_{obs}}$, are utilized for the final design and can be found in \autoref{app:matricesSS}.}
+            \label{fig:AccssFinalEq}
+        \end{figure}
+    \end{minipage}
+\end{minipage}
 %
 The three angles start with an initial condition different from zero. Then, the reference is put to 0 rad. 
 
 \begin{minipage}{\linewidth}
     \begin{minipage}{0.46\linewidth}
         \begin{figure}[H]
-            \includegraphics[scale=.5]{figures/rollRefAccept.pdf}
+            \includegraphics[scale=.55]{figures/AccepttestRefTrackRoll.pdf}
             \centering			
             \captionof{figure}{.}
-            \label{fig:rollRefAccept}
+            \label{fig:AccepttestRefTrackRoll}
         \end{figure}
     \end{minipage}
     \hspace{0.03\linewidth}
     \begin{minipage}{0.46\linewidth}
         \begin{figure}[H]
-            \includegraphics[scale=.5]{figures/rollRefAcceptPitchYaw.pdf}
+            \includegraphics[scale=.55]{figures/AccepttestRefTrackRollPitchYaw.pdf}
             \centering
             \captionof{figure}{.}
-            \label{fig:rollRefAcceptPitchYaw}
+            \label{fig:AccepttestRefTrackRollPitchYaw}
         \end{figure}
     \end{minipage}
 \end{minipage}
@@ -120,19 +133,19 @@ The three angles start with an initial condition different from zero. Then, the 
 \begin{minipage}{\linewidth}
     \begin{minipage}{0.46\linewidth}
         \begin{figure}[H]
-            \includegraphics[scale=.5]{figures/pitchRefAccept.pdf}
+            \includegraphics[scale=.55]{figures/AccepttestRefTrackPitch.pdf}
             \centering			
             \captionof{figure}{.}
-            \label{fig:pitchRefAccept}
+            \label{fig:AccepttestRefTrackPitch}
         \end{figure}
     \end{minipage}
     \hspace{0.03\linewidth}
     \begin{minipage}{0.46\linewidth}
         \begin{figure}[H]
-            \includegraphics[scale=.5]{figures/pitchRefAcceptRollYaw.pdf}
+            \includegraphics[scale=.55]{figures/AccepttestRefTrackPitchRollYaw.pdf}
             \centering
             \captionof{figure}{.}
-            \label{fig:pitchRefAcceptRollYaw}
+            \label{fig:AccepttestRefTrackPitchRollYaw}
         \end{figure}
     \end{minipage}
 \end{minipage}
@@ -144,25 +157,13 @@ The three angles start with an initial condition different from zero. Then, the 
 \textbf{Requirement:}
 \textit{It shall be possible to make the quadcopter control its position in the z axis.}
 
-\textbf{Pass/fail criteria:}
-	\begin{description}
-	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
-	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
-	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
-	\end{description}
-
-		
-\textbf{Procedure:}\\
-
-
-\begin{enumerate}
-	\item ..
-	\item ..
-	\item ..
-\end{enumerate} 
-
-
 \textbf{Results:}
+Experimental tests reveal a non functional $z_{\mathrm{I}}$ controller implementation. However, it is believed that the designed is valid as it has been verified in simulations as depicted in \autoref{sec:TranslationalController}. As the implementation of the attitude controller functions in experimental tests, seen in \autoref{sec:accepttestAttitude}, it can be suggested that a simulated controller design could be implemented on the quadcopter and work if more time was given.
+
+
+% works as well, it is a matter of time to solve the implementation issues. 
+
+
 
 \newpage
 
@@ -170,25 +171,9 @@ The three angles start with an initial condition different from zero. Then, the 
 \textbf{Requirement:}
 \textit{It shall be possible to control the quadcopter in the x and y axis}
 
-\textbf{Pass/fail criteria:}
-	\begin{description}
-	\item[ \ding{51} ] The receiver detects all transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB and the receiver does not trigger when no package has been transmitted (false positives).
-	\item[(\ding{51})]The receiver is able to detect transmitted packages at the beginning of the package, which has an SNR of max 2.8 dB, but false positives may occur.
-	\item[ \ding{55} \phantom{)}]The receiver is not able to detect any transmitted packages.
-	\end{description}
-
-		
-\textbf{Procedure:}\\
-
-
-\begin{enumerate}
-	\item ..
-	\item ..
-	\item ..
-\end{enumerate} 
-
-
 \textbf{Results:}
+Experimental tests reveal a non functional $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ controller implementation. However, it is believed that the designed is valid as it has been verified in simulations as depicted in \autoref{sec:TranslationalController}. As the implementation of the attitude controller functions in experimental tests, seen in \autoref{sec:accepttestAttitude}, it can be suggested that a simulated controller design could be implemented on the quadcopter and work if more time was given.
+
 
 \newpage
 \section{Summary of Results}
