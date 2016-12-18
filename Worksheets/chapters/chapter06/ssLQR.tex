@@ -12,7 +12,7 @@ The LQR finds the state feedback that minimizes the cost function \autoref{eq:co
 	\va{\vec{R}}{is the input-cost matrix}{}
 \end{where}
 
-In the cost function, $\vec{Q}$ and $\vec{R}$ are positive semi-definite and positive definite matrices, respectively. $\vec{Q}$ defines the penalties for the error in the states making the cost function value higher for the prioritized states. $\vec{R}$ sets the weights for the inputs of the system such that the control action does not exceed its maximum limits. \fxnote{why positive definite}\cite{ssReference} 
+In the cost function, $\vec{Q}$ and $\vec{R}$ are positive semi-definite and positive definite matrices, respectively. $\vec{Q}$ defines the penalties for the error in the states making the cost function value higher for the prioritized states. $\vec{R}$ sets the weights for the inputs of the system such that the control action does not exceed its maximum limits. \cite{ssReference} 
 
 For the LQR to minimize the cost function, the matrices $\vec{Q}$ and $\vec{R}$ need to be found. This is done using Bryson's rule as seen in \autoref{eq:weightingmatrices}. The $\vec{Q}$ and $\vec{R}$ matrices are diagonal matrices. The $\vec{Q}$ matrix elements are a function of the maximum acceptable value for the error in the states. The $\vec{R}$ elements set limits for the control action in each of the inputs. \cite{OptimalControlChristoffer}.
 \begin{flalign} 
