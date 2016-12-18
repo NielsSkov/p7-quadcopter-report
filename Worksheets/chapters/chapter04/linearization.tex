@@ -7,7 +7,7 @@
 %
 %The equilibrium point for the four angular velocities of the motors is again that which allows the quadcopter to hover, that is, the four equal angular velocities which keeps a constant z-coordinate in the inertial frame.
 %The linearization is done for each equation using the first order Taylor approximation.
-Designing a linear controller requires linearization of the model equations around an equilibrium point. This is done for each equation using the first order Taylor approximation\fxnote{consider how this can be explained more nicely. Can we make a simplified example from our own equations or explain it more thorough in the text?}. See \autoref{taylor}.
+Designing a linear controller requires linearization of the model equations around an equilibrium point. This is done for each equation using the first order Taylor approximation, see \autoref{taylor}.
 %
 \begin{flalign}
 	f(x) &\approx f(\overline{x}) + f'(\overline{x}) (x-\overline{x})  \rightarrow\ \Delta f(x) \approx f'(\overline{x}) \Delta x
@@ -15,13 +15,13 @@ Designing a linear controller requires linearization of the model equations arou
 \end{flalign}
 In this equation, $\overline{x}$ represents the linearization point.
 
-To apply the approximation, the function to be approximated must be differentiated with respect to each of the present variables. An example is shown in \autoref{eq:dummytaylor} in which an example function, $f$, dependent on some example variables, $x_1$, $x_2$ and $x_3$, is linearized. 
+To apply the approximation, the function to be approximated must be differentiated with respect to each of the present variables.
 \begin{flalign}
-	f &= f(x_1,x_2,x_3) \nonumber \\
-	\Delta f&=\frac{\partial f}{\partial x_1}\bigg|_{\overline{x}_1,\overline{x}_2,\overline{x}_3}\ \Delta x_1 + \frac{\partial f}{\partial x_2}\bigg|_{\overline{x}_1,\overline{x}_2,\overline{x}_3}\ \Delta x_2 + \frac{\partial f}{\partial x_3}\bigg|_{\overline{x}_1,\overline{x}_2,\overline{x}_3}\ \Delta x_3
+	f &= f(x_1,x_2,...,x_n) \nonumber \\
+	\Delta f&=\frac{\partial f}{\partial x_1}\bigg|_{\overline{x}_1,\overline{x}_2,...,\overline{x}_n}\ \Delta x_1 + \frac{\partial f}{\partial x_2}\bigg|_{\overline{x}_1,\overline{x}_2,...,\overline{x}_n}\ 
+	\Delta x_{2}+...+ \frac{\partial f}{\partial x_n}\bigg|_{\overline{x}_1,\overline{x}_2,...,\overline{x_n}}\ \Delta x_n
 	\label{eq:dummytaylor}
 \end{flalign}
-\fxnote{The example should be with a equation 4.7, using an example from the model instead of just a random function.}
 
 Once linearized, the function is expressed in terms of variations from the linearization point. This is represented by the symbol $\Delta$ in all linearized equations.
 
