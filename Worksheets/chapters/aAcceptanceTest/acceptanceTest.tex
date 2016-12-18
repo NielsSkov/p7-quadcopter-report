@@ -1,10 +1,7 @@
 \chapter{Functional Tests}
+It must be tested if the designed networked control system complies with the functional requirements mentioned in \autoref{ch:functionalRequirements}. 
 
-It must be tested if the designed networked control system complies with the requirements mentioned in \autoref{ch:technicalRequirements}. This is done in the following. %Before the test can be performed pass/fail criteria and procedures needs to be formulated. 
-
-There are three assessment degrees on how well the developed prototype satisfies the requirements. The degrees are \ding{51} for a pass, (\ding{51}) for a partial pass and \ding{55} for a fail. 
-
-\subsection*{Requirements Overview}
+\subsection*{Functional Requirements Overview}
 For repetition, the requirements that need to be met are:
 \begin{enumerate}[label=\textbf{\arabic*})]
 \item {The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
@@ -38,7 +35,6 @@ For repetition, the requirements that need to be met are:
 
 \textbf{Results:}
 
-\newpage
 
 \section{Control the quadcopter's attitude} \label{sec:accepttestAttitude}
 \textbf{Requirement:}
@@ -95,17 +91,16 @@ The results of the first test can be seen in\autoref{fig:attitudeAccept}, where 
 	\label{fig:attitudeAccept}
 \end{figure} 
 %
-The three angles start with an initial condition of \SI{-0.2}{rad} for roll, \SI{-0.2}{rad} for pitch and \SI{-0.2}{rad} for yaw. After approximately five seconds, all the references are set to zero. It can be seen that the angles converge to zero in less than \SI{2}{s} for roll and pitch and approximately \SI{7}{s} for yaw. From the figure it can be seen that oscillations of approximately \SI{0.04}{rad} occur   when the attitude controller has a reference of \SI{0}{rad}. These oscillations may come from the deviations between the model and real system behavior, as the utilized parameters for the model could be different from the real system. Furthermore, certain aspects of the behavior of the quadcopter have not been taken into account.
-
-The resolution of the measured data has been decreased to 0.01 rad to reduce the packet size, which results in a reduced delay, but can be bla bla.
+The three angles start with an initial condition, \SI{-0.2}{rad} for roll, \SI{0.3}{rad} for pitch and \SI{-0.2}{rad} for yaw. After approximately five seconds, all the references are set to zero. It can be seen that the angles converge to zero in less than \SI{2}{s} for roll and pitch and approximately \SI{7}{s} for yaw. From the figure it can be seen that oscillations of approximately \SI{0.04}{rad} occur when the attitude controller has a reference of \SI{0}{rad}. These oscillations may come from the deviations between the model and real system behavior, as the utilized parameters for the model could be different from the real system. Furthermore, certain aspects of the behavior of the quadcopter have not been taken into account.
 
 In \autoref{fig:AccepttestRefTrackRoll} a reference of \SI{0.4}{rad} in roll is given to the attitude controller at approximately \SI{10}{s}.
+
 \begin{minipage}{\linewidth}
     \begin{minipage}{0.46\linewidth}
         \begin{figure}[H]
             \includegraphics[scale=.55]{figures/AccepttestRefTrackRoll.pdf}
             \centering			
-            \captionof{figure}{Attitude controller when tracking a roll angle reference of \SI{0.4}{rad}.}
+            \captionof{figure}{Attitude controller response when tracking a roll angle reference of \SI{0.4}{rad}.}
             \label{fig:AccepttestRefTrackRoll}
         \end{figure}
     \end{minipage}
@@ -119,15 +114,17 @@ In \autoref{fig:AccepttestRefTrackRoll} a reference of \SI{0.4}{rad} in roll is 
         \end{figure}
     \end{minipage}
 \end{minipage}
-%
+
 From the figure, it can be seen that it is possible for the roll to track a change in reference. This is achievable while the pitch and yaw angles remain at zero. The oscillations seen around the reference are approximately \SI{0.04}{rad}.
-%
+
+A similar test has been done in which a reference of \SI{0.4}{rad} is given to the pitch.
+
 \begin{minipage}{\linewidth}
     \begin{minipage}{0.46\linewidth}
         \begin{figure}[H]
             \includegraphics[scale=.55]{figures/AccepttestRefTrackPitch.pdf}
             \centering			
-            \captionof{figure}{.}
+            \captionof{figure}{Attitude controller response when tracking a pitch angle reference of \SI{0.4}{rad}.}
             \label{fig:AccepttestRefTrackPitch}
         \end{figure}
     \end{minipage}
@@ -136,28 +133,23 @@ From the figure, it can be seen that it is possible for the roll to track a chan
         \begin{figure}[H]
             \includegraphics[scale=.55]{figures/AccepttestRefTrackPitchRollYaw.pdf}
             \centering
-            \captionof{figure}{.}
+            \captionof{figure}{Pitch and yaw angles corresponding to the test in which a reference of \SI{0.4}{rad} is applied to the pitch.}
             \label{fig:AccepttestRefTrackPitchRollYaw}
         \end{figure}
     \end{minipage}
 \end{minipage}
 
-
-\newpage
+It can be notice that the response is similar to the previous test, both in the angle that tracks the reference and in the other two than remain around \SI{0}{rad}.
 
 \section{Control the position in the z axis}
 \textbf{Requirement:}
 \textit{It shall be possible to make the quadcopter control its position in the z axis.}
 
 \textbf{Results:}
-Experimental tests reveal a non functional $z_{\mathrm{I}}$ controller implementation. However, it is believed that the designed is valid as it has been verified in simulations as depicted in \autoref{sec:TranslationalController}. As the implementation of the attitude controller functions in experimental tests, seen in \autoref{sec:accepttestAttitude}, it can be suggested that a simulated controller design could be implemented on the quadcopter and work if more time was given.
+Experimental tests reveal a non functional $z_{\mathrm{I}}$ controller implementation. However, the design has been tested in simulation, inlcuding the network effects, as depicted in \autoref{sec:TranslationalController}. As the implementation of the attitude controller has been achieved in experimental tests, seen in \autoref{sec:accepttestAttitude}, it is reasonable that the design could be implemented on the quadcopter and work if more time was given.
 
 
 % works as well, it is a matter of time to solve the implementation issues. 
-
-
-
-\newpage
 
 \section{Control the position in the x and y axis}
 \textbf{Requirement:}
@@ -167,7 +159,6 @@ Experimental tests reveal a non functional $z_{\mathrm{I}}$ controller implement
 Experimental tests reveal a non functional $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ controller implementation. However, it is believed that the designed is valid as it has been verified in simulations as depicted in \autoref{sec:TranslationalController}. As the implementation of the attitude controller functions in experimental tests, seen in \autoref{sec:accepttestAttitude}, it can be suggested that a simulated controller design could be implemented on the quadcopter and work if more time was given.
 
 
-\newpage
 \section{Summary of Results}
 The results of the tests are summed up in \autoref{tab:acceptance_test_results}.
 \begin{table}[H] \centering
