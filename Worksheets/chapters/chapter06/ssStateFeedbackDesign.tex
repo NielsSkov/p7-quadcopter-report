@@ -5,19 +5,19 @@ In this approach, a state feedback is used to make the system return to the equi
 %
 %In this approach a state feedback is used to allow the system to return to equilibrium position while an integral controller makes it possible to include a new reference and track it, adding both control actions to get the one finally applied to the motors.
 \begin{minipage}{\linewidth}
-	\begin{minipage}{0.6\linewidth}
+	\begin{minipage}{0.5\linewidth}
 		\begin{figure}[H]
-			\includegraphics[scale=.35]{figures/ControllerColorDiagram}
+			\includegraphics[scale=.3]{figures/ControllerColorDiagram}
 			\centering			
-			\captionof{figure}{Control structure highlighting the state feedback and integral control.}
+			\captionof{figure}{Control structure highlighting the state feedback and integral control \fxnote{color the new one}.}
 			\label{fig:ControllerColorDiagram}
 		\end{figure}
 	\end{minipage}
 	\hspace{0.03\linewidth}
-	\begin{minipage}{0.4\linewidth}
-		\begin{figure}[H]\vspace{20mm}
-			\includegraphics[scale=.35]{figures/DetailedControllerColorDiagram}
-			\centering \vspace{7mm}
+	\begin{minipage}{0.5\linewidth}
+		\begin{figure}[H]%\vspace{20mm}
+			\includegraphics[scale=.3]{figures/DetailedControllerColorDiagram}
+			\centering %\vspace{7mm}
 			\captionof{figure}{The highlighted parts from the left diagram in detail, including all the variables used in the design of the controller.}
 			\label{fig:DetailedControllerColorDiagram}
 		\end{figure}
@@ -28,7 +28,7 @@ In this approach, a state feedback is used to make the system return to the equi
 From \autoref{fig:DetailedControllerColorDiagram}, the feedback law yields \autoref{eq:ssControllerAction}.
 %
 \begin{flalign} 
-	\vec{u}(t) &=\vec{F} \  \vec{x}(t) + \ \vec{F}_{\mathrm{Int}} \  \vec{x}_{\mathrm{Int}}(t)
+	\vec{u} &=\vec{F}  \vec{x} + \vec{F}_{\mathrm{Int}}  \vec{x}_{\mathrm{Int}}
      \label{eq:ssControllerAction}
 \end{flalign}
 %
@@ -37,33 +37,33 @@ From \autoref{fig:DetailedControllerColorDiagram}, the feedback law yields \auto
 	\va{\vec{F}_{\mathrm{Int}}}{is a 3x6 integral feedback matrix }{}
 \end{where}
 
-In this equation, \si{\vec{x}_{\mathrm{Int}}(t)} is given by \autoref{eq:ssControllerAction1}, which is equivalent to \autoref{eq:ssControllerAction2}, see \autoref{fig:DetailedControllerColorDiagram}.
+In this equation, \si{\vec{x}_{\mathrm{Int}}} is given by \autoref{eq:ssControllerAction1}, which is equivalent to \autoref{eq:ssControllerAction2}, see \autoref{fig:DetailedControllerColorDiagram}.
 \begin{flalign}
-    \vec{x}_{\mathrm{Int}}(t) &= \int_{0}^{t} \vec{y}(\tau)-\vec{r}(\tau) d\tau	\label{eq:ssControllerAction1}\\
-    \vec{\dot{x}}_{\mathrm{Int}}(t) &= \vec{y}(t)-\vec{r}(t) \label{eq:ssControllerAction2}
+    \vec{x}_{\mathrm{Int}} &= \int_{0}^{t} \vec{y}(\tau)-\vec{r}(\tau) \ d\tau	\label{eq:ssControllerAction1}\\
+    \vec{\dot{x}}_{\mathrm{Int}} &= \vec{y}-\vec{r} \label{eq:ssControllerAction2}
 \end{flalign} 
 %
-This last equation is included in the existing state space model, having the system states, $\vec{x}$, and taking \si{\vec{x}_{\mathrm{Int}}(t)} as new states, yielding the expression shown in \autoref{xdotSSExtended} and \autoref{ySSExtended} \cite{ssReference}.
+This last equation is included in the existing state space model, having the system states, $\vec{x}$, and taking \si{\vec{x}_{\mathrm{Int}}} as new states, yielding the expression shown in \autoref{xdotSSExtended} and \ref{ySSExtended} \cite{ssReference}.
 %
 \begin{flalign} 
-    \dot{\vec{x}}_{\mathrm{e}}(t) &= \vec{A}_{\mathrm{e}} \  \vec{x}_{\mathrm{e}}(t) + \vec{B}_{\mathrm{e}} \  \vec{u}(t) + 
+    \dot{\vec{x}}_{\mathrm{e}} &= \vec{A}_{\mathrm{e}}  \vec{x}_{\mathrm{e}} + \vec{B}_{\mathrm{e}}  \vec{u} + 
     \begin{bmatrix}
        \ \vec{0}     \ \ \ \\ 
        \ \vec{-I}     \ \ \  		
    \end{bmatrix}
-   \vec{r}(t) 
+   \vec{r} 
    \label{xdotSSExtended}\\ 
-    \vec{y}(t) &= \vec{C}_{\mathrm{e}} \  \vec{x}_{\mathrm{e}} 
+    \vec{y} &= \vec{C}_{\mathrm{e}}  \vec{x}_{\mathrm{e}} 
        \label{ySSExtended}
 \end{flalign} 
 %
 where\\
 \begin{minipage}{0.24\linewidth}
 	\begin{flalign}
-		\dot{\vec{x}}_{\mathrm{e}}(t)= 
+		\dot{\vec{x}}_{\mathrm{e}}= 
 		\begin{bmatrix}
-			\ \dot{\vec{x}}(t)      \ \ \ \\ 
-			\ \dot{\vec{x}}_{\mathrm{Int}}(t)      \ \ \  		
+			\ \dot{\vec{x}}      \ \ \ \\ 
+			\ \dot{\vec{x}}_{\mathrm{Int}}      \ \ \  		
 		\end{bmatrix} \nonumber
 	\end{flalign}
 \end{minipage}\hfill

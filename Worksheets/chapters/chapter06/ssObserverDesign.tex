@@ -1,14 +1,14 @@
 \subsection{Reduced Order Observer}
-A reduced order observer is designed for estimating the angular velocities. In general, an observer is utilized in a control system if either one of two specific cases occur. If certain states in the system are not measured, an observer can estimate the unmeasured states by the means of some of the measured states. However, it is also possible to use an observer if the measured data gathered from the sensors is affected a significant amount of noise. As the observer in addition to estimating unmeasured states, also filters measurements \cite{observerfilter}. The former is the reason for using an observer in the control system.
+A reduced order observer is designed for estimating the angular velocities. In general, an observer is utilized in a control system if either one of two specific cases occur. If certain states in the system are not measured, an observer can estimate the unmeasured states by the means of some of the measured states. However, it is also possible to use an observer if the measured data gathered from the sensors is affected with a significant amount of noise, as the observer also filters the measurements \cite{observerfilter}. The former is the reason for using an observer in the control system.
 
 As described earlier, the attitude model has six states. With the use of the observer, the first three states, $\vec{x}_{1:3}$ are equal to the outputs, $\vec{y}$, whereas the other three states are estimated, $\vec{\hat{x}}_{4:6}$.
 
-In \autoref{fig:Observerdiagram1}, a diagram illustrating the setup of the attitude controller is shown. The highlighted lines is the reduced order observer are its corresponding inputs and output.
+In \autoref{fig:Observerdiagram1}, a diagram illustrating the setup of the attitude controller is shown. The highlighted lines correspond to the reduced order observer and its inputs and outputs.
 %
 \begin{figure}[H]
     \includegraphics[scale=.4]{figures/ObserverColorDiagram}
     \centering			
-    \captionof{figure}{An overall block diagram of the angular controller highlighting the reduced order observer and its corresponding inputs and output.}
+    \captionof{figure}{An overall block diagram of the attitude controller highlighting the reduced order observer and its corresponding inputs and output. \fxnote{color new one}}
     \label{fig:Observerdiagram1}
 \end{figure}
 %
@@ -73,7 +73,7 @@ To calculate an appropriate observer gain, $L_{obs}$, it is necessary to evaluat
 %
 This estimation is also shown in the form of a block diagram, \autoref{fig:observerDiagram}.
 \begin{figure}[H]
-	\includegraphics[scale=.35]{figures/observerDiagram}
+	\includegraphics[scale=.2]{figures/observerDiagram}
 	\centering
 	\captionsetup{justification=centering}
 	\captionof{figure}{A diagram showing the reduced order observer and how it is implemented.}

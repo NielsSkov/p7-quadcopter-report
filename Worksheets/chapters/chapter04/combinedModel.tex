@@ -12,10 +12,10 @@ The found models, i.e. the attitude and translational model of the system, are p
 	\end{align}
 	\item Linearized model equations
 \begin{flalign}
-	J_x \Delta\ddot{\phi}   &= 2 k_{\mathrm{th}} L {\overline{\omega}_4} \Delta \omega_4 - 2 k_{\mathrm{th}} L {\overline{\omega}_2} \Delta \omega_2\\
-	J_y \Delta\ddot{\theta} &= 2 k_{\mathrm{th}} L \overline{\omega}_1 \Delta \omega_1 - 2 k_{\mathrm{th}} L \overline{\omega}_3 \Delta \omega_3\\
-	J_z \Delta\ddot{\psi}   &= 2 k_{\mathrm{d}} {\overline{\omega}_1} \Delta \omega_1 - 2 k_{\mathrm{d}} {\overline{\omega}_2} \Delta \omega_2 + 2 k_{\mathrm{d}} {\overline{\omega}_3} \Delta \omega_3 - 2 k_{\mathrm{d}} {\overline{\omega}_4} \Delta \omega_4
-	\end{flalign} \label{eqAngleLincombined}
+	J_x \Delta\ddot{\phi}   &= 2 k_{\mathrm{th}} L {\overline{\omega}_4} \Delta \omega_4 - 2 k_{\mathrm{th}} L {\overline{\omega}_2} \Delta \omega_2  \label{eq:AngleLincombined1}\\
+	J_y \Delta\ddot{\theta} &= 2 k_{\mathrm{th}} L \overline{\omega}_1 \Delta \omega_1 - 2 k_{\mathrm{th}} L \overline{\omega}_3 \Delta \omega_3  \label{eq:AngleLincombined2}\\
+	J_z \Delta\ddot{\psi}   &= 2 k_{\mathrm{d}} {\overline{\omega}_1} \Delta \omega_1 - 2 k_{\mathrm{d}} {\overline{\omega}_2} \Delta \omega_2 + 2 k_{\mathrm{d}} {\overline{\omega}_3} \Delta \omega_3 - 2 k_{\mathrm{d}} {\overline{\omega}_4} \Delta \omega_4  \label{eq:AngleLincombined3}
+	\end{flalign}
 \end{itemize}
 %
 \subsection{Translational Model Equations}
@@ -34,8 +34,10 @@ The found models, i.e. the attitude and translational model of the system, are p
 	\end{flalign} \label{eq:FinalLinearEquationscombined}
 \end{itemize}
 
+From now on, the linearized variables are represented without the symbol $\Delta$, to avoid excessive notation, even though they refer to changes around the linearization point.
+
 \subsection{Linearized Block Diagrams}
-The block diagrams of the linear approximated attitude and translational equations are illustrated in \autoref{fig:LinearModelBlockDiagram} and \ref{fig:TranslationalLinearModelBlockDiagram}.
+The block diagrams of the linear approximated attitude and translational equations are illustrated in \autoref{fig:LinearModelBlockDiagram} and \ref{fig:TranslationalLinearModelBlockDiagram}. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.3]{figures/LinearModelBlockDiag.pdf}
