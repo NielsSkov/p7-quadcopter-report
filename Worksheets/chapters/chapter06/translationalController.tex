@@ -1,15 +1,15 @@
-\section{Translational Controller} \label{sec:TranslationalController}
+\section{Translational Controllers} \label{sec:TranslationalController}
 
-The translational controllers handle the movement of the quadcopter along the inertial frame directions, $\vec{x}_{\mathrm{I}}$, $\vec{y}_{\mathrm{I}}$ and $\vec{z}_{\mathrm{I}}$. The overall diagram in \autoref{fig:ControlHeadDiagram} is rearranged to illustrate the translational controller design structure in \autoref{fig:TranslationalControlDiagram}.
+The translational controllers handle the movement of the quadcopter along the inertial frame directions, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$. The overall diagram in \autoref{fig:ControlHeadDiagram} is rearranged to illustrate the translational controller design structure in \autoref{fig:TranslationalControlDiagram}.
 %
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.25]{figures/TranslationalControlDiagram}
-	\caption{The overall translational controllers design structure.}
+	\includegraphics[scale=0.2]{figures/ControlDiagramPoster}
+	\caption{The overall translational control design structure.}
 	\label{fig:TranslationalControlDiagram}
 \end{figure}
 %
-For each axis, the velocity and position controllers form a cascade control structure, where the position controller sets the reference for the velocity controller. In the figure, it is also possible to see how $\vec{x}_{\mathrm{I}}$ and $\vec{y}_{\mathrm{I}}$ controllers share similar properties as both have as output an angle reference for the attitude controller, $\theta_{ref}$ and $\phi_{ref}$, respectively. 
-The $\vec{z}_{\mathrm{I}}$ velocity controller sets the required sum of motor rotational speeds, $\omega_{sum}$, such that the vertical position is attained.
+For each axis, the velocity and position controllers form a cascade control structure, where the position controller sets the reference for the velocity controller. In the figure, it is also possible to see how $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ controllers share similar properties as both have as output an angle reference for the attitude controller, $\theta_{ref}$ and $\phi_{ref}$, respectively. 
+The $z_{\mathrm{I}}$ velocity controller sets the required sum of motor rotational speeds, $\omega_{sum}$, such that the vertical position is attained.
 
 In the following sections the design for the mentioned controllers is explained.

@@ -28,12 +28,23 @@
 	%\cleardoublepage
 	\input{formalities/preface.tex}
 	
-	\cleardoublepage
-	
-	\pdfbookmark[0]{Table of Contents}{label: tableOfContents}
-	\tableofcontents
-	\cleardoublepage
-	
+	\restoregeometry
+
+%\restoregeometry
+
+\pdfbookmark[0]{TableofContent}{label:Indhold}
+\tableofcontents
+
+%\printglossary[title=List of Terms,toctitle=Terms and abbreviations,type=\acronymtype]
+
+%\glsaddall
+%\printglossary
+%\printglossary[type=\acronymtype]
+
+
+
+
+\cleardoublepage
 	
 	%%% Mainmatter Settings %%%
 	\pagenumbering{arabic} %use arabic page numbering in the mainmatter

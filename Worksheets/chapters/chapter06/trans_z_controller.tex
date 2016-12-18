@@ -2,25 +2,25 @@
 The controller along the $z_{\mathrm{I}}$ direction is designed using a cascade approach.
 %As in the case of the controller in the $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ directions, a cascade approach is chosen for the $z_{\mathrm{I}}$ direction.
 
-The transfer function to control the velocity is shown in \autoref{eq:FinalLinearEquationZ}. It is obtained from the translational linearized block diagram seen in \autoref{fig:TranslationalLinearModelBlockDiagram}. The sum of the motor rotational speeds is the input and the velocity in the $z_{\mathrm{I}}$ is the output. %From \autoref{eq:FinalLinearEquationZ}, %with the corresponding translational linearized block diagram in \autoref{fig:TranslationalLinearModelBlockDiagram}, the linear transfer function for the z-direction is readily obtained.
+The transfer function used to control the velocity is shown in \autoref{eq:FinalLinearEquationZ}. It is obtained from the translational linearized block diagram seen in \autoref{fig:TranslationalLinearModelBlockDiagram}. The sum of the motor rotational speeds is the input and the velocity in the $z_{\mathrm{I}}$ is the output. %From \autoref{eq:FinalLinearEquationZ}, %with the corresponding translational linearized block diagram in \autoref{fig:TranslationalLinearModelBlockDiagram}, the linear transfer function for the z-direction is readily obtained.
 %
 \begin{flalign}
-  \frac{\dot{z}_{\mathrm{I}}}{\omega_{\mathrm{sum}}} &= \frac{ \frac{1}{4} (-2 k_{\mathrm{th}}) \overline{\omega}_{sum} }{ m s }  \label{eq:linearTransferFunctionZ}
+  G_{\dot{z}_{\mathrm{I}}}=\frac{\dot{z}_{\mathrm{I}}}{\omega_{\mathrm{sum}}} &= \frac{ \frac{1}{4} (-2 k_{\mathrm{th}}) \overline{\omega}_{\mathrm{sum} }}{ m s }  \label{eq:linearTransferFunctionZ}
 \end{flalign}
-
 \begin{where}
-  \va{\dot{z}_{\mathrm{I}}}{is the velocity in the $z_{\mathrm{I}}$ direction}{}
-  \va{\omega_{\mathrm{sum}}}{is the sum of velocities to be controlled}{}
-  \va{\overline{\omega}_{\mathrm{sum}}}{is the sum of rotor velocities in equilibrium}{}
+  \va{G_{z_{\mathrm{I}}}}{is the plant for the translational velocity in $z_{\mathrm{I}}$ direction}{m\ s^{-1}\ rad^{-1}\ s}
+  \va{\dot{z}_{\mathrm{I}}}{is the velocity in the $z_{\mathrm{I}}$ direction}{m \ s^{-1}}
+  \va{\omega_{\mathrm{sum}}}{is the sum of motor rotational speeds}{rad \ s^{-1}}
+  \va{\overline{\omega}_{\mathrm{sum}}}{is the sum of motor rotational speeds in equilibrium}{rad \ s^{-1}}
 \end{where}
 
-This transfer function has a pole in zero and a negative gain, which means that the root locus on increasing gain drives the system into the right half plane and makes it unstable. This implies a controller with negative gain. As in the case of the other translational controllers, an integral term is added to reduce the effect of input disturbances.
+This plant has a pole in zero and a negative gain, which means that the root locus on increasing gain drives the system into the right half plane and makes it unstable. This implies a controller with negative gain. As in the case of the other translational controllers, an integral term is added to reduce the effect of input disturbances.
  
 The root locus of the system, which contains two poles in zero, branches along the imaginary axis. To avoid oscillations, the two loci are attracted by the use of a zero, placed on the left real axis as seen in \autoref{fig:rootLocusOfZwithPI}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.6\textwidth]{figures/rootLocusOfZwithPI.pdf}
+	\includegraphics[width=.5\textwidth]{figures/rootLocusOfZwithPI.pdf}
 	\caption{Root locus of the system with PI control. The zero is placed in $s=-0.8$}
 	\label{fig:rootLocusOfZwithPI}
 \end{figure}
@@ -32,14 +32,20 @@ The final expression for the velocity controller is
 \begin{flalign}
     C_{\dot{x}_{\mathrm{I}}}(s)&= -280 \frac{s+0.8}{s} \label{eq:Czdot}
 \end{flalign}
-%
-The position controller for $z_{\mathrm{I}}$ direction is designed using the same procedure as for $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$. As in these cases, the position transfer function is an integrator.
+\begin{where}
+    \va{C_{\dot{z}_{\mathrm{I}}}}{is the controller for the translational velocity in $z_{\mathrm{I}}$ direction}{rad\ s^{-1}\ m^{-1}\ s}
+\end{where}
+
+The position controller for $z_{\mathrm{I}}$ direction is designed using the same procedure as for $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$, since the plant is also an integrator.
 %
 \begin{flalign}
     G_{z_{\mathrm{I}}}(s)&=\frac{z_{\mathrm{I}} (s)}{\dot{z}_{\mathrm{I}} (s)}=\frac{1}{s}  \label{eq:Gz}
 \end{flalign}
+\begin{where}
+    \va{G_{z_{\mathrm{I}}}}{is the plant for the translational position in $z_{\mathrm{I}}$ direction}{m\ s\ m^{-1}}
+\end{where}
 
-The proportional gain is chosen so that the bandwidth of the position loop is three times lower than that of the velocity loop. This is seen in the close loop Bode of the velocity control loop. This defines it to be \SI{1}{rad s^{-1}}. Since the pant already has this bandwidth, the gain is just 1 in this case.
+The proportional gain is chosen so that the bandwidth of the position control loop is three times lower than that of the velocity loop. This is seen in the close loop Bode of the velocity control loop. This defines it to be \SI{1}{rad s^{-1}}. Since the plant already has this bandwidth, the gain is 1.
 %
 \begin{figure}[H]
     \includegraphics[scale=.7]{figures/bodeVelocityZ}
@@ -48,12 +54,14 @@ The proportional gain is chosen so that the bandwidth of the position loop is th
     \label{fig:bodeVelocityZ}
 \end{figure}
 %
-The expression for the $z_{\mathrm{I}}$ position controller is shown in \autoref{eq:Cz}.
+The expression for the $z_{\mathrm{I}}$ position controller is given as \autoref{eq:Cz}.
 %
 \begin{flalign}
     C_{z_{\mathrm{I}}}(s)&= 1\label{eq:Cz}
 \end{flalign}
-
+\begin{where}
+    \va{C_{z_{\mathrm{I}}}}{is the controller for the translational position in $z_{\mathrm{I}}$ direction}{m\ s^{-1}\ m^{-1}}
+\end{where}
 
 % The step response of the linear system with the PI controller is seen on \autoref{fig:stepOfZwithPI}.
 %

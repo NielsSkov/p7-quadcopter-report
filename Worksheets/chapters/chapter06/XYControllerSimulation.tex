@@ -1,7 +1,7 @@
 \subsubsection{Simulation of the $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ Controllers}
 Simulations shown in this section include the position and velocity $x_{\mathrm{I}}$ controller, as the $y_{\mathrm{I}}$ is identical. The simulations presented depict the response of the controller subjected to a step input reference signal and a corresponding simulation showing the related control action of the controller. 
 
-In \autoref{fig:velocityControllersXY} the translational velocity controller, $\dot{x}_{\mathrm{I}}$, is subjected to a step input reference signal of \SI{1}{m s^{-1}} at time \SI{0}{s}. This yields an settling time of approximately \SI{6}{s}, when considering an error band of 5 percent. The overshoot is 15 percent. In \autoref{fig:velocityControllersXYAction} the corresponding control action is shown.
+In \autoref{fig:velocityControllersXY} the translational velocity controller, $\dot{x}_{\mathrm{I}}$, is subjected to a step input reference signal of \SI{1}{m s^{-1}} at time \SI{0}{s}. 
 
 \begin{minipage}{\linewidth}
     \begin{minipage}{0.46\linewidth}
@@ -23,7 +23,9 @@ In \autoref{fig:velocityControllersXY} the translational velocity controller, $\
     \end{minipage}
 \end{minipage}
 
-In \autoref{fig:positionControllersXY}, the translational velocity controllers, $x_{\mathrm{I}}$, is subjected to a step input reference signal of \SI{1}{m s^{-1}} at time \SI{0}{s}. It yields a settling time of approximately \SI{5}{s} and a overshoot of 2 percent. As the position controllers are designed to have a closed loop bandwidth which is three times lower than the velocity bandwidth, a larger settling time is expected. However, as the overshoot is small compared to the velocity controller, the settling time becomes lower.%and the settling time has an error band
+This yields a settling time of approximately \SI{6}{s}, when considering an error band of 5 \%. The overshoot is 15 \%. In \autoref{fig:velocityControllersXYAction} the corresponding control action is shown.
+
+In \autoref{fig:positionControllersXY}, the translational velocity controllers, $x_{\mathrm{I}}$, is subjected to a step input reference signal of \SI{1}{m s^{-1}} at time \SI{0}{s}.
 
 \begin{minipage}{\linewidth}
     \begin{minipage}{0.46\linewidth}
@@ -44,5 +46,7 @@ In \autoref{fig:positionControllersXY}, the translational velocity controllers, 
         \end{figure}
     \end{minipage}
 \end{minipage}
+
+ It yields a settling time of approximately \SI{5}{s} and a overshoot of 2 \%. As the position controllers are designed to have a closed loop bandwidth that is three times lower than the velocity bandwidth, a larger settling time is expected. However, as the overshoot is small compared to the velocity controller, the settling time becomes lower.%and the settling time has an error band
 
 The controller for the translational velocity and positioning in $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ direction have been designed and simulated. The $z_{\mathrm{I}}$ controller is to be designed in the following section.
