@@ -1,13 +1,12 @@
 \section{Communication Protocol}
-%The main information necessary to transmit from the computer to the microcontroller, is the attitude, position, position reference and the translational velocity of the quadcopter. A created 
-The transport layer protocol designed must ensure that transmitted packets can be detected and that packets containing errors are not utilized by the microcontroller, as complying with the functional requirements stated in \autoref{ch:functionalRequirements}.\\
-%
-%The Vicon system has a sampling rate of 100 Hz. A connectionless protocol can thereby be utilized, as it is sufficient to transmit the latest data to the micro controller instead of asking for a retransmission, e.g. if a package is lost or corrupt. Furthermore a retransmission will cause a delay in the system, this is not desired as this real time system is sensitive to delay.
-As real-time features are desired for the prototype, the protocol chosen is UDP based. This is convenient as the system is sensitive to delays. A connection oriented protocol implies a longer packet, retransmissions and a higher computation time, thus increasing the delay. A connectionless protocol is therefore utilized, as it leaves more processor resources available for the controllers.
+The transport layer protocol designed must ensure that transmitted packets can be detected and that packets containing errors are not utilized by the microcontroller, as complying with the functional requirements stated in \autoref{ch:functionalRequirements}.
 
-As the communication is only from the computer to the microcontroller, the protocol does not need a source port or destination addresses, as typically seen in a UDP protocol. Furthermore, it is decided not to change the length of the package relative to the gathered data. As the length is made constant, only a start sequence is necessary and end sequence is not included. As common in connectionless protocols packet loss is not detected, hereby avoiding implementation of a sequence number in the header of the packet. A checksum, which constitutes the tail of the packet, is considered enough for detecting corrupted information. The corrupted packet can then be disregarded in the microcontroller. 
+As real-time features are desired for the quadcopter, the protocol chosen is UDP based. A connection oriented protocol implies a longer packet, retransmissions and a higher computation time, thus increasing the delay. A connectionless protocol is therefore utilized, as it leaves more processor resources available for the controllers.
 
-These considerations simplify the protocol header and tail, compared to UDP, resulting in shorter transmission and computation time and thus, leaving more computation time for the controllers to operate. The overall structure of a generated packet is illustrated in \autoref{tab:packetstructure}.
+As the communication is only from the computer to the microcontroller, the protocol does not need a source port or destination addresses, as typically seen in a UDP protocol. Furthermore, it is decided not to change the length of the packet relative to the gathered data. As the length is made constant, only a start sequence is necessary and end sequence is not included. As common in connectionless protocols packet loss is not detected, hereby avoiding implementation of a sequence number in the header of the packet. A checksum, which constitutes the tail of the packet, is considered enough for disregarding corrupted information in the microcontroller.
+
+These considerations simplify the protocol header and tail, compared to UDP, resulting in shorter transmission and computation time. The overall structure of a generated packet is illustrated in \autoref{tab:packetstructure}.
+
 \begin{table}[H]\centering
 \begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{2cm}|>{\centering\arraybackslash}m{2cm}|}
 \hline
@@ -19,55 +18,58 @@ Start Sequence & Data & Checksum \\
 \end{table}
 
 \subsubsection{Start Sequence}
-The start sequence constitutes the header of the packet and it is necessary for the micro controller to be able to distinguish between transmitted packets and arbitrary data. %As the microcontroller receives packets from the computer, a queue of packets are stored on the micro controller along with the generated noise.
-%The start sequence enables the system to scan the information in the queue for the specific start sequence. 
+The start sequence constitutes the header of the packet and it is necessary for the microcontroller to be able to distinguish between transmitted packets and arbitrary data. 
+ 
 If the start sequence is found in the received data, the microcontroller can then extract the information and checksum as the packet is of a fixed length. 
-%It has not been deemed necessary to have an end byte, as the packet length is fixed and the checksum ensures that an incorrect packet is not utilized. Thus it is deemed redundant to check if the end of a packet is the desired end.
 
-The start sequence is set to three bytes and all the bits are set to ones. This consideration ensures the unlikeliness of finding a start sequence in the middle of a packet. This is because it is highly unlikely for the Vicon system to register two of the transmitted variables, which are placed beside each other in the packet, to be all ones at the same time. The start sequence can be seen in \autoref{tab:packetstructure} and \autoref{tab:packetstructure2}.
+The start sequence is set to three bytes, where all the bits are set to ones. This consideration ensures the unlikeliness of finding a start sequence in the middle of a packet. This is because it is highly unlikely for the Vicon system to register two of the transmitted variables, which are placed beside each other in the packet, to be all ones at the same time. The start sequence can be seen in \autoref{tab:packetstructure} and \autoref{tab:packetstructure2}.
 
-%The queue of packets could be due to a slow packet handler, as the sampling rate is set to low \fxnote{true? maybe som actual values}.
-\subsubsection{Data}
-The variables transmitted are the attitude (roll, pitch and yaw), the position ($x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$), the position references and the translational velocity ($\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$).
+\subsubsection{Data} \fxnote{create table instead}
+The variables transmitted are the attitude, roll, pitch and yaw, the position, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, the position references and the translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$.
 
-The roll, pitch and yaw are measured in radians and are contained in a variable of nine bits each in the packet. The first bit is utilized for the sign bit. The obtained variables received from the Vicon is multiplied by 100 to achieve a precision of 0.01 rad. Yielding a maximum value of approximately 314. This value is only measured by the Vicon system if the quadcopter does a turn of 180 degrees. If this occurs in the roll and pitch, it is not possible for the prototype to recover from being turned upside down. Therefore a byte is enough to contain the necessary data, that is, a maximum value of \nolinebreak 255. \\ However, if the quadcopter rotates 180 degrees in yaw, nine bites are needed to contain the variable.
+The roll, pitch and yaw are measured in rad and are contained in a variable of nine bits each in the packet. The first bit is utilized for the sign. The obtained attitude received from the Vicon system, where the maximum values that can be obtained are $\pm\pi$ rad, are multiplied by 100 and rounded to convert them in integers. $\pm\pi$ rad are only measured by the Vicon system if the quadcopter does a turn of 180 degrees. If this occurs in the roll and pitch, it is not possible for the quadcopter to recover from being turned upside down. Therefore, as 8 bits are chosen to send the value, the maximum measured value is 255, that is, 2.55 rad.
 
-Nevertheless, if the yaw gets bigger than 2.55 radians the error which the controller receives is high, and it can still correct the angle, as yaw is always set to zero, explain in \autoref{chap:Control}. One byte is therefore assigned for the yaw angle. When the packet is received, the microcontroller casts the nine bits to a float and divides by 100 transforming it back to radians.
+%
+%
+%. Therefore a byte is enough to contain the necessary data, that is, a maximum value of \nolinebreak 255. \\ However, if the quadcopter rotates 180 degrees in yaw, nine bites are needed to contain the variable.
 
-The actual position coordinates ($x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$) are measured in milimeters by the Vicon system and are contained in ten bits each. The first bit is utilized as a sign bit. By choosing a precision of centimeters, nine bits are sufficient to store the data. With this size, the position values are between $\pm$ 512 yielding a maximum distance of more than ten meters. Thus, making it sufficient for the prototype as it is operated in the Vicon room, see \autoref{cha:Systemdescription}. The position reference utilizes the same units as the actual position and the same amount of bits for its variables.
+If the yaw gets bigger than 2.55 rad the error which the controller receives is high, and it can still correct the angle, as yaw is always set to zero, see \autoref{chap:Control}. One byte is therefore assigned for the yaw angle.
+% When the packet is received, the microcontroller casts the nine bits to a float and divides by 100 transforming it back to rad.
 
-Each translational velocity ($\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$) is contained in 11 bits, with the first bit as a sign bit. Yielding a possibility of transmitting a value between $\pm$ 1024. The maximum velocity is 10 \si{m \cdot s^{-1}}, which is deemed sufficient.
+The actual position coordinates, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, are measured in milimeters by the Vicon system and are contained in ten bits each. The first bit is the sign bit. By choosing a precision of centimeters, nine bits are sufficient to store the data. With this size, the position values are between $\pm$ 512 yielding a range of more than ten meters. Thus, making it sufficient for the quadcopter as it is operated in the Vicon room, see \autoref{cha:Systemdescription}. The position reference utilizes the same units as the actual position and the same amount of bits for its variables.
+
+Each translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$, is contained in 11 bits, with the first bit as a sign bit. Yielding a possibility of transmitting a value between $\pm$ 1024. The maximum velocity is 10 \si{m \cdot s^{-1}}, which is deemed sufficient.
 
 All these data, constitutes 15 bytes as shown in \autoref{tab:packetstructure2}
 
  % It should be noted that both the computer and the micro controller are little endians. The most significant bit is therefore the sign bit in both systems. 
 \subsubsection{Checksum}
-If the start sequence is found and the next 15 bytes are extracted to be utilized in the controller, it is not certain that an actual full packet is extracted. As explained earlier, a start sequence can be found in the middle of the packet and arbitrary information is utilized. Furthermore it is possible that the packet is sensitive to noise when transmitted from the computer to the microcontroller and the data therefore gets corrupted. It is necessary to check if the packet contains the correct information. This is done by utilizing a checksum. An example of how the checksum is utilized and implemented can be seen in \autoref{tab:checksum}.  
+If the start sequence is found and the next 15 bytes are extracted to be utilized in the controller, it is not certain that an actual full packet is extracted. As explained earlier, a start sequence can be found in the middle of the packet and arbitrary information is utilized. Furthermore it is possible that the packet is sensitive to noise when transmitted from the computer to the microcontroller and the data therefore gets corrupted. It is necessary to check if the packet contains the correct information. This is done by utilizing a checksum. 
+
+The length of the checksum needs to be a multiple of the length of the data, which is 15 bytes. A big checksum, i.e. five bytes, reduces the probability of accepting an incorrect packet as more bits are involved in checking the packets. The drawback is that the packet size increases and so does the transmission time. On the other hand, having a small checksum, i.e. one byte, requires performing more computations and the chance of acquiring corrupted packets increases. As a compromise between the two approaches, a length of three bytes is chosen. An example of how the checksum is utilized and implemented can be seen in \autoref{tab:checksum}.  
 
 \begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-Bit array      & Overflow   & Byte 	   & Byte 	  & Byte		 \\ \hline
-Part 1         & 		    & 00100001 & 01000000 & 01010000    \\ \hline
-Part 2         & 		    & 00100001 & 01000001 & 01010001    \\ \hline
-Part 3         & 		    & 00101001 & 01000000 & 01010000    \\ \hline
-Part 4         & 		    & 00100011 & 01001000 & 01010001    \\ \hline
-Part 5         & 		    & 10100001 & 01000010 & 01010100    \\ \hline
-Part 1+2+3+4+5 & 01	        & 00110000 & 01001100 & 10010110 	 \\ \hline
-Add overflow   & 		    & 00110000 & 01001100 & 10010111    \\ \hline
-Checksum       & 		    & 11001111 & 10110011 & 01101000    \\ \hline
-Check          & 		    & 11111111 & 11111111 & 11111111    \\ \hline
-\end{tabular}
-\caption{An example of how the checksum is utilized and implemented.}
-\label{tab:checksum}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Bit array      & Overflow   & Byte 	   & Byte 	  & Byte		 \\ \hline
+        Part 1         & 		    & 00100001 & 01000000 & 01010000    \\ \hline
+        Part 2         & 		    & 00100001 & 01000001 & 01010001    \\ \hline
+        Part 3         & 		    & 00101001 & 01000000 & 01010000    \\ \hline
+        Part 4         & 		    & 00100011 & 01001000 & 01010001    \\ \hline
+        Part 5         & 		    & 10100001 & 01000010 & 01010100    \\ \hline
+        Part 1+2+3+4+5 & 01	        & 00110000 & 01001100 & 10010110 	 \\ \hline
+        Add overflow   & 		    & 00110000 & 01001100 & 10010111    \\ \hline
+        Checksum       & 		    & 11001111 & 10110011 & 01101000    \\ \hline
+        Check          & 		    & 11111111 & 11111111 & 11111111    \\ \hline
+    \end{tabular}
+    \caption{An example of how the checksum is utilized and implemented.}
+    \label{tab:checksum}
 \end{table}
-%The example in \autoref{tab:checksum} is a simplified version of the actual implemented checksum, as the original checksum is three bytes long.
-The length of the checksum needs to be a multiple of the length of the data, which is 15 bytes. A big checksum, i.e. five bytes, reduces the probability of accepting an incorrect packet as more bits are involved in checking the packets. The drawback is that the packet size increases and so does the transmission time. On the other hand, having a small checksum, i.e. one byte, requires performing more computations and the chance of acquiring corrupted packets increase. As a compromise between the two approaches, a length of three bytes is chosen.
 
 Before the computer transmits the packet, the data is split up into five parts. The five parts are then summed. If the result is bigger than what can be represented with three bytes, the two most significant bits (column 2 in \autoref{tab:checksum}) are added to the summation. The checksum is generated by inverting the final summation. The checksum is then placed at the end of the packet, see \autoref{tab:packetstructure2}.
 
-When the microcontroller examines the packet for errors, it utilizes the checksum generated by the computer. The microcontroller divides the packet in the same five parts, adds the potential carry and then adds the final summation together with the checksum. The packet is considered correct if the outcome is a binary number formed by ones.
+When the microcontroller examines the packet for errors, it utilizes the checksum generated by the computer. The microcontroller divides the packet in the same five parts, adds the overflow bits and then adds the final summation together with the checksum. The packet is considered correct if the outcome is a binary number formed by ones.
 %the same steps as before except for the last step where the generated sum (with the added overflow) is inverted. Instead, the microcontroller adds the generated sum with the checksum received from the computer. If the outcome is a binary number , the packet is recognized as correct.
 %The length of the checksum needs to be a multiple of the length of the data, which is 15 bytes. The checksum can be five bytes. Thus splitting the packet up into three parts. However, this increases the packet size, which is not desired. By setting the checksum to be one or two bytes, the computation time increases when generating the checksum, which is not a desired property on the micro controller either. A length of three bytes is therefore set as a compromise.
 
@@ -77,24 +79,22 @@ It should be noted that the checksum's error handling is not bulletproof, as an 
 The total packet with the start sequence, data and checksum can be seen in \autoref{tab:packetstructure2}. The start sequence is three bytes, the data is 15 bytes and the checksum is three bytes.
 \begin{table}[H]
 	\centering
-	\begin{tabular}{llclllllllllllllll}
+	\begin{tabular}{lclllllllllllllll}
 		\hline
-		\multicolumn{2}{|c|}{}& \multicolumn{8}{c|}{Byte}                                                                                                                                                                           & \multicolumn{8}{c|}{Byte}                                                                                                                                                                                 \\ \hline
-		\multicolumn{1}{|l|}{Byte} & \multicolumn{1}{l|}{Bit} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{|c|}{7} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} \\ \hline
-		\multicolumn{1}{|c|}{0}    & \multicolumn{1}{c|}{0}   & \multicolumn{16}{c|}{Header}                                                                                                                                                                                                                                                                                                                                                                                        \\ \hline
-		\multicolumn{1}{|c|}{2}    & \multicolumn{1}{c|}{16}  & \multicolumn{8}{c|}{}                                                                                                                                                                                 & \multicolumn{8}{c|}{$\phi$}                                                                                                                                                                                 \\ \hline
-		\multicolumn{1}{|c|}{4}    & \multicolumn{1}{c|}{32}  & \multicolumn{1}{c|}{}  & \multicolumn{9}{c|}{$\theta$}                                                                                                                                                                                                  & \multicolumn{6}{c|}{$\psi$}                                                                                                                               \\ \hline
-		\multicolumn{1}{|c|}{6}    & \multicolumn{1}{c|}{48}  & \multicolumn{3}{c|}{}                                                    & \multicolumn{10}{c|}{$x$}                                                                                                                                                                                                                                  & \multicolumn{3}{c|}{}                                                       \\ \hline
-		\multicolumn{1}{|c|}{8}    & \multicolumn{1}{c|}{64}  & \multicolumn{7}{c|}{$y$}                                                                                                                                                     & \multicolumn{9}{c|}{$z$}                                                                                                                                                                                                             \\ \hline
-		\multicolumn{1}{|c|}{10}   & \multicolumn{1}{c|}{80}  & \multicolumn{1}{c|}{}  & \multicolumn{10}{c|}{$x_{\mathrm{ref}}$}                                                                                                                                                                                                                          & \multicolumn{5}{c|}{$y_{\mathrm{ref}}$}                                                                                                  \\ \hline
-		\multicolumn{1}{|c|}{12}   & \multicolumn{1}{c|}{96}  & \multicolumn{5}{c|}{}                                                                                                      & \multicolumn{10}{c|}{$z_{\mathrm{ref}}$}                                                                                                                                                                                                                              & \multicolumn{1}{c|}{}   \\ \hline
-		\multicolumn{1}{|c|}{14}   & \multicolumn{1}{c|}{112} & \multicolumn{10}{c|}{$\dot{x}$}& \multicolumn{6}{c|}{$\dot{y}$}                                                       \\ \hline
-		\multicolumn{1}{|c|}{16}   & \multicolumn{1}{c|}{128} & \multicolumn{5}{c|}{}                                                                                                      & \multicolumn{11}{c|}{$\dot{z}$}                                                                                                                                                                                                                                                        \\ \hline
-		\multicolumn{1}{|c|}{18}   & \multicolumn{1}{c|}{144} & \multicolumn{16}{c|}{Checksum}                                                       \\ \hline
-		\multicolumn{1}{|c|}{20}   & \multicolumn{1}{c|}{160} & \multicolumn{8}{c|}{}                                                                                                                                                                                 & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}   \\ \hline
+		\multicolumn{1}{|c|}{}& \multicolumn{8}{c|}{Byte}                                                                                                                                                                           & \multicolumn{8}{c|}{Byte}                                                                                                                                                                                 \\ \hline
+		\multicolumn{1}{|l|}{Byte} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{|c|}{7} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} \\ \hline
+		\multicolumn{1}{|c|}{0}  & \multicolumn{16}{c|}{Header}                           \\ \hline
+		\multicolumn{1}{|c|}{2}      & \multicolumn{8}{c|}{}                                                                                                                                                                                 & \multicolumn{8}{c|}{$\phi$}                                                                                                                                                                                 \\ \hline
+		\multicolumn{1}{|c|}{4}    & \multicolumn{1}{c|}{}  & \multicolumn{9}{c|}{$\theta$}                         & \multicolumn{6}{c|}{$\psi$}                                                                                                                               \\ \hline
+		\multicolumn{1}{|c|}{6}    & \multicolumn{3}{c|}{}                                                    & \multicolumn{10}{c|}{$x$}                                                                                                                                                                                                                                  & \multicolumn{3}{c|}{}                                                       \\ \hline
+		\multicolumn{1}{|c|}{8}    & \multicolumn{7}{c|}{$y$}                                                                                                                                                     & \multicolumn{9}{c|}{$z$}                                                                                                                                                                                                             \\ \hline
+		\multicolumn{1}{|c|}{10}  & \multicolumn{1}{c|}{}  & \multicolumn{10}{c|}{$x_{\mathrm{ref}}$}              & \multicolumn{5}{c|}{$y_{\mathrm{ref}}$}                                                                                                  \\ \hline
+		\multicolumn{1}{|c|}{12}   & \multicolumn{5}{c|}{}                                                                                                      & \multicolumn{10}{c|}{$z_{\mathrm{ref}}$}                                                                                                                                                                                                                              & \multicolumn{1}{c|}{}   \\ \hline
+		\multicolumn{1}{|c|}{14}   & \multicolumn{10}{c|}{$\dot{x}$}& \multicolumn{6}{c|}{$\dot{y}$}                                                       \\ \hline
+		\multicolumn{1}{|c|}{16}   & \multicolumn{5}{c|}{}                                                                                                      & \multicolumn{11}{c|}{$\dot{z}$}                                                                                                                                                                                                                                                        \\ \hline
+		\multicolumn{1}{|c|}{18}   & \multicolumn{16}{c|}{Checksum}                                                       \\ \hline
+		\multicolumn{1}{|c|}{20}  & \multicolumn{8}{c|}{}                                                                                                                                                                                 & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{}   \\ \hline
 	\end{tabular}
 	\caption{The generated packet transmitted from the computer to the microcontroller.}
 	\label{tab:packetstructure2}
 \end{table}
-
-The protocol has now been designed.

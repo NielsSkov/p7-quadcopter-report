@@ -7,13 +7,13 @@
 %
 %The equilibrium point for the four angular velocities of the motors is again that which allows the quadcopter to hover, that is, the four equal angular velocities which keeps a constant z-coordinate in the inertial frame.
 %The linearization is done for each equation using the first order Taylor approximation.
-Designing a linear controller requires linearization of the model equations around an equilibrium point\fxnote{make sure to use equillibrium correctly throughout the section like Anders said}. This is done for each equation using the first order Taylor approximation\fxnote{consider how this can be explained more nicely. Can we make a simplified example from our own equations or explain it more thorough in the text?}. See \autoref{taylor}.
+Designing a linear controller requires linearization of the model equations around an equilibrium point. This is done for each equation using the first order Taylor approximation\fxnote{consider how this can be explained more nicely. Can we make a simplified example from our own equations or explain it more thorough in the text?}. See \autoref{taylor}.
 %
 \begin{flalign}
 	f(x) &\approx f(\overline{x}) + f'(\overline{x}) (x-\overline{x})  \rightarrow\ \Delta f(x) \approx f'(\overline{x}) \Delta x
 	\label{taylor}
 \end{flalign}
-In this equation, $\overline{x}$ represents the equilibrium point around which the equation is linearized.
+In this equation, $\overline{x}$ represents the linearization point.
 
 To apply the approximation, the function to be approximated must be differentiated with respect to each of the present variables. An example is shown in \autoref{eq:dummytaylor} in which an example function, $f$, dependent on some example variables, $x_1$, $x_2$ and $x_3$, is linearized. 
 \begin{flalign}
@@ -23,24 +23,24 @@ To apply the approximation, the function to be approximated must be differentiat
 \end{flalign}
 \fxnote{The example should be with a equation 4.7, using an example from the model instead of just a random function.}
 
-Once linearized, the function is expressed in terms of variations from the equilibrium point. This is represented by the symbol $\Delta$ in all linearized equations.
+Once linearized, the function is expressed in terms of variations from the linearization point. This is represented by the symbol $\Delta$ in all linearized equations.
 
 In the quadcopter model, the attitude equations, \autoref{eq:AngleEqVelocities1}, \ref{eq:AngleEqVelocities2} and \ref{eq:AngleEqVelocities3}, and the translational equations, \autoref{eq:AccelerationEqInertial1}, \ref{eq:AccelerationEqInertial2}, and \ref{eq:AccelerationEqInertial3}, must be linearized since these contain trigonometric functions and squared velocities. 
 
-The equilibrium point is chosen to be where the quadcopter is hovering at a certain\fxnote{language surgestion} position in the inertial frame. This choice makes all equilibrium points equal to zero both angular and translational. In \autoref{eq:AccelerationEqInertialVelocities1} and \ref{eq:AccelerationEqInertialVelocities2} it is seen that to obtain a zero in x and y accelerations, the pitch and roll of the quadcopter should be zero as well. To keep the acceleration in the z axis in the inertial frame equal to zero, the rotational speed of the motor, which ensures the equilibrium points, needs to be calculated. This can be done from \autoref{eq:AccelerationEqInertialVelocities3}.
+The linearization point is chosen to be where all the angular and translational velocities and accelerations are equal to zero. In \autoref{eq:AccelerationEqInertialVelocities1} and \ref{eq:AccelerationEqInertialVelocities2} it is seen that to obtain a zero in $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ accelerations, the pitch and roll of the quadcopter should be zero as well. To keep the acceleration in the $z_{\mathrm{I}}$ axis in the inertial frame equal to zero, the rotational speeds of the motors, need to be calculated. This can be done from \autoref{eq:AccelerationEqInertialVelocities3}.
 %
 \begin{flalign}
-	m \overline{\ddot{z}}_{\mathrm{I}} &= F_g-k_{\mathrm{th}} ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2) \cos\overline{\phi} \cos\overline{\theta}
+	m \overline{\ddot{z}}_{\mathrm{I}} &= F_g-k_{\mathrm{th}} ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2) \cos\overline{\phi} \cos\overline{\theta} \label{eq:equilibriumomegas}
 \end{flalign}
 %
-Since all the equilibrium points are set to zero the $\overline{\ddot{z}_I}$, $\overline{\phi}$ and $\overline{\theta}$ are equal to zero. The four rotational speeds of the motor should be the same to keep the acceleration in the z axis. Hence it is possible to combine the four to one, $\overline{\omega}_i$. By utilizing these changes the equation can be rearrange to the following.
-
+Since all $\overline{\ddot{z}_I}$, $\overline{\phi}$ and $\overline{\theta}$ are equal to zero, \autoref{eq:equilibriumomegas} can be rearranged to \autoref{eq:equilibriumomegas2}.
+%
 \begin{flalign}
 	\overline{\omega}_i=\sqrt{\frac{m g}{4k_{th}}}
-	\label{eq:equilibriumomegas}
+	\label{eq:equilibriumomegas2}
 \end{flalign}
-
-Applying the linearization procedure to the attitude model equations around the equilibrium point, \autoref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3} are obtained.
+%
+Applying the linearization procedure to the attitude model equations around the linearization point, \autoref{eqAngleLin1}, \ref{eqAngleLin2} and \ref{eqAngleLin3} are obtained.
 \begin{flalign}
   J_x \Delta\ddot{\phi}   &= 2 k_{\mathrm{th}} L {\overline{\omega}_4} \Delta \omega_4 - 2 k_{\mathrm{th}} L {\overline{\omega}_2} \Delta \omega_2
   \label{eqAngleLin1} \\
@@ -56,19 +56,6 @@ Applying the linearization procedure to the attitude model equations around the 
   \va{ \overline{\omega}_i } {is the angular velocity of each motor in equilibrium}             { rad \  s^{-1} }
   \va{ \Delta \omega_i       } {is the change in angular velocity from equilibrium of each motor} { rad \  s^{-1} }
 \end{where}
-%\begin{note}
-%\begin{flalign}
-%       \eqOne{m\ \Delta\ddot{x}_I}{(-k_{th}\ (2\textbf{ }{\overline{\omega}_1}^2\ \Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\ \Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\ \Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\ \Delta\omega_4)\ \sin(\overline{\theta})-}
-%       \eqTwo{-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \cos(\overline{\theta})\Delta\theta} &\\
-%       \eqOne{m\ \Delta\ddot{y}_I}{(k_{th}\ (2\textbf{ }{\overline{\omega}_1}^2\ \Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\ \Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\ \Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\ \Delta\omega_4)\ \sin(\overline{\phi})\ \cos(\overline{\theta})-}
-%       \eqTwo{-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \sin(\overline{\phi})\ \sin(\overline{\theta})\ \Delta\theta+}\nonumber\\
-%       \eqThree{+k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \cos(\overline{\phi})\ \cos(\overline{\theta})\ \Delta\phi} &\\
-%       \eqOne{m\ \Delta\ddot{z}_I}{(-k_{th}\ (2\textbf{ }{\overline{\omega}_1}^2\ \Delta\omega_1+2\textbf{ }{\overline{\omega}_2}^2\ \Delta\omega_2+2\textbf{ }{\overline{\omega}_3}^2\ \Delta\omega_3+2\textbf{ }{\overline{\omega}_4}^2\ \Delta\omega_4)\ \cos(\overline{\phi})\ \cos(\overline{\theta})-}
-%       \eqTwo{-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \sin(\overline{\phi})\ \cos(\overline{\theta})\ \Delta\theta-}\nonumber\\
-%       \eqThree{-k_{th}\ ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2)\ \cos(\overline{\phi})\ \sin(\overline{\theta})\ \Delta\phi}
-%       \label{eq:LinearEquations}
-%\end{flalign}
-%\end{note}
 
 In a similar way as with the attitude equations, the translational model can be linearized, leading to \autoref{eq:TransLinearEquations1}, \ref{eq:TransLinearEquations2} and \ref{eq:TransLinearEquations3}.
 %
@@ -89,7 +76,3 @@ In a similar way as with the attitude equations, the translational model can be 
   \va{\overline{\theta} }{ is the pitch in equilibrium                                     }{ rad            }
   \va{\overline{\psi}   }{ is the yaw in equilibrium                                       }{ rad            }
 \end{where}
-%
-\fxnote{Hmm, that depends on what you mean. The direction of acceleration in the inertial frame must depend on what direction the quad is tilting, which again depends on the yaw?}
-
-It is worth mentioning that the yaw angle does not affect the translational accelerations in the inertial frame. This occurs due to the way the rotation matrix has been defined. It assumes that rotations are performed by first turning in roll direction, then in pitch direction and finally in yaw direction. This convention renders the yaw irrelevant as the force decomposition in the inertial frame directions are independent of the yaw angle as long as it is assumed to be the last angle that changes.

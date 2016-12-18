@@ -1,13 +1,6 @@
 \chapter{Network} \label{ch:Network}
+The quadcopter relies on a network between the ground station and the microcontroller, as mentioned in \autoref{sec:PrototypeDescription}. The information transmitted to the microcontroller is the attitude, position, translational velocity and the position reference.
 
-%The control of a quadcopter implies, in most cases, the use of a wireless network.
-As mentioned in \autoref{sec:PrototypeDescription} the quadcopter relies on a network between the ground station and the microcontroller. The information transmitted to the microcontroller is the attitude, position, translational velocity and the position reference.
+To ensure that the microcontroller can detect packets and disregard incorrect packets received from the computer, a protocol is necessary. As mentioned in \autoref{sec:hardware} the lower level communication is handled by the XBees, and therefore only the transport layer is designed.
 
-%The control of such a system through a network requires the 
-To ensure that the microcontroller can detect packets and disregard incorrect packets received from the computer, a protocol is necessary. As mentioned in \autoref{sec:hardware} the lower level communication is handled by the Xbees, and therefore only the transport layer is designed.
-
-%design of a communication protocol. The use of the XBEE modules makes the design easier as only the transport layer must be taken into account. 
-%As typical for real time systems, this will be a connectionless protocol to ensure the data transmission is as fast as possible.
-
-The effects of the network in the control system are analyzed using the Matlab toolbox, TrueTime. The issues considered are the delay from the sensor to the controller and the missed packets. Missed packets are considered to be when the controllers does not utilize the data from a new received packet, for any reason, in each loop. These issues are taken into account as they disturb the control system the most.
-%The Vicon system has a sampling rate of 100 Hz. A connectionless protocol can thereby be utilized, as it is sufficient to transmit the latest data to the microcontroller instead of asking for a retransmission, e.g. if a packet is lost or corrupt. Furthermore a retransmission will cause a delay in the system, this is not desired as this real time system is sensitive to delay.
+The effects of the network in the control system are analyzed using the MATLAB toolbox, TrueTime \cite{TrueTimeNew}. The issues considered are the delay from the sensor to the controller and the missed packets. Missed packets are considered to be when the controllers does not utilize the data from a new received packet in each loop.
