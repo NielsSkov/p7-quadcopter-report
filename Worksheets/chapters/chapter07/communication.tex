@@ -17,6 +17,6 @@ void Communication(void *pvParameters)
 }
 \end{lstlisting}
 
-It consist of a while loop that is running all the time and checking if a package has arrived using the function \lstinline[style=customcppinline]{CheckPackageArrival()}. This function read the bytes coming to the serial port and checks if the header is correct, returning a 0 if that is not the case. If the header was wrong, the if-condition is not fulfilled and the loop starts again until it gets a correct header.
+It consist of a while loop that is running all the time and checking if a packet has arrived using the function \lstinline[style=customcppinline]{CheckPackageArrival()}. This function read the bytes coming to the serial port and checks if the header is correct, returning a 0 if that is not the case. If the header is wrong, the if-condition is not fulfilled and the loop starts again until it gets a correct header.
 
 Then, the function \lstinline[style=customcppinline]{GetPackage()} reads the remaining bytes and uses the checksum to verify that the data has been sent correctly. When the summation of the parts and the checksum gives the correct value, the stored bytes are decoded and the global variables are rewritten with their new values.

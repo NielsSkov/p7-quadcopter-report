@@ -5,7 +5,7 @@ In the simulation, a model for the delay is needed in order to implement it in T
 
 The time required to make the data available can be divided into two, as seen in the upper part of \autoref{fig:delaycontrol}. The time required to run the code in the computer, which retrieves the sensor data and constructs the packet, and the transmission delay. The precise value of the first can be found as it is the code execution time on the computer. The value obtained is \SI{15}{ms}. The transmission time can be found using the transmission speed of the XBee modules. According to the datasheet \cite{XBee}, it is \SI{115.2}{kbps}. With this speed and transmitting 21 bytes, the transmission delay is \SI{1.46}{ms}. The first part of the delay in then \SI{16.46}{ms}, see \autoref{fig:delaycontrol}.
 
-Once the information is on the microcontroller, the maximum time elapsed until the controller uses the data is the sampling period minus the execution time of the control loop. The reason for this is because in the worst possible case, the packet arrives just after a control loop finishes, then it is necessary to wait until the next control loop is executed. The final value of the second part of the delay is then\SI{20}{ms}, see \autoref{fig:delaycontrol}.
+Once the information is on the microcontroller, the maximum time elapsed until the controller uses the data is the sampling period minus the execution time of the control loop. The reason for this is because in the worst possible case, the packet arrives just after a control loop finishes, then it is necessary to wait until the next control loop is executed. The final value of the second part of the delay is then \SI{20}{ms}, see \autoref{fig:delaycontrol}.
  
 \begin{figure}[H]
 	\centering

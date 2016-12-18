@@ -1,11 +1,27 @@
 \chapter{Conclusion}
-The focus of this project has been to make a quadcopter stable using an external attitude and position sensor, Vicon, making it a distributed real time system. This introduces time delays of the sensor data, challenging of the stability of the quadcopter. The controllers must be robust enough to keep the quadcopter stable. In order to obtain this, the behaviour of a quadcopter has been modelled by first principles modelling. A linear control system has been designed in order to hover and move to a desired position.
-The control system has been split into an attitude and a translational controller, as the system is also modelled like this. The attitude controller has been designed with a state space approach, including state feedback with integral control and a reduced order observer. The translational controller has been designed with a classical control approach, where the result is three cascade loops. The inner loops consist of  PI-controllers and the outer loops are P-controllers. 
-As the quadcopter uses an external motion tracking system to determine its attitude and position. The control design has been made such that it can handle the delays the distributed system have.
+%The focus of this project has been to control the attitude and position of a quadcopter when using an external attitude and position sensor, the Vicon system, making it a networked distributed system.
+%
+%This introduces time delays of the sensor data, challenging the stability of the quadcopter. The controllers must be robust enough to keep the quadcopter stable. In order to obtain this, the behavior of a quadcopter has been modeled by first principles modeling. A linear control system has been designed in order to hover and move to a desired position.
+%The control system has been split into an attitude and a translational controller, as the system is also modeled like this. The attitude controller has been designed with a state space approach, including state feedback with integral control and a reduced order observer. The translational controller has been designed with a classical control approach, where the result is three cascade loops. The inner loops consist of  PI-controllers and the outer loops are P-controllers. 
+%As the quadcopter uses an external motion tracking system to determine its attitude and position. The control design has been made such that it can handle the delays the distributed system have.
+%
+%At this time, the attitude controller works nicely and is capable to control the attitude of the quadcopter to all times. It is also capable to recover from disturbances. The translational controller does not work as intended in reality. However simulations show that the desired behaviour can be obtained by the designed controllers. It is deemed, that it is an implementation error that causes the issue of flying in reality. 
+%The quadcopter receives data from the sensor data sufficiently often to ensure the quadcopter does not become unstable.  
+%
+%The overall assessment is that the designed system is successful and fullfils the focus of the project.  
+%\fxnote{write some soft bullshit that is positive.}
+%
+%
+%
 
-At this time, the attitude controller works nicely and is capable to control the attitude of the quadcopter to all times. It is also capable to recover from disturbances. The translational controller does not work as intended in reality. However simulations show that the desired behaviour can be obtained by the designed controllers. It is deemed, that it is an implementation error that causes the issue of flying in reality. 
-The quadcopter receives data from the sensor data sufficiently often to ensure the quadcopter does not become unstable.  
+The focus of this project has been to control the attitude and position of a quadcopter when using an external motion tracking system to obtain attitude and position.
 
-The overall assessment is that the designed system is successful and fullfils the focus of the project.  
-\fxnote{write some soft bullshit that is positive.}
+Since this feature constitutes an networked distributed system, time delays are introduced on the sensor data, challenging the stability of the quadcopter.
+
+The behavior of the quadcopter has been modeled by first principles modeling and a linear control system has been designed to control the attitude and position of the quadcopter.
+
+The control system has been split into attitude and translational controllers, which have been designed considering the main network effects. The attitude controller has been designed using a state space approach, including state feedback with integral control using LQR and a reduced order observer. The translational control system has been designed by means of classical control methods, yielding a cascaded structure including P and PI controllers. 
+
+The results show that the design for both the attitude and the translational behavior is able to control the quadcopter in simulation. Moreover, the implementation and tests of the attitude controller have been carried out on the quadcopter successfully. 
+
 

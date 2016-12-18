@@ -1,0 +1,51 @@
+% This file was converted to LaTeX by Writer2LaTeX ver. 1.2
+% see http://writer2latex.sourceforge.net for more info
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,textcomp}
+\usepackage{color}
+\usepackage[top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,nohead,nofoot]{geometry}
+\usepackage{array}
+\usepackage{hhline}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue}
+% Footnote rule
+%\setlength{\skip\footins}{0.119cm}
+%\renewcommand\footnoterule{\vspace*{-0.018cm}\setlength\leftskip{0pt}\setlength\rightskip{0pt plus 1fil}\noindent\textcolor{black}{\rule{0.25\columnwidth}{0.018cm}}\vspace*{0.101cm}}
+\title{}
+\begin{document}
+
+{\centering
+\subsection*{Attitude and Position Control of a Quadcopter in a Networked \\Distributed System }}
+
+{\centering
+\textit{Alejandro Alonso García**, Amalie Vistoft Petersen, Andrea Victoria Tram Løvemærke,\\
+    Niels Skov Vestergaard and Noelia Villarmarzo Arruñada*}
+\par}
+
+{\centering
+\textbf{Group 733}
+\par}
+
+
+\bigskip
+
+Quadcopters are becoming increasingly interesting due to the great variety of usage. Among these are search and rescue missions in difficult environments, inspection of big structures and surveillance. They constitute a control challenge due to its inherent instability and coupled behavior. This paper examines the performance achievable of a linear control system for controlling the attitude and the position of the quadcopter when receiving sensor data from an external motion tracking system based on infrared cameras. This constitutes a networked distributed system. \\
+
+This task is solved by implementing a linear control design, which is based upon a model derived by first principles modeling. The model is then linearized using the Taylor approximation. \\
+
+The main network effects, delay and missed packets, are considered in the control design to ensure they do not affect the stability of the designed controllers. This is done by means of a network simulator. \\
+
+The control system is divided into two subsystems, attitude and translational. The attitude controller is designed with a state space approach. It is constituted by a state feedback with integral control. These terms are designed using LQR. A reduced order observer is also introduced to estimate non measured states.
+The translational controllers are designed with classical control methods, organized in a cascaded structure. The inner loops control the translational velocities with PI controllers, and the outer loops control the position of the quadcopter with proportional controllers. \\
+
+The results presented show the behavior of the implemented attitude controller and the simulated translational controller, as well as the model and network parameters used in the design process. \\
+
+The use of the motion tracking system limits the bandwidth of the control solution, which affects dynamics of of the controlled system. \\
+
+They show that the design for both the attitude and the translational behavior is able to control the quadcopter in simulation. Moreover, the implementation and tests of the attitude controller have been carried out on the quadcopter successfully. 
+
+\end{document}
