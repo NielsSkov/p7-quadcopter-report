@@ -1,20 +1,30 @@
 \chapter{Discussion}
-\begin{itemize}
-\item Network delay\\
-The Vicon data tracking system samples with 100 Hz, which limits the control loops' bandwidth. This results in a rather slow position control, as it is the outer most loop.\\
-By implementing attitude on board sensors, the network delay introduced by using the Vicon system, the bandwidth of the control loops can be increased and thereby obtaining more agile control.\\
-The bandwidth of the controllers can also be increased by implementing a faster microprocessor, that will minimize the processing time.
+The main limiting effect in the control design are the delays and the maximum frequency in which packets can be sent to the microcontroller. These two factors make the attitude control loop bandwidth low. The outer position and velocity controllers are also affected as the bandwidth of these needs to be lower than the bandwidth of the attitude loop. This issue can be solved by placing on board sensors to obtain the attitude of the quadcopter. In this way, the control loop for the attitude controller could run faster and the delays would be almost inexistent, thus allowing for an increase of the bandwidth of the system.
 
-\item Translational controllers does not work in reality but only simulation, why?:\\
-It may be due to an implementation error, that has yet to be found and eliminated.\\
-An error may be, that the controllers are feeded with amounts of old data that makes it impossible for the controllers to stabalize the quadcopter due to too large delays in the feeded data.\\
-Another suggestion is too much packet loss. \fxnote{we does not know the amount of packet loss yet - tbd}
+From the tests performed, it has been observed that the translational controllers do not 
 
-\item scheduling, faster than the cycle of the control algorithm 
+The way of modeling the system is deemed suitable for the purpose of controlling the quadcopter. A better model could be derived by including terms like the gyroscopic torques, the Coriolis acceleration or aerodynamic friction, among others.\fxnote{Do we want to say this??} This approach could yield a more reliable simulation when testing the controllers and thus a faster design process. However, taking into account that the prototype used is constructed with hobby components, it is reasonable not to derive a complex model and simulation as these effects are negligible compared to the hardware performance disturbances. 
 
-\item ground effect (turbulens), issue experinced
+There are other improvements that could yield a better performance of the system. The first one is the microcontorller speed. The used processor runs at 16M IPS. This is found to be sufficient but it is possible to find microcontrollers with better performance.
 
-\item battery level issue: implement function
+\fxnote{Thing with the better schedule???}
+%\begin{itemize}
+
+
+%The Vicon data tracking system samples with a maximum effective frequency of 100 Hz, which limits the control loops' bandwidth. This results in a rather slow position control, as it is the outer most loop.\\
+%By implementing attitude on board sensors, the network delay introduced by using the Vicon system, the bandwidth of the control loops can be increased and thereby obtaining more agile control.\\
+%The bandwidth of the controllers can also be increased by implementing a faster microprocessor, that will minimize the processing time.
+
+%\item Translational controllers does not work in reality but only simulation, why?:\\
+%It may be due to an implementation error, that has yet to be found and eliminated.\\
+%An error may be, that the controllers are feeded with amounts of old data that makes it impossible for the controllers to stabalize the quadcopter due to too large delays in the feeded data.\\
+%Another suggestion is too much packet loss. \fxnote{we does not know the amount of packet loss yet - tbd}
+
+%\item scheduling, faster than the cycle of the control algorithm 
+
+%\item ground effect (turbulens), issue experinced
+
+%\item battery level issue: implement function
   
 
-\end{itemize}
+%\end{itemize}
