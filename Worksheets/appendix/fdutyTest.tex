@@ -29,7 +29,7 @@ Finding the relation between the duty cycle sent to the motor controller and the
 \subsubsection{Procedure}
 \begin{enumerate}
 	\item Connect the power supply to the motor controller and the Arduino Mega to the computer though the programmer. One PWM pin and GND pin from the board must be connected to the driver signal cables yellow and brown respectively. 
-	\item Run the program with a fixed PWM duty for each test. The duty can be set from from 0 to 255.
+	\item Run the program with a fixed PWM duty for each test. The duty can be set from from 128 to 255.
 	\item Wait for the speed to stabilize and measure it with the tachometer. 
 	\item Repeat with a different duty cycle.
 \end{enumerate}
@@ -68,7 +68,7 @@ Finding the relation between the duty cycle sent to the motor controller and the
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{figures/dutyGraph}
-	\caption{.}
+	\caption{Linear relation between rotational speed of the motors and duty sent to the ESCs.}
 	\label{fig:dutyGraph}
 \end{figure}
 
