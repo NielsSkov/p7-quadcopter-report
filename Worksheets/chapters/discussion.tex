@@ -5,7 +5,9 @@ From the tests performed, it has been observed that the translational controller
 
 The way of modeling the system is deemed suitable for the purpose of controlling the quadcopter. A better model could be derived by including terms like the gyroscopic torques, the Coriolis acceleration or aerodynamic friction, among others.\fxnote{Do we want to say this??} This approach could yield a more reliable simulation when testing the controllers and thus a faster design process. However, taking into account that the prototype used is constructed with hobby components, it is reasonable not to derive a complex model and simulation as these effects are negligible compared to the hardware performance disturbances. 
 
-There are other improvements that could yield a better performance of the system. The first one is the microcontorller speed. The used processor runs at 16M IPS. This is found to be sufficient but it is possible to find microcontrollers with better performance. As mentioned in \autoref{subsec:ESC}, the motor controllers do not take into account the voltage level of the battery when running. This issue is solved by the controllers by increasing the rotational speed command sent to the motors.  \fxnote{Other small improvements}
+There are other improvements that could yield a better performance of the system. The first one is the microcontorller speed. The used processor runs at 16M IPS. This is found to be sufficient but it is possible to find microcontrollers with better performance. 
+
+As mentioned in \autoref{subsec:ESC}, the motor controllers do not take into account the voltage level of the battery when running. This issue is a disturbance to the controllers as the required. The issue could be solved by implementing a battery voltage measurement in the microcontroller code that used this measurement to calculate the required duty cycle to the ESCs.
 
 \fxnote{Thing with the better schedule???}
 %\begin{itemize}
