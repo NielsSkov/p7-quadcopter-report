@@ -11,10 +11,9 @@ This transformation is done through the Tustin (bilinear) approximation in which
 	\va{z}{is the equivalent of the Laplace operator in discrete domain}{}
 	\va{T}{is the sampling period}{s}
 \end{where}
-
 The Tustin method maps the Laplace stable region into the discrete stable region, that is, the unit circle, as seen in \autoref{fig:tustinmap}.
 \begin{figure}[H]
-	\includegraphics[scale=.3]{figures/S-planeVsZ-plane.pdf}
+	\includegraphics[scale=.25]{figures/S-planeVsZ-plane.pdf}
 	\centering			
 	\captionof{figure}{The s-domain and the z-domain \cite{AVOppenheim}.} 
 	\label{fig:tustinmap}
@@ -24,7 +23,6 @@ The discrete transfer function is then transformed into a difference equation to
 When discretizing the controller, the sampling time must also be considered. In the system at hand, the sampling frequency is limited by the sensor data (Vicon System) to be 100 Hz as a maximum. To ensure that the discretization does not affect the controller response, the lower sampling limit is set taking into account the bandwidth of the controllers. To do so, the sampling frequency should be between 10 and 20 times higher than the bandwidth of the control loop. The fastest control loop in the system is the attitude controller, which has a bandwidth of 2 \si{rad\cdot s^{-1}}, that is, 0.32 Hz. This implies a minimum sampling frequency of 3.2 Hz.
 
 The sampling period is chosen to be 0.035 ms, which is the fastest possible within the schedule as described in \autoref{sec:Scheduler}.
-
 \subsection{Attitude Controller}
 The attitude controller is mainly composed of gains formed by the state feedback, the integral and the observer matrices. This makes the discretization easier as there are no $s$-terms in the controller. There are however several integrators, three of which are in the observer and the remaining three in the integral part of the controller.
 
@@ -33,7 +31,6 @@ The discrete form of an integrator using the Tustin approximation is shown in \a
 	\frac{x_\mathrm{int}}{e} = \frac{1}{s} \approx \frac{T}{2}\frac{z+1}{z-1}
 	\label{discreteIntegrator}
 \end{flalign}
-
 This transformation yields a difference equation as seen in \autoref{discreteIntegratordifferences}. It gives the current value of the integral state as a function of the previous integral state, the current and the previous error between the angular reference and the angular data.
 \begin{flalign}
 	x_\mathrm{int}(k)=x_\mathrm{int}(k-1) + \frac{T}{2} e(k) + \frac{T}{2} e(k-1)
@@ -56,7 +53,6 @@ This transformation yields a difference equation as seen in \autoref{discreteInt
 %	\caption{Attitude controller control action when discretized with a sampling rate of 28 Hz and its continuous version.}
 %	\label{fig:AttitudeDiscreteControlAction}
 %\end{figure}
- 
 \subsection{Translational Controllers}
 The translational position controllers contain only proportional terms, which means that no discretization is needed. However, the velocity controllers also include an integral term and therefore they need to be discretized. This is also done using the Tustin approximation, same as for the attitude controller.
 
@@ -69,7 +65,6 @@ The discrete versions of the PI controllers are
 	\omega_\mathrm{sum}(k)&= \omega_\mathrm{sum}(k-1) -283.9 e_{\dot{z}}(k) + 276.1 e_{\dot{z}}(k-1)
 	\label{discreteVelocityZcontrollerdiferences}
 \end{flalign}
-
 \subsection{Controller Code}
 As in the case of the communication, the controllers are included in a task that runs every sampling period, $T = 35$ \si{ms}. As seen in \autoref{lst:controllerTask} this is done by storing the time at which the task starts in the variable \lstinline[style=customcppinline]{xLastWakeTime}. This is then used in the function \lstinline[style=customcppinline]{vTaskDelayUntil()} to count 35 ms from \lstinline[style=customcppinline]{xLastWakeTime} before the control task is run again. For each period the control code is executed and the calculated control actions are send to the motor controllers in the form of a PWM signal.
 
