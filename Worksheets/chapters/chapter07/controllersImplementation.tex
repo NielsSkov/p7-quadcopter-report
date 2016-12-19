@@ -79,14 +79,17 @@ As in the case of the communication, the controllers are included in a task that
 caption={Code for the controller task.}, 
 label=lst:controllerTask]
 void Controllers(void *pvParameters)
-{
+{ 
+	// Variable to make the task periodic
 	portTickType xLastWakeTime;
+	// xTaskGetTickCount() returns start time of the task
 	xLastWakeTime = xTaskGetTickCount();
 	
 	while (1)
 	{
 		Controller();
 		ApplyVelocities();
+		// A delay of 35 ms is set since the task started until the next task
 		vTaskDelayUntil(&xLastWakeTime, 35);
 	}
 	vTaskDelete(NULL);
@@ -99,11 +102,15 @@ The implementation of the difference equations inside the function \lstinline[st
 caption={Code for the controllers.}, 
 label=lst:controllers]
 ...
-u_z = -208.8*vel_e_k[i] + 198.2*vel_e_k1[i] + u_z;
+r_k[1] = -0.08*vel_e_k[0] + 0.08*vel_e_k1[0] + r_k[1]; // x velocity controller
 ...
-xint_k[i] = T / 2 * (e_k[i] + e_k1[i]) + xint_k1[i];
+r_k[0] = 0.08*vel_e_k[1] - 0.08*vel_e_k1[1] + r_k[0]; // y velocity controller
 ...
-oint_k[i] = T / 2 * (o_k[i] + o_k1[i]) + oint_k1[i];
+u_z = -283.9*vel_e_k[2] + 276.1*vel_e_k1[2] + u_z; // z velocity controller
+...
+xint_k[i] = T / 2 * (e_k[i] + e_k1[i]) + xint_k1[i]; // Integral control integrator
+...
+oint_k[i] = T / 2 * (o_k[i] + o_k1[i]) + oint_k1[i]; // Observer integrator
 ...
 
 \end{lstlisting}

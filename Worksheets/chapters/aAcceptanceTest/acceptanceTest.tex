@@ -1,18 +1,18 @@
 \chapter{Functionality Tests}
-It must be tested if the designed networked control system complies with the functional requirements mentioned in \autoref{ch:functionalRequirements}. 
-
-\subsection*{Functional Requirements Overview}
-For the sake of repetition, the requirements that need to be met are:
+%It must be tested if the designed networked control system complies with the functional requirements mentioned in \autoref{ch:functionalRequirements}. 
+The capabilities of the design carried out in this project have been tested in order to asses them in relation to the functional requirements stated in \autoref{ch:functionalRequirements}. 
+%\subsection*{Functional Requirements Overview}
+For the sake of repetition, these requirements are stated below.
 \begin{enumerate}[label=\textbf{\arabic*})]
-\item {The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
+\item {The quadcopter should be able to receive its own position and attitude from the Vicon system, through a computer at the ground station.}
 \item {It shall be possible to control the quadcopter's attitude.}
-\item {It shall be possible to make the quadcopter control its position in the z axis.}
-\item {It shall be possible to control the quadcopter in the x and y axis.}
+\item {It shall be possible to control the position in the z axis.}
+\item {It shall be possible to control the quadcopter's position in the x and y axes.}
 \end{enumerate}
 
 \section{Utilize New Sensor Data in Each Control Loop}
-\textbf{Requirement:}
-\textit{The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
+%\textbf{Requirement:}
+%\textit{The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
 
 %\textbf{Pass/fail criteria:}
 %	\begin{description}
@@ -21,15 +21,15 @@ For the sake of repetition, the requirements that need to be met are:
 %	\item[ \ding{55} \phantom{)}] More than 1 percent of the control loops runs with old data.
 %	\end{description}
 
-\textbf{Procedure:}\\
-
+%\textbf{Procedure:}\\
+The protocol designed and the scheduling have been tested following the procedure below.
 \begin{enumerate}
-	\item Enable the computer, utilizing Matlab, to transmit a 10000 packets to the micro processor.
+	\item Enable the computer, utilizing MATLAB, to transmit 10000 packets to the microcontroller.
 	%\item The data in the first transmitted packet consist of zeros, hereafter the data in each packet is incremented. The last packet will then contain the number 999. 
     %\item In every control loop the data which is utilized should be compared to the data utilized in the loop before. If the data is not identical a counter should be incremented.
-    \item Implement the program in the microcontroller so two counters are enabled when the first of the 10000 packets arrive. One of the counters should count control loops and the other should count correct decoded packets.
+    \item Implement the program in the microcontroller so two counters are enabled when the first of the 10000 packets arrives. One of the counters should count control loops and the other should count correct decoded packets.
 	\item When the last packet arrives both counters should be stopped and their values should be transmitted back to the computer. 
-	\item The comparison between the number of control loops executed and corrected decoded packets gives the estimate of the probability of missing packets.
+	\item The comparison between the number of control loops executed and corrected decoded packets gives an estimate of the probability of missing packets.
 %    \item The comparison should only take place if the communication task register a packet containing data which is less or equal to than 999.
 %	\item The first packet consisting of zeros should not be compared to an old packets (as there is none) but is instead compared to the number 1001. 
 %	\item The counter, which is incremented each time the data utilized in the control loop is not identical to the previous, should be transmitted back to the computer when the computer is done transmitting.
@@ -50,8 +50,11 @@ The obtained results are presented in \autoref{tab:AccTestCom}
     \end{tabular}
     \caption{Results from the network test.}
 \end{table}
-The test revealed that more packages are correctly received and decoded than control loops are executed. This suggests, as the data is sent periodically, that 
-\section{Control the quadcopter's attitude} \label{sec:accepttestAttitude}
+
+It can be seen that, out of 10000 packets, less than half of them are correctly decoded in the microcontroller. This happens due to the control task having higher priority than the communication task. When a control loop is being executed, the microcontroller does not listen for new messages. However, missing these packets does not affect the performance as long a new packet arrives in the listening period.
+
+The test reveals that more packages are correctly received and decoded than control loops are executed. This suggests that the vast majority of control loops run with the most recent information and that all packets received in the listening period are received and decoded correctly. 
+\section{Control the Quadcopter's Attitude} \label{sec:accepttestAttitude}
 %\textbf{Requirement:}
 %\textit{It shall be possible to control the quadcopter's attitude.}
 
@@ -95,7 +98,7 @@ The procedure followed to test the attitude controller in the quadcopter is the 
  
 \textbf{Results:}
 
-Three test have carried out to test the capabilities of the attitude controller. The first one shows how the controller can stabilize the attitude around equilibrium when starting with some initial conditions in the three angles. The second and the third one are done to test the reference tracking in roll and pitch, respectively.
+Three tests have carried out to test the capabilities of the attitude controller. The first one shows how the controller can stabilize the attitude around equilibrium when starting with some initial conditions in the three angles. The second and the third one are done in order to test the reference tracking in roll and pitch, respectively.
 
 The results of the first test can be seen in\autoref{fig:attitudeAccept}, where the attitude is stabilized.
 \begin{figure}[H]
@@ -105,20 +108,25 @@ The results of the first test can be seen in\autoref{fig:attitudeAccept}, where 
 	\label{fig:attitudeAccept}
 \end{figure} 
 %
-The three angles start with an initial condition, \SI{-0.2}{rad} for roll, \SI{0.3}{rad} for pitch and \SI{-0.2}{rad} for yaw. After approximately five seconds, all the references are set to zero. It can be seen that the roll and pitch angles converge to zero in less than \SI{2}{s} and the yaw angle in approximately \SI{7}{s}. From the figure, it can be seen that oscillations of approximately \SI{0.04}{rad} occur around the stabilization point of 0 rad. These oscillations come from the deviations between the model and real system behavior, as the utilized parameters for the model could be different from those of the real system. These differences may originate in the test setup itself as it distorts the moments of inertia around the different axes and the location of the center of rotation with respect to the center of mass. %Furthermore, certain aspects of the behavior of the quadcopter have not been taken into account.
+The three angles start with an initial condition, -0.2 rad for roll, 0.3 rad for pitch and -0.2 rad for yaw. After approximately five seconds, all the references are set to zero. It can be seen that the roll and pitch angles converge to zero in less than 2 s and the yaw angle in approximately 7 s. From the figure, it can be seen that oscillations of approximately 0.04 rad occur around the stabilization point of 0 rad. These oscillations come from the deviations between the model and real system behavior, as the utilized parameters for the model could be different from those of the real system. These differences may originate in the test setup itself as it distorts the moments of inertia around the different axes and the location of the center of rotation with respect to the center of mass. %Furthermore, certain aspects of the behavior of the quadcopter have not been taken into account.
 
 The response of the controller when tracking a reference in roll is seen in \autoref{fig:AccepttestRefTrackRoll}. The step is given at approximately 10 s.
-\fxnote{put figure for the test}
-
-It can be seen that the reference is tracked and there is no steady state error, there are oscillations of around \SI{0.04}{rad} also seen in the stabilization of the quadcopter seen in \autoref{fig:attitudeAccept}.
-
-
-
-In \autoref{fig:AccepttestRefTrackPitch} a reference of \SI{0.4}{rad} in pitch is given to the attitude controller at approximately 10 s.
 \begin{figure}[H]
-    \includegraphics[scale=.7]{figures/pitchRefAcceptAllAngles.pdf}
+	\includegraphics[scale=.7]{figures/AccepttestRefTrackRoll.pdf}
+	\centering			
+	\captionof{figure}{Attitude controller response when tracking a pitch angle reference of 0.4 rad.}
+	\label{fig:AccepttestRefTrackRoll}
+\end{figure}
+
+It can be seen that the reference is tracked and there is no steady state error, there are oscillations of around 0.04 rad also seen in the stabilization of the quadcopter seen in \autoref{fig:attitudeAccept}.
+
+
+
+In \autoref{fig:AccepttestRefTrackPitch} a reference of 0.4 rad in pitch is given to the attitude controller at approximately 10 s.
+\begin{figure}[H]
+    \includegraphics[scale=.7]{figures/AccepttestRefTrackPitch.pdf}
     \centering			
-    \captionof{figure}{Attitude controller response when tracking a pitch angle reference of \SI{0.4}{rad}.}
+    \captionof{figure}{Attitude controller response when tracking a pitch angle reference of 0.4 rad.}
     \label{fig:AccepttestRefTrackPitch}
 \end{figure}
 %\begin{minipage}{\linewidth}
@@ -141,7 +149,7 @@ In \autoref{fig:AccepttestRefTrackPitch} a reference of \SI{0.4}{rad} in pitch i
 %    \end{minipage}
 %\end{minipage}
 
-From the figure, it can be seen that it is possible for the controller to track a change in reference. This is achievable while the roll and yaw angles remain at zero. The oscillations seen around the reference are approximately \SI{0.04}{rad}. This is consistent with the behavior seen in \autoref{fig:attitudeAccept}.
+From the figure, it can be seen that it is possible for the controller to track a change in reference. This is achievable while the roll and yaw angles remain at zero. The oscillations seen around the reference are approximately 0.04 rad. This is consistent with the behavior seen in \autoref{fig:attitudeAccept}.
 
 
 %\begin{minipage}{\linewidth}
@@ -164,7 +172,7 @@ From the figure, it can be seen that it is possible for the controller to track 
 %    \end{minipage}
 %\end{minipage}
 
-\section{Control the position in the z axis}
+\section{Position Control in the z axis}
 %\textbf{Requirement:}
 %\textit{It shall be possible to make the quadcopter control its position in the z axis.}
 
@@ -174,7 +182,7 @@ Experimental tests reveal a non functional $z_{\mathrm{I}}$ controller implement
 
 % works as well, it is a matter of time to solve the implementation issues. 
 
-\section{Control the position in the x and y axis}
+\section{Position Control in the x and y axes}
 %\textbf{Requirement:}
 %\textit{It shall be possible to control the quadcopter in the x and y axis}
 %
@@ -182,8 +190,8 @@ Experimental tests reveal a non functional $z_{\mathrm{I}}$ controller implement
 Experimental tests reveal a non functional $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ controller implementation. However, it is believed that the designed is valid as it has been verified in simulations as depicted in \autoref{sec:TranslationalController}. As the implementation of the attitude controller functions in experimental tests, seen in \autoref{sec:accepttestAttitude}, it can be suggested that a simulated controller design could be implemented on the quadcopter and work if more time was given.
 
 
-\section{Summary of Results}
-The results of the tests are summed up below. %\autoref{tab:acceptance_test_results}.
+%\section{Summary of Results}
+%The results of the tests are summed up below. %\autoref{tab:acceptance_test_results}.
 %\begin{table}[H] \centering
 %\begin{tabular}{|c|p{11cm}|c|}
 %\hline 
@@ -203,5 +211,3 @@ The results of the tests are summed up below. %\autoref{tab:acceptance_test_resu
 %\end{table}
 %
 %As can be seen, the prototype fulfils 4/4 of the set requirements. 
-
-
