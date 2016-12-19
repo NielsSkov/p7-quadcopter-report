@@ -23,7 +23,7 @@ The motor has a motor velocity constant, $k_v$, of \SI{935}{RPM\ V^{-1}}, has 14
 The motor used is shown in \autoref{fig:Motor}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{figures/motor.png}
+	\includegraphics[scale=0.4]{figures/motor.png}
 	\caption{One of the four motors mounted on the quadcopter.\cite{HkingPropeller}}
 	\label{fig:Motor}
 \end{figure} 
@@ -39,7 +39,7 @@ A picture of the utilized propellers can be seen in \autoref{fig:Propeller}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{figures/propeller.png}
+	\includegraphics[scale=0.3]{figures/propeller.png}
 	\caption{Two of the four propellers mounted on the quadcopter's motors.\cite{HkingPropeller}}
 	\label{fig:Propeller}
 \end{figure}
@@ -49,23 +49,23 @@ A picture of the utilized propellers can be seen in \autoref{fig:Propeller}.
 %It has been observed during tests, that the motor runs faster as it's temperature increases. This is not expected due to the increased resistance, that occurs when the coils within the motor are heated. Therefore the relationship between PWM signal and velocity is not representative for all cases. It is however deemed reasonable to neglect this variance and presume a relationship as it is derived in the measurement report, see Appendix YY.
 
 \subsection{Motor Controllers}
-The quadcopter comes with four electronic speed controllers, ESCs, one for each motor. The ESCs produce an \SI{8}{kHz} PWM, are rated for a 2-4 cell Li-Po battery and can handle a constant current of up to \SI{30}{A}. The ESCs have also a \SI{5.5}{V}, \SI{4}{A} output for powering e.g. a controller board. The battery level is only measured at start up, which can be problematic, as the provided power will decrease as the battery level drops over time.\cite{HKing}
+The quadcopter comes with four electronic speed controllers, ESCs, one for each motor. The ESCs produce an \SI{8}{kHz} PWM, are rated for a 2-4 cell Li-Po battery and can handle a constant current of up to \SI{30}{A}. The ESCs have also a \SI{5.5}{V}, \SI{4}{A} output for powering e.g. a controller board. The battery level is only measured at start up, which can be problematic, as the provided power will decrease as the battery level drops over time. \cite{HKing}
 
 %
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{figures/ESC}
+	\includegraphics[scale=0.3]{figures/ESC}
 	\caption{One of the four Electronic Speed Controllers mounted on the quadcopter.\cite{HKing}}
 	\label{fig:esc}
 \end{figure}
 %
 \subsection{Battery}
-The battery available for the prototype, is a Turnigy battery. It has a capacity of \SI{2200}{mAh}, a voltage of \SI{11.1}{V} and a discharge rate of 20-30 C.\cite{HKingBattery}\fxnote{change soruce}
+The battery available for the prototype, is a Turnigy battery. It has a capacity of \SI{2200}{mAh}, a voltage of \SI{11.1}{V} and a discharge rate of 20-30 C.\cite{HKingBattery}
 %
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=1.3]{figures/rd.jpg}
-	\caption{The battery mounted on the quadcopter.\cite{HKingBattery} \fxnote{change source}}
+	\includegraphics[scale=1.2]{figures/rd.jpg}
+	\caption{The battery mounted on the quadcopter.\cite{HKingBattery}}
 	\label{fig:battery}
 \end{figure}
 %%
@@ -91,13 +91,27 @@ The Vicon system provides real-time position and attitude captured with nine inf
 To use this system, reflective markers are attached to the tracked object. The Vicon system streams the position of the markers and the position and attitude of the object at 100 Hz for a computer to read them\cite{ViconDataSTream}. The data can be received by using an SDK (software development kit) plug-in for MATLAB. In this way, data can be received by MATLAB, making it possible to directly perform calculations, which makes it easier to obtain variable derivatives.
 
 The user interface of the Vicon system is shown in \autoref{fig:ViconTracker}. 
+%
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.27]{figures/ViconTracker}
-	\caption{User interface of the Vicon System, the Vicon Tracker. An object has been created from the markers placed on the quadcopter.\fxnote{change picture}}
-	\label{fig:ViconTracker}
+	\captionbox
+	{
+		User interface of the Vicon System, the Vicon Tracker. An object has been created from the markers placed on the quadcopter..
+		\label{fig:ViconTracker}
+	}
+	{
+	\includegraphics[width=.5\textwidth]{figures/ViconTracker3}
+	}
+  \hspace{5pt}
+  \captionbox
+  {
+  	An illustration showing the Vicon system's cameras sensing the quadcopter and the computer used to get the data.
+  	\label{fig:Vicontotalsystem}
+  }
+  {
+  	\includegraphics[width=.40\textwidth]{figures/system.pdf}
+  }
 \end{figure}
-%
 The software is called Vicon Tracker and it allows the creation of objects by grouping markers present in the room. It also allows to change the center of gravity of the created objects and rotate the inertial and body reference frames to any desired orientation.
 
 \subsection{Processor}

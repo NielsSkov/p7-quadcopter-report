@@ -25,7 +25,7 @@ If the header is found in the received data, the microcontroller can then extrac
 The header is set to three bytes, where all the bits are set to ones. This consideration ensures the unlikeliness of finding a header in the middle of a packet. This is because it is highly unlikely for the Vicon system to register two of the transmitted variables, which are placed beside each other in the packet, to be all ones at the same time. The header can be seen in \autoref{tab:packetstructure} and \autoref{tab:packetstructure2}.
 
 \subsubsection{Data} \fxnote{create table instead}
-The variables transmitted are the attitude, roll, pitch and yaw, the position, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, the position references and the translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$.
+The variables transmitted are the attitude, roll, pitch and yaw, the position, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, the position references and the translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$. 
 
 The roll, pitch and yaw are measured in rad and are contained in a variable of nine bits each in the packet. The first bit is utilized for the sign. The obtained attitude received from the Vicon system, where the maximum values that can be obtained are $\pm\pi$ rad, are multiplied by 100 and rounded to convert them in integers. $\pm\pi$ rad are only measured by the Vicon system if the quadcopter does a turn of 180 degrees. If this occurs in the roll and pitch, it is not possible for the quadcopter to recover from being turned upside down. Therefore, as 8 bits are chosen to send the value, the maximum measured value is 255, that is, 2.55 rad.
 
@@ -46,8 +46,8 @@ All these data, constitutes 15 bytes as shown in \autoref{tab:packetstructure2}.
     \centering
     \begin{tabular}{|c|c|c|c|c|c|}
         \hline
-        Variable      &  Unit       &  Bits     & Range 	   & Resolution 	  & Example (Data $\rightarrow$ Packet)		 \\ \hline
-        $\phi$         & rad	 &	8    & $\pm 2.55$ & 0.01 & 0.567... $\rightarrow$ 57\\ \hline
+        Variable      &  Unit       &  Bits     & Range 	   & Resolution 	  & Example (Data $\rightarrow$ Packet $\rightarrow$ Final Data)		 \\ \hline
+        $\phi$         & rad	 &	8    & $\pm 2.55$ & 0.01 & 0.567... $\xrightarrow[]{\times 100}$ 57$\xrightarrow[]{\times 100}$0.57\\ \hline
         $\theta$       & rad	&	8    & $\pm 2.55$ & 0.01 & 0.853... $\rightarrow$ 85\\ \hline
         $\psi$         & rad	&	8    & $\pm 2.55$ & 0.01 & 2.532... $\rightarrow$ 253\\ \hline
         $x_{\mathrm{I}}$         & mm	&  9  & $\pm 5110$ & 10  & 122.23 $\rightarrow$ 1220\\ \hline

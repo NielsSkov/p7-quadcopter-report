@@ -23,29 +23,32 @@
 
 {\centering
 \textit{Alejandro Alonso García**, Amalie Vistoft Petersen, Andrea Victoria Tram Løvemærke,\\
-    Niels Skov Vestergaard and Noelia Villarmarzo Arruñada*}
+    Niels Skov Vestergaard and Noelia Villarmarzo Arruñada* }
 \par}
 
 {\centering
 \textbf{Group 733}
 \par}
 
-
 \bigskip
 
-Quadcopters are becoming increasingly interesting due to the great variety of usage. Among these are search and rescue missions in difficult environments, inspection of big structures and surveillance. They constitute a control challenge due to its inherent instability and coupled behavior. This paper examines the performance achievable of a linear control system for controlling the attitude and the position of the quadcopter when receiving sensor data from an external motion tracking system based on infrared cameras. This constitutes a networked distributed system. \\
+\paragraph{Introduction} Quadcopters are becoming increasingly interesting due to the great variety of usage [1]. They constitute a control challenge due to their inherent instability and coupled behavior. This paper examines the performance achievable with a linear control system, which handles the attitude and the position of the quadcopter. Furthermore, the effects of the attitude controller's bandwidth on the translational controllers are considered along with the effect of remote sensing.
 
-This task is solved by implementing a linear control design, which is based upon a model derived by first principles modeling. The model is then linearized using the Taylor approximation. \\
+\paragraph{Model} The control design is based on a model derived by first principles modeling. It describes the thrust forces and drag torques applied by the propellers, the attitude behavior and the translational behavior. The model is then linearized using the Taylor approximation. 
 
-The main network effects, delay and missed packets, are considered in the control design to ensure they do not affect the stability of the designed controllers. This is done by means of a network simulator. \\
+\paragraph{Network} Two main network effects are considered when designing the controller, which are the delay and missed packets (the controller not using the newest received data). By considering these, the stability of the designed controllers is not affected. This is done by simulating the model, the controllers and the network together. To include the network effects, the simulator TrueTime is utilized [2].   
 
-The control system is divided into two subsystems, attitude and translational. The attitude controller is designed with a state space approach. It is constituted by a state feedback with integral control. These terms are designed using LQR. A reduced order observer is also introduced to estimate non measured states.
-The translational controllers are designed with classical control methods, organized in a cascaded structure. The inner loops control the translational velocities with PI controllers, and the outer loops control the position of the quadcopter with proportional controllers. \\
+\paragraph{Control} The control system is divided into two subsystems, attitude and translational. The attitude controller is designed with a state space approach. It is constituted by a state feedback with integral control. These terms are designed using LQR. A reduced order observer is also introduced to estimate non measured states.
+The translational controllers are designed with classical control methods, organized in a cascaded structure. The inner loops control the translational velocities with PI controllers, and the outer loops control the position of the quadcopter with P controllers. [3] 
+ 
+\paragraph{Results} The results presented show the behavior of the implemented attitude controller and the simulated translational controller when tracking a given reference. 
 
-The results presented show the behavior of the implemented attitude controller and the simulated translational controller, as well as the model and network parameters used in the design process. \\
+\paragraph{Discussion} The obtained results show that the control design for both the attitude and the translational behavior is able to control the quadcopter in simulation. Moreover, the implementation and tests of the attitude controller have been carried out on the quadcopter successfully. It has been discovered, that the use of an external motion tracking system limits the bandwidth of the control solution, which affects response of the controlled system, making it slower.
 
-The use of the motion tracking system limits the bandwidth of the control solution, which affects dynamics of of the controlled system. \\
-
-They show that the design for both the attitude and the translational behavior is able to control the quadcopter in simulation. Moreover, the implementation and tests of the attitude controller have been carried out on the quadcopter successfully. 
-
+\paragraph{References}
+\begin{description}
+      \item{[1]} 10 incredibly interesting uses for drones, Web Page, 2014. [Online]. Available: http://dronebuff.com/uses-for-drones/.
+      \item{[2]} D. Henriksson A. Cervin et al. "How Does Control Timing Affect Performance? Analysis and Simulation of Timing Using Jitterbug and TrueTime". In: IEEE Control Systems Magazine (2003).
+     \item{[3]} Gene F. Franklin J. David Powell. Feedback Control of Dynamic Systems. 7th Edition. Pearson, 2015.
+\end{description}
 \end{document}
