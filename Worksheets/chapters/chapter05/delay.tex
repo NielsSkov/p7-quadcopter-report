@@ -5,12 +5,12 @@ In the simulation, a model for the delay is needed in order to implement it in T
 
 The time required to make the data available can be divided into two, as seen in the upper part of \autoref{fig:delaycontrol}. The time required to run the code in the computer, which retrieves the sensor data and constructs the packet, and the transmission delay. The precise value of the first can be found as it is the code execution time on the computer. The value obtained is \SI{15}{ms}. The transmission time can be found using the transmission speed of the XBee modules. According to the datasheet \cite{XBee}, it is \SI{115.2}{kbps}. With this speed and transmitting 21 bytes, the transmission delay is \SI{1.46}{ms}. The first part of the delay in then \SI{16.46}{ms}, see \autoref{fig:delaycontrol}.
 
-Once the information is on the microcontroller, the maximum time elapsed until the controller uses the data is the sampling period minus the execution time of the control loop. The reason for this is because in the worst possible case, the packet arrives just after a control loop finishes, then it is necessary to wait until the next control loop is executed. The final value of the second part of the delay is then \SI{20}{ms}, see \autoref{fig:delaycontrol}.
+Once the information is on the microcontroller, the maximum time elapsed until the controller uses the data is the sending period. The reason for this is because in the worst possible case, the packet arrives one sending period before the next control loop starts. A longer waiting time is not possible as another packet would arrive before the next control loop. The final value of the second part of the delay is then \SI{15}{ms}, see \autoref{fig:delaycontrol}.
  
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.6\textwidth]{figures/maxDelay.pdf}
-	\caption{Delays in the packets transmitted to the microcontroller and maximum delay.\fxnote{Check times when we have them all}}
+	\caption{Delays in the packets transmitted to the microcontroller and maximum delay.}
 	\label{fig:delaycontrol}
 \end{figure}
 
@@ -18,8 +18,8 @@ After all considerations, the value of the maximum delay which is used in the si
 
 When considering issues in the network, it is necessary to look into the missed packets. A missed packet can occur if either a new packet is not received between two control loops, making second control loop use old data, or a received packet is corrupted.
 
-This issue can be included in the simulation by utilizing TrueTime. Here the missed packets can be simulated as a constant probability of missing packets. To get this probability, tests are conducted in which 1000 packets are transmitted. The amount of packets received correctly and processed in the microcontroller together with the number of control loops executed, provides an estimate of the probability of missing packets. The data obtained with the tests is shown in more detail in \fxnote{accepttest?? WITH THE TEST}. The probability of missing a packet is found to be ??.
+This issue can be included in the simulation by utilizing TrueTime. Here the missed packets can be simulated as a constant probability. To get estimate it, tests are conducted in which 10000 packets are transmitted. The amount of packets received correctly and processed in the microcontroller together with the number of control loops executed, provides an estimate of the probability of missing packets. The data obtained with the tests is shown in more detail in \autoref{sec:NetworkTest}. The probability of missing a packet is found to be 0.
 
-The protocol has been design and the main network issues, the delay and missed packets, have been analysed. Now it is possible to use this information when designing the controllers to ensure stability.
+The protocol has been design and the main network issues, the delay and missed packets, have been analyzed. This information is used in the design of the controllers.
 
 
