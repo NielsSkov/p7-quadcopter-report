@@ -17,7 +17,7 @@ The prototype is divided into three separate subsystems. The quadcopter, the gro
 %The Ground Station utilizes the data it receives from the Vicon system to calculate the linear velocity and linear acceleration of the quadcopter.
 The Vicon system captures the quadcopter's position, in form of coordinates, and its attitude, in Euler angles. This information is then transmitted to the Ground Station. In the Ground Station reference commands for position are generated for the controller, which is located on the quadcopter. It is desired to be able to move the quadcopter in the x, y and z directions. The reference commands are therefore transmitted together with the position, attitude and translational velocity to the quadcopter.
 
-The information is transmitted by means of a network interface through the XBees. The function protocol is implemented in the Ground Station to be able to generate a packet which can be transmitted and decoded on the micro controller. It is also needed for the micro controller to detect packets and disregard incorrect packets.
+The information is transmitted by means of a network interface through the XBees. The function protocol is implemented in the Ground Station to be able to generate a packet which can be transmitted and decoded on the microcontroller. It is also needed for the microcontroller to detect packets and disregard incorrect packets.
 
 The quadcopter consists of a microcontroller, four motor controllers, four motors, a battery, and a wireless module. The microcontroller's tasks are to handle the network between itself and the ground station, the control calculations and to generate the control signals which should be applied to the four motor controllers.
 
