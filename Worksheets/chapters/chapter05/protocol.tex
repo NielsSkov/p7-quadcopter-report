@@ -3,10 +3,9 @@ The transport layer protocol designed must ensure that transmitted packets can b
 
 As real-time features are desired for the quadcopter, the protocol chosen is UDP based. A connection oriented protocol implies a longer packet, retransmissions and a higher computation time, thus increasing the delay. A connectionless protocol is therefore utilized, as it leaves more processor resources available for the controllers.
 
-As the communication is only from the computer to the microcontroller, the protocol does not need a source port or destination addresses, as typically seen in a UDP protocol. Furthermore, it is decided not to change the length of the packet relative to the gathered data. As the length is made constant, only a header is necessary and end sequence is not included. As common in connectionless protocols packet loss is not detected, hereby avoiding implementation of a sequence number in the header of the packet. A checksum, which constitutes the tail of the packet, is considered enough for disregarding corrupted information in the microcontroller.
-
+As the communication is only from the computer to the microcontroller, the protocol does not need a source port or destination addresses, as typically seen in a UDP protocol. Furthermore, it is decided not to change the length of the packet relative to the gathered data. As the length is made constant, only a header is necessary and end sequence is not included. As common in connectionless protocols packet loss is not detected, hereby avoiding implementation of a sequence number in the header of the packet. A checksum, which constitutes the tail of the packet, is considered enough for disregarding corrupted information in the microcontroller.\\
 These considerations simplify the protocol header and tail, compared to UDP, resulting in shorter transmission and computation time. The overall structure of a generated packet is illustrated in \autoref{tab:packetstructure}.
-
+\vspace{-0.2 cm}
 \begin{table}[H]\centering
 \begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{2cm}|>{\centering\arraybackslash}m{2cm}|}
 \hline
@@ -16,7 +15,7 @@ Header & Data & Checksum \\
 \caption{The structure of the packet.}
 \label{tab:packetstructure}
 \end{table}
-
+\vspace{-0.5 cm}
 \subsubsection{Header}
 The header constitutes the start sequence of the packet and it is necessary for the microcontroller to be able to distinguish between transmitted packets and arbitrary data. 
  
@@ -26,7 +25,6 @@ The header is set to three bytes, where all the bits are set to ones. This consi
 
 \subsubsection{Data}
 The variables transmitted are the attitude, roll, pitch and yaw, the position, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, the position references, $x_{\mathrm{I_{ref}}}$, $y_{\mathrm{I_{ref}}}$ and $z_{\mathrm{I_{ref}}}$, and the translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$. 
-
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|c|c|}
@@ -48,7 +46,6 @@ The variables transmitted are the attitude, roll, pitch and yaw, the position, $
     \caption{Overview of the data sent in the protocol, the range, the resolution and an example on how it transmitted.}
     \label{tab:data}
 \end{table}
-
 The roll, pitch and yaw are measured in rad and are contained in a variable of nine bits each in the packet. The first bit is utilized for the sign. The attitude received from the Vicon system, where the maximum values that can be obtained are $\pm\pi$ rad, are multiplied by 100 and rounded to convert them in integers. $\pm\pi$ rad are only measured by the Vicon system if the quadcopter does a turn of 180 degrees. If this occurs in the roll and pitch, it is not possible for the quadcopter to recover from being turned upside down. Therefore, as 8 bits are chosen to send the value, the maximum measured value is 255, that is, 2.55 rad. If the yaw gets bigger than 2.55 rad the error which the controller receives is high, and it can still correct the angle, as yaw is always set to zero, see \autoref{chap:Control}.
 
 The actual position coordinates, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, are measured in milimeters by the Vicon system and are contained in ten bits each. The first bit is the sign bit. By choosing a precision of centimeters, nine bits are sufficient to store the data. With this size, the position values are between $\pm$ 512 yielding a range of more than ten meters. Thus, making it sufficient for the quadcopter as it is operated in the Vicon room, see \autoref{cha:Systemdescription}. The position reference utilizes the same units as the actual position and the same amount of bits for its variables.
