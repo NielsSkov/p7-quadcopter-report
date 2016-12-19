@@ -155,13 +155,13 @@ LQR design is based on minimizing the following cost function,
 
 The matrices $\vec{Q}$ and $\vec{R}$ must be selected as positive semi-definite and positive definite matrices, respectively. These penalize the error of the different states and inputs of the system. 
 
-These matrices are selected by using Bryson's rule, which defines $\vec{Q}$ and $\vec{R}$ as diagonal matrices whose elements are
+The matrices are selected by using Bryson's rule, which defines $\vec{Q}$ and $\vec{R}$ as diagonal matrices whose elements are
 \begin{flalign} 
 	Q_{ii} &= \frac{1}{\text{maximum acceptable value of }[x^2_i]}\ ,\\
 	R_{ii} &= \frac{1}{\text{maximum acceptable value of }[u^2_i]}\ .
 	\label{eq:weightingmatrices}
 \end{flalign}
-The values are chosen to ensure stability of the controller while the states converge to the equilibrium point and the references are tracked as fast as possible. This process is performed using the simulation of the model including network effects. 
+The values are chosen to ensure stability of the controller while the states converge to the equilibrium point and the references are tracked as fast as possible. This process is performed using the simulation of the model including the analysed network effects. 
 These values are then used to find the optimal feedback matrices, which minimize the cost function \eqref{eq:costfunction} as 
 \begin{flalign} 
 	\vec{F}_{\mathrm{e}} &= -\vec{R}^{-1}{\vec{B}_{\mathrm{e}}}^T\vec{P} \ ,
@@ -200,7 +200,7 @@ The observer is designed by finding the matrix $\vec{L}_{\mathrm{obs}}$ such tha
 \end{minipage}\\
 \normalsize
 
-With the observer matrix, the observer equation is derived, see \eqref{eq:eqobservertheorem}. This ensures an estimate $\hat{\vec{x}}_{4:6}$ which converges to $\vec{x}_{4:6}$ at a rate given by the chosen observer poles.
+With the observer matrix, the observer equation is derived, see \eqref{eq:eqobservertheorem}. It ensures an estimate $\hat{\vec{x}}_{4:6}$ which converges to $\vec{x}_{4:6}$ at a rate given by the chosen observer poles.
 
 \vspace{-0.1 cm}
 \small{

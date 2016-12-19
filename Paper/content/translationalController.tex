@@ -4,13 +4,13 @@ The translational controllers follow a cascade structure, where the velocity is 
 \begin{figure}[H]
 \centering
 	\includegraphics[width=.42\textwidth]{figures/TranslationalControlDiagramSmall.pdf}
-	\caption{Overview of the translational controllers structure. $\overline{\omega}_{\mathrm{sum}}$ is the sum of rotational speeds requested by the $z_{\mathrm{I}}$ controller.}
+	\caption{Overview of the translational controllers structure. $\omega_{\mathrm{sum}}$ is the sum of rotational speeds requested by the $z_{\mathrm{I}}$ controller.}
 	\label{fig:cascade}
 \end{figure}
 
 The $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ controllers share similar properties as both their outputs are angle references, $\theta_{\mathrm{ref}}$ and $\phi_{\mathrm{ref}}$. The translational movement in $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ can be obtained by only changing these angles as long as $\psi$ is zero. For this reason, $\psi_{\mathrm{ref}}$ is set to zero at all times. The output of the $z_{\mathrm{I}}$ controller is the required sum of the motor rotational speeds.
 
-In order to design the inner controllers for the velocities $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$, the linear equations derived previously, see \autoref{eq:TransLinearEquations1}, \ref{eq:TransLinearEquations2} and \ref{eq:TransLinearEquations3}, are Laplace transformed. These are used to create the transfer functions
+In order to design the inner controllers for the velocities $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$, the linear equations derived previously, see \eqref{eq:TransLinearEquations1}, \eqref{eq:TransLinearEquations2} and \eqref{eq:TransLinearEquations3}, are Laplace transformed. These are used to create the transfer functions
 \begin{flalign}
     G_{\dot{x}}&=\frac{\dot{x}_{\mathrm{I}}}{\theta}=\frac{-k_{\mathrm{th}} (\overline{\omega}_1 ^2 + \overline{\omega}_2 ^2 + \overline{\omega}_3 ^2 + \overline{\omega}_4 ^2)}{m s} \ , \label{transferfunctionxdot} \\
     G_{\dot{y}}&=\frac{\dot{y}_{\mathrm{I}} }{\phi }=\frac{k_{\mathrm{th}}(\overline{\omega}_1 ^2 + \overline{\omega}_2 ^2 + \overline{\omega}_3 ^2 + \overline{\omega}_4 ^2)}{m s} \ , \label{transferfunctionydot} \\

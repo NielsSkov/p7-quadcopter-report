@@ -10,9 +10,8 @@ A free body diagram of the quadcopter is seen in \autoref{droneDiagram}.
 %
 As seen in the figure, the system is modeled by using two coordinate frames. The inertial frame is utilized to describe the translational movement, while the body frame is attached to the quadcopter and used to describe its attitude behavior. The positive references for rotational and translational movements are depicted in \autoref{droneDiagram}, as well as the main forces and torques acting on the quadcopter. The positive rotations follow the right-hand rule.
 
-The forces generated in the propellers are obtained in the body coordinate frame. In order to represent them in the inertial frame a rotation matrix is used. It is built considering a 123 rotation sequence \cite{rotationmatrix}. This means that any rotation is described as three rotations first around the $x_\mathrm{B}$ axis, then around the $y_\mathrm{B}$ axis and lastly around the $z_\mathrm{B}$ axis. 
+The forces generated in the propellers are obtained in the body coordinate frame. In order to represent them in the inertial, frame a rotation matrix is used. It is built considering a 123 rotation sequence \cite{rotationmatrix}. This means that any rotation is described as three rotations first around the $x_\mathrm{B}$ axis, then around the $y_\mathrm{B}$ axis and lastly around the $z_\mathrm{B}$ axis. 
 
- 
 The dynamic model of the quadcopter is given by three sets of equations, which are presented in this section. The first describes the motor and the propeller, the second and the third characterize the attitude and translational behavior of the quadcopter, respectively.
 
 \subsection{Motor and Propeller}
