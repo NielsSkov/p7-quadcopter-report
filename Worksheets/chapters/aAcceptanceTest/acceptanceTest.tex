@@ -9,8 +9,6 @@ For the sake of convenience, these are stated below.
 \item {It shall be possible to control the quadcopter's position in the z axis.}
 \item {It shall be possible to control the quadcopter's position in the x and y axes.}
 \end{enumerate}
-
-
 \section{Communication Test}\label{sec:NetworkTest}
 %\textbf{Requirement:}
 %\textit{The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
@@ -36,7 +34,6 @@ The designed protocol and the scheduling have been tested following the procedur
 %	\item The counter, which is incremented each time the data utilized in the control loop is not identical to the previous, should be transmitted back to the computer when the computer is done transmitting.
 %	\item A counter incremented each control loop while packets are received should also be transmitted back.
 \end{enumerate} 
-
 \textbf{Results:}
 
 The obtained results are presented in \autoref{tab:AccTestCom}.
@@ -52,11 +49,9 @@ The obtained results are presented in \autoref{tab:AccTestCom}.
     \caption{Results from the communication test, showing the number of control loop executed and packets correctly decoded when sending 10000 packets are sent.}
         \label{tab:AccTestCom}
 \end{table}
-
 It is seen that, out of 10000 packets, less than half of them are correctly decoded in the microcontroller. This happens due to the control task having higher priority than the communication task. When a control loop is being executed, the microcontroller does not listen for new messages. However, missing these packets does not affect the performance as long a new packet arrives in the listening period.
 
 The test reveals that more packages are correctly received and decoded than control loops are executed. This suggests that the vast majority of control loops run with the most recent information and that all packets received in the listening period are received and decoded correctly. 
-
 \section{Control the Quadcopter's Attitude} \label{sec:accepttestAttitude}
 Three tests have been carried out to test the capabilities of the attitude controller. The first test shows how the controller can stabilize the attitude around equilibrium when starting with initial conditions different from zero in the three angles. The second and the third tests are done in order to test the reference tracking in roll and pitch, respectively.
 
@@ -69,12 +64,11 @@ The procedure followed to test the attitude controller in the quadcopter is the 
 	\item Record the attitude data in MATLAB.
     \item Program the code for tracking references and repeat repeat from step 3 to 5. This is done for both roll and pitch.
 \end{enumerate}
- 
 \textbf{Results:}
 
 The results of the first test can be seen in \autoref{fig:attitudeAccept}, where the attitude is stabilized.
 \begin{figure}[H]
-	\includegraphics[scale=.7]{figures/attitudeAccept.pdf}
+	\includegraphics[scale=.65]{figures/attitudeAccept.pdf}
 	\centering			
 	\captionof{figure}{Test of the controller ability to stabilize the quadcopter around equilibrium.} 
 	\label{fig:attitudeAccept}
@@ -85,7 +79,7 @@ The three angles start with an initial condition, $-0.2$ rad for roll, $0.3$ rad
 The response of the controller when tracking a reference in roll is seen in \autoref{fig:AccepttestRefTrackRoll}.
 
 \begin{figure}[H]
-	\includegraphics[scale=.7]{figures/AccepttestRefTrackRoll.pdf}
+	\includegraphics[scale=.65]{figures/AccepttestRefTrackRoll.pdf}
 	\centering			
 	\captionof{figure}{Attitude controller response when tracking a pitch angle reference of 0.4 rad.}
 	\label{fig:AccepttestRefTrackRoll}
@@ -96,7 +90,7 @@ It can be seen that the reference is tracked and there is no steady state error,
 In \autoref{fig:AccepttestRefTrackPitch} a reference of 0.4 rad in pitch is given to the attitude controller.
 
 \begin{figure}[H]
-    \includegraphics[scale=.7]{figures/AccepttestRefTrackPitch.pdf}
+    \includegraphics[scale=.65]{figures/AccepttestRefTrackPitch.pdf}
     \centering			
     \captionof{figure}{Attitude controller response when tracking a pitch angle reference of 0.4 rad.}
     \label{fig:AccepttestRefTrackPitch}
