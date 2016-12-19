@@ -108,7 +108,16 @@
     \input{chapters/conclusion.tex}
     %\input{chapters/perspectives.tex}	
 
-	\bookmarksetup{startatroot}
+    \bookmarksetup{startatroot}
+    \addtocontents{toc}{\bigskip}
+     
+	%%% Bibliography %%%
+    \cleardoublepage
+    \addcontentsline{toc}{chapter}{Bibliography}  
+    \begin{otherlanguage}{australian}
+        \printbibliography
+    \end{otherlanguage} 
+ 
 	\addtocontents{toc}{\bigskip}
 	\newpage
 	\fancyhead[RO]{\color{aaublue}\small Appendix \nouppercase\rightmark} %even page - chapter title
@@ -125,6 +134,8 @@
 		%	\setcounter{equation}{0}
 		%	\setcounter{figure}{0}
 		
+        
+
 	\appendix
 	\part*{Appendix} \addcontentsline{toc}{chapter}{Appendix}
 	\cleardoublepage\makeatletter\@openrightfalse\makeatother
@@ -134,14 +145,13 @@
     \input{appendix/bTorqueTest.tex}	
 	%\input{appendix/cVoltageLevelTest.tex}
 	\input{appendix/fdutyTest.tex}
+    \input{appendix/eAttitudeControllerTest.tex}
     \input{appendix/dInertia.tex}
     \input{appendix/mMatrixAppendix.tex}
-    \input{appendix/eAttitudeControllerTest.tex}
+
   %\input{appendix/gPacketLoss.tex}
 		
-	%%% Bibliography %%%
-	\printbibliography
-	
+
 	%%% To Do List %%%
 
 	\end{document}

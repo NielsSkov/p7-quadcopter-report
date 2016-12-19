@@ -60,7 +60,7 @@ The battery available for the prototype, is a Turnigy battery. It has a capacity
 %
 %The battery level drops over time, with a significance that can not be neglected as it may have great impact on the output of the motor and therefore on the lift of the propeller. It is possible to measure the battery level while operating the quadrotor. By taking into account the battery level in the test of the PWM signal to velocity, it is possible to obtain a quadcopter having constant lift force, if this is requested. With this information and knowledge of the relationship between voltage and RPM, see \autoref{app:VoltageLevelTest}, it is possible to account for the battery level in the control realization and thereby rectify the problem.
 \newpage
-\section{Selected hardware}
+\section{Selected Hardware}
 The provided quadcopter is not capable of flying as it is. Therefore additional hardware must be implemented. This includes sensors, as the quadcopter will otherwise not be able to navigate. A processor, as a computation device is needed to handle the communication and the control algorithms. And lastly a wireless module, as communication with the quadcopter is required. The chosen sensor solution is now presented.
 \subsection{Sensor}
 It is possible to implement on board sensors or use a real time attitude and position data capturing system such as Vicon, which is available at Aalborg University in a room of the dimensions: 5.85 m $\times$ 5.72 m $\times$ 3.72 m .

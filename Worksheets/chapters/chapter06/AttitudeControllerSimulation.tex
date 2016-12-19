@@ -33,7 +33,7 @@ A step response of the roll is shown in \autoref{fig:ssFinalStep}.
 	\label{fig:ssFinalStep}
 \end{figure}
 As the roll and the pitch are implemented identically, the step response of the two are similar. Additionally, the yaw is not illustrated as the reference is set to zero. It is therefore only desired to discover how the roll and pitch track a reference. \\
-The system is subjected to a step input reference of \SI{1}{m s^{-1}}. With an error band of 5 \%, the settling time is approximately $1.5$ s and the overshoot is less than 5 \%.
+The system is subjected to a step input reference of \SI{1}{rad}. With an error band of 5 \%, the settling time is approximately $1.5$ s and the overshoot is less than 5 \%.
 
 To illustrate the reasoning followed through the design process, two more simulations are shown, where the controller and observer matrices are changed one at a time, so that it is possible to compare the different simulations with the final design and discuss why the final parameters are chosen.
 
@@ -55,7 +55,7 @@ The observer gain, $\vec{L_{obsH}}$, utilized for the simulation in  \autoref{fi
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{figures/ssEqObsHigh.pdf}
-	\caption{Angle response with an increase in the observer gain compared to the final design. The utilized weighted matrices, $\vec{Q_{final}}$ and $\vec{R_{final}}$, and the observer gain, $\vec{L_{obsH}}$ can be found in \autoref{app:matricesSS}. \fxnote{change redoing simulation}}
+	\caption{Angle response with an increase in the observer gain compared to the final design. The utilized weighted matrices, $\vec{Q_{final}}$ and $\vec{R_{final}}$, and the observer gain, $\vec{L_{obsH}}$ can be found in \autoref{app:matricesSS}.}
 	\label{fig:ssEqObsHigh}
 \end{figure}
 %
