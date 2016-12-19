@@ -14,6 +14,8 @@ The translational controller, along $x_{\mathrm{I}}$, $y\mathrm{_I}$ and $z\math
 
 The rotational speed calculator receives the speeds required by the attitude controller and the sum of speeds requested by the $z\mathrm{_I}$ controller. It combines the five inputs into the four motor rotational speeds applied to the system.
 
+\fxnote{The network should be described, not only when explaining what should be in the chapter, but explained why it is in the figure, like we have done with everything else in the figure.}
+
 %takes into account the rotational speeds that the attitude controller needs in each motor and the sum that is needed to get the desired thrust in the $z_\mathrm{I}$ direction. Then, it combines both to give the final control action that is applied to the system.
 
 This chapter starts by describing the attitude controller followed by the design of the translational controller. In the design process, simulations including the network effects and the model are depicted. The simulations also consider the sampling frequency, which is 28 Hz as described in \autoref{sec:ContDiscrete}.
