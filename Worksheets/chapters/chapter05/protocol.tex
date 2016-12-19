@@ -3,10 +3,9 @@ The transport layer protocol designed must ensure that transmitted packets can b
 
 As real-time features are desired for the quadcopter, the protocol chosen is UDP based. A connection oriented protocol implies a longer packet, retransmissions and a higher computation time, thus increasing the delay. A connectionless protocol is therefore utilized, as it leaves more processor resources available for the controllers.
 
-As the communication is only from the computer to the microcontroller, the protocol does not need a source port or destination addresses, as typically seen in a UDP protocol. Furthermore, it is decided not to change the length of the packet relative to the gathered data. As the length is made constant, only a header is necessary and end sequence is not included. As common in connectionless protocols packet loss is not detected, hereby avoiding implementation of a sequence number in the header of the packet. A checksum, which constitutes the tail of the packet, is considered enough for disregarding corrupted information in the microcontroller.
-
+As the communication is only from the computer to the microcontroller, the protocol does not need a source port or destination addresses, as typically seen in a UDP protocol. Furthermore, it is decided not to change the length of the packet relative to the gathered data. As the length is made constant, only a header is necessary and end sequence is not included. As common in connectionless protocols packet loss is not detected, hereby avoiding implementation of a sequence number in the header of the packet. A checksum, which constitutes the tail of the packet, is considered enough for disregarding corrupted information in the microcontroller.\\
 These considerations simplify the protocol header and tail, compared to UDP, resulting in shorter transmission and computation time. The overall structure of a generated packet is illustrated in \autoref{tab:packetstructure}.
-
+\vspace{-0.2 cm}
 \begin{table}[H]\centering
 \begin{tabular}{|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{2cm}|>{\centering\arraybackslash}m{2cm}|}
 \hline
@@ -16,20 +15,19 @@ Header & Data & Checksum \\
 \caption{The structure of the packet.}
 \label{tab:packetstructure}
 \end{table}
-
-\subsubsection{Header}
+\vspace{-0.5 cm}
+\subsection{Header}
 The header constitutes the start sequence of the packet and it is necessary for the microcontroller to be able to distinguish between transmitted packets and arbitrary data. 
  
 If the header is found in the received data, the microcontroller can then extract the information and checksum as the packet is of a fixed length. 
 
 The header is set to three bytes, where all the bits are set to ones. This consideration ensures the unlikeliness of finding a header in the middle of a packet. This is because it is highly unlikely for the Vicon system to register two of the transmitted variables, which are placed beside each other in the packet, to be all ones at the same time. The header can be seen in \autoref{tab:packetstructure} and \autoref{tab:packetstructure2}.
 
-\subsubsection{Data}
+\subsection{Data}
 The variables transmitted are the attitude, roll, pitch and yaw, the position, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, the position references, $x_{\mathrm{I_{ref}}}$, $y_{\mathrm{I_{ref}}}$ and $z_{\mathrm{I_{ref}}}$, and the translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$. 
-
 \begin{table}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|l|}
         \hline
         Variable      &  Unit       &  Bits     & Range 	   & Resolution 	  & Data $\rightarrow$ Packet $\rightarrow$ Final Data		 \\ \hline
         $\phi$         & rad	 &	8    & $\pm 2.55$ & 0.01 & 0.567... $\xrightarrow[]{\times 100}$ 57$\xrightarrow[]{/ 100}$0.57\\ \hline
@@ -48,7 +46,6 @@ The variables transmitted are the attitude, roll, pitch and yaw, the position, $
     \caption{Overview of the data sent in the protocol, the range, the resolution and an example on how it transmitted.}
     \label{tab:data}
 \end{table}
-
 The roll, pitch and yaw are measured in rad and are contained in a variable of nine bits each in the packet. The first bit is utilized for the sign. The attitude received from the Vicon system, where the maximum values that can be obtained are $\pm\pi$ rad, are multiplied by 100 and rounded to convert them in integers. $\pm\pi$ rad are only measured by the Vicon system if the quadcopter does a turn of 180 degrees. If this occurs in the roll and pitch, it is not possible for the quadcopter to recover from being turned upside down. Therefore, as 8 bits are chosen to send the value, the maximum measured value is 255, that is, 2.55 rad. If the yaw gets bigger than 2.55 rad the error which the controller receives is high, and it can still correct the angle, as yaw is always set to zero, see \autoref{chap:Control}.
 
 The actual position coordinates, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, are measured in milimeters by the Vicon system and are contained in ten bits each. The first bit is the sign bit. By choosing a precision of centimeters, nine bits are sufficient to store the data. With this size, the position values are between $\pm$ 512 yielding a range of more than ten meters. Thus, making it sufficient for the quadcopter as it is operated in the Vicon room, see \autoref{cha:Systemdescription}. The position reference utilizes the same units as the actual position and the same amount of bits for its variables.
@@ -58,7 +55,7 @@ Each translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and 
 All these data, constitutes 15 bytes as shown in \autoref{tab:packetstructure2}.
 
 
-\subsubsection{Checksum}
+\subsection{Checksum}
 If the header is found and the next 15 bytes are extracted to be utilized in the controller, it is not certain that an actual full packet is extracted. As explained earlier, a header can be found in the middle of the packet and arbitrary information is utilized. Furthermore it is possible that the packet is sensitive to noise when transmitted from the computer to the microcontroller and the data therefore gets corrupted. It is necessary to check if the packet contains the correct information. This is done by utilizing a checksum. 
 
 The length of the checksum needs to be a multiple of the length of the data, which is 15 bytes. A big checksum, i.e. five bytes, reduces the probability of accepting an incorrect packet as more bits are involved in checking the packets. The drawback is that the packet size increases and so does the transmission time. On the other hand, having a small checksum, i.e. one byte, requires performing more computations and the chance of acquiring corrupted packets increases. As a compromise between the two approaches, a length of three bytes is chosen. An example of how the checksum is utilized and implemented can be seen in \autoref{tab:checksum}.  

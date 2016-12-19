@@ -1,6 +1,6 @@
 \chapter{Implementation}
 Throughout the design process, the delay in the network has been analyzed, a protocol has been created for the communication and controllers for the attitude, translational velocity and position have been designed. From this the scheduling, being a critical part of the implementation, can be considered. The scheduling handles the timing of receiving and decoding packets while also servicing the control algorithms. For this task a real time operating system is integrated as the base for implementation in the microcontroller.
-
+\\
 To implement the designed controllers, currently described in the continuous domain, they must be transformed to the discrete frequency domain.
 
 In the following section the scheduling is described, followed by a section on implementation of the communication task, the discretization of continuous controllers and a final section describing the implementation of the controllers on the microcontroller.
