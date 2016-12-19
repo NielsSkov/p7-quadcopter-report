@@ -13,13 +13,15 @@ int main()
 {
     ... 
     
-    // Task Creation
+    ////// Task Creation //////
+    //Control Task -> Highest priority
     xTaskCreate(Controllers, "Control", 1000, NULL, configMAX_PRIORITIES - 1, NULL );
+    //Communication Task -> High priority but lower than the Control Task
+	//	&xHandle for stopping the task if it gets interrupted by the Control Task
     xTaskCreate(Comunication, "Com", 1000, NULL, configMAX_PRIORITIES - 2, &xHandle);
-    
     ...
- 
-    // Scheduler Start
+
+    ////// Scheduler Start //////
     vTaskStartScheduler();
     return 0;
 }
