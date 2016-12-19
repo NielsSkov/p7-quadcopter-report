@@ -37,7 +37,7 @@ It is noticeable that, for this design, the variable changed by the controller i
 The bandwidth of the inner attitude control is obtained by making a Bode plot approximation from the pitch angle reference to the real pitch angle in the quadcopter. The obtained Bode diagram is shown in \autoref{fig:bodePitch}. It shows that the bandwidth of the inner loop of 2 rad s$^{-1}$. It has been chosen to set the closed loop bandwidth three times lower than the inner loop. Thus yielding a bandwidth for the velocity control loop of 0.7 rad s$^{-1}$.
 %
 \begin{figure}[H]
-    \includegraphics[scale=.8]{figures/bodePitch}
+    \includegraphics[scale=.7]{figures/bodePitch}
     \centering			
     \captionof{figure}{Attitude control loop Bode diagram.} 
     \label{fig:bodePitch}
@@ -60,7 +60,7 @@ As the plant is a type 1 system, since it contains one integrator, there is no c
 A diagram of a closed loop system with input disturbance can be seen in \autoref{fig:Feedbackloopswithdisturbance}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.7\textwidth]{figures/Feedbackloopswithdisturbance.pdf}
+    \includegraphics[width=.5\textwidth]{figures/Feedbackloopswithdisturbance.pdf}
     \caption{Feedback loops including input disturbance.}
     \label{fig:Feedbackloopswithdisturbance}
 \end{figure}
@@ -90,7 +90,7 @@ It is thereby revealed from \autoref{eq:dc_gain_integrator} that the steady stat
 An integrator is therefore included in the control design. Since there already exists an integral term in the plant, the closed loop system becomes marginally unstable since the branches in the root locus are located on the imaginary axis. In order to move them into the left half plane, a zero at $-0.05$ is added to the controller. Then, the gain is adjusted to reduce the oscillations. The zero placement keeps the required bandwidth and enables the possibility of a non oscillating behavior. The final root locus can be seen in \autoref{fig:rl_xdot}.
 %
 \begin{figure}[H]
-	\includegraphics[scale=.6]{figures/rl_xdot}
+	\includegraphics[scale=.7]{figures/rl_xdot}
 	\centering			
 	\captionof{figure}{Root locus including the plant and the controller for the $x_{\mathrm{I}}$ translational velocity.} 
 	\label{fig:rl_xdot}
@@ -99,7 +99,7 @@ An integrator is therefore included in the control design. Since there already e
 The Bode plot in \autoref{fig:bodeVelocity} shows that the final bandwidth of the closed loop system is at the desired 0.7 rad s$^-1$.
 %
 \begin{figure}[H]
-	\includegraphics[scale=.8]{figures/bodeVelocity}
+	\includegraphics[scale=.7]{figures/bodeVelocity}
 	\centering			
 	\captionof{figure}{Closed loop Bode of the plant and the controller for the $x_{\mathrm{I}}$ translational velocity.} 
 	\label{fig:bodeVelocity}
@@ -132,14 +132,13 @@ G_{y_{\mathrm{I}}}&=\frac{y_{\mathrm{I}} }{\dot{y}_{\mathrm{I}} }=\frac{1}{s}  \
 A proportional controller is considered sufficient to control the position of the quadcopter in the x direction as there is an integrator in the plant and the input disturbances are considered in the inner loop.
 
 The proportional gain is chosen so that the bandwidth of the position loop is three times lower than that of the velocity loop. This defines it to be around 0.23 rad s$^-1$. To set this bandwidth, the Bode plot of the plant shown in \autoref{fig:bodePosition} is used. The distance between the gain curve and the 0 dB level at 0.23 rad s$^-1$ sets the gain of the controller to be 0.3.
-%
 \begin{figure}[H]
-	\includegraphics[scale=.7]{figures/bodePosition}
+	\includegraphics[scale=0.65]{figures/bodePosition}
 	\centering			
 	\captionof{figure}{Position open loop transfer function Bode diagram for the translational $x_{\mathrm{I}}$ direction.} 
 	\label{fig:bodePosition}
 \end{figure}
-%
+\vspace{-0.8 cm}
 The final expression for the translational position controllers can be seen in \autoref{eq:Cx} and \ref{eq:Cy}. In this case, both $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ controllers are equal.
 %
 \begin{flalign}

@@ -7,7 +7,7 @@ In \autoref{fig:ssFinalEq}, the simulated angle response of the final attitude c
 %
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{figures/ssFinalEq.pdf}
+	\includegraphics[scale=0.75]{figures/ssFinalEq.pdf}
 	\caption{System response of the attitude controller, with initial conditions of $0.2$ rad for the pitch, $-0.3$ rad for the roll and $-0.2$ rad for the yaw. The weighted matrices, $\vec{Q_{final}}$ and $\vec{R_{final}}$, and the observer gain, $\vec{L_{obs}}$, are utilized for the final design and can be found in \autoref{app:matricesSS}.}
 	\label{fig:ssFinalEq}
 \end{figure}
@@ -15,25 +15,24 @@ In \autoref{fig:ssFinalEq}, the simulated angle response of the final attitude c
 It can be seen from \autoref{fig:ssFinalEq} that it approximately takes $2.5$ \si{s} for the pitch and roll to settle at 0 rad, where it only takes approximately $1.4$-$1.5$ \si{s} for the yaw.
 
 In \autoref{fig:ssObsFinal}, the estimation for the angular velocities, done with the same conditions as in \autoref{fig:ssFinalEq}, is depicted. To be able to evaluate the observer's estimation (red line), it is compared with the actual angular velocity (blue line). 
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{figures/ssObsFinal.pdf}
+	\includegraphics[scale=0.6]{figures/ssObsFinal.pdf}
 	\caption{The three figures shows the estimation of the angular velocities made by the implemented observer. The simulations initial conditions for roll, pitch and yaw are identical to the simulation in \autoref{fig:ssFinalEq}. The utilized weighted matrices, $\vec{Q_{final}}$ and $\vec{R_{final}}$, and the observer gain, $\vec{L_{obs}}$, can be found in \autoref{app:matricesSS}.}
 	\label{fig:ssObsFinal}
 \end{figure}
-%
+\vspace{-0.8 cm}
 The estimations' large spikes in the beginning of the responses in \autoref{fig:ssObsFinal} are due to the initial conditions for the angles. The large gap between the actual and the estimation, is due to multiple factors. The main issue is the convergence of the estimate to the real value as the dynamics of the observer do not allow an instantaneous estimation. Also, the delay and sampling frequency affect the estimation, creating the spikes seen in the plot. %Furthermore the observer utilizes the created model for the quadcopter, see \autoref{chap:Model}. As the model is not a perfect replica of how the system behaves in reality, errors are unavoidable. The small triangular spikes are both due to the sampling rate and the integrator in the observer. Each time the observer receives new angles the steep increase or decrease occur. As there is an integrator in the observer the estimation either decreases or increases until new angles is received $35$ \si{ms} later.
-
-A step response of the roll is shown in \autoref{fig:ssFinalStep}. As the roll and the pitch are implemented identically, the step response of the two are similar. Additionally, the yaw is not illustrated as the reference is set to zero. It is therefore only desired to discover how the roll and pitch track a reference. 
 %
+
+A step response of the roll is shown in \autoref{fig:ssFinalStep}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{figures/ssFinalStep.pdf}
+	\includegraphics[scale=0.59]{figures/ssFinalStep.pdf}
 	\caption{An step response of the final system. This illustrates only the behavior of the roll, as the yaw is always set to zero and the pitch would be identical to the roll. The utilized weighted matrices, $\vec{Q_{final}}$ and $\vec{R_{final}}$, and the observer gain, $\vec{L_{obs}}$, can be found in \autoref{app:matricesSS}.}
 	\label{fig:ssFinalStep}
 \end{figure}
-%
+As the roll and the pitch are implemented identically, the step response of the two are similar. Additionally, the yaw is not illustrated as the reference is set to zero. It is therefore only desired to discover how the roll and pitch track a reference. \\
 The system is subjected to a step input reference of \SI{1}{m s^{-1}}. With an error band of 5 \%, the settling time is approximately $1.5$ s and the overshoot is less than 5 \%.
 
 To illustrate the reasoning followed through the design process, two more simulations are shown, where the controller and observer matrices are changed one at a time, so that it is possible to compare the different simulations with the final design and discuss why the final parameters are chosen.
@@ -63,4 +62,4 @@ The observer gain, $\vec{L_{obsH}}$, utilized for the simulation in  \autoref{fi
 From the simulations in \autoref{fig:ssEqBad} and \ref{fig:ssEqObsHigh} it is evident that an increase in gain in either the state feedback or in the observer is not desired compared to the final design.
 
 The final attitude controller is therefore a compromise between a fast system, with oscillating behavior, and a slower system without oscillating behavior.
-
+\newpage
