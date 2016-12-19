@@ -14,7 +14,7 @@ The translational controller, along $x_{\mathrm{I}}$, $y\mathrm{_I}$ and $z\math
 
 The rotational speed calculator receives the speeds required by the attitude controller and the sum of speeds requested by the $z\mathrm{_I}$ controller. It combines the five inputs into the four motor rotational speeds applied to the system.
 
-\fxnote{The network should be described, not only when explaining what should be in the chapter, but explained why it is in the figure, like we have done with everything else in the figure.}
+The last block in \autoref{fig:ControlHeadDiagram} is the network. This is necessary to consider when designing controllers utilized with a network distributed system. As the distributed network can include delay and missed packets, also described in \autoref{ch:Network}. 
 
 %takes into account the rotational speeds that the attitude controller needs in each motor and the sum that is needed to get the desired thrust in the $z_\mathrm{I}$ direction. Then, it combines both to give the final control action that is applied to the system.
 

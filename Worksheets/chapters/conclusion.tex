@@ -14,13 +14,11 @@
 %
 %
 
-The focus of this project has been to control the attitude and position of a quadcopter when using an external motion tracking system to obtain attitude and position.
+The focus of this project has been to design a linear control system for the attitude and position of a quadcopter when using an external motion tracking system as sensor.
 
-Since this feature constitutes an networked distributed system, time delays are introduced on the sensor data, challenging the stability of the quadcopter.
+Since this feature constitutes an networked distributed system, time delays are introduced on the received data, affecting the stability of the quadcopter.
 
-The behavior of the quadcopter has been modeled by first principles modeling and a linear control system has been designed to control the attitude and position of the quadcopter.
-
-The control system has been split into attitude and translational controllers, which have been designed considering the main network effects. The attitude controller has been designed using a state space approach, including state feedback with integral control using LQR and a reduced order observer. The translational control system has been designed by means of classical control methods, yielding a cascaded structure including P and PI controllers. 
+The system's dynamics have been modeled by first principles modeling describing the relation between the rotational speed of the motors and the thrust and drag torques, the attitude behavior and the translational behavior. Based on the model, a linear control system has been designed to control the attitude and position of the quadcopter. The control system has been split into attitude and translational controllers, which have been designed considering the main network effects. The attitude controller has been designed using a state space approach, including state feedback with integral control using LQR and a reduced order observer. The translational control system has been designed by means of classical control methods, yielding a cascaded structure including P and PI controllers. 
 
 The results show that the design for both the attitude and the translational behavior is able to control the quadcopter in simulation. Moreover, the implementation and tests of the attitude controller have been carried out on the quadcopter successfully. 
 

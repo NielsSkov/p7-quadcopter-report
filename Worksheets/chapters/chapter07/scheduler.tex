@@ -15,8 +15,10 @@ int main()
     
     ////// Task Creation //////
     //Control Task -> Highest priority
+	// xTaskCreate(FunctionForTask,DebugName,AllocatedStackDepth,Parameters,Priority,TaskHandle)
     xTaskCreate(Controllers, "Control", 1000, NULL, configMAX_PRIORITIES - 1, NULL );
     //Communication Task -> High priority but lower than the Control Task
+    // xTaskCreate(FunctionForTask,DebugName,AllocatedStackDepth,Parameters,Priority,TaskHandle)
 	//	&xHandle for stopping the task if it gets interrupted by the Control Task
     xTaskCreate(Comunication, "Com", 1000, NULL, configMAX_PRIORITIES - 2, &xHandle);
     ...
@@ -32,8 +34,8 @@ Once the task scheduler is started the program never returns to main again. The 
 In \autoref{fig:timingDiagram} a timing diagram is shown, but since package reception is not synchronized with the periodic control task, this is just an example.
 
 \begin{figure}[H]
-    \includegraphics[width =.7\textwidth]{figures/timingDiagram}
-    \centering			
+    \flushleft
+    \includegraphics[width =.95\textwidth]{figures/timingDiagram}	
     \caption{An example of task execution schedule. The control task is periodic and the packages can arrive at different instances.} 
     \label{fig:timingDiagram}
 \end{figure}
