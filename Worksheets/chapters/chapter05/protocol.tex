@@ -16,14 +16,14 @@ Header & Data & Checksum \\
 \label{tab:packetstructure}
 \end{table}
 \vspace{-0.5 cm}
-\subsubsection{Header}
+\subsection{Header}
 The header constitutes the start sequence of the packet and it is necessary for the microcontroller to be able to distinguish between transmitted packets and arbitrary data. 
  
 If the header is found in the received data, the microcontroller can then extract the information and checksum as the packet is of a fixed length. 
 
 The header is set to three bytes, where all the bits are set to ones. This consideration ensures the unlikeliness of finding a header in the middle of a packet. This is because it is highly unlikely for the Vicon system to register two of the transmitted variables, which are placed beside each other in the packet, to be all ones at the same time. The header can be seen in \autoref{tab:packetstructure} and \autoref{tab:packetstructure2}.
 
-\subsubsection{Data}
+\subsection{Data}
 The variables transmitted are the attitude, roll, pitch and yaw, the position, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, the position references, $x_{\mathrm{I_{ref}}}$, $y_{\mathrm{I_{ref}}}$ and $z_{\mathrm{I_{ref}}}$, and the translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$. 
 \begin{table}[H]
     \centering
@@ -55,7 +55,7 @@ Each translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and 
 All these data, constitutes 15 bytes as shown in \autoref{tab:packetstructure2}.
 
 
-\subsubsection{Checksum}
+\subsection{Checksum}
 If the header is found and the next 15 bytes are extracted to be utilized in the controller, it is not certain that an actual full packet is extracted. As explained earlier, a header can be found in the middle of the packet and arbitrary information is utilized. Furthermore it is possible that the packet is sensitive to noise when transmitted from the computer to the microcontroller and the data therefore gets corrupted. It is necessary to check if the packet contains the correct information. This is done by utilizing a checksum. 
 
 The length of the checksum needs to be a multiple of the length of the data, which is 15 bytes. A big checksum, i.e. five bytes, reduces the probability of accepting an incorrect packet as more bits are involved in checking the packets. The drawback is that the packet size increases and so does the transmission time. On the other hand, having a small checksum, i.e. one byte, requires performing more computations and the chance of acquiring corrupted packets increases. As a compromise between the two approaches, a length of three bytes is chosen. An example of how the checksum is utilized and implemented can be seen in \autoref{tab:checksum}.  

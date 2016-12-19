@@ -80,9 +80,10 @@ The results of the first test can be seen in \autoref{fig:attitudeAccept}, where
 	\label{fig:attitudeAccept}
 \end{figure} 
 %
-The three angles start with an initial condition, -0.2 rad for roll, 0.3 rad for pitch and -0.2 rad for yaw. After approximately five seconds, all the references are set to zero. It can be seen that the roll and pitch angles converge to zero in less than 2 s and the yaw angle in approximately 7 s. From the figure, it can be seen that oscillations of approximately 0.04 rad occur around the stabilization point of 0 rad. These oscillations likely originate from dynamics of the real system not captured by the model, as the utilized parameters for the model could be different from those of the real system. 
+The three angles start with an initial condition, $-0.2$ rad for roll, $0.3$ rad for pitch and $-0.2$ rad for yaw. After approximately five seconds, all the references are set to zero. It can be seen that the roll and pitch angles converge to zero in less than 2 s and the yaw angle in approximately 7 s. From the figure, it can be seen that oscillations of approximately 0.04 rad occur around the stabilization point of 0 rad. These oscillations likely originate from dynamics of the real system not captured by the model, as the utilized parameters for the model could be different from those of the real system. Effects imposed by the test setup are considered in \autoref{app:AttitudeControllerTest}.
 
-The response of the controller when tracking a reference in roll is seen in \autoref{fig:AccepttestRefTrackRoll}. The step is given at approximately 10 s.
+The response of the controller when tracking a reference in roll is seen in \autoref{fig:AccepttestRefTrackRoll}.
+
 \begin{figure}[H]
 	\includegraphics[scale=.7]{figures/AccepttestRefTrackRoll.pdf}
 	\centering			
@@ -92,7 +93,8 @@ The response of the controller when tracking a reference in roll is seen in \aut
 
 It can be seen that the reference is tracked and there is no steady state error, there are oscillations of around 0.04 rad also seen in the stabilization of the quadcopter seen in \autoref{fig:attitudeAccept}.
 
-In \autoref{fig:AccepttestRefTrackPitch} a reference of 0.4 rad in pitch is given to the attitude controller at approximately 10 s.
+In \autoref{fig:AccepttestRefTrackPitch} a reference of 0.4 rad in pitch is given to the attitude controller.
+
 \begin{figure}[H]
     \includegraphics[scale=.7]{figures/AccepttestRefTrackPitch.pdf}
     \centering			
@@ -147,7 +149,8 @@ From the figure, it can be seen that it is possible for the controller to track 
 %\textit{It shall be possible to make the quadcopter control its position in the z axis.}
 
 %\textbf{Results:}
-Experimental tests reveal a non functional $z_{\mathrm{I}}$ controller implementation. However, the design has been tested in simulation, including the network effects, as depicted in \autoref{sec:TranslationalController}. As the implementation of the attitude controller has been achieved in experimental tests, seen in \autoref{sec:accepttestAttitude}, it is reasonable that the design could be successfully implemented on the quadcopter.
+Experimental tests reveal a non-functional $z_{\mathrm{I}}$ controller implementation. However, the design has been tested in simulation, including the network effects, as depicted in \autoref{sec:TranslationalController}. 
+%As the implementation of the attitude controller has been achieved in experimental tests, seen in \autoref{sec:accepttestAttitude}, it is reasonable that the design could be successfully implemented on the quadcopter.
 
 
 % works as well, it is a matter of time to solve the implementation issues. 
@@ -157,7 +160,8 @@ Experimental tests reveal a non functional $z_{\mathrm{I}}$ controller implement
 %\textit{It shall be possible to control the quadcopter in the x and y axis}
 %
 %\textbf{Results:}
-Experimental tests reveal a non functional $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ controller implementation. However, it is believed that the designed is valid as it has been verified in simulations as depicted in \autoref{sec:TranslationalController}. As the implementation of the attitude controller functions in experimental tests, seen in \autoref{sec:accepttestAttitude}, it can be suggested that a simulated controller design could be implemented on the quadcopter and work if more time was given.
+As in the case of the previous requirement, experimental tests reveal a non-functional $x_{\mathrm{I}}$ and $y_{\mathrm{I}}$ controllers implementation. However, it is believed that the designed is valid as it has been verified in simulations as depicted in \autoref{sec:TranslationalController}.
+% As the implementation of the attitude controller functions in experimental tests, seen in \autoref{sec:accepttestAttitude}, it can be suggested that a simulated controller design could be implemented on the quadcopter and work if more time was given.
 
 
 %\section{Summary of Results}
