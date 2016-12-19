@@ -6,12 +6,14 @@ The communication task is used to receive the data in the microcontroller from t
                 label=lst:communication]
 void Communication(void *pvParameters)
 {
+	int pack = 0; // Check if a valid package arrived
     while (1)
     {
-        int pack = 0;
+	    pack=0;
+	    //CheckPackageArrival() returns true if a valid header is detected
         pack = CheckPackageArrival();
         if (pack)
-            GetPackage();
+            GetPackage(); // This function decodes the packet.
     }
     vTaskDelete(NULL);
 }
