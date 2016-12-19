@@ -24,28 +24,41 @@ If the header is found in the received data, the microcontroller can then extrac
 The header is set to three bytes, where all the bits are set to ones. This consideration ensures the unlikeliness of finding a header in the middle of a packet. This is because it is highly unlikely for the Vicon system to register two of the transmitted variables, which are placed beside each other in the packet, to be all ones at the same time. The header can be seen in \autoref{tab:packetstructure} and \autoref{tab:packetstructure2}.
 
 \subsection{Data}
-The variables transmitted are the attitude, roll, pitch and yaw, the position, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, the position references, $x_{\mathrm{I_{ref}}}$, $y_{\mathrm{I_{ref}}}$ and $z_{\mathrm{I_{ref}}}$, and the translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$. 
+The variables transmitted are the attitude, roll, pitch and yaw, the position, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, the position references, $x_{\mathrm{I_{ref}}}$, $y_{\mathrm{I_{ref}}}$ and $z_{\mathrm{I_{ref}}}$, and the calculated translational velocities, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$. 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|c|l|}
+    \begin{tabular}{|c|c|c|c|c|ccccc|}
         \hline
-        Variable      &  Unit       &  Bits     & Range 	   & Resolution 	  & Data $\rightarrow$ Packet $\rightarrow$ Final Data		 \\ \hline
-        $\phi$         & rad	 &	8    & $\pm 2.55$ & 0.01 & 0.567... $\xrightarrow[]{\times 100}$ 57$\xrightarrow[]{/ 100}$0.57\\ \hline
-        $\theta$       & rad	&	8    & $\pm 2.55$ & 0.01 & 0.853... $\xrightarrow[]{\times 100}$ 85$\xrightarrow[]{/ 100}$0.85\\ \hline
-        $\psi$         & rad	&	8    & $\pm 2.55$ & 0.01 & 2.532... $\xrightarrow[]{\times 100}$ 253$\xrightarrow[]{/ 100}$2.53\\ \hline
-        $x_{\mathrm{I}}$         & mm	&  9  & $\pm 5110$ & 10  & 122.23... $\xrightarrow[]{/ 10}$ 12$\xrightarrow[]{\times 10}$120\\ \hline
-        $y_{\mathrm{I}}$         & mm	&9	    & $\pm 5110$ & 10 & 5020.36... $\xrightarrow[]{/ 10}$ 502$\xrightarrow[]{\times 10}$5020\\ \hline
-        $z_{\mathrm{I}}$         & mm	&   9     & $\pm 5110$ & 10 & 1056.89... $\xrightarrow[]{/ 10}$ 106$\xrightarrow[]{\times 10}$1060\\ \hline
-        $x_{\mathrm{I_{ref}}}$     & mm	&9	    & $\pm 5110$ & 10 & 104.23... $\xrightarrow[]{/ 10}$ 10$\xrightarrow[]{\times 10}$100\\ \hline
-        $y_{\mathrm{I_{ref}}}$     & mm	& 9   & $\pm 5110$ & 10 &  1056.89... $\xrightarrow[]{/ 10}$ 106$\xrightarrow[]{\times 10}$1060\\ \hline
-        $z_{\mathrm{I_{ref}}}$     & mm 	&9	    & $\pm 5110$ & 10 & 1056.89... $\xrightarrow[]{/ 10}$ 106$\xrightarrow[]{\times 10}$1060\\ \hline
-        $\dot{x}_{\mathrm{I}}$ (calculated)  & mm s$^{-1}$		 &  10 & $\pm 10230$ & 10 & 10001.89... $\xrightarrow[]{/ 10}$ 1000$\xrightarrow[]{\times 10}$10000\\ \hline
-        $\dot{y}_{\mathrm{I}}$ (calculated)  & 	mm s$^{-1}$	&  10  & $\pm 10230$ & 10 & 5642.96... $\xrightarrow[]{/ 10}$ 564$\xrightarrow[]{\times 10}$5640\\ \hline
-        $\dot{z}_{\mathrm{I}}$ (calculated)  & 	mm s$^{-1}$	&  10  & $\pm 10230$ & 10 & 300.89... $\xrightarrow[]{/ 10}$ 30$\xrightarrow[]{\times 10}$300\\ \hline        
+        \multirow{2}{*}{}      &  \multirow{2}{*}{Unit}       &  \multirow{2}{*}{Bits}     & \multirow{2}{*}{Range} 	   & \multirow{2}{*}{Resolution} 	  & \multirow{2}{*}{Data}& \multirow{2}{*}{$\rightarrow$}& \multirow{2}{*}{Packet}& \multirow{2}{*}{$\rightarrow$}& Final\\
+          & & & & & & & & & Data	 \\ \hline
+        $\phi$         & rad	 &	8    & $\pm 2.55$ & 0.01 & 0.567... &$\xrightarrow[]{\times 100}$& 57&$\xrightarrow[]{\times 0.01}$&0.57\\ \hline
+        $\theta$       & rad	&	8    & $\pm 2.55$ & 0.01 & 0.853... &$\xrightarrow[]{\times 100}$& 85&$\xrightarrow[]{\times 0.01}$&0.85\\ \hline
+        $\psi$         & rad	&	8    & $\pm 2.55$ & 0.01 & 2.532... &$\xrightarrow[]{\times 100}$& 253&$\xrightarrow[]{\times 0.01}$&2.53\\ \hline
+        $x_{\mathrm{I}}$         & mm	&  9  & $\pm 5110$ & 10  & 122.23...& $\xrightarrow[]{\times 0.1}$& 12&$\xrightarrow[]{\times 0.01}$&120\\ \hline
+        $y_{\mathrm{I}}$         & mm	&9	    & $\pm 5110$ & 10 & 5020.36...& $\xrightarrow[]{\times 0.1}$& 502&$\xrightarrow[]{\times 0.01}$&5020\\ \hline
+        $z_{\mathrm{I}}$         & mm	&   9     & $\pm 5110$ & 10 & 1056.89...&$\xrightarrow[]{\times 0.1}$& 106&$\xrightarrow[]{\times 10}$&1060\\ \hline
+        $x_{\mathrm{I_{ref}}}$     & mm	&9	    & $\pm 5110$ & 10 & 104.23... &$\xrightarrow[]{\times 0.1}$& 10&$\xrightarrow[]{\times 10}$&100\\ \hline
+        $y_{\mathrm{I_{ref}}}$     & mm	& 9   & $\pm 5110$ & 10 &  1056.89... &$\xrightarrow[]{\times 0.1}$& 106&$\xrightarrow[]{\times 10}$&1060\\ \hline
+        $z_{\mathrm{I_{ref}}}$     & mm 	&9	    & $\pm 5110$ & 10 & 1056.89... &$\xrightarrow[]{\times 0.1}$& 106&$\xrightarrow[]{\times 10}$&1060\\ \hline
+        $\dot{x}_{\mathrm{I}}$  & mm s$^{-1}$		 &  10 & $\pm 10230$ & 10 & 10001.89...& $\xrightarrow[]{\times 0.1}$& 1000&$\xrightarrow[]{\times 10}$&10000\\ \hline
+        $\dot{y}_{\mathrm{I}}$  & 	mm s$^{-1}$	&  10  & $\pm 10230$ & 10 & 5642.96... &$\xrightarrow[]{\times 0.1}$& 564&$\xrightarrow[]{\times 10}$&5640\\ \hline
+        $\dot{z}_{\mathrm{I}}$  & 	mm s$^{-1}$	&  10  & $\pm 10230$ & 10 & 300.89... &$\xrightarrow[]{\times 0.1}$& 30&$\xrightarrow[]{\times 10}$&300\\ \hline        
     \end{tabular}
     \caption{Overview of the data sent in the protocol, the range, the resolution and an example on how it transmitted.}
     \label{tab:data}
 \end{table}
+\begin{table}[H]
+    \begin{tabular}{|l|l|}
+        \hline %-----------------------------------------------------------------------------------
+        \multirow{2}{2cm}{Some Text}  & \LaTeX                      \\
+        & \LaTeX                         \\
+        \hline %-----------------------------------------------------------------------------------
+    \end{tabular}
+    \caption{This Is a Table}
+\end{table}
+Chat Conversation End
+Seen by Amalie
+
 The roll, pitch and yaw are measured in rad and are contained in a variable of nine bits each in the packet. The first bit is utilized for the sign. The attitude received from the Vicon system, where the maximum values that can be obtained are $\pm\pi$ rad, are multiplied by 100 and rounded to convert them in integers. $\pm\pi$ rad are only measured by the Vicon system if the quadcopter does a turn of 180 degrees. If this occurs in the roll and pitch, it is not possible for the quadcopter to recover from being turned upside down. Therefore, as 8 bits are chosen to send the value, the maximum measured value is 255, that is, 2.55 rad. If the yaw gets bigger than 2.55 rad the error which the controller receives is high, and it can still correct the angle, as yaw is always set to zero, see \autoref{chap:Control}.
 
 The actual position coordinates, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, are measured in milimeters by the Vicon system and are contained in ten bits each. The first bit is the sign bit. By choosing a precision of centimeters, nine bits are sufficient to store the data. With this size, the position values are between $\pm$ 512 yielding a range of more than ten meters. Thus, making it sufficient for the quadcopter as it is operated in the Vicon room, see \autoref{cha:Systemdescription}. The position reference utilizes the same units as the actual position and the same amount of bits for its variables.
