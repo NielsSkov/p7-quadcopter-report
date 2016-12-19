@@ -115,7 +115,7 @@ oint_k[i] = T / 2 * (o_k[i] + o_k1[i]) + oint_k1[i]; // Observer integrator
 
 \end{lstlisting}
 
-The function \lstinline[style=customcppinline]{ApplyVelocities()}, seen in \autoref{lst:controllerTask}, is in charge of mixing the control action of the attitude controller with the one coming from the $z_{\mathrm{I}}$ controller. Then the duties that correspond to the desired rotational speeds of the motor is calculated using the information of \autoref{app:duty} and the PWM signal is sent to the motor controllers.
+The function \lstinline[style=customcppinline]{ApplyVelocities()}, seen in \autoref{lst:controllerTask}, is in charge of mixing the control action of the attitude controller with the one coming from the $z_{\mathrm{I}}$ controller. Then the duties that correspond to the desired rotational speeds of the motor are calculated using the information of \autoref{app:duty} and the PWM signal is sent to the motor controllers.
 
 
 
