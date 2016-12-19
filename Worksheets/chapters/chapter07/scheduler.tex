@@ -1,9 +1,9 @@
 \section{Scheduler}\label{sec:Scheduler}
-Only two tasks are running on the microcontroller, the control algorithm and the communication. The handling of these tasks is however critical. The Vicon system frequency sets a limit for the rate at which the control algorithms can be executed. It is also desirable for the control task to be executed periodically, and at any other time, the microcontroller should listen for new data on the network.
+Only two tasks are running on the microcontroller, the control algorithm and the communication. The handling of these tasks is however critical. The Vicon system frequency sets a limit for the rate at which the control algorithms can be executed. It is also desirable for the control task to be executed periodically, and at any other time, the microcontroller should listen for new data on the network. Furthermore, the transmission and the control task are not synchronized.
 
 A scheduler can handle priorities and timing of tasks, for this purpose a real time operating system (RTOS) is used, called FreeRTOS \cite{freeRtos}. The capabilities of this RTOS ranges beyond the needs in this project, but provides the necessary tools, and constitutes a flexible base with room for future development.
 
-In \autoref{lst:scheduler} the two main tasks are created using \lstinline[style=customcppinline]{xTaskCreate()} with appropriate priorities and the task scheduler is started with \lstinline[style=customcppinline]{vTaskStartScheduler()}.
+In \autoref{lst:scheduler} the two main tasks are created using \lstinline[style=customcppinline]{xTaskCreate()} and the task scheduler is started with \lstinline[style=customcppinline]{vTaskStartScheduler()}.
 
 \begin{lstlisting}[style=customcpp,
                     caption={Code for initialization, creation of the different tasks, start sequence for the motors and call to the scheduler.}, 
@@ -12,25 +12,29 @@ int main()
 {
     ... 
     
-    ////// Task Creation //////
-    //Control Task -> Highest priority
-	// xTaskCreate(FunctionForTask,DebugName,AllocatedStackDepth,Parameters,Priority,TaskHandle)
-    xTaskCreate(Controllers, "Control", 1000, NULL, configMAX_PRIORITIES - 1, NULL );
-    //Communication Task -> High priority but lower than the Control Task
+    // Task Creation
     // xTaskCreate(FunctionForTask,DebugName,AllocatedStackDepth,Parameters,Priority,TaskHandle)
-	//	&xHandle for stopping the task if it gets interrupted by the Control Task
-    xTaskCreate(Comunication, "Com", 1000, NULL, configMAX_PRIORITIES - 2, &xHandle);
+    
+    // Control Task -> Highest priority
+    xTaskCreate(Controllers, "Control", 1000, NULL, configMAX_PRIORITIES - 1, NULL );
+    
+    // Communication Task 
+    // xHandle is used for resetting the task if it gets preempted by the Control Task
+    xTaskCreate(Communication, "Com", 1000, NULL, configMAX_PRIORITIES - 2, &xHandle);
+    
     ...
 
-    ////// Scheduler Start //////
+    // Scheduler Start 
     vTaskStartScheduler();
     return 0;
 }
 \end{lstlisting}
 
-Once the task scheduler is started the program never returns to main again. The scheduler has a configurable tick-rate, set to \SI{1}{ms}, which it uses to schedule and time tasks. The RTOS is set up to run with preemption, such that the higher priority task, \lstinline[style=customcppinline]{Control}, can preempt the lower priority, \lstinline[style=customcppinline]{Com}, in order to achieve a periodic execution of the control algorithms. Since the XBee always sends data, whenever ready, out on the RX-pin of the microcontroller, data will be lost if the communication is preempted while data is on RX. This happens at \SI{105}{ms} in \autoref{fig:timingDiagram} where a timing diagram is shown. Since package reception is not synchronized with the periodic control task, this is however just an example.\\
-To make sure that there is always new data available for each execution of the control task, the execution frequency is chosen low enough such that at least one package is received in each period.\\
-At \SI{35}{ms} in \autoref{fig:timingDiagram}, the data decoding is preempted by the control task. Since the data is already stored, decoding the package is continued by the scheduler after servicing the control task, and the data will be ready for use at next control cycle.
+Once the task scheduler is started the program never returns to main again. The scheduler has a configurable tick-rate, set to \SI{1}{ms}, which it uses for scheduling and timing tasks. The RTOS is set up to run with preemption, such that the higher priority task, \lstinline[style=customcppinline]{Control}, can preempt the lower priority, \lstinline[style=customcppinline]{Com}, in order to achieve a periodic execution of the control algorithms. The handle \lstinline[style=customcppinline]{xHandle} is used to resets the communication task if it is preempted while reading data. Since the XBee always sends data, whenever ready, out on the RX-pin of the microcontroller, data will be lost if the communication is preempted while data is on RX. In \autoref{fig:timingDiagram} an example of task occurrences in the microcontroller is shown. In this case, the preemption of the communication task happens at \SI{105}{ms}.
+
+To make sure that there is always new data available for each execution of the control task, the execution frequency is chosen low enough such that at least one package is received in each period.
+
+At \SI{35}{ms} in \autoref{fig:timingDiagram}, the data decoding is preempted by the control task. Since the data is already stored, decoding the package is continued by the scheduler after servicing the control task, and the data will be ready for use at the next control cycle.
 
 \begin{figure}[H]
     \flushleft

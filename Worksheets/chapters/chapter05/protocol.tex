@@ -27,7 +27,7 @@ The header is set to three bytes, where all the bits are set to ones. This consi
 The variables transmitted are the attitude, roll, pitch and yaw, the position, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$, the position references, $x_{\mathrm{I_{ref}}}$, $y_{\mathrm{I_{ref}}}$ and $z_{\mathrm{I_{ref}}}$, and the translational velocity, $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$ and $\dot{z}_{\mathrm{I}}$. 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|l|}
         \hline
         Variable      &  Unit       &  Bits     & Range 	   & Resolution 	  & Data $\rightarrow$ Packet $\rightarrow$ Final Data		 \\ \hline
         $\phi$         & rad	 &	8    & $\pm 2.55$ & 0.01 & 0.567... $\xrightarrow[]{\times 100}$ 57$\xrightarrow[]{/ 100}$0.57\\ \hline

@@ -2,15 +2,16 @@
 %It must be tested if the designed networked control system complies with the functional requirements mentioned in \autoref{ch:functionalRequirements}. 
 The capabilities of the design carried out in this project have been tested in order to asses them in relation to the functional requirements stated in \autoref{ch:functionalRequirements}. 
 %\subsection*{Functional Requirements Overview}
-For the sake of repetition, these requirements are stated below.
+For the sake of convenience, these are stated below.
 \begin{enumerate}[label=\textbf{\arabic*})]
 \item {The quadcopter should be able to receive its own position and attitude from the Vicon system, through a computer at the ground station.}
 \item {It shall be possible to control the quadcopter's attitude.}
-\item {It shall be possible to control the position in the z axis.}
+\item {It shall be possible to control the quadcopter's position in the z axis.}
 \item {It shall be possible to control the quadcopter's position in the x and y axes.}
 \end{enumerate}
 
-\section{Utilize New Sensor Data in Each Control Loop}\label{sec:NetworkTest}
+
+\section{Communication Test}\label{sec:NetworkTest}
 %\textbf{Requirement:}
 %\textit{The quadcopter should be able to receive its own position and attitude from the Vicon system each control loop, through a computer at the ground station.}
 
@@ -22,14 +23,14 @@ For the sake of repetition, these requirements are stated below.
 %	\end{description}
 
 %\textbf{Procedure:}\\
-The protocol designed and the scheduling have been tested following the procedure below.
+The designed protocol and the scheduling have been tested following the procedure below.
 \begin{enumerate}
-	\item Enable the computer, utilizing MATLAB, to transmit 10000 packets to the microcontroller.
+	\item Transmit 10000 packets from MATLAB to the microcontroller.
 	%\item The data in the first transmitted packet consist of zeros, hereafter the data in each packet is incremented. The last packet will then contain the number 999. 
     %\item In every control loop the data which is utilized should be compared to the data utilized in the loop before. If the data is not identical a counter should be incremented.
     \item Implement the program in the microcontroller so two counters are enabled when the first of the 10000 packets arrives. One of the counters should count control loops and the other should count correct decoded packets.
 	\item When the last packet arrives both counters should be stopped and their values should be transmitted back to the computer. 
-	\item The comparison between the number of control loops executed and corrected decoded packets gives an estimate of the probability of missing packets.
+	\item The comparison between the number of control loops executed and correctly decoded packets gives an estimate of the probability of missed packets.
 %    \item The comparison should only take place if the communication task register a packet containing data which is less or equal to than 999.
 %	\item The first packet consisting of zeros should not be compared to an old packets (as there is none) but is instead compared to the number 1001. 
 %	\item The counter, which is incremented each time the data utilized in the control loop is not identical to the previous, should be transmitted back to the computer when the computer is done transmitting.
@@ -39,7 +40,7 @@ The protocol designed and the scheduling have been tested following the procedur
 \textbf{Results:}
 
 The obtained results are presented in \autoref{tab:AccTestCom}.
-\begin{table}[]
+\begin{table}[H]
     \centering
     \begin{tabular}{|c|c|}
         \hline
@@ -48,68 +49,38 @@ The obtained results are presented in \autoref{tab:AccTestCom}.
        4477 &  4651\\ \hline
        4354 &  4484\\ \hline
     \end{tabular}
-    \caption{Results from the network test.}
+    \caption{Results from the communication test, showing the number of control loop executed and packets correctly decoded when sending 10000 packets are sent.}
         \label{tab:AccTestCom}
 \end{table}
 
-It can be seen that, out of 10000 packets, less than half of them are correctly decoded in the microcontroller. This happens due to the control task having higher priority than the communication task. When a control loop is being executed, the microcontroller does not listen for new messages. However, missing these packets does not affect the performance as long a new packet arrives in the listening period.
+It is seen that, out of 10000 packets, less than half of them are correctly decoded in the microcontroller. This happens due to the control task having higher priority than the communication task. When a control loop is being executed, the microcontroller does not listen for new messages. However, missing these packets does not affect the performance as long a new packet arrives in the listening period.
 
 The test reveals that more packages are correctly received and decoded than control loops are executed. This suggests that the vast majority of control loops run with the most recent information and that all packets received in the listening period are received and decoded correctly. 
+
 \section{Control the Quadcopter's Attitude} \label{sec:accepttestAttitude}
-%\textbf{Requirement:}
-%\textit{It shall be possible to control the quadcopter's attitude.}
+Three tests have been carried out to test the capabilities of the attitude controller. The first test shows how the controller can stabilize the attitude around equilibrium when starting with initial conditions different from zero in the three angles. The second and the third tests are done in order to test the reference tracking in roll and pitch, respectively.
 
-%\textbf{Pass/fail criteria:}
-%	\begin{description}
-%	\item[\ding{51}] The attitude of the quadcopter is stabilized around zero radians and the it is possible to track a reference.
-%	\item[(\ding{51})] It is possible to stabilized around zero radians.
-%	\item[\ding{55} \phantom{)}] It is not possible to either stabilize the quadcopter around zero or track a reference.
-%	\end{description}
-
-%\textbf{List of equipment:}	
-
-%\begin{table}[H]
-%	\begin{tabular}{|l|l|p{4.3cm}|}
-%		\hline%------------------------------------------------------------------------------------------------------------
-%		\textbf{Instrument}   &  \textbf{AAU-no.}  &  \textbf{Type}                       \\
-%		\hline%------------------------------------------------------------------------------------------------------------
-%		Quadcopter    	&  N/A 						&  (see \autoref{cha:Systemdescription}) 		      	 \\
-%		\hline%------------------------------------------------------------------------------------------------------------
-%	    Vicon System			& 75459                 &  (see \autoref{cha:Systemdescription})                  \\
-%		\hline%------------------------------------------------------------------------------------------------------------
-%		Computer with MATLAB       &  A6703		 & N/A     \\
-%		\hline%------------------------------------------------------------------------------------------------------------
-%		Attitude quadcopter holder      &  N/A		 & N/A     \\
-%		\hline%------------------------------------------------------------------------------------------------------------
-%		Attitude quadcopter connector holder   &  N/A		 & N/A     \\
-%		\hline%------------------------------------------------------------------------------------------------------------
-%	\end{tabular}
-%\end{table}
-	
-%\textbf{Procedure:}
 The procedure followed to test the attitude controller in the quadcopter is the following.
 \begin{enumerate}
-	\item Attach the attitude connector holder to the quadcopter, and the connector to the attitude quadcopter holder.
-    \item Program the code for each of the test in the microcontroller (stabilize at equilibrium and track references).
-	\item Start the transmission of attitude data from the Vicon system to the quadcopter.
+	\item Attach the quadcopter to the setup as seen in \autoref{app:AttitudeControllerTest}.
+    \item Program the code for stabilization of the quadcopter in the microcontroller.
+	\item Start the transmission of attitude data from MATLAB to the quadcopter.
 	\item Switch on the battery for the quadcopter.
-	\item Record the data given by the Vicon system during the test on the computer.
-    \item Repeat for the rest of the tests.
+	\item Record the attitude data in MATLAB.
+    \item Program the code for tracking references and repeat repeat from step 3 to 5. This is done for both roll and pitch.
 \end{enumerate}
  
 \textbf{Results:}
 
-Three tests have carried out to test the capabilities of the attitude controller. The first one shows how the controller can stabilize the attitude around equilibrium when starting with some initial conditions in the three angles. The second and the third one are done in order to test the reference tracking in roll and pitch, respectively.
-
-The results of the first test can be seen in\autoref{fig:attitudeAccept}, where the attitude is stabilized.
+The results of the first test can be seen in \autoref{fig:attitudeAccept}, where the attitude is stabilized.
 \begin{figure}[H]
 	\includegraphics[scale=.7]{figures/attitudeAccept.pdf}
 	\centering			
-	\captionof{figure}{Testing the quadcopters ability to stabilize around equilibrium.} 
+	\captionof{figure}{Test of the controller ability to stabilize the quadcopter around equilibrium.} 
 	\label{fig:attitudeAccept}
 \end{figure} 
 %
-The three angles start with an initial condition, -0.2 rad for roll, 0.3 rad for pitch and -0.2 rad for yaw. After approximately five seconds, all the references are set to zero. It can be seen that the roll and pitch angles converge to zero in less than 2 s and the yaw angle in approximately 7 s. From the figure, it can be seen that oscillations of approximately 0.04 rad occur around the stabilization point of 0 rad. These oscillations come from the deviations between the model and real system behavior, as the utilized parameters for the model could be different from those of the real system. These differences may originate in the test setup itself as it distorts the moments of inertia around the different axes and the location of the center of rotation with respect to the center of mass. %Furthermore, certain aspects of the behavior of the quadcopter have not been taken into account.
+The three angles start with an initial condition, -0.2 rad for roll, 0.3 rad for pitch and -0.2 rad for yaw. After approximately five seconds, all the references are set to zero. It can be seen that the roll and pitch angles converge to zero in less than 2 s and the yaw angle in approximately 7 s. From the figure, it can be seen that oscillations of approximately 0.04 rad occur around the stabilization point of 0 rad. These oscillations likely originate from dynamics of the real system not captured by the model, as the utilized parameters for the model could be different from those of the real system. 
 
 The response of the controller when tracking a reference in roll is seen in \autoref{fig:AccepttestRefTrackRoll}. The step is given at approximately 10 s.
 \begin{figure}[H]
@@ -120,8 +91,6 @@ The response of the controller when tracking a reference in roll is seen in \aut
 \end{figure}
 
 It can be seen that the reference is tracked and there is no steady state error, there are oscillations of around 0.04 rad also seen in the stabilization of the quadcopter seen in \autoref{fig:attitudeAccept}.
-
-
 
 In \autoref{fig:AccepttestRefTrackPitch} a reference of 0.4 rad in pitch is given to the attitude controller at approximately 10 s.
 \begin{figure}[H]
