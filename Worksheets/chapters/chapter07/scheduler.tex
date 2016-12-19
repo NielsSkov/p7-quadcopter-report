@@ -15,8 +15,10 @@ int main()
     
     ////// Task Creation //////
     //Control Task -> Highest priority
+	// xTaskCreate(FunctionForTask,DebugName,AllocatedStackDepth,Parameters,Priority,TaskHandle)
     xTaskCreate(Controllers, "Control", 1000, NULL, configMAX_PRIORITIES - 1, NULL );
     //Communication Task -> High priority but lower than the Control Task
+    // xTaskCreate(FunctionForTask,DebugName,AllocatedStackDepth,Parameters,Priority,TaskHandle)
 	//	&xHandle for stopping the task if it gets interrupted by the Control Task
     xTaskCreate(Comunication, "Com", 1000, NULL, configMAX_PRIORITIES - 2, &xHandle);
     ...
