@@ -13,10 +13,10 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    xml:space="preserve"
-   width="3000"
-   height="1500"
-   viewBox="0 0 3000 1500"
-   sodipodi:docname="TranslationalControlDiagram.svg"><sodipodi:namedview
+   width="2644.8601"
+   height="917.35791"
+   viewBox="0 0 2644.8601 917.35791"
+   sodipodi:docname="TranslationalControlDiagramexpanded.svg"><sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1"
@@ -29,9 +29,9 @@
      inkscape:window-height="801"
      id="namedview4"
      showgrid="false"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="2464.6321"
-     inkscape:cy="298.02026"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="1604.5248"
+     inkscape:cy="265.00453"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -423,7 +423,7 @@
      id="g10"
      inkscape:groupmode="layer"
      inkscape:label="TranslationalControlDiagram"
-     transform="matrix(1.25,0,0,-1.25,0,1499.9817)"><g
+     transform="matrix(1.25,0,0,-1.25,-12,984.8662)"><g
        transform="matrix(0.826035,0,0,-1,56,675.27954)"
        id="g14"><path
          inkscape:connector-curvature="0"
