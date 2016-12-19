@@ -144,15 +144,14 @@ The dynamics of the system can be analyzed by looking at the system matrix $\vec
 For doing the state feedback, the angular velocities are also needed even though they are not measured. The way of obtaining them is using a reduced order observer. This is done even though the angular velocities could be estimated with a numerical differentiation procedure. The observer is more convenient in case of using on board sensors and by using it, that possibility is kept open. %Furthermore from an learning perspective it is valuable.
 
 This approach has the possibility of designing the state feedback, integral control and the reduced order observer independently. This holds due to the separation principle \cite{ObserverChristoffer}, which states that the closed loop poles of the system are the combination of the state feedback with integral control poles and the observer poles. This implies that the system has 12 closed loop poles.% which states that an observer with gain $\vec{L}$ and a feedback with gain $\vec{F}$ results in 2n closed loop poles \cite{ObserverChristoffer}, where n is the number of states in the system. As a reduced order observer is utilized for estimating the angular velocities, only nine poles are created. 
-
-A block diagram showing the system overview of the attitude controller is shown in \autoref{attitudecontrollerdiagram}. Here the state feedback, the integral control and the reduced order observer can be seen.
+\\A block diagram showing the system overview of the attitude controller is shown in \autoref{attitudecontrollerdiagram}. Here the state feedback, the integral control and the reduced order observer can be seen.
+\vspace{-0.3 cm}
 \begin{figure}[H]
-	\includegraphics[scale=.45]{figures/AttitudeControlDiagram}
+	\includegraphics[scale=.36]{figures/AttitudeControlDiagram}
 	\centering
 	\caption{Control structure for the system, including the state feedback, the integral control and the reduced order observer.}
 	\label{attitudecontrollerdiagram}
 \end{figure}
-
 In the following subsections, the state feedback with the integral control and then the reduced order observer are designed.
 
 %These show how the output and the states of the system evolve as a function of the current states values and the input applied to the system. \autoref{xDotDiffEq} and \autoref{yDiffEq} show the idea of state space representation.
