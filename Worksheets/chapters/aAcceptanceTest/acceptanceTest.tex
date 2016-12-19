@@ -37,10 +37,10 @@ The protocol designed and the scheduling have been tested following the procedur
 \end{enumerate} 
 
 \textbf{Results:}
-The obtained results are presented in \autoref{tab:AccTestCom}
+
+The obtained results are presented in \autoref{tab:AccTestCom}.
 \begin{table}[]
     \centering
-    \label{tab:AccTestCom}
     \begin{tabular}{|c|c|}
         \hline
        Controller loops executed  & Packets correctly decoded \\ \hline
@@ -49,6 +49,7 @@ The obtained results are presented in \autoref{tab:AccTestCom}
        4354 &  4484\\ \hline
     \end{tabular}
     \caption{Results from the network test.}
+        \label{tab:AccTestCom}
 \end{table}
 
 It can be seen that, out of 10000 packets, less than half of them are correctly decoded in the microcontroller. This happens due to the control task having higher priority than the communication task. When a control loop is being executed, the microcontroller does not listen for new messages. However, missing these packets does not affect the performance as long a new packet arrives in the listening period.
@@ -172,17 +173,17 @@ From the figure, it can be seen that it is possible for the controller to track 
 %    \end{minipage}
 %\end{minipage}
 
-\section{Position Control in the z axis}
+\section{Position Control in the z Axis}
 %\textbf{Requirement:}
 %\textit{It shall be possible to make the quadcopter control its position in the z axis.}
 
 %\textbf{Results:}
-Experimental tests reveal a non functional $z_{\mathrm{I}}$ controller implementation. However, the design has been tested in simulation, including the network effects, as depicted in \autoref{sec:TranslationalController}. As the implementation of the attitude controller has been achieved in experimental tests, seen in \autoref{sec:accepttestAttitude}, it is reasonable that the design could be implemented on the quadcopter and work if more time was given.
+Experimental tests reveal a non functional $z_{\mathrm{I}}$ controller implementation. However, the design has been tested in simulation, including the network effects, as depicted in \autoref{sec:TranslationalController}. As the implementation of the attitude controller has been achieved in experimental tests, seen in \autoref{sec:accepttestAttitude}, it is reasonable that the design could be successfully implemented on the quadcopter.
 
 
 % works as well, it is a matter of time to solve the implementation issues. 
 
-\section{Position Control in the x and y axes}
+\section{Position Control in the x and y Axes}
 %\textbf{Requirement:}
 %\textit{It shall be possible to control the quadcopter in the x and y axis}
 %
