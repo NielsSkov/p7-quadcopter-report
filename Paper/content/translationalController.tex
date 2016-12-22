@@ -14,8 +14,9 @@ In order to design the inner controllers for the velocities $\dot{x}_{\mathrm{I}
 \begin{flalign}
     G_{\dot{x}}&=\frac{\dot{x}_{\mathrm{I}}}{\theta}=\frac{-k_{\mathrm{th}} (\overline{\omega}_1 ^2 + \overline{\omega}_2 ^2 + \overline{\omega}_3 ^2 + \overline{\omega}_4 ^2)}{m s} \ , \label{transferfunctionxdot} \\
     G_{\dot{y}}&=\frac{\dot{y}_{\mathrm{I}} }{\phi }=\frac{k_{\mathrm{th}}(\overline{\omega}_1 ^2 + \overline{\omega}_2 ^2 + \overline{\omega}_3 ^2 + \overline{\omega}_4 ^2)}{m s} \ , \label{transferfunctionydot} \\
-    G_{\dot{z}}&=\frac{\dot{z}_{\mathrm{I}}}{\omega_{\mathrm{sum}}} = \frac{ -2 k_{\mathrm{th}}\overline{\omega}_{\mathrm{sum}} }{ 4m s } \ , \label{eq:linearTransferFunctionZ}
+    G_{\dot{z}}&=\frac{\dot{z}_{\mathrm{I}}}{\omega_{\mathrm{sum}}} = \frac{ -2 k_{\mathrm{th}}\overline{\omega}_{\mathrm{sum}} }{ 4m s } \ . \label{eq:linearTransferFunctionZ}
 \end{flalign}
+
 The three plants contain an integrator that can handle steady state errors and output disturbances. However, if there are input disturbances, such as different motor characteristics or external causes like wind, an integrator term in the controller is needed. Then, a zero is added to eliminate the marginal stability due to the presence of only two integrators in the system. Finally, the gain is adjusted to reduce the oscillations. It is worth mentioning that, since the plants for the $x_{\mathrm{I}}$ and $z_{\mathrm{I}}$ velocities have a negative gain, the controller needs to compensate for it with a negative gain.
 
 The bandwidths of the $\dot{x}_{\mathrm{I}}$ and $\dot{y}_{\mathrm{I}}$ controllers are designed to be three times lower than that of the inner attitude controller. This reduces the influence of the attitude behavior on the velocity controller. The attitude controller has a bandwidth of 2 rad$\cdot$s$^{-1}$, yielding a bandwidth of 0.7 rad$\cdot$s$^{-1}$ for these two velocity controllers.

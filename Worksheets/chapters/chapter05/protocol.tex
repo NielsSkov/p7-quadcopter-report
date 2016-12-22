@@ -47,17 +47,6 @@ The variables transmitted are the attitude, roll, pitch and yaw, the position, $
     \caption{Overview of the data sent in the protocol, the range, the resolution and an example on how it transmitted.}
     \label{tab:data}
 \end{table}
-\begin{table}[H]
-    \begin{tabular}{|l|l|}
-        \hline %-----------------------------------------------------------------------------------
-        \multirow{2}{2cm}{Some Text}  & \LaTeX                      \\
-        & \LaTeX                         \\
-        \hline %-----------------------------------------------------------------------------------
-    \end{tabular}
-    \caption{This Is a Table}
-\end{table}
-Chat Conversation End
-Seen by Amalie
 
 The roll, pitch and yaw are measured in rad and are contained in a variable of nine bits each in the packet. The first bit is utilized for the sign. The attitude received from the Vicon system, where the maximum values that can be obtained are $\pm\pi$ rad, are multiplied by 100 and rounded to convert them in integers. $\pm\pi$ rad are only measured by the Vicon system if the quadcopter does a turn of 180 degrees. If this occurs in the roll and pitch, it is not possible for the quadcopter to recover from being turned upside down. Therefore, as 8 bits are chosen to send the value, the maximum measured value is 255, that is, 2.55 rad. If the yaw gets bigger than 2.55 rad the error which the controller receives is high, and it can still correct the angle, as yaw is always set to zero, see \autoref{chap:Control}.
 

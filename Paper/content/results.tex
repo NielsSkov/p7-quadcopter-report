@@ -13,15 +13,15 @@ The obtained model parameters are seen in \autoref{ParametersQuadcopter}. The ma
         \hline %-----------------------------------------------------------------------------------
         $L$  &   0.225       & m\\
         \hline %-----------------------------------------------------------------------------------
-        $J_x$  & 0.01073       & \si{kg \  m^2}\\
+        $J_x$  & $10.7\cdot10^{-3}$      & \si{kg \  m^2}\\
         \hline %-----------------------------------------------------------------------------------
-        $J_y$  & 0.01073       & \si{kg \  m^2}\\
+        $J_y$  & $10.7\cdot10^{-3}$     & \si{kg \  m^2}\\
         \hline %-----------------------------------------------------------------------------------
-        $J_z$  & 0.02135       & \si{kg \  m^2}\\
+        $J_z$  & $20.8\cdot10^{-3}$      & \si{kg \  m^2}\\
         \hline %-----------------------------------------------------------------------------------
-        $k_{\mathrm{th}}$  & $1.32922\cdot10^{-5}$       & \si{N s^2 rad^{-2}}\\
+        $k_{\mathrm{th}}$  & $13.2922\cdot10^{-6}$       & \si{N s^2 rad^{-2}}\\
         \hline %-----------------------------------------------------------------------------------
-        $k_{\mathrm{d}}$  & $9.39741 \cdot10^{-7}$       & \si{N m s^2  rad^{-2}}\\
+        $k_{\mathrm{d}}$  & $0.9397 \cdot10^{-6}$       & \si{N m s^2  rad^{-2}}\\
         \hline %-----------------------------------------------------------------------------------
         $\overline{\omega}_i$& 429      & \si{rad \ s^{-1}}\\
         \hline
@@ -44,7 +44,7 @@ The attitude controller is defined by the designed $\vec{Q}$ and $\vec{R}$ diago
 The controllers for $\dot{x}_{\mathrm{I}}$, $\dot{y}_{\mathrm{I}}$, $\dot{z}_{\mathrm{I}}$, $x_{\mathrm{I}}$, $y_{\mathrm{I}}$ and $z_{\mathrm{I}}$ are
 	\begin{flalign}
 		C_{\dot{x}_{\mathrm{I}}}&=-C_{\dot{y}_{\mathrm{I}}}=-0.0038\left(\frac{1+20s}{s}\right)\ ,\nonumber \\
-    	C_{\dot{z}_{\mathrm{I}}}&=-201.8\left(\frac{s+0.8}{s}\right)\ ,\nonumber \\
+    	C_{\dot{z}_{\mathrm{I}}}&=-280\left(\frac{s+0.8}{s}\right)\ ,\nonumber \\
 		C_{x_{\mathrm{I}}}&=C_{y_{\mathrm{I}}}=0.3\ ,	\nonumber\\
 		C_{z_{\mathrm{I}}}&=1 \ .\nonumber
 	\end{flalign}
