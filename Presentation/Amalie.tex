@@ -1,36 +1,25 @@
 \subsection{Translational Model}
 \begin{frame}{Model}{Translational Model}	
-%
-%    \only<1>{
-%        \begin{figure}[H]
-%            \includegraphics[width=0.6\textwidth]{figures/dronediagram9}
-%        \end{figure}            
-%    }
-%    \only<2>{
-%        \begin{figure}[H]
-%            \includegraphics[width=0.6\textwidth]{figures/dronediagram10}
-%        \end{figure}            
-%    }
-%    \only<3>{
-%        \begin{figure}[H]
-%            \includegraphics[width=0.6\textwidth]{figures/dronediagram11}
-%        \end{figure}            
-%    }
-%    \only<4>{
-%        \begin{figure}[H]
-%            \includegraphics[width=0.6\textwidth]{figures/dronediagram9}
-%        \end{figure}            
-%    }
-%    \only<5>{
-%        \begin{figure}[H]
-%            \includegraphics[width=0.6\textwidth]{figures/dronediagram12}
-%        \end{figure}            
-%    }
-%    \only<6>{
-%        \begin{figure}[H]
-%            \includegraphics[width=0.6\textwidth]{figures/dronediagram13}
-%        \end{figure}            
-%    }
+    \only<1>{
+        \begin{figure}[H]
+            \includegraphics[width=0.6\textwidth]{figures/droneDiagramforcesup1}
+        \end{figure}            
+    }
+    \only<2>{
+        \begin{figure}[H]
+            \includegraphics[width=0.6\textwidth]{figures/droneDiagramforcesup3}
+        \end{figure}            
+    }
+    \only<3>{
+        \begin{figure}[H]
+            \includegraphics[width=0.6\textwidth]{figures/droneDiagramforcesuptilted}
+        \end{figure}            
+    }
+    \only<4>{
+        \begin{figure}[H]
+            \includegraphics[width=0.6\textwidth]{figures/droneDiagramforcesuptiltedwithdecomposition}
+        \end{figure}            
+    }
 \end{frame}
 
 \begin{frame}{Translational Model}{}
@@ -83,12 +72,12 @@
      \begin{itemize}
          \item Dynamic Equations
         \end{itemize}
-        \uncover<2>{            
+        \uncover<2-4>{            
             \begin{flalign}
             m a=\sum F \nonumber
             \end{flalign}
         }
-        \uncover<3>{
+        \uncover<3-4>{
     \begin{flalign}
     m \ddot{x}_{\mathrm{I}} &= -(F_1+F_2+F_3+F_4) (\cos\phi \sin\theta \cos\psi + \sin\phi \sin\psi)  \nonumber\\
     m \ddot{y}_{\mathrm{I}} &= -(F_1+F_2+F_3+F_4) (\cos\phi \sin\theta \sin\psi - \sin\phi \cos\psi) \nonumber \\
