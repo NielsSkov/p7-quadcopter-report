@@ -24,6 +24,9 @@
 % Or whatever. Note that the encoding and the font should match. If T1
 % does not look nice, try deleting the line with the fontenc.
 \usepackage{helvet}
+\usepackage{tikz}
+%\usetikzlibrary{shapes,arrows}
+%\usepackage[americanresistors,americaninductors,americancurrents, americanvoltages]{circuitikz}
 
 % colored hyperlinks
 \newcommand{\chref}[2]{%
@@ -68,6 +71,7 @@
 %}
 
 \begin{document}
+\input{macros.tex}
 % the titlepage
 %{\aauwavesbg%
 \begin{frame}[plain,noframenumbering] % the plain option removes the header from the title page
@@ -87,7 +91,7 @@
 
 %{\aauwavesbg
 \begin{frame}[plain,noframenumbering]
-  \finalpage{Thank you for using this theme!}
+  \finalpage{\large{Attitude and Position Control of a Quadcopter in a Networked Distributed System}}
 \end{frame}%}
 %%%%%%%%%%%%%%%%
 
