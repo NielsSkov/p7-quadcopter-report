@@ -127,3 +127,56 @@
 %}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\usetikzlibrary{calc}
+\usetikzlibrary{backgrounds}
+\newcommand{\showgrid}{%
+  \AtBeginShipoutNext{\AtBeginShipoutAddToBoxForeground{%
+      \begin{tikzpicture}
+        [
+          overlay,
+          remember picture,
+          inner sep=0pt,
+          outer sep=0pt,
+          minor line/.style={help lines, draw=gray!25, on background layer},
+          major line/.style={help lines, draw=gray},
+        ]
+        \foreach \step in {0,...,210} {
+          \pgfmathsetmacro\gridlineconfig{ifthenelse(equal(int(mod(\step,10)),0),"major line","minor line")}%
+          \draw [\gridlineconfig] ($(current page.north west) + (\step mm,0)$) -- ($(current page.south west) + (\step mm,0)$);
+        }
+        \foreach \step in {0,...,297} {
+          \pgfmathsetmacro\gridlineconfig{ifthenelse(equal(int(mod(\step,10)),0),"major line","minor line")}%
+          \draw [\gridlineconfig] ($(current page.north west) - (0,\step mm)$) -- ($(current page.north east) - (0,\step mm)$);
+          \node [anchor=north] at ($ (current page.north west) + (\step mm,0) $) {\fontsize{1}{2}\selectfont \step};
+          \node [anchor=west] at ($ (current page.north west) - (0,\step mm) $) {\fontsize{1}{2}\selectfont \step};
+        }
+      \end{tikzpicture}
+    }%
+  }%
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
