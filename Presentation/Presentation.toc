@@ -1,8 +1,14 @@
 \beamer@endinputifotherversion {3.36pt}
 \select@language {english}
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Model}{7}{0}{2}
-\beamer@subsectionintoc {2}{1}{Attitude Model}{7}{0}{2}
-\beamer@subsectionintoc {2}{2}{Translational Model}{20}{0}{2}
-\beamer@subsectionintoc {2}{3}{Linearization}{29}{0}{2}
-\beamer@sectionintoc {3}{Network}{33}{0}{3}
+\beamer@sectionintoc {2}{Model}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Attitude Model}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Translational Model}{18}{0}{2}
+\beamer@subsectionintoc {2}{3}{Linearization}{27}{0}{2}
+\beamer@sectionintoc {3}{Network}{31}{0}{3}
+\beamer@sectionintoc {4}{Control Solution}{35}{0}{4}
+\beamer@subsectionintoc {4}{1}{Attitude Controller}{36}{0}{4}
+\beamer@subsectionintoc {4}{2}{Translational Controller}{42}{0}{4}
+\beamer@sectionintoc {5}{Implementation}{46}{0}{5}
+\beamer@sectionintoc {6}{Results}{51}{0}{6}
+\beamer@sectionintoc {7}{Final Statements}{55}{0}{7}

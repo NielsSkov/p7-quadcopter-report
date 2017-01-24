@@ -7,43 +7,99 @@
 \headcommand {\beamer@sectionpages {1}{2}}
 \headcommand {\beamer@subsectionpages {1}{2}}
 \headcommand {\beamer@subsectionentry {0}{1}{1}{3}{}}\headcommand {\beamer@subsectionpages {3}{2}}
-\headcommand {\slideentry {1}{1}{1}{3/4}{}{0}}
-\headcommand {\beamer@framepages {3}{4}}
-\headcommand {\slideentry {1}{1}{2}{5/6}{}{0}}
-\headcommand {\beamer@framepages {5}{6}}
-\headcommand {\sectionentry {2}{Model}{7}{Model}{0}}
-\headcommand {\beamer@sectionpages {3}{6}}
-\headcommand {\beamer@subsectionpages {3}{6}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{7}{Attitude Model}}\headcommand {\beamer@subsectionpages {7}{6}}
-\headcommand {\slideentry {2}{1}{1}{7/14}{Attitude Model}{0}}
-\headcommand {\beamer@framepages {7}{14}}
-\headcommand {\slideentry {2}{1}{2}{15/18}{Attitude Model}{0}}
-\headcommand {\beamer@framepages {15}{18}}
-\headcommand {\slideentry {2}{1}{3}{19/19}{Attitude Model}{0}}
-\headcommand {\beamer@framepages {19}{19}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{20}{Translational Model}}\headcommand {\beamer@subsectionpages {7}{19}}
-\headcommand {\slideentry {2}{2}{1}{20/23}{Translational Model}{0}}
-\headcommand {\beamer@framepages {20}{23}}
-\headcommand {\slideentry {2}{2}{2}{24/24}{Translational Model}{0}}
-\headcommand {\beamer@framepages {24}{24}}
-\headcommand {\slideentry {2}{2}{3}{25/28}{Translational Model}{0}}
-\headcommand {\beamer@framepages {25}{28}}
-\headcommand {\beamer@subsectionentry {0}{2}{3}{29}{Linearization}}\headcommand {\beamer@subsectionpages {20}{28}}
-\headcommand {\slideentry {2}{3}{1}{29/32}{Linearization}{0}}
-\headcommand {\beamer@framepages {29}{32}}
-\headcommand {\sectionentry {3}{Network}{33}{Network}{0}}
-\headcommand {\beamer@sectionpages {7}{32}}
-\headcommand {\beamer@subsectionpages {29}{32}}
-\headcommand {\slideentry {3}{0}{1}{33/35}{}{0}}
-\headcommand {\beamer@framepages {33}{35}}
-\headcommand {\slideentry {3}{0}{2}{36/36}{}{0}}
+\headcommand {\slideentry {1}{1}{1}{3/3}{}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\slideentry {1}{1}{2}{4/4}{}{0}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\sectionentry {2}{Model}{5}{Model}{0}}
+\headcommand {\beamer@sectionpages {3}{4}}
+\headcommand {\beamer@subsectionpages {3}{4}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{5}{Attitude Model}}\headcommand {\beamer@subsectionpages {5}{4}}
+\headcommand {\slideentry {2}{1}{1}{5/12}{Attitude Model}{0}}
+\headcommand {\beamer@framepages {5}{12}}
+\headcommand {\slideentry {2}{1}{2}{13/16}{Attitude Model}{0}}
+\headcommand {\beamer@framepages {13}{16}}
+\headcommand {\slideentry {2}{1}{3}{17/17}{Attitude Model}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{18}{Translational Model}}\headcommand {\beamer@subsectionpages {5}{17}}
+\headcommand {\slideentry {2}{2}{1}{18/21}{Translational Model}{0}}
+\headcommand {\beamer@framepages {18}{21}}
+\headcommand {\slideentry {2}{2}{2}{22/22}{Translational Model}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\slideentry {2}{2}{3}{23/26}{Translational Model}{0}}
+\headcommand {\beamer@framepages {23}{26}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{27}{Linearization}}\headcommand {\beamer@subsectionpages {18}{26}}
+\headcommand {\slideentry {2}{3}{1}{27/30}{Linearization}{0}}
+\headcommand {\beamer@framepages {27}{30}}
+\headcommand {\sectionentry {3}{Network}{31}{Network}{0}}
+\headcommand {\beamer@sectionpages {5}{30}}
+\headcommand {\beamer@subsectionpages {27}{30}}
+\headcommand {\slideentry {3}{0}{1}{31/32}{}{0}}
+\headcommand {\beamer@framepages {31}{32}}
+\headcommand {\slideentry {3}{0}{2}{33/33}{}{0}}
+\headcommand {\beamer@framepages {33}{33}}
+\headcommand {\slideentry {3}{0}{3}{34/34}{}{0}}
+\headcommand {\beamer@framepages {34}{34}}
+\headcommand {\sectionentry {4}{Control Solution}{35}{Control Solution}{0}}
+\headcommand {\beamer@sectionpages {31}{34}}
+\headcommand {\beamer@subsectionpages {31}{34}}
+\headcommand {\slideentry {4}{0}{1}{35/35}{}{0}}
+\headcommand {\beamer@framepages {35}{35}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{36}{Attitude Controller}}\headcommand {\beamer@subsectionpages {35}{35}}
+\headcommand {\slideentry {4}{1}{1}{36/36}{Attitude Controller}{0}}
 \headcommand {\beamer@framepages {36}{36}}
-\headcommand {\slideentry {3}{0}{3}{37/37}{}{0}}
+\headcommand {\slideentry {4}{1}{2}{37/37}{Attitude Controller}{0}}
 \headcommand {\beamer@framepages {37}{37}}
-\headcommand {\slideentry {3}{0}{4}{38/38}{}{0}}
+\headcommand {\slideentry {4}{1}{3}{38/38}{Attitude Controller}{0}}
 \headcommand {\beamer@framepages {38}{38}}
-\headcommand {\beamer@partpages {1}{38}}
-\headcommand {\beamer@subsectionpages {33}{38}}
-\headcommand {\beamer@sectionpages {33}{38}}
-\headcommand {\beamer@documentpages {38}}
-\headcommand {\def \inserttotalframenumber {13}}
+\headcommand {\slideentry {4}{1}{4}{39/39}{Attitude Controller}{0}}
+\headcommand {\beamer@framepages {39}{39}}
+\headcommand {\slideentry {4}{1}{5}{40/40}{Attitude Controller}{0}}
+\headcommand {\beamer@framepages {40}{40}}
+\headcommand {\slideentry {4}{1}{6}{41/41}{Attitude Controller}{0}}
+\headcommand {\beamer@framepages {41}{41}}
+\headcommand {\beamer@subsectionentry {0}{4}{2}{42}{Translational Controller}}\headcommand {\beamer@subsectionpages {36}{41}}
+\headcommand {\slideentry {4}{2}{1}{42/42}{Translational Controller}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\slideentry {4}{2}{2}{43/43}{Translational Controller}{0}}
+\headcommand {\beamer@framepages {43}{43}}
+\headcommand {\slideentry {4}{2}{3}{44/44}{Translational Controller}{0}}
+\headcommand {\beamer@framepages {44}{44}}
+\headcommand {\slideentry {4}{2}{4}{45/45}{Translational Controller}{0}}
+\headcommand {\beamer@framepages {45}{45}}
+\headcommand {\sectionentry {5}{Implementation}{46}{Implementation}{0}}
+\headcommand {\beamer@sectionpages {35}{45}}
+\headcommand {\beamer@subsectionpages {42}{45}}
+\headcommand {\slideentry {5}{0}{1}{46/46}{}{0}}
+\headcommand {\beamer@framepages {46}{46}}
+\headcommand {\slideentry {5}{0}{2}{47/47}{}{0}}
+\headcommand {\beamer@framepages {47}{47}}
+\headcommand {\slideentry {5}{0}{3}{48/48}{}{0}}
+\headcommand {\beamer@framepages {48}{48}}
+\headcommand {\slideentry {5}{0}{4}{49/49}{}{0}}
+\headcommand {\beamer@framepages {49}{49}}
+\headcommand {\slideentry {5}{0}{5}{50/50}{}{0}}
+\headcommand {\beamer@framepages {50}{50}}
+\headcommand {\sectionentry {6}{Results}{51}{Results}{0}}
+\headcommand {\beamer@sectionpages {46}{50}}
+\headcommand {\beamer@subsectionpages {46}{50}}
+\headcommand {\slideentry {6}{0}{1}{51/51}{}{0}}
+\headcommand {\beamer@framepages {51}{51}}
+\headcommand {\slideentry {6}{0}{2}{52/52}{}{0}}
+\headcommand {\beamer@framepages {52}{52}}
+\headcommand {\slideentry {6}{0}{3}{53/53}{}{0}}
+\headcommand {\beamer@framepages {53}{53}}
+\headcommand {\slideentry {6}{0}{4}{54/54}{}{0}}
+\headcommand {\beamer@framepages {54}{54}}
+\headcommand {\sectionentry {7}{Final Statements}{55}{Final Statements}{0}}
+\headcommand {\beamer@sectionpages {51}{54}}
+\headcommand {\beamer@subsectionpages {51}{54}}
+\headcommand {\slideentry {7}{0}{1}{55/55}{}{0}}
+\headcommand {\beamer@framepages {55}{55}}
+\headcommand {\slideentry {7}{0}{2}{56/56}{}{0}}
+\headcommand {\beamer@framepages {56}{56}}
+\headcommand {\beamer@partpages {1}{56}}
+\headcommand {\beamer@subsectionpages {55}{56}}
+\headcommand {\beamer@sectionpages {55}{56}}
+\headcommand {\beamer@documentpages {56}}
+\headcommand {\def \inserttotalframenumber {34}}

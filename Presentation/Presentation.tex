@@ -25,8 +25,13 @@
 % does not look nice, try deleting the line with the fontenc.
 \usepackage{helvet}
 \usepackage{tikz}
-%\usetikzlibrary{shapes,arrows}
-%\usepackage[americanresistors,americaninductors,americancurrents, americanvoltages]{circuitikz}
+
+% Defines new environments such as equation,
+% align and split 
+\usepackage{amsmath}
+\usepackage{relsize}
+% Adds new math symbols
+\usepackage{amssymb}
 
 % colored hyperlinks
 \newcommand{\chref}[2]{%
@@ -85,13 +90,13 @@
 
 \input{Noelia.tex}
 \input{Amalie.tex}
-%\input{Andrea.tex}
-%\input{Niels.tex}
-%\input{Alejandro.tex}
+\input{Andrea.tex}
+\input{Niels.tex}
+\input{Alejandro.tex}
 
 %{\aauwavesbg
 \begin{frame}[plain,noframenumbering]
-  \finalpage{\large{Attitude and Position Control of a Quadcopter in a Networked Distributed System}}
+    \finalpage{\large{Attitude and Position Control of a Quadcopter in a Networked Distributed System}}
 \end{frame}%}
 %%%%%%%%%%%%%%%%
 
