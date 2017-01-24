@@ -1,27 +1,110 @@
 %%%%%%%%%%%%%%%%
 \section{Results}
 \begin{frame}{Results}{Attitude Controller Simulations}
-    \begin{figure}[H]
-        %\includegraphics[width=1\textwidth]{figures/ssFinalEqAcc}
-    \end{figure}    
-    \begin{figure}[H]
-        %\includegraphics[width=1\textwidth]{figures/ssFinalStep}
-    \end{figure}    
+    \begin{minipage}{\linewidth}
+        \begin{minipage}{0.49\linewidth}
+             \begin{figure}[H]
+                 \centering
+                 \includegraphics[width=1\textwidth]{figures/attitudeEq} 
+                \end{figure}            
+          \end{minipage}
+          \hspace{0.03\linewidth}
+          \begin{minipage}{0.49\linewidth}
+             \begin{figure}[H]
+                 \centering
+                 \includegraphics[width=1\textwidth]{figures/rollStep}  
+              \end{figure}              
+          \end{minipage}
+      \end{minipage}  
 \end{frame}
 
 \begin{frame}{Results}{Translational Controllers Simulations}
-    \begin{figure}[H]
-        %\includegraphics[width=1\textwidth]{figures/TranslationalControlDiagramSmall}
-    \end{figure}    
+    \begin{itemize}
+        \item $x_\mathrm{I}$ (and $y_\mathrm{I}$) controllers for velocity and position
+    \end{itemize}
+    
+    \begin{minipage}{\linewidth}
+        \begin{minipage}{0.49\linewidth}
+             \begin{figure}[H]
+                 \centering
+                 \includegraphics[width=0.7\textwidth]{figures/xdotStep}  
+               \end{figure} 
+          \end{minipage}
+          \hspace{0.03\linewidth}
+          \begin{minipage}{0.49\linewidth}
+             \begin{figure}[H]
+                 \centering
+                 \includegraphics[width=0.7\textwidth]{figures/xdotStepAction}  
+                \end{figure}                
+          \end{minipage}
+      \end{minipage}
+    \begin{minipage}{\linewidth}
+        \begin{minipage}{0.49\linewidth}
+             \begin{figure}[H]
+                 \centering
+                 \includegraphics[width=0.7\textwidth]{figures/xStep}  
+                \end{figure}
+          \end{minipage}
+          \hspace{0.03\linewidth}
+          \begin{minipage}{0.49\linewidth}
+             \begin{figure}[H]
+                 \centering
+                 \includegraphics[width=0.7\textwidth]{figures/xStepAction}  
+                \end{figure}                
+          \end{minipage}
+      \end{minipage}  
+\end{frame}
+
+\begin{frame}{Results}{Translational Controllers Simulations}
+    \begin{itemize}
+        \item $z_\mathrm{I}$ controllers for velocity and position
+    \end{itemize}
+    
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.34\textwidth]{figures/zdotStep}  
+        \end{figure} 
+           
+    \begin{minipage}{\linewidth}
+        \begin{minipage}{0.49\linewidth}
+             \begin{figure}[H]
+                 \centering
+                 \includegraphics[width=0.65\textwidth]{figures/zStep}  
+             \end{figure}   
+        \end{minipage}
+        \hspace{0.03\linewidth}
+        \begin{minipage}{0.49\linewidth}
+             \begin{figure}[H]
+                 \centering
+                 \includegraphics[width=0.65\textwidth]{figures/zStepAction}  
+               \end{figure}               
+        \end{minipage}
+    \end{minipage}
+
 \end{frame}
 
 \begin{frame}{Results}{Attitude Controller Functional Tests}
+    
     \begin{figure}[H]
-        %\includegraphics[width=1\textwidth]{figures/TranslationalControlDiagramSmall}
-    \end{figure}    
-    \begin{figure}[H]
-        %\includegraphics[width=1\textwidth]{figures/TranslationalControlDiagramSmall}
-    \end{figure}    
+        \centering
+        \includegraphics[width=0.34\textwidth]{figures/zdotStep}  
+      \end{figure} 
+      
+      \begin{minipage}{\linewidth}
+          \begin{minipage}{0.49\linewidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.65\textwidth]{figures/zStep}  
+              \end{figure}   
+          \end{minipage}
+          \hspace{0.03\linewidth}
+          \begin{minipage}{0.49\linewidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.65\textwidth]{figures/zStepAction}  
+              \end{figure}               
+          \end{minipage}
+      \end{minipage}  
 \end{frame}
 
 %%%%%%%%%%%%%%%%
