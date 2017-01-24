@@ -5,6 +5,62 @@
     \includegraphics[scale=0.2]{figures/ControlDiagramPoster}
 \end{frame}
 
+\begin{frame}{Control Solution}{Attitude Controller}
+    \begin{itemize}
+        \item System Representation
+    \end{itemize}
+    
+    \begin{minipage}{\linewidth}
+        \begin{minipage}{0.40\linewidth}
+            \begin{flalign}
+            \dot{\vec{x}}(t)&=\vec{A}\vec{x}(t) + \vec{B}\vec{u}(t) \nonumber \\
+            \vec{y}(t)&=\vec{C}\vec{x}(t) \nonumber
+            \end{flalign}
+        \end{minipage}
+        \hspace{0.03\linewidth}
+        \begin{minipage}{0.55\linewidth}
+            \begin{figure}[H]
+                \includegraphics[width=1\textwidth]{figures/ABC}
+            \end{figure}
+        \end{minipage}
+    \end{minipage}
+    
+    \begin{minipage}{0.22\linewidth}
+        \begin{flalign}
+        \vec{x} = 
+        \begin{bmatrix}
+        \phi \\
+        \theta \\ 
+        \psi \\
+        \dot{\phi} \\
+        \dot{\theta} \\
+        \dot{\psi} \\
+        \end{bmatrix}	\nonumber
+        \end{flalign}  
+    \end{minipage}\hfill
+    \begin{minipage}{0.22\linewidth}
+        \begin{flalign}
+        \vec{u}= 
+        \begin{bmatrix}
+        \omega_1 \\
+        \omega_2 \\
+        \omega_3 \\
+        \omega_4 \\
+        \end{bmatrix} \nonumber
+        \end{flalign} 
+    \end{minipage}\hfill 
+    \begin{minipage}{0.22\linewidth}
+        \begin{flalign}
+        \vec{y} = 
+        \begin{bmatrix}
+        \phi \\
+        \theta \\ 
+        \psi \\
+        \end{bmatrix}	\nonumber
+        \end{flalign}
+    \end{minipage}\hfill 
+\end{frame}
+
 \subsection{Attitude Controller}
 \begin{frame}{Control Solution}{Attitude Controller}
     \centering
@@ -13,73 +69,17 @@
 
 \begin{frame}{Control Solution}{Attitude Controller}
     \begin{itemize}
-        \item System Representation
-    \end{itemize}
-
-\begin{minipage}{\linewidth}
-    \begin{minipage}{0.40\linewidth}
-        \begin{flalign}
-        \dot{\vec{x}}(t)&=\vec{A}\vec{x}(t) + \vec{B}\vec{u}(t) \nonumber \\
-        \vec{y}(t)&=\vec{C}\vec{x}(t) \nonumber
-        \end{flalign}
-    \end{minipage}
-    \hspace{0.03\linewidth}
-    \begin{minipage}{0.55\linewidth}
-        \begin{figure}[H]
-            \includegraphics[width=1\textwidth]{figures/ABC}
-        \end{figure}
-    \end{minipage}
-\end{minipage}
-
-\begin{minipage}{0.22\linewidth}
-    \begin{flalign}
-    \vec{x} = 
-    \begin{bmatrix}
-    \phi \\
-    \theta \\ 
-    \psi \\
-    \dot{\phi} \\
-    \dot{\theta} \\
-    \dot{\psi} \\
-    \end{bmatrix}	\nonumber
-    \end{flalign}  
-\end{minipage}\hfill
-\begin{minipage}{0.22\linewidth}
-    \begin{flalign}
-    \vec{u}= 
-    \begin{bmatrix}
-    \omega_1 \\
-    \omega_2 \\
-    \omega_3 \\
-    \omega_4 \\
-    \end{bmatrix} \nonumber
-    \end{flalign} 
-\end{minipage}\hfill 
-\begin{minipage}{0.22\linewidth}
-    \begin{flalign}
-    \vec{y} = 
-    \begin{bmatrix}
-    \phi \\
-    \theta \\ 
-    \psi \\
-    \end{bmatrix}	\nonumber
-    \end{flalign}
-\end{minipage}\hfill 
-\end{frame}
-
-
-\begin{frame}{Control Solution}{Attitude Controller}
-    \begin{itemize}
         \item State Feedback with Integral Control
     \end{itemize}
     
+    \begin{flalign}
+    \dot{\vec{x}}_{\mathrm{Int}}(t) &= \vec{y}(t)-\vec{r}(t)\nonumber
+    \end{flalign} 
+        
     \begin{figure}
         \centering
         \includegraphics[scale=0.35]{figures/DetailedControllerColorDiagram}  
-    \end{figure}
-    \begin{flalign}
-        \dot{\vec{x}}_{\mathrm{Int}}(t) &= \vec{y}(t)-\vec{r}(t)\nonumber
-    \end{flalign}         
+    \end{figure}    
     \begin{flalign} 
     \vec{u}(t) &=\vec{F}  \vec{x}(t) + \vec{F}_{\mathrm{Int}}  \vec{x}_{\mathrm{Int}}(t) \nonumber
     \end{flalign}

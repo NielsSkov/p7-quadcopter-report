@@ -102,36 +102,42 @@
         \item First order Taylor approximation
     \end{itemize}
 \uncover<2-4>{
+    \begin{flalign}
+    f(x) &\approx f(\overline{x}) + f'(\overline{x}) (x-\overline{x})  \rightarrow\ \Delta f(x) \approx f'(\overline{x}) \Delta x \nonumber
+    \end{flalign}
+}
+\uncover<3-4>{
   \begin{flalign}
   m \overline{\ddot{z}}_{\mathrm{I}} &= F_g-k_{\mathrm{th}} ({\overline{\omega}_1}^2+{\overline{\omega}_2}^2+{\overline{\omega}_3}^2+{\overline{\omega}_4}^2) \cos\overline{\phi} \cos\overline{\theta} \nonumber
   \end{flalign}  
 }
-\uncover<3-4>{
+\uncover<4>{
 \begin{flalign}
 \overline{\omega}_i=\sqrt{\frac{F_\mathrm{g}}{4k_{th}}}
 \nonumber
 \end{flalign}
 }
 
-\uncover<4>{
+\end{frame}
+
+
+\begin{frame}{Model}{Linearization}
     \begin{minipage}{\linewidth}
         \begin{minipage}{0.5\linewidth}
-       \begin{figure}[H]
-           \centering
-           \includegraphics[width=\textwidth]{figures/yawCompModel}
-        \end{figure}            
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=\textwidth]{figures/yawCompModel}
+            \end{figure}            
         \end{minipage}
         \hspace{0.03\linewidth}
         \begin{minipage}{0.5\linewidth}
-       \begin{figure}[H]
-           \centering
-           \includegraphics[width=\textwidth]{figures/zCompModel}
-        \end{figure}          
-    \end{minipage}        
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=\textwidth]{figures/zCompModel}
+            \end{figure}          
+        \end{minipage}        
     \end{minipage}
-}
 \end{frame}
-
 
 %%%%%%%%%%%%%%%%
 \section{Network}
