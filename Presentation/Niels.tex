@@ -75,34 +75,169 @@
 \end{frame}
 
 \begin{frame}{Control Solution}{Translational Controller}
-  put three root locus      
+  \only<1| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=.7\textwidth]{figures/rootLocusZ1}
+      \end{figure}
+    }
+  \only<2| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=.7\textwidth]{figures/rootLocusZ2}
+      \end{figure}
+    }
+  \only<3| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=.7\textwidth]{figures/rootLocusZ3}
+      \end{figure}
+    }
+  \only<4| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=.7\textwidth]{figures/rootLocusZ4}
+      \end{figure}
+    }
+  \only<5| handout:5>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=.7\textwidth]{figures/rootLocusZ5}
+      \end{figure}
+    }
 \end{frame}
 
 \begin{frame}{Control Solution}{Translational Controller}
-  consideration of bandwidth
-  equations for velocity controllers
-  equations for position controllers
+  \centering
+  \begin{minipage}{0.4\linewidth}
+    \[ C_{\dot{x}_{\mathrm{I}}} = -0.0038\frac{1+20 s}{s} \]
+  \end{minipage}%\hspace*{.2cm}
+  \begin{minipage}{0.4\linewidth}
+    \[ C_{x_{\mathrm{I}}} = 0.3 \]
+  \end{minipage}
+  \begin{minipage}{0.4\linewidth}
+    \[ C_{\dot{y}_{\mathrm{I}}} = 0.0038\frac{1+20 s}{s} \]
+  \end{minipage}%\hspace*{.2cm}
+  \begin{minipage}{0.4\linewidth}
+    \[ C_{y_{\mathrm{I}}} = 0.3 \]
+  \end{minipage}
+  \begin{minipage}{0.4\linewidth}
+    \[ C_{\dot{x}_{\mathrm{I}}} = -280 \frac{s+0.8}{s} \]
+  \end{minipage}%\hspace*{.2cm}
+  \begin{minipage}{0.4\linewidth}
+    \[ C_{z_{\mathrm{I}}} = 1 \]
+  \end{minipage}
 \end{frame}
-
 
 %%%%%%%%%%%%%%%%
 \section{Implementation}
 \begin{frame}{Implementation}{}
-  FreeRTOS, tasks
-\end{frame}
-
-\begin{frame}{Implementation}{Schedule}
   \begin{figure}[H]
     \hspace*{-.8cm}
-    \includegraphics[width=1.1\linewidth]{figures/timingDiagram}
+    \includegraphics[width=.8\linewidth]{figures/tasks}
   \end{figure}  
 \end{frame}
 
 \begin{frame}{Implementation}{Schedule}
-  \begin{figure}[H]
-    \hspace*{-.8cm}
-    \includegraphics[width=1.1\linewidth]{figures/newTimingDiagram}
-  \end{figure}
+  \only<1| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/timingDiagram1}
+      \end{figure}
+    }
+  \only<2| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/timingDiagram2}
+      \end{figure}
+    }
+  \only<3| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/timingDiagram3}
+      \end{figure}
+    }
+  \only<4| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/timingDiagram4}
+      \end{figure}
+    }
+  \only<5| handout:5>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/timingDiagram5}
+      \end{figure}
+    }
+\end{frame}
+
+\begin{frame}{Implementation}{Schedule}
+  \only<1| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/newTimingDiagram1}
+      \end{figure}
+    }
+  \only<2| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/newTimingDiagram2}
+      \end{figure}
+    }
+  \only<3| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/newTimingDiagram3}
+      \end{figure}
+    }
+  \only<4| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/newTimingDiagram4}
+      \end{figure}
+    }
+  \only<5| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/newTimingDiagram5}
+      \end{figure}
+    }
+  \only<6| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/newTimingDiagram6}
+      \end{figure}
+    }
+  \only<7| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/newTimingDiagram7}
+      \end{figure}
+    }
+  \only<8| handout:0>
+    {
+      \begin{figure}[H]
+        \hspace*{-.8cm}
+        \includegraphics[width=1.1\linewidth]{figures/newTimingDiagram8}
+      \end{figure}
+    }
 \end{frame}
 
 \begin{frame}{Implementation}{Schedule}
